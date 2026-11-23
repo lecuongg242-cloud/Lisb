@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { completeSession } from "@/app/actions";
-import type { Exercise, SessionType } from "@/lib/exercises/types";
+import type { Exercise } from "@/lib/exercises/types";
 import { getLanguageModule, type AnswerResult } from "@/lib/lang";
 import type { ContentBundle } from "@/lib/views";
 import { ExerciseView } from "./exercises";
@@ -12,7 +12,7 @@ import { TappableSentence } from "./shared";
 
 type Props = {
   lessonId: string;
-  sessionType: SessionType;
+  sessionNo: number;
   title: string;
   exercises: Exercise[];
   content: ContentBundle;
@@ -30,7 +30,7 @@ const FEEDBACK_STYLE: Record<AnswerResult, string> = {
   wrong: "border-bad-border bg-bad-bg",
 };
 
-export function Player({ lessonId, sessionType, title, exercises, content, targetLang, ttsLocale }: Props) {
+export function Player({ lessonId, sessionNo, title, exercises, content, targetLang, ttsLocale }: Props) {
   const t = useTranslations();
   const lang = getLanguageModule(targetLang);
   const [queue, setQueue] = useState<Item[]>(() => exercises.map((exercise) => ({ exercise, retry: false })));
@@ -38,7 +38,11 @@ export function Player({ lessonId, sessionType, title, exercises, content, targe
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [phase, setPhase] = useState<"run" | "saving" | "done" | "error">("run");
-  const [summary, setSummary] = useState<{ durationSec: number; streak: number | null }>({ durationSec: 0, streak: null });
+  const [summary, setSummary] = useState<{ durationSec: number; streak: number | null; nextSessionNo: number | null }>({
+    durationSec: 0,
+    streak: null,
+    nextSessionNo: null,
+  });
   const startedAt = useRef<number | null>(null);
   const sessionId = useRef<string | null>(null);
 
@@ -55,12 +59,12 @@ export function Player({ lessonId, sessionType, title, exercises, content, targe
       const result = await completeSession({
         sessionId: sessionId.current ?? crypto.randomUUID(),
         lessonId,
-        sessionType,
+        sessionNo,
         durationSec,
         attempts: finalAttempts.map(({ exerciseId, isCorrect, answer }) => ({ exerciseId, isCorrect, answer })),
       });
       if (!result.ok) return setPhase("error");
-      setSummary({ durationSec, streak: result.streak });
+      setSummary({ durationSec, streak: result.streak, nextSessionNo: result.nextSessionNo });
       setPhase("done");
     } catch {
       setPhase("error");
@@ -71,7 +75,7 @@ export function Player({ lessonId, sessionType, title, exercises, content, targe
     setFeedback(null);
     if (index + 1 < currentQueue.length) return setIndex(index + 1);
     const durationSec = Math.min(3600, Math.round((Date.now() - (startedAt.current ?? Date.now())) / 1000));
-    setSummary({ durationSec, streak: null });
+    setSummary({ durationSec, streak: null, nextSessionNo: null });
     void save(currentAttempts, durationSec);
   };
 
@@ -143,9 +147,15 @@ export function Player({ lessonId, sessionType, title, exercises, content, targe
             </>
           )}
         </div>
+        {phase === "done" && summary.nextSessionNo !== null && (
+          <Link href={`/learn/${lessonId}/${summary.nextSessionNo}`} className="btn btn-primary">
+            {t("player.nextSession")}
+          </Link>
+        )}
+        {phase === "done" && summary.nextSessionNo === null && <p className="text-center font-semibold text-brand-dark">{t("player.lessonDone")}</p>}
         {phase !== "saving" && (
-          <Link href="/" className="btn btn-primary">
-            {t("player.backHome")}
+          <Link href={`/lesson/${lessonId}`} className={`btn ${phase === "done" && summary.nextSessionNo !== null ? "btn-secondary" : "btn-primary"}`}>
+            {t("player.backLesson")}
           </Link>
         )}
       </Shell>

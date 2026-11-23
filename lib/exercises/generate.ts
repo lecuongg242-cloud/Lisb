@@ -1,5 +1,5 @@
 import { editDistance, stableHash } from "../lang/distance";
-import type { GeneratedExercise } from "./types";
+import type { GeneratedExercise, GeneratedSession, SessionKind, SessionType } from "./types";
 
 /** meanings: nghĩa chính và các nghĩa được chấp nhận của từ (ở ngôn ngữ giải thích), dùng để tránh đáp án nhiễu đồng nghĩa. */
 export type GenWord = { id: string; lemma: string; pos: string; meanings?: string[] };
@@ -16,8 +16,12 @@ export type GenerateInput = {
   poolSentences: GenSentence[];
 };
 
-const WORDS_PER_CHUNK = 3;
-const MAX_PAIRS = 5;
+export type GenerateOutput = { sessions: GeneratedSession[]; exercises: GeneratedExercise[] };
+
+/** Số từ tối đa trong một phiên học từ mới: giữ mỗi phiên trong khung 2-3 phút. */
+export const MAX_WORDS_PER_LEARN_SESSION = 5;
+/** Giới thiệu hai từ rồi hỏi ngay hai từ đó, để không phải nhớ quá nhiều thứ cùng lúc. */
+const INTRO_BATCH = 2;
 
 /** Sắp xếp có tính tất định theo mã băm, để thứ tự lựa chọn không lộ đáp án và không đổi giữa các lần sinh. */
 function shuffle<T>(items: T[], seed: string, key: (item: T) => string): T[] {
@@ -92,68 +96,92 @@ function chunk<T>(items: T[], size: number): T[][] {
 }
 
 /** Chia đều thành các nhóm không quá `max` phần tử (8 từ -> 4 + 4, không phải 5 + 3). */
-function evenGroups<T>(items: T[], max: number): T[][] {
+export function evenGroups<T>(items: T[], max: number): T[][] {
+  if (!items.length) return [];
   const groups = Math.ceil(items.length / max);
   const size = Math.ceil(items.length / groups);
   return chunk(items, size);
 }
 
 /**
- * Sinh toàn bộ bài tập của một bài học từ từ và câu của nó.
+ * Sinh toàn bộ phiên học và bài tập của một bài từ từ và câu của nó.
  * Hàm thuần và tất định: cùng đầu vào luôn cho cùng kết quả.
+ *
+ * Mỗi bài gồm các phiên ngắn theo thứ tự:
+ *   1. Học từ mới (một hoặc nhiều phiên, mỗi phiên tối đa 5 từ): giới thiệu, chọn nghĩa, ghép cặp.
+ *   2. Nhớ lại từ: nhìn nghĩa, gõ từ.
+ *   3. Nghe hiểu: nghe và chọn câu, nghe và sắp xếp từ.
+ *   4. Nghe chép: nghe và gõ lại cả câu.
  */
-export function generateExercises(input: GenerateInput): GeneratedExercise[] {
+export function generateExercises(input: GenerateInput): GenerateOutput {
   const { words, sentences } = input;
   const allSentences = [...sentences, ...input.poolSentences];
-  const out: GeneratedExercise[] = [];
+  const sessions: GeneratedSession[] = [];
+  const exercises: GeneratedExercise[] = [];
 
-  // ----- Phiên từ vựng: nhận biết trước, tự tạo ra sau -----
-  let order = 0;
-  const vocab = (type: GeneratedExercise["type"], sourceId: string | null, payload: Record<string, unknown>) =>
-    out.push({
-      session_type: "vocab",
-      sort_order: ++order,
-      type,
-      source_type: sourceId ? "word" : "none",
-      source_id: sourceId,
-      payload,
-    });
+  /** Mở một phiên mới và trả về hàm thêm bài tập vào phiên đó. Phiên không có bài tập nào thì không được tạo. */
+  const openSession = (sessionType: SessionType, kind: SessionKind) => {
+    const session: GeneratedSession = { session_no: 0, session_type: sessionType, kind, step_count: 0 };
+    return (type: GeneratedExercise["type"], sourceType: "word" | "sentence" | "none", sourceId: string | null, payload: Record<string, unknown>) => {
+      if (session.step_count === 0) {
+        sessions.push(session);
+        session.session_no = sessions.length;
+      }
+      session.step_count += 1;
+      exercises.push({
+        session_type: sessionType,
+        session_no: session.session_no,
+        sort_order: session.step_count,
+        type,
+        source_type: sourceType,
+        source_id: sourceId,
+        payload,
+      });
+    };
+  };
 
+  // ----- Học từ mới: nhận biết -----
   // Đáp án nhiễu chỉ lấy từ những từ người học đã gặp: bài trước và các từ đã giới thiệu trong bài này.
   const introduced: GenWord[] = [...input.poolWords];
-  for (const group of chunk(words, WORDS_PER_CHUNK)) {
-    for (const w of group) vocab("word_intro", w.id, { word_id: w.id });
-    introduced.push(...group);
-    for (const w of group) {
-      const options = shuffle([w, ...similarWords(w, introduced, 3)], `meaning:${w.id}`, (o) => o.id);
-      // Chưa đủ từ để làm lựa chọn (bài đầu tiên, các từ đồng nghĩa nhau) thì bỏ qua câu hỏi này.
-      if (options.length >= 2) vocab("choose_meaning", w.id, { word_id: w.id, option_word_ids: options.map((o) => o.id) });
+  for (const group of evenGroups(words, MAX_WORDS_PER_LEARN_SESSION)) {
+    const add = openSession("vocab", "vocab_learn");
+    for (const batch of chunk(group, INTRO_BATCH)) {
+      for (const w of batch) add("word_intro", "word", w.id, { word_id: w.id });
+      introduced.push(...batch);
+      for (const w of batch) {
+        const options = shuffle([w, ...similarWords(w, introduced, 3)], `meaning:${w.id}`, (o) => o.id);
+        // Chưa đủ từ để làm lựa chọn (bài đầu tiên, các từ đồng nghĩa nhau) thì bỏ qua câu hỏi này.
+        if (options.length >= 2) add("choose_meaning", "word", w.id, { word_id: w.id, option_word_ids: options.map((o) => o.id) });
+      }
+    }
+    if (group.length >= 2) add("match_pairs", "none", null, { word_ids: group.map((w) => w.id) });
+  }
+
+  // ----- Nhớ lại từ: tự tạo ra -----
+  if (words.length) {
+    const add = openSession("vocab", "vocab_recall");
+    for (const w of words) add("type_word", "word", w.id, { word_id: w.id });
+  }
+
+  // ----- Nghe hiểu -----
+  if (sentences.length) {
+    const add = openSession("listening", "listen_recognize");
+    for (const s of sentences) {
+      const options = shuffle([s, ...similarSentences(s, allSentences, 2)], `listen:${s.id}`, (o) => o.id);
+      if (options.length >= 2) add("listen_choose", "sentence", s.id, { sentence_id: s.id, option_sentence_ids: options.map((o) => o.id) });
+    }
+    for (const s of sentences) {
+      if (s.tokens.length < 2) continue;
+      const extra = distractorTokens(s, allSentences, s.tokens.length >= 4 ? 3 : 2);
+      add("listen_arrange", "sentence", s.id, { sentence_id: s.id, distractor_tokens: extra });
     }
   }
-  if (words.length >= 2) {
-    for (const group of evenGroups(words, MAX_PAIRS)) {
-      if (group.length >= 2) vocab("match_pairs", null, { word_ids: group.map((w) => w.id) });
-    }
-  }
-  for (const w of words) vocab("type_word", w.id, { word_id: w.id });
 
-  // ----- Phiên nghe -----
-  order = 0;
-  const listening = (type: GeneratedExercise["type"], sourceId: string, payload: Record<string, unknown>) =>
-    out.push({ session_type: "listening", sort_order: ++order, type, source_type: "sentence", source_id: sourceId, payload });
-
-  for (const s of sentences) {
-    const options = shuffle([s, ...similarSentences(s, allSentences, 2)], `listen:${s.id}`, (o) => o.id);
-    if (options.length >= 2) {
-      listening("listen_choose", s.id, { sentence_id: s.id, option_sentence_ids: options.map((o) => o.id) });
-    }
+  // ----- Nghe chép -----
+  if (sentences.length) {
+    const add = openSession("listening", "listen_dictation");
+    for (const s of sentences) add("listen_type", "sentence", s.id, { sentence_id: s.id });
   }
-  for (const s of sentences) {
-    if (s.tokens.length < 2) continue;
-    const extra = distractorTokens(s, allSentences, s.tokens.length >= 4 ? 3 : 2);
-    listening("listen_arrange", s.id, { sentence_id: s.id, distractor_tokens: extra });
-  }
-  for (const s of sentences) listening("listen_type", s.id, { sentence_id: s.id });
 
-  return out;
+  return { sessions, exercises };
 }

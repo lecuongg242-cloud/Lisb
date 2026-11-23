@@ -2,9 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { SpeakIconButton } from "@/components/SpeakIconButton";
-import { getCompletedSessionTypes, getLearnerContext, getOrderedLessons, loadLessonDetail, type Bilingual } from "@/lib/data";
-import { SESSION_TYPES } from "@/lib/exercises/types";
-import { lessonState } from "@/lib/progress";
+import { getCompletedSessions, getLearnerContext, getOrderedLessons, loadLessonDetail, type Bilingual } from "@/lib/data";
+import { lessonState, nextSessionNo } from "@/lib/progress";
 
 function Tip({ title, tip }: { title: string; tip: Bilingual }) {
   if (!tip.target && !tip.source) return null;
@@ -25,17 +24,20 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonI
   const t = await getTranslations();
   const [detail, completed, ordered] = await Promise.all([
     loadLessonDetail(ctx, lessonId),
-    getCompletedSessionTypes(ctx.supabase, ctx.userId, lessonId),
+    getCompletedSessions(ctx.supabase, ctx.userId, lessonId),
     getOrderedLessons(ctx.supabase, ctx.course.id),
   ]);
   if (!detail) notFound();
 
   const published = ordered.filter((l) => l.status === "published");
+  const sessionNos = detail.sessions.map((s) => s.no);
   const state = lessonState(
     published.findIndex((l) => l.id === lessonId),
     published.findIndex((l) => l.id === ctx.enrollment.currentLessonId),
-    completed,
+    sessionNos.filter((no) => completed.has(no)).length,
+    sessionNos.length,
   );
+  const nextNo = nextSessionNo(sessionNos, completed);
   const locked = state === "locked";
   const locale = ctx.course.ttsLocale;
   const { words, sentences } = detail.content;
@@ -120,33 +122,37 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonI
               <h2 className="text-lg font-bold">{t("lesson.practice")}</h2>
               <p className="text-sm text-muted">{t("lesson.practiceHint")}</p>
             </div>
-            <ul className="flex flex-col gap-2">
-              {SESSION_TYPES.map((type, i) => {
-                const steps = detail.exerciseCounts[type] ?? 0;
-                const isDone = completed.has(type);
-                const blocked = locked || steps === 0 || (i > 0 && !completed.has(SESSION_TYPES[i - 1]));
+            {detail.sessions.length === 0 && <p className="text-sm text-muted">{t("lesson.notReady")}</p>}
+            <ol className="flex flex-col gap-2">
+              {detail.sessions.map((session) => {
+                const isDone = completed.has(session.no);
+                // Phiên mở khi bài đã mở và mọi phiên đứng trước đã xong.
+                const blocked = locked || (!isDone && session.no !== nextNo);
+                const label = t.has(`sessionKind.${session.kind}`) ? t(`sessionKind.${session.kind}`) : t(`session.${session.type}`);
                 return (
-                  <li key={type} className={`flex items-center gap-3 rounded-2xl border p-3 ${isDone ? "border-ok-border bg-ok-bg" : "border-line"}`}>
+                  <li key={session.no} className={`flex items-center gap-3 rounded-2xl border p-3 ${isDone ? "border-ok-border bg-ok-bg" : "border-line"}`}>
                     <span
                       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold ${isDone ? "border-brand bg-brand text-on-brand" : "border-line text-muted"}`}
                     >
-                      {isDone ? "✓" : i + 1}
+                      {isDone ? "✓" : session.no}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold">{t(`session.${type}`)}</p>
+                      <p className="font-semibold">{label}</p>
                       <p className="text-sm text-muted">
-                        {steps === 0 ? t("lesson.notReady") : blocked && !locked ? t("lesson.locked") : t("lesson.steps", { count: steps })}
+                        {blocked && !locked
+                          ? t("lesson.locked")
+                          : `${t("lesson.steps", { count: session.steps })}${t.has(`sessionKindHint.${session.kind}`) ? ` · ${t(`sessionKindHint.${session.kind}`)}` : ""}`}
                       </p>
                     </div>
                     {!blocked && (
-                      <Link href={`/learn/${detail.id}/${type}`} className={`btn min-h-10 px-4 text-sm ${isDone ? "btn-secondary" : "btn-primary"}`}>
+                      <Link href={`/learn/${detail.id}/${session.no}`} className={`btn min-h-10 shrink-0 px-4 text-sm ${isDone ? "btn-secondary" : "btn-primary"}`}>
                         {isDone ? t("lesson.redo") : t("lesson.start")}
                       </Link>
                     )}
                   </li>
                 );
               })}
-            </ul>
+            </ol>
           </section>
 
           {detail.canDo && (

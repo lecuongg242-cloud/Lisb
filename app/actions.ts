@@ -4,8 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireUser } from "@/lib/auth";
-import { getCompletedSessionTypes, getLearnerContext, getOrderedLessons, getProfile } from "@/lib/data";
-import { SESSION_TYPES } from "@/lib/exercises/types";
+import { getCompletedSessions, getLearnerContext, getLessonSessions, getOrderedLessons, getProfile } from "@/lib/data";
+import { nextSessionNo } from "@/lib/progress";
 import { publishLesson, type PublishResult } from "@/lib/publish";
 import { newCardSchedule, scheduleReview, type CardSchedule } from "@/lib/srs/fsrs";
 
@@ -49,32 +49,39 @@ export async function completeOnboarding(formData: FormData) {
 const completeSessionSchema = z.object({
   sessionId: z.string().uuid(),
   lessonId: z.string().uuid(),
-  sessionType: z.enum(SESSION_TYPES),
+  sessionNo: z.number().int().min(1).max(50),
   durationSec: z.number().int().min(0).max(3600),
   attempts: z
     .array(z.object({ exerciseId: z.string().uuid(), isCorrect: z.boolean(), answer: z.string().max(500).nullable() }))
     .max(200),
 });
 
-export type CompleteSessionResult = { ok: true; streak: number } | { ok: false };
+export type CompleteSessionResult = { ok: true; streak: number; nextSessionNo: number | null } | { ok: false };
 
 export async function completeSession(input: z.infer<typeof completeSessionSchema>): Promise<CompleteSessionResult> {
   const parsed = completeSessionSchema.safeParse(input);
   if (!parsed.success) return { ok: false };
-  const { sessionId, lessonId, sessionType, durationSec, attempts } = parsed.data;
+  const { sessionId, lessonId, sessionNo, durationSec, attempts } = parsed.data;
   const ctx = await getLearnerContext();
   const { supabase, userId } = ctx;
   const now = new Date();
 
-  // Bài tập hợp lệ của phiên này (RLS chỉ trả về bài đã xuất bản).
-  const { data: exerciseRows } = await supabase
-    .from("exercises")
-    .select("id, source_type, source_id")
-    .eq("lesson_id", lessonId)
-    .eq("session_type", sessionType);
-  if (!exerciseRows?.length) return { ok: false };
+  // Phiên và bài tập hợp lệ (RLS chỉ trả về bài đã xuất bản).
+  const [sessionsByLesson, { data: exerciseRows }] = await Promise.all([
+    getLessonSessions(supabase, [lessonId]),
+    supabase.from("exercises").select("id, source_type, source_id").eq("lesson_id", lessonId).eq("session_no", sessionNo),
+  ]);
+  const lessonSessions = sessionsByLesson.get(lessonId) ?? [];
+  const session = lessonSessions.find((s) => s.no === sessionNo);
+  if (!session || !exerciseRows?.length) return { ok: false };
   const exerciseById = new Map(exerciseRows.map((e) => [e.id as string, e]));
   const valid = attempts.filter((a) => exerciseById.has(a.exerciseId));
+
+  /** Phiên kế tiếp của bài sau khi phiên này được tính là xong. */
+  const remainingAfter = async () => {
+    const done = await getCompletedSessions(supabase, userId, lessonId);
+    return { done, next: nextSessionNo(lessonSessions.map((s) => s.no), done) };
+  };
 
   // id do trình duyệt sinh: gửi lại cùng một phiên thì không ghi trùng.
   const { data: inserted, error: logError } = await supabase
@@ -85,7 +92,8 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
         user_id: userId,
         course_id: ctx.course.id,
         lesson_id: lessonId,
-        session_type: sessionType,
+        session_type: session.type,
+        session_no: sessionNo,
         total_items: valid.length,
         correct_items: valid.filter((a) => a.isCorrect).length,
         duration_sec: durationSec,
@@ -96,7 +104,7 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
     )
     .select("id");
   if (logError) return { ok: false };
-  if (!inserted?.length) return { ok: true, streak: ctx.profile.streak_count };
+  if (!inserted?.length) return { ok: true, streak: ctx.profile.streak_count, nextSessionNo: (await remainingAfter()).next };
 
   if (valid.length) {
     await supabase.from("exercise_attempts").insert(
@@ -111,15 +119,12 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
     if (!a.isCorrect && sourceId) missed.add(sourceId);
   }
 
-  const kind = sessionType === "vocab" ? "word" : "sentence";
-  const idColumn = kind === "word" ? "word_id" : "sentence_id";
-  const { data: sourceRows } =
-    kind === "word"
-      ? await supabase.from("lesson_words").select("id:word_id").eq("lesson_id", lessonId)
-      : await supabase.from("sentences").select("id").eq("lesson_id", lessonId);
-  const sourceIds = (sourceRows ?? []).map((r) => r.id as string);
+  // Mỗi từ hoặc câu được luyện trong phiên này có một thẻ ôn.
+  for (const kind of ["word", "sentence"] as const) {
+    const idColumn = kind === "word" ? "word_id" : "sentence_id";
+    const sourceIds = [...new Set(exerciseRows.filter((e) => e.source_type === kind && e.source_id).map((e) => e.source_id as string))];
+    if (!sourceIds.length) continue;
 
-  if (sourceIds.length) {
     const { data: existing } = await supabase
       .from("cards")
       .select(`id, ${idColumn}, ${SCHEDULE_COLUMNS}`)
@@ -147,25 +152,23 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
       if (!card || !missed.has(id)) continue;
       const { schedule, log } = scheduleReview(card, 1, now);
       await supabase.from("cards").update(schedule).eq("id", card.id);
-      await supabase.from("review_logs").insert({ card_id: card.id, user_id: userId, source: sessionType, ...log });
+      await supabase.from("review_logs").insert({ card_id: card.id, user_id: userId, source: session.type, ...log });
     }
   }
 
-  // Học xong cả hai phiên thì chuyển sang bài kế tiếp.
-  if (ctx.enrollment.currentLessonId === lessonId) {
-    const done = await getCompletedSessionTypes(supabase, userId, lessonId);
-    if (SESSION_TYPES.every((t) => done.has(t))) {
-      const lessons = (await getOrderedLessons(supabase, ctx.course.id)).filter((l) => l.status === "published");
-      const next = lessons[lessons.findIndex((l) => l.id === lessonId) + 1];
-      if (next) {
-        await supabase.from("enrollments").update({ current_lesson_id: next.id }).eq("user_id", userId).eq("course_id", ctx.course.id);
-      }
+  // Học xong mọi phiên của bài đang học thì chuyển sang bài kế tiếp.
+  const { next } = await remainingAfter();
+  if (next === null && ctx.enrollment.currentLessonId === lessonId) {
+    const lessons = (await getOrderedLessons(supabase, ctx.course.id)).filter((l) => l.status === "published");
+    const nextLesson = lessons[lessons.findIndex((l) => l.id === lessonId) + 1];
+    if (nextLesson) {
+      await supabase.from("enrollments").update({ current_lesson_id: nextLesson.id }).eq("user_id", userId).eq("course_id", ctx.course.id);
     }
   }
 
   const { data: streak } = await supabase.rpc("touch_streak");
   revalidatePath("/", "layout");
-  return { ok: true, streak: (streak as number | null) ?? ctx.profile.streak_count };
+  return { ok: true, streak: (streak as number | null) ?? ctx.profile.streak_count, nextSessionNo: next };
 }
 
 // ---------- Ôn tập ----------
@@ -236,20 +239,18 @@ export async function finishReviewSession(input: z.infer<typeof finishReviewSche
 const settingsSchema = z.object({
   displayName: z.string().trim().max(60),
   dailyGoal: z.coerce.number().int().min(1).max(20),
-  newCardsPerDay: z.coerce.number().int().min(0).max(50),
 });
 
 export async function updateSettings(_prev: { saved: boolean; error: boolean }, formData: FormData) {
   const parsed = settingsSchema.safeParse({
     displayName: formData.get("displayName") ?? "",
     dailyGoal: formData.get("dailyGoal"),
-    newCardsPerDay: formData.get("newCardsPerDay"),
   });
   if (!parsed.success) return { saved: false, error: true };
   const { supabase, user } = await requireUser();
   const { error } = await supabase
     .from("profiles")
-    .update({ display_name: parsed.data.displayName || null, daily_goal: parsed.data.dailyGoal, new_cards_per_day: parsed.data.newCardsPerDay })
+    .update({ display_name: parsed.data.displayName || null, daily_goal: parsed.data.dailyGoal })
     .eq("id", user.id);
   if (error) return { saved: false, error: true };
   revalidatePath("/", "layout");

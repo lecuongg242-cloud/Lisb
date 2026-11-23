@@ -110,15 +110,37 @@ export async function getOrderedLessons(supabase: SupabaseClient, courseId: stri
   return out;
 }
 
-/** Các phiên đã hoàn thành của một bài học. */
-export async function getCompletedSessionTypes(supabase: SupabaseClient, userId: string, lessonId: string): Promise<Set<string>> {
-  const { data } = await supabase
+/** Số thứ tự các phiên đã hoàn thành của một bài học. */
+export async function getCompletedSessions(supabase: SupabaseClient, userId: string, lessonId: string): Promise<Set<number>> {
+  const { data, error } = await supabase
     .from("session_logs")
-    .select("session_type")
+    .select("session_no")
     .eq("user_id", userId)
     .eq("lesson_id", lessonId)
+    .not("session_no", "is", null)
     .not("completed_at", "is", null);
-  return new Set((data ?? []).map((r) => r.session_type as string));
+  if (error) throw new Error(error.message);
+  return new Set((data ?? []).map((r) => r.session_no as number));
+}
+
+export type LessonSession = { no: number; type: SessionType; kind: string; steps: number };
+
+/** Danh sách phiên của từng bài, theo thứ tự học. */
+export async function getLessonSessions(supabase: SupabaseClient, lessonIds: string[]): Promise<Map<string, LessonSession[]>> {
+  const out = new Map<string, LessonSession[]>();
+  if (!lessonIds.length) return out;
+  const { data, error } = await supabase
+    .from("lesson_sessions")
+    .select("lesson_id, session_no, session_type, kind, step_count")
+    .in("lesson_id", lessonIds)
+    .order("session_no");
+  if (error) throw new Error(error.message);
+  for (const row of data ?? []) {
+    const list = out.get(row.lesson_id as string) ?? [];
+    list.push({ no: row.session_no as number, type: row.session_type as SessionType, kind: row.kind as string, steps: row.step_count as number });
+    out.set(row.lesson_id as string, list);
+  }
+  return out;
 }
 
 type Locales = { target: string; source: string };
@@ -209,13 +231,13 @@ export async function loadContent(
 }
 
 /** Bài tập của một phiên học kèm toàn bộ nội dung cần hiển thị. */
-export async function loadSession(ctx: LearnerContext, lessonId: string, sessionType: SessionType) {
+export async function loadSession(ctx: LearnerContext, lessonId: string, sessionNo: number) {
   const { supabase } = ctx;
   const { data: rows, error } = await supabase
     .from("exercises")
     .select("id, type, payload")
     .eq("lesson_id", lessonId)
-    .eq("session_type", sessionType)
+    .eq("session_no", sessionNo)
     .order("sort_order");
   if (error) throw new Error(error.message);
 
@@ -305,20 +327,21 @@ export async function countSessionsToday(ctx: LearnerContext): Promise<number> {
   return count ?? 0;
 }
 
-/** Các phiên đã hoàn thành của từng bài: dùng để hiện trạng thái thật trên lộ trình. */
-export async function getLessonProgress(supabase: SupabaseClient, userId: string): Promise<Map<string, Set<string>>> {
+/** Số thứ tự các phiên đã hoàn thành của từng bài: dùng để hiện trạng thái thật trên lộ trình. */
+export async function getLessonProgress(supabase: SupabaseClient, userId: string): Promise<Map<string, Set<number>>> {
   const { data, error } = await supabase
     .from("session_logs")
-    .select("lesson_id, session_type")
+    .select("lesson_id, session_no")
     .eq("user_id", userId)
     .not("lesson_id", "is", null)
+    .not("session_no", "is", null)
     .not("completed_at", "is", null);
   if (error) throw new Error(error.message);
-  const progress = new Map<string, Set<string>>();
+  const progress = new Map<string, Set<number>>();
   for (const row of data ?? []) {
-    const types = progress.get(row.lesson_id as string) ?? new Set<string>();
-    types.add(row.session_type as string);
-    progress.set(row.lesson_id as string, types);
+    const done = progress.get(row.lesson_id as string) ?? new Set<number>();
+    done.add(row.session_no as number);
+    progress.set(row.lesson_id as string, done);
   }
   return progress;
 }
@@ -336,8 +359,8 @@ export type LessonDetail = {
   wordIds: string[];
   sentenceIds: string[];
   content: ContentBundle;
-  /** Số bước của từng phiên luyện tập. */
-  exerciseCounts: Record<string, number>;
+  /** Các phiên luyện tập của bài, theo thứ tự. */
+  sessions: LessonSession[];
 };
 
 /** Toàn bộ nội dung của một bài để hiển thị trang "Bài học": từ mới, câu mẫu, mẹo, các phiên luyện tập. */
@@ -345,7 +368,7 @@ export async function loadLessonDetail(ctx: LearnerContext, lessonId: string): P
   const { supabase } = ctx;
   const locales = { target: ctx.course.targetLang, source: ctx.enrollment.sourceLang };
 
-  const [lessonRes, wordsRes, sentencesRes, exercisesRes] = await Promise.all([
+  const [lessonRes, wordsRes, sentencesRes, sessionsByLesson] = await Promise.all([
     supabase
       .from("lessons")
       .select("id, sort_order, lesson_translations(locale, title, grammar_tip, pronunciation_tip), units(unit_translations(locale, title, can_do))")
@@ -353,9 +376,9 @@ export async function loadLessonDetail(ctx: LearnerContext, lessonId: string): P
       .maybeSingle(),
     supabase.from("lesson_words").select("word_id, sort_order, example_sentence_id").eq("lesson_id", lessonId).order("sort_order"),
     supabase.from("sentences").select("id, sort_order").eq("lesson_id", lessonId).order("sort_order"),
-    supabase.from("exercises").select("session_type").eq("lesson_id", lessonId),
+    getLessonSessions(supabase, [lessonId]),
   ]);
-  const error = lessonRes.error ?? wordsRes.error ?? sentencesRes.error ?? exercisesRes.error;
+  const error = lessonRes.error ?? wordsRes.error ?? sentencesRes.error;
   if (error) throw new Error(error.message);
   if (!lessonRes.data) return null;
 
@@ -371,11 +394,6 @@ export async function loadLessonDetail(ctx: LearnerContext, lessonId: string): P
   const exampleByWord = new Map((wordsRes.data ?? []).map((r) => [r.word_id as string, r.example_sentence_id as string | null]));
   const content = await loadContent(supabase, { wordIds, sentenceIds }, locales, ctx.course.targetLang, exampleByWord);
 
-  const exerciseCounts: Record<string, number> = {};
-  for (const row of exercisesRes.data ?? []) {
-    exerciseCounts[row.session_type as string] = (exerciseCounts[row.session_type as string] ?? 0) + 1;
-  }
-
   return {
     id: lesson.id,
     number: lesson.sort_order,
@@ -387,6 +405,6 @@ export async function loadLessonDetail(ctx: LearnerContext, lessonId: string): P
     wordIds: wordIds.filter((id) => content.words[id]),
     sentenceIds: sentenceIds.filter((id) => content.sentences[id]),
     content,
-    exerciseCounts,
+    sessions: sessionsByLesson.get(lessonId) ?? [],
   };
 }

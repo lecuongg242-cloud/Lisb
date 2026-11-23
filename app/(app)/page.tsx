@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { countDueCards, countSessionsToday, getCompletedSessionTypes, getLearnerContext } from "@/lib/data";
-import { SESSION_TYPES } from "@/lib/exercises/types";
+import { countDueCards, countSessionsToday, getCompletedSessions, getLearnerContext, getLessonSessions, type LessonSession } from "@/lib/data";
+import { nextSessionNo } from "@/lib/progress";
 
-/** Từ 5 thẻ đến hạn trở lên thì ưu tiên ôn trước khi học bài mới. */
+/** Từ 5 thẻ đến hạn trở lên thì ưu tiên ôn trước khi học phần mới. */
 const REVIEW_FIRST_THRESHOLD = 5;
 
 export default async function HomePage() {
@@ -11,10 +11,11 @@ export default async function HomePage() {
   const t = await getTranslations();
   const lessonId = ctx.enrollment.currentLessonId;
 
-  const [due, sessionsToday, done, lessonTitle] = await Promise.all([
+  const [due, sessionsToday, done, sessionsByLesson, lessonTitle] = await Promise.all([
     countDueCards(ctx),
     countSessionsToday(ctx),
-    lessonId ? getCompletedSessionTypes(ctx.supabase, ctx.userId, lessonId) : Promise.resolve(new Set<string>()),
+    lessonId ? getCompletedSessions(ctx.supabase, ctx.userId, lessonId) : Promise.resolve(new Set<number>()),
+    lessonId ? getLessonSessions(ctx.supabase, [lessonId]) : Promise.resolve(new Map<string, LessonSession[]>()),
     lessonId
       ? ctx.supabase
           .from("lesson_translations")
@@ -26,18 +27,24 @@ export default async function HomePage() {
       : Promise.resolve(undefined),
   ]);
 
-  const nextSession = lessonId ? SESSION_TYPES.find((type) => !done.has(type)) : undefined;
+  const sessions = lessonId ? (sessionsByLesson.get(lessonId) ?? []) : [];
+  const nextNo = nextSessionNo(
+    sessions.map((s) => s.no),
+    done,
+  );
+  const nextSession = sessions.find((s) => s.no === nextNo);
+  const kindLabel = (kind: string, type: string) => (t.has(`sessionKind.${kind}`) ? t(`sessionKind.${kind}`) : t(`session.${type}`));
+
   let next: { href: string; label: string } | null = null;
   if (due >= REVIEW_FIRST_THRESHOLD || (!nextSession && due > 0)) {
     next = { href: "/review", label: t("home.nextReview", { count: due }) };
   } else if (lessonId && nextSession) {
-    next = {
-      href: `/learn/${lessonId}/${nextSession}`,
-      label: nextSession === "vocab" ? t("home.nextVocab") : t("home.nextListening"),
-    };
+    next = { href: `/learn/${lessonId}/${nextSession.no}`, label: kindLabel(nextSession.kind, nextSession.type) };
   }
 
   const name = ctx.profile.display_name;
+  const doneCount = sessions.filter((s) => done.has(s.no)).length;
+
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-5">
       <div>
@@ -73,36 +80,42 @@ export default async function HomePage() {
           <div>
             <p className="text-sm text-muted">{t("home.currentLesson")}</p>
             <h2 className="text-lg font-semibold">{lessonTitle}</h2>
+            <p className="mt-1 text-sm text-muted">{t("home.lessonProgress", { done: doneCount, total: sessions.length })}</p>
             <Link href={`/lesson/${lessonId}`} className="mt-1 inline-block text-sm font-semibold text-brand-dark hover:underline">
               {t("home.openLesson")} →
             </Link>
           </div>
-          <ul className="flex flex-col gap-2">
-            {SESSION_TYPES.map((type, i) => {
-              const isDone = done.has(type);
-              const locked = i > 0 && !done.has(SESSION_TYPES[i - 1]);
+          <ol className="flex flex-col gap-2">
+            {sessions.map((session) => {
+              const isDone = done.has(session.no);
+              const locked = !isDone && session.no !== nextNo;
               const row = (
                 <>
-                  <span className="font-medium">{t(`session.${type}`)}</span>
-                  <span className={`text-sm ${isDone ? "text-brand-dark" : "text-muted"}`}>
-                    {isDone ? t("session.done") : locked ? t("session.locked") : t("session.notDone")}
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold ${isDone ? "border-brand bg-brand text-on-brand" : "border-line text-muted"}`}
+                  >
+                    {isDone ? "✓" : session.no}
+                  </span>
+                  <span className="min-w-0 flex-1 font-medium">{kindLabel(session.kind, session.type)}</span>
+                  <span className={`shrink-0 text-sm ${isDone ? "text-brand-dark" : "text-muted"}`}>
+                    {isDone ? t("session.done") : locked ? t("session.locked") : t("lesson.steps", { count: session.steps })}
                   </span>
                 </>
               );
-              const className = "flex min-h-12 items-center justify-between gap-3 rounded-2xl border border-line px-4";
+              const className = "flex min-h-12 items-center gap-3 rounded-2xl border border-line px-3 py-2";
               return (
-                <li key={type}>
+                <li key={session.no}>
                   {locked ? (
                     <div className={`${className} opacity-60`}>{row}</div>
                   ) : (
-                    <Link href={`/learn/${lessonId}/${type}`} className={`${className} hover:bg-page`}>
+                    <Link href={`/learn/${lessonId}/${session.no}`} className={`${className} hover:bg-page`}>
                       {row}
                     </Link>
                   )}
                 </li>
               );
             })}
-          </ul>
+          </ol>
         </section>
       )}
 

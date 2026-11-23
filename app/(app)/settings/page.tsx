@@ -9,7 +9,7 @@ export default async function SettingsPage() {
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-5">
       <h1 className="text-2xl font-bold">{t("title")}</h1>
-      <SettingsForm displayName={profile.display_name ?? ""} dailyGoal={profile.daily_goal} newCardsPerDay={profile.new_cards_per_day} />
+      <SettingsForm displayName={profile.display_name ?? ""} dailyGoal={profile.daily_goal} />
       <section className="card flex flex-col gap-3">
         <div>
           <h2 className="font-semibold">{t("account")}</h2>

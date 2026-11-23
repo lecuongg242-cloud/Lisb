@@ -62,7 +62,9 @@
     "streak": "{count, plural, =0 {Chưa có chuỗi ngày} other {# ngày liên tục}}",
     "due": "{count, plural, =0 {Không có thẻ đến hạn} other {# thẻ đến hạn}}",
     "sessionsToday": "Hôm nay: {done}/{goal} phiên",
-    "openLesson": "Xem nội dung bài"
+    "openLesson": "Xem nội dung bài",
+    "nextSession": "{kind}",
+    "lessonProgress": "{done}/{total} phần đã xong"
   },
   "session": {
     "vocab": "Từ vựng",
@@ -98,7 +100,10 @@
     "saving": "Đang lưu kết quả...",
     "saveFailed": "Chưa lưu được kết quả.",
     "retry": "Thử lưu lại",
-    "backHome": "Về trang chính"
+    "backHome": "Về trang chính",
+    "nextSession": "Học phần tiếp theo",
+    "lessonDone": "Bạn đã học xong bài này.",
+    "backLesson": "Về trang bài học"
   },
   "review": {
     "title": "Ôn tập",
@@ -149,7 +154,6 @@
     "title": "Cài đặt",
     "displayName": "Tên hiển thị",
     "dailyGoal": "Số phiên mỗi ngày",
-    "newCards": "Số thẻ mới tối đa mỗi ngày",
     "voice": "Giọng đọc",
     "voiceFemale": "Giọng nữ",
     "voiceMale": "Giọng nam",
@@ -266,7 +270,7 @@
     "eyebrow": "{unit} · Bài {number}",
     "goal": "Mục tiêu của chủ đề",
     "practice": "Luyện tập",
-    "practiceHint": "Học phần Từ vựng trước, rồi tới phần Nghe.",
+    "practiceHint": "Học lần lượt từng phần. Mỗi phần chỉ mất hai đến ba phút.",
     "steps": "{count} bước",
     "start": "Bắt đầu",
     "redo": "Làm lại",
@@ -285,6 +289,19 @@
       "current": "Đây là bài bạn đang học.",
       "available": "Bạn chưa học xong bài này.",
       "locked": "Bài này chưa mở. Học xong các bài trước để mở."
-    }
+    },
+    "partNumber": "Phần {number}"
+  },
+  "sessionKind": {
+    "vocab_learn": "Học từ mới",
+    "vocab_recall": "Nhớ lại từ",
+    "listen_recognize": "Nghe hiểu",
+    "listen_dictation": "Nghe chép"
+  },
+  "sessionKindHint": {
+    "vocab_learn": "Làm quen với từ, nghĩa và cách đọc",
+    "vocab_recall": "Nhìn nghĩa, gõ lại từ",
+    "listen_recognize": "Nghe và nhận ra câu",
+    "listen_dictation": "Nghe và gõ lại cả câu"
   }
 }

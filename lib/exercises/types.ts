@@ -24,8 +24,23 @@ export type Exercise = {
   [T in ExerciseType]: { id: string; type: T; payload: PayloadOf<T> };
 }[ExerciseType];
 
+/** Kiểu của một phiên học trong bài. Tên hiển thị nằm ở messages (sessionKind.*). */
+export const SESSION_KINDS = ["vocab_learn", "vocab_recall", "listen_recognize", "listen_dictation"] as const;
+export type SessionKind = (typeof SESSION_KINDS)[number];
+
+/** Một phiên học ngắn của bài: số thứ tự trong bài, loại kỹ năng, kiểu phiên và số bước. */
+export type GeneratedSession = {
+  session_no: number;
+  session_type: SessionType;
+  kind: SessionKind;
+  step_count: number;
+};
+
 export type GeneratedExercise = {
   session_type: SessionType;
+  /** Phiên chứa bài tập này. */
+  session_no: number;
+  /** Thứ tự trong phiên, bắt đầu từ 1. */
   sort_order: number;
   type: ExerciseType;
   source_type: "word" | "sentence" | "none";

@@ -1,5 +1,3 @@
-import { SESSION_TYPES } from "./exercises/types";
-
 /**
  * Trạng thái của một bài trên lộ trình.
  * - done: đã học xong mọi phiên của bài.
@@ -9,10 +7,22 @@ import { SESSION_TYPES } from "./exercises/types";
  */
 export type LessonState = "done" | "current" | "available" | "locked";
 
-export function lessonState(index: number, currentIndex: number, completedTypes: ReadonlySet<string> | undefined): LessonState {
-  if (completedTypes && SESSION_TYPES.every((type) => completedTypes.has(type))) return "done";
+/**
+ * @param index vị trí của bài trên lộ trình
+ * @param currentIndex vị trí của bài đang học; -1 nếu không còn bài đang học
+ * @param completedSessions số phiên của bài đã hoàn thành
+ * @param totalSessions tổng số phiên của bài
+ */
+export function lessonState(index: number, currentIndex: number, completedSessions: number, totalSessions: number): LessonState {
+  if (totalSessions > 0 && completedSessions >= totalSessions) return "done";
   // Không còn bài đang học (đã học hết nội dung hiện có): mọi bài đều mở.
   if (currentIndex < 0) return "available";
   if (index === currentIndex) return "current";
   return index < currentIndex ? "available" : "locked";
+}
+
+/** Phiên kế tiếp cần học trong một bài: phiên đầu tiên chưa hoàn thành, theo thứ tự. */
+export function nextSessionNo(sessionNos: number[], completed: ReadonlySet<number>): number | null {
+  for (const no of [...sessionNos].sort((a, b) => a - b)) if (!completed.has(no)) return no;
+  return null;
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { generateExercises, type GenSentence, type GenWord } from "./generate";
+import { evenGroups, generateExercises, type GenSentence, type GenWord } from "./generate";
 import { payloadSchemas } from "./types";
 
 const uuid = (n: number) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -27,63 +27,98 @@ const sentences = [
 ];
 const input = { words, sentences, poolWords: [word(7, "night"), word(8, "great", "adjective")], poolSentences: [sentence(6, "Good night!")] };
 
+/** Một bài 8 từ, 5 câu nhiều từ: trường hợp dài nhất của cấp Khởi động. */
+const bigInput = {
+  words: Array.from({ length: 8 }, (_, i) => word(20 + i, `word${i}`)),
+  sentences: Array.from({ length: 5 }, (_, i) => sentence(20 + i, `This is word${i} for you today.`)),
+  poolWords: input.poolWords,
+  poolSentences: input.poolSentences,
+};
+
+describe("evenGroups", () => {
+  it("chia đều, không vượt quá kích thước tối đa", () => {
+    expect(evenGroups([1, 2, 3, 4, 5], 5).map((g) => g.length)).toEqual([5]);
+    expect(evenGroups([1, 2, 3, 4, 5, 6], 5).map((g) => g.length)).toEqual([3, 3]);
+    expect(evenGroups([1, 2, 3, 4, 5, 6, 7, 8], 5).map((g) => g.length)).toEqual([4, 4]);
+    expect(evenGroups([], 5)).toEqual([]);
+  });
+});
+
 describe("generateExercises", () => {
-  const result = generateExercises(input);
-  const vocab = result.filter((e) => e.session_type === "vocab");
-  const listening = result.filter((e) => e.session_type === "listening");
+  const { sessions, exercises } = generateExercises(input);
+  const inSession = (no: number) => exercises.filter((e) => e.session_no === no);
 
   it("tất định: cùng đầu vào cho cùng kết quả", () => {
-    expect(generateExercises(input)).toEqual(result);
+    expect(generateExercises(input)).toEqual({ sessions, exercises });
   });
 
-  it("mọi payload đúng schema và thứ tự liên tục trong từng phiên", () => {
-    for (const e of result) expect(payloadSchemas[e.type].safeParse(e.payload).success, e.type).toBe(true);
-    expect(vocab.map((e) => e.sort_order)).toEqual(vocab.map((_, i) => i + 1));
-    expect(listening.map((e) => e.sort_order)).toEqual(listening.map((_, i) => i + 1));
+  it("các phiên đánh số liên tục, theo thứ tự học từ rồi mới nghe", () => {
+    expect(sessions.map((s) => s.session_no)).toEqual(sessions.map((_, i) => i + 1));
+    expect(sessions.map((s) => s.kind)).toEqual(["vocab_learn", "vocab_learn", "vocab_recall", "listen_recognize", "listen_dictation"]);
   });
 
-  it("mỗi từ được giới thiệu trước khi bị hỏi", () => {
-    for (const w of words) {
-      const intro = vocab.findIndex((e) => e.type === "word_intro" && e.source_id === w.id);
-      const firstQuestion = vocab.findIndex((e) => e.type !== "word_intro" && JSON.stringify(e.payload).includes(w.id));
-      expect(intro).toBeGreaterThanOrEqual(0);
-      expect(intro).toBeLessThan(firstQuestion);
+  it("mọi payload đúng schema; thứ tự liên tục trong từng phiên; số bước khớp", () => {
+    for (const e of exercises) expect(payloadSchemas[e.type].safeParse(e.payload).success, e.type).toBe(true);
+    for (const s of sessions) {
+      const own = inSession(s.session_no);
+      expect(own.map((e) => e.sort_order)).toEqual(own.map((_, i) => i + 1));
+      expect(own.length).toBe(s.step_count);
+      expect(own.every((e) => e.session_type === s.session_type)).toBe(true);
     }
   });
 
-  it("choose_meaning có 4 lựa chọn khác nhau, gồm đáp án đúng", () => {
-    for (const e of vocab.filter((x) => x.type === "choose_meaning")) {
+  it("không phiên nào dài quá 12 bước, kể cả bài dài nhất", () => {
+    for (const s of sessions) expect(s.step_count, s.kind).toBeLessThanOrEqual(12);
+    const big = generateExercises(bigInput);
+    for (const s of big.sessions) expect(s.step_count, s.kind).toBeLessThanOrEqual(12);
+    expect(big.sessions.filter((s) => s.kind === "vocab_learn")).toHaveLength(2);
+  });
+
+  it("mỗi từ được giới thiệu trước khi bị hỏi, trong cùng phiên học từ", () => {
+    for (const w of words) {
+      const intro = exercises.findIndex((e) => e.type === "word_intro" && e.source_id === w.id);
+      const firstQuestion = exercises.findIndex((e) => e.type !== "word_intro" && JSON.stringify(e.payload).includes(w.id));
+      expect(intro).toBeGreaterThanOrEqual(0);
+      expect(intro).toBeLessThan(firstQuestion);
+      const learn = exercises.find((e) => e.type === "choose_meaning" && e.source_id === w.id)!;
+      expect(learn.session_no).toBe(exercises[intro].session_no);
+    }
+  });
+
+  it("phiên nhớ lại từ hỏi đủ mọi từ của bài", () => {
+    const recall = sessions.find((s) => s.kind === "vocab_recall")!;
+    expect(inSession(recall.session_no).map((e) => e.source_id)).toEqual(words.map((w) => w.id));
+  });
+
+  it("lựa chọn nghĩa không trùng nhau và có đáp án đúng", () => {
+    for (const e of exercises.filter((x) => x.type === "choose_meaning")) {
       const p = e.payload as { word_id: string; option_word_ids: string[] };
-      expect(p.option_word_ids).toHaveLength(4);
-      expect(new Set(p.option_word_ids).size).toBe(4);
+      expect(new Set(p.option_word_ids).size).toBe(p.option_word_ids.length);
+      expect(p.option_word_ids.length).toBeGreaterThanOrEqual(2);
       expect(p.option_word_ids).toContain(p.word_id);
     }
   });
 
-  it("đáp án nhiễu ưu tiên cùng từ loại", () => {
-    const e = vocab.find((x) => x.type === "choose_meaning" && x.source_id === uuid(1))!;
+  it("đáp án nhiễu chỉ lấy từ những từ đã gặp", () => {
+    // "hello" được hỏi khi mới giới thiệu hello và hi: các từ sau đó của bài chưa được dùng làm lựa chọn.
+    const e = exercises.find((x) => x.type === "choose_meaning" && x.source_id === uuid(1))!;
     const ids = (e.payload as { option_word_ids: string[] }).option_word_ids;
-    // Lúc hỏi "hello" mới giới thiệu hello, hi, goodbye: hai từ cùng loại phải có mặt trước từ khác loại.
+    for (const later of [3, 4, 5, 6]) expect(ids).not.toContain(uuid(later));
     expect(ids).toContain(uuid(2));
-    expect(ids).toContain(uuid(3));
   });
 
   it("từ đồng nghĩa không làm đáp án nhiễu của nhau", () => {
     const hello = { ...words[0], meanings: ["xin chào", "chào"] };
     const hi = { ...words[1], meanings: ["chào (thân mật)", "Xin chào"] };
     const out = generateExercises({ ...input, words: [hello, hi, ...words.slice(2)] });
-    const options = (id: string) => (out.find((e) => e.type === "choose_meaning" && e.source_id === id)!.payload as { option_word_ids: string[] }).option_word_ids;
+    const options = (id: string) =>
+      (out.exercises.find((e) => e.type === "choose_meaning" && e.source_id === id)!.payload as { option_word_ids: string[] }).option_word_ids;
     expect(options(hello.id)).not.toContain(hi.id);
     expect(options(hi.id)).not.toContain(hello.id);
   });
 
-  it("match_pairs chia nhóm đều, không quá 5 từ", () => {
-    const groups = vocab.filter((e) => e.type === "match_pairs").map((e) => (e.payload as { word_ids: string[] }).word_ids.length);
-    expect(groups).toEqual([3, 3]);
-  });
-
   it("câu một từ không có bài sắp xếp; thẻ nhiễu không trùng từ trong câu", () => {
-    const arrange = listening.filter((e) => e.type === "listen_arrange");
+    const arrange = exercises.filter((e) => e.type === "listen_arrange");
     expect(arrange.map((e) => e.source_id)).toEqual([uuid(103)]);
     const tokens = (arrange[0].payload as { distractor_tokens: string[] }).distractor_tokens.map((t) => t.toLowerCase());
     expect(tokens.length).toBeGreaterThan(0);
@@ -91,10 +126,16 @@ describe("generateExercises", () => {
     expect(tokens).not.toContain("morning");
   });
 
-  it("mỗi câu có bài nghe chọn và nghe gõ", () => {
+  it("mỗi câu có bài nghe chọn (phiên nghe hiểu) và nghe gõ (phiên nghe chép)", () => {
+    const recognize = sessions.find((s) => s.kind === "listen_recognize")!.session_no;
+    const dictation = sessions.find((s) => s.kind === "listen_dictation")!.session_no;
     for (const s of sentences) {
-      expect(listening.some((e) => e.type === "listen_choose" && e.source_id === s.id)).toBe(true);
-      expect(listening.some((e) => e.type === "listen_type" && e.source_id === s.id)).toBe(true);
+      expect(exercises.some((e) => e.type === "listen_choose" && e.source_id === s.id && e.session_no === recognize)).toBe(true);
+      expect(exercises.some((e) => e.type === "listen_type" && e.source_id === s.id && e.session_no === dictation)).toBe(true);
     }
+  });
+
+  it("bài không có nội dung thì không sinh phiên nào", () => {
+    expect(generateExercises({ words: [], sentences: [], poolWords: [], poolSentences: [] })).toEqual({ sessions: [], exercises: [] });
   });
 });

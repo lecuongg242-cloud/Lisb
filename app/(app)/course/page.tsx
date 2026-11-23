@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { getLearnerContext, getLessonProgress, getOrderedLessons, type OrderedLesson } from "@/lib/data";
+import { getLearnerContext, getLessonProgress, getLessonSessions, getOrderedLessons, type OrderedLesson } from "@/lib/data";
 import { lessonState, type LessonState } from "@/lib/progress";
 
 const STATE_STYLE: Record<LessonState, { dot: string; row: string; label: string }> = {
@@ -22,7 +22,15 @@ export default async function CoursePage({ searchParams }: { searchParams: Promi
   ]);
   const lessons = allLessons.filter((l) => l.status === "published");
   const currentIndex = lessons.findIndex((l) => l.id === ctx.enrollment.currentLessonId);
-  const stateOf = (lesson: OrderedLesson) => lessonState(lessons.indexOf(lesson), currentIndex, progress.get(lesson.id));
+  const sessionsByLesson = await getLessonSessions(
+    ctx.supabase,
+    lessons.map((l) => l.id),
+  );
+  const stateOf = (lesson: OrderedLesson) => {
+    const sessionNos = (sessionsByLesson.get(lesson.id) ?? []).map((s) => s.no);
+    const done = progress.get(lesson.id);
+    return lessonState(lessons.indexOf(lesson), currentIndex, done ? sessionNos.filter((no) => done.has(no)).length : 0, sessionNos.length);
+  };
 
   const levels = (levelRows ?? []).map((row) => {
     const own = lessons.filter((l) => l.levelCode === row.code);

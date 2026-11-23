@@ -108,7 +108,7 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   }
   if (missing.size) return { ok: false, reason: "missing_translations", words: [...missing] };
 
-  const generated = generateExercises({
+  const { sessions, exercises: generated } = generateExercises({
     words,
     sentences,
     poolWords: lwRows.filter((r) => r.lesson_id !== lessonId).sort(byLessonOrder).map((r) => toGenWord(r.words)),
@@ -132,7 +132,11 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
     return { ...g, id: reusable.get(key)?.shift() ?? randomUUID() };
   });
 
-  const { data: count, error: e6 } = await supabase.rpc("publish_lesson", { p_lesson_id: lessonId, p_exercises: payload });
+  const { data: count, error: e6 } = await supabase.rpc("publish_lesson", {
+    p_lesson_id: lessonId,
+    p_sessions: sessions,
+    p_exercises: payload,
+  });
   if (e6) return { ok: false, reason: e6.message.includes("forbidden") ? "forbidden" : "error", detail: e6.message };
   return { ok: true, count: count as number };
 }

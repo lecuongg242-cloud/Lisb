@@ -6,9 +6,9 @@ import { updateSettings } from "@/app/actions";
 import { getSpeechRate, getVoiceChoice, setSpeechRate, setVoiceChoice, subscribeSpeechSettings, type VoiceChoice } from "@/lib/audio/speak";
 import { getThemeChoice, setThemeChoice, subscribeTheme, type ThemeChoice } from "@/lib/theme";
 
-type Props = { displayName: string; dailyGoal: number; newCardsPerDay: number };
+type Props = { displayName: string; dailyGoal: number };
 
-export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) {
+export function SettingsForm({ displayName, dailyGoal }: Props) {
   const t = useTranslations();
   const [state, action, pending] = useActionState(updateSettings, { saved: false, error: false });
   // Tốc độ giọng đọc là tùy chọn của riêng thiết bị này nên lưu trên trình duyệt.
@@ -25,10 +25,6 @@ export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) 
       <label className="flex flex-col gap-1.5 text-sm font-medium">
         {t("settings.dailyGoal")}
         <input className="field" name="dailyGoal" type="number" inputMode="numeric" min={1} max={20} defaultValue={dailyGoal} required />
-      </label>
-      <label className="flex flex-col gap-1.5 text-sm font-medium">
-        {t("settings.newCards")}
-        <input className="field" name="newCardsPerDay" type="number" inputMode="numeric" min={0} max={50} defaultValue={newCardsPerDay} required />
       </label>
       <label className="flex flex-col gap-1.5 text-sm font-medium">
         {t("settings.voice")}
