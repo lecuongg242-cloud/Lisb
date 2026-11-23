@@ -64,5 +64,6 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)"],
+  // File tĩnh (ảnh, âm thanh giọng đọc) không đi qua lớp kiểm tra đăng nhập.
+  matcher: ["/((?!_next/static|_next/image|audio/|favicon.ico|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|mp3)$).*)"],
 };
