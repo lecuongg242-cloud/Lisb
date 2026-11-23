@@ -2,12 +2,29 @@
 
 Web app học ngoại ngữ cho người Việt bắt đầu từ số 0, học bằng nhiều phiên rất ngắn (2-3 phút) trong ngày. Khóa đầu tiên là tiếng Anh giao tiếp hằng ngày; nền tảng được thiết kế để thêm ngôn ngữ khác về sau.
 
-Trạng thái: giai đoạn 0 (nền móng). Chưa có mã ứng dụng.
+Trạng thái: giai đoạn 1 (bản cá nhân): đăng nhập, học từ vựng, luyện nghe, ôn tập ngắt quãng.
+
+## Chạy trên máy
+
+Cần Node 20.9 trở lên. Chép `.env.example` thành `.env.local` và điền giá trị.
+
+```
+npm install
+npm run dev        # http://localhost:3000
+npm test           # kiểm thử logic trong lib/
+npm run typecheck
+npx eslint .
+```
+
+Mã ứng dụng dùng Next.js 16 (App Router). Phiên bản này khác nhiều so với các bản cũ; xem `AGENTS.md` trước khi sửa.
 
 ## Cấu trúc
 
 | Thư mục | Nội dung |
 |---|---|
+| `app/`, `components/` | Giao diện và server action (Next.js) |
+| `lib/` | Logic thuần có kiểm thử: chấm đáp án, sinh bài tập, lịch ôn, truy vấn |
+| `messages/` | Chuỗi giao diện theo ngôn ngữ (next-intl) |
 | `docs/` | Tài liệu dự án: tầm nhìn, lộ trình bài học, kiến trúc, giai đoạn, tài nguyên tham khảo |
 | `scripts/` | Migration Postgres (Supabase), đánh số, chạy theo thứ tự |
 | `content/` | Nội dung bài học dạng JSON, theo `khóa/cấp/chủ-đề.json` |

@@ -1,0 +1,53 @@
+"use client";
+
+import { useActionState, useSyncExternalStore } from "react";
+import { useTranslations } from "next-intl";
+import { updateSettings } from "@/app/actions";
+import { getSpeechRate, setSpeechRate, subscribeSpeechRate } from "@/lib/audio/speak";
+
+type Props = { displayName: string; dailyGoal: number; newCardsPerDay: number };
+
+export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) {
+  const t = useTranslations();
+  const [state, action, pending] = useActionState(updateSettings, { saved: false, error: false });
+  // Tốc độ giọng đọc là tùy chọn của riêng thiết bị này nên lưu trên trình duyệt.
+  const rate = useSyncExternalStore(subscribeSpeechRate, getSpeechRate, () => 1);
+
+  return (
+    <form action={action} className="card flex flex-col gap-4">
+      <label className="flex flex-col gap-1.5 text-sm font-medium">
+        {t("settings.displayName")}
+        <input className="field" name="displayName" defaultValue={displayName} maxLength={60} autoComplete="nickname" />
+      </label>
+      <label className="flex flex-col gap-1.5 text-sm font-medium">
+        {t("settings.dailyGoal")}
+        <input className="field" name="dailyGoal" type="number" inputMode="numeric" min={1} max={20} defaultValue={dailyGoal} required />
+      </label>
+      <label className="flex flex-col gap-1.5 text-sm font-medium">
+        {t("settings.newCards")}
+        <input className="field" name="newCardsPerDay" type="number" inputMode="numeric" min={0} max={50} defaultValue={newCardsPerDay} required />
+      </label>
+      <label className="flex flex-col gap-1.5 text-sm font-medium">
+        {t("settings.speechRate")}
+        <select className="field" value={String(rate)} onChange={(e) => setSpeechRate(Number(e.target.value))}>
+          <option value="1">{t("settings.speechNormal")}</option>
+          <option value="0.8">{t("settings.speechSlow")}</option>
+        </select>
+      </label>
+
+      {state.error && (
+        <p role="alert" className="text-sm text-red-700">
+          {t("common.error")}
+        </p>
+      )}
+      {state.saved && (
+        <p role="status" className="text-sm text-brand-dark">
+          {t("common.saved")}
+        </p>
+      )}
+      <button type="submit" className="btn btn-primary" disabled={pending}>
+        {t("common.save")}
+      </button>
+    </form>
+  );
+}

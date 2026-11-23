@@ -1,0 +1,219 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { completeSession } from "@/app/actions";
+import type { Exercise, SessionType } from "@/lib/exercises/types";
+import { getLanguageModule, type AnswerResult } from "@/lib/lang";
+import type { ContentBundle } from "@/lib/views";
+import { ExerciseView } from "./exercises";
+import { TappableSentence } from "./shared";
+
+type Props = {
+  lessonId: string;
+  sessionType: SessionType;
+  title: string;
+  exercises: Exercise[];
+  content: ContentBundle;
+  targetLang: string;
+  ttsLocale: string;
+};
+
+type Item = { exercise: Exercise; retry: boolean };
+type Attempt = { exerciseId: string; isCorrect: boolean; answer: string | null; retry: boolean };
+type Feedback = { result: AnswerResult; answer: string | null; correctText: string | null };
+
+const FEEDBACK_STYLE: Record<AnswerResult, string> = {
+  correct: "border-emerald-200 bg-emerald-50",
+  almost: "border-amber-200 bg-amber-50",
+  wrong: "border-red-200 bg-red-50",
+};
+
+export function Player({ lessonId, sessionType, title, exercises, content, targetLang, ttsLocale }: Props) {
+  const t = useTranslations();
+  const lang = getLanguageModule(targetLang);
+  const [queue, setQueue] = useState<Item[]>(() => exercises.map((exercise) => ({ exercise, retry: false })));
+  const [index, setIndex] = useState(0);
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [attempts, setAttempts] = useState<Attempt[]>([]);
+  const [phase, setPhase] = useState<"run" | "saving" | "done" | "error">("run");
+  const [summary, setSummary] = useState<{ durationSec: number; streak: number | null }>({ durationSec: 0, streak: null });
+  const startedAt = useRef<number | null>(null);
+  const sessionId = useRef<string | null>(null);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+    sessionId.current = crypto.randomUUID();
+  }, []);
+
+  const item = queue[index];
+
+  const save = async (finalAttempts: Attempt[], durationSec: number) => {
+    setPhase("saving");
+    try {
+      const result = await completeSession({
+        sessionId: sessionId.current ?? crypto.randomUUID(),
+        lessonId,
+        sessionType,
+        durationSec,
+        attempts: finalAttempts.map(({ exerciseId, isCorrect, answer }) => ({ exerciseId, isCorrect, answer })),
+      });
+      if (!result.ok) return setPhase("error");
+      setSummary({ durationSec, streak: result.streak });
+      setPhase("done");
+    } catch {
+      setPhase("error");
+    }
+  };
+
+  const goNext = (currentQueue: Item[], currentAttempts: Attempt[]) => {
+    setFeedback(null);
+    if (index + 1 < currentQueue.length) return setIndex(index + 1);
+    const durationSec = Math.min(3600, Math.round((Date.now() - (startedAt.current ?? Date.now())) / 1000));
+    setSummary({ durationSec, streak: null });
+    void save(currentAttempts, durationSec);
+  };
+
+  const handleAnswer = (result: AnswerResult, answer: string | null, correctText: string | null) => {
+    if (!item || feedback) return;
+    // Màn hình giới thiệu từ không phải câu hỏi: đi tiếp luôn, không tính điểm.
+    if (item.exercise.type === "word_intro") return goNext(queue, attempts);
+    setAttempts([...attempts, { exerciseId: item.exercise.id, isCorrect: result !== "wrong", answer, retry: item.retry }]);
+    setFeedback({ result, answer, correctText });
+  };
+
+  const handleContinue = () => {
+    if (!item || !feedback) return;
+    // Trả lời sai thì câu đó quay lại một lần nữa ở cuối phiên.
+    const nextQueue = feedback.result === "wrong" && !item.retry ? [...queue, { exercise: item.exercise, retry: true }] : queue;
+    if (nextQueue !== queue) setQueue(nextQueue);
+    goNext(nextQueue, attempts);
+  };
+
+  const continueRef = useRef(handleContinue);
+  useEffect(() => {
+    continueRef.current = handleContinue;
+  });
+  const hasFeedback = feedback !== null;
+  useEffect(() => {
+    if (!hasFeedback) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        continueRef.current();
+      }
+    };
+    // Gắn sau một nhịp để phím Enter vừa dùng để nộp câu trả lời không đồng thời bấm "Tiếp tục".
+    const timer = window.setTimeout(() => window.addEventListener("keydown", onKey), 150);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [hasFeedback]);
+
+  if (exercises.length === 0) {
+    return (
+      <Shell title={title} progress={0}>
+        <p className="card text-center text-muted">{t("session.empty")}</p>
+      </Shell>
+    );
+  }
+
+  if (phase !== "run") {
+    const firstTries = attempts.filter((a) => !a.retry);
+    return (
+      <Shell title={title} progress={1}>
+        <div className="card flex flex-col items-center gap-3 text-center">
+          <h1 className="text-2xl font-bold">{t("player.summaryTitle")}</h1>
+          <p className="text-lg">{t("player.summaryScore", { correct: firstTries.filter((a) => a.isCorrect).length, total: firstTries.length })}</p>
+          <p className="text-muted">
+            {t("player.summaryTime", { minutes: Math.floor(summary.durationSec / 60), seconds: summary.durationSec % 60 })}
+          </p>
+          {phase === "saving" && <p className="text-sm text-muted">{t("player.saving")}</p>}
+          {phase === "done" && summary.streak !== null && <p className="font-semibold text-brand-dark">{t("player.summaryStreak", { count: summary.streak })}</p>}
+          {phase === "error" && (
+            <>
+              <p role="alert" className="text-sm text-red-700">
+                {t("player.saveFailed")}
+              </p>
+              <button type="button" className="btn btn-secondary" onClick={() => void save(attempts, summary.durationSec)}>
+                {t("player.retry")}
+              </button>
+            </>
+          )}
+        </div>
+        {phase !== "saving" && (
+          <Link href="/" className="btn btn-primary">
+            {t("player.backHome")}
+          </Link>
+        )}
+      </Shell>
+    );
+  }
+
+  const payload = item.exercise.payload as { sentence_id?: string };
+  const sentence = payload.sentence_id ? content.sentences[payload.sentence_id] : undefined;
+  const showDiff = feedback && feedback.result !== "correct" && item.exercise.type === "listen_type" && feedback.answer && feedback.correctText;
+
+  return (
+    <Shell title={title} progress={index / queue.length}>
+      <ExerciseView key={index} exercise={item.exercise} content={content} lang={lang} ttsLocale={ttsLocale} locked={hasFeedback} onAnswer={handleAnswer} />
+
+      {feedback && (
+        <div role="status" className={`flex flex-col gap-3 rounded-3xl border p-4 ${FEEDBACK_STYLE[feedback.result]}`}>
+          <p className="text-lg font-bold">{t(`player.${feedback.result}`)}</p>
+          {showDiff && (
+            <p className="flex flex-wrap gap-1.5 text-base">
+              {lang.diffWords(feedback.correctText!, feedback.answer!).map((part, i) => (
+                <span
+                  key={i}
+                  className={part.status === "ok" ? "" : part.status === "missing" ? "rounded bg-emerald-200 px-1 font-semibold" : "rounded bg-red-200 px-1 line-through"}
+                >
+                  {part.word}
+                </span>
+              ))}
+            </p>
+          )}
+          {sentence ? (
+            <TappableSentence sentence={sentence} words={content.words} locale={ttsLocale} />
+          ) : (
+            feedback.result !== "correct" &&
+            feedback.correctText && (
+              <p>
+                {t("player.answerIs")} <span className="font-semibold">{feedback.correctText}</span>
+              </p>
+            )
+          )}
+          <button type="button" className="btn btn-primary" onClick={handleContinue}>
+            {t("common.continue")}
+          </button>
+        </div>
+      )}
+    </Shell>
+  );
+}
+
+function Shell({ title, progress, children }: { title: string; progress: number; children: React.ReactNode }) {
+  const t = useTranslations("common");
+  return (
+    <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col gap-5 px-4 pt-4 pb-8">
+      <header className="flex items-center gap-3">
+        <Link href="/" aria-label={t("close")} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-surface text-lg text-muted">
+          ✕
+        </Link>
+        <div
+          className="h-2.5 flex-1 overflow-hidden rounded-full bg-line"
+          role="progressbar"
+          aria-label={title}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress * 100)}
+        >
+          <div className="h-full rounded-full bg-brand transition-all" style={{ width: `${Math.round(progress * 100)}%` }} />
+        </div>
+      </header>
+      {children}
+    </div>
+  );
+}

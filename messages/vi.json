@@ -1,0 +1,160 @@
+{
+  "app": {
+    "name": "LisB",
+    "tagline": "Học ngoại ngữ, mỗi lần hai phút"
+  },
+  "nav": {
+    "home": "Hôm nay",
+    "course": "Lộ trình",
+    "review": "Ôn tập",
+    "settings": "Cài đặt",
+    "admin": "Quản trị"
+  },
+  "common": {
+    "continue": "Tiếp tục",
+    "check": "Kiểm tra",
+    "back": "Quay lại",
+    "save": "Lưu",
+    "saved": "Đã lưu",
+    "close": "Thoát",
+    "loading": "Đang tải...",
+    "error": "Có lỗi xảy ra. Vui lòng thử lại.",
+    "listen": "Nghe",
+    "listenSlow": "Nghe chậm",
+    "noVoice": "Trình duyệt này không có giọng đọc phù hợp. Bạn vẫn có thể học bằng chữ."
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "signupTitle": "Tạo tài khoản",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "passwordHint": "Ít nhất 8 ký tự",
+    "signIn": "Đăng nhập",
+    "signUp": "Tạo tài khoản",
+    "toSignUp": "Chưa có tài khoản? Tạo tài khoản",
+    "toSignIn": "Đã có tài khoản? Đăng nhập",
+    "checkEmail": "Đã gửi email xác nhận. Mở email và bấm vào đường dẫn để hoàn tất.",
+    "invalid": "Email hoặc mật khẩu không đúng.",
+    "signupFailed": "Không tạo được tài khoản. Kiểm tra lại email và mật khẩu.",
+    "confirmFailed": "Đường dẫn xác nhận không hợp lệ hoặc đã hết hạn."
+  },
+  "onboarding": {
+    "title": "Chào mừng bạn đến với LisB",
+    "intro": "Bạn sẽ học tiếng Anh giao tiếp từ con số 0, mỗi lần chỉ hai đến ba phút.",
+    "goalLabel": "Mỗi ngày bạn muốn học mấy phiên?",
+    "goalOption": "{count} phiên (khoảng {minutes} phút)",
+    "start": "Bắt đầu học",
+    "noCourse": "Chưa có khóa học nào được xuất bản. Quản trị viên cần xuất bản bài học trước."
+  },
+  "home": {
+    "greeting": "Chào {name}",
+    "greetingNoName": "Chào bạn",
+    "twoMinutes": "Tôi có 2 phút",
+    "nextReview": "Ôn {count} thẻ đến hạn",
+    "nextVocab": "Học từ mới",
+    "nextListening": "Luyện nghe",
+    "allDone": "Bạn đã học hết bài hiện có. Quay lại ôn tập khi có thẻ đến hạn.",
+    "currentLesson": "Bài đang học",
+    "streak": "{count, plural, =0 {Chưa có chuỗi ngày} other {# ngày liên tục}}",
+    "due": "{count, plural, =0 {Không có thẻ đến hạn} other {# thẻ đến hạn}}",
+    "sessionsToday": "Hôm nay: {done}/{goal} phiên"
+  },
+  "session": {
+    "vocab": "Từ vựng",
+    "listening": "Nghe",
+    "review": "Ôn tập",
+    "done": "Đã xong",
+    "notDone": "Chưa học",
+    "locked": "Học phiên trước để mở",
+    "empty": "Bài này chưa có bài tập."
+  },
+  "player": {
+    "newWord": "Từ mới",
+    "example": "Ví dụ",
+    "gotIt": "Đã hiểu",
+    "chooseMeaning": "Từ này nghĩa là gì?",
+    "chooseWord": "Từ nào có nghĩa này?",
+    "matchPairs": "Ghép từ với nghĩa",
+    "typeWord": "Gõ từ tiếng Anh có nghĩa này",
+    "listenChoose": "Nghe và chọn câu đúng",
+    "listenArrange": "Nghe và sắp xếp các từ",
+    "listenType": "Nghe và gõ lại",
+    "typeHere": "Gõ câu trả lời",
+    "correct": "Chính xác!",
+    "almost": "Gần đúng, chú ý chính tả",
+    "wrong": "Chưa đúng",
+    "answerIs": "Đáp án:",
+    "tapWord": "Chạm vào từ để xem nghĩa",
+    "quitConfirm": "Thoát bây giờ sẽ không lưu phiên này. Thoát?",
+    "summaryTitle": "Hoàn thành!",
+    "summaryScore": "Đúng {correct}/{total} câu",
+    "summaryTime": "Thời gian: {minutes} phút {seconds} giây",
+    "summaryStreak": "{count} ngày liên tục",
+    "saving": "Đang lưu kết quả...",
+    "saveFailed": "Chưa lưu được kết quả.",
+    "retry": "Thử lưu lại",
+    "backHome": "Về trang chính"
+  },
+  "review": {
+    "title": "Ôn tập",
+    "empty": "Không có thẻ nào đến hạn. Quay lại sau nhé.",
+    "progress": "Thẻ {current}/{total}",
+    "recallWord": "Từ tiếng Anh có nghĩa này là gì?",
+    "recallSentence": "Nghe và nhớ lại câu này",
+    "show": "Xem đáp án",
+    "again": "Quên",
+    "hard": "Khó",
+    "good": "Nhớ",
+    "easy": "Dễ",
+    "doneTitle": "Xong lượt ôn!",
+    "doneCount": "Bạn đã ôn {count} thẻ.",
+    "more": "Ôn tiếp"
+  },
+  "course": {
+    "title": "Lộ trình",
+    "lessonCount": "{count} bài",
+    "comingSoon": "Sắp có",
+    "lesson": "Bài {number}",
+    "done": "Đã học",
+    "current": "Đang học",
+    "locked": "Chưa mở"
+  },
+  "levels": {
+    "pre-a1": "Khởi động",
+    "a1": "Nền tảng (A1)",
+    "a2": "Giao tiếp (A2)",
+    "b1": "Tự tin (B1)"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "displayName": "Tên hiển thị",
+    "dailyGoal": "Số phiên mỗi ngày",
+    "newCards": "Số thẻ mới tối đa mỗi ngày",
+    "speechRate": "Tốc độ giọng đọc",
+    "speechNormal": "Bình thường",
+    "speechSlow": "Chậm",
+    "signOut": "Đăng xuất",
+    "account": "Tài khoản"
+  },
+  "admin": {
+    "title": "Quản trị bài học",
+    "intro": "Xuất bản sẽ sinh lại bài tập từ từ và câu của bài, rồi mở bài cho người học.",
+    "status": {
+      "draft": "Nháp",
+      "checked": "Đã kiểm tra",
+      "reviewed": "Đã kiểm tra chéo",
+      "published": "Đã xuất bản",
+      "retired": "Đã thu hồi"
+    },
+    "publish": "Xuất bản",
+    "republish": "Sinh lại bài tập",
+    "published": "Đã xuất bản: {count} bài tập.",
+    "exercises": "{count} bài tập",
+    "missingTranslations": "Thiếu nghĩa cho các từ: {words}",
+    "noContent": "Bài chưa có từ hoặc câu.",
+    "forbidden": "Bạn không có quyền quản trị."
+  },
+  "ai": {
+    "notice": "Nội dung bài học do AI soạn và kiểm tra, chưa có giáo viên duyệt. Thấy chỗ sai, hãy báo cho chúng tôi."
+  }
+}
