@@ -162,7 +162,7 @@ Cách làm đã chốt: toàn bộ mã do Claude viết trong kho này; v0 chỉ
 | Trang quản trị xuất bản bài (sinh bài tập tự động) | Xong, đã xuất bản 8 bài mẫu trên project thử nghiệm |
 | Kiểm thử tự động cho logic trong `lib/` | 21 test |
 | Migration 009 (chuỗi ngày), 010 (xuất bản bài) | Đã chạy trên project thử nghiệm |
-| Nội dung 4 chủ đề còn lại của Pre-A1 | Chưa |
+| Nội dung đủ 6 chủ đề Pre-A1 (24 bài, 120 câu, 144 từ) | Xong, đã nạp và xuất bản trên project thử nghiệm. Do Claude soạn, qua kiểm tra tự động, chưa qua kiểm tra chéo bởi model thứ hai |
 | Giới hạn số thẻ mới mỗi ngày (`new_cards_per_day`) | Chưa áp dụng: cài đặt lưu được nhưng app chưa dùng |
 | Đăng nhập Google, PWA, nhắc học | Chưa (giai đoạn 3) |
 
@@ -171,3 +171,5 @@ Ghi nhận từ lần chạy thử:
 - Phiên từ vựng của bài 8 từ có 26 bước, dài hơn khung 2-3 phút. Cần đo bằng việc học thật rồi quyết định cắt bớt (ví dụ chuyển phần gõ từ sang lượt ôn).
 - Thẻ mới được tính là đã gặp một lần ngay trong phiên học (Nhớ, hoặc Quên nếu có trả lời sai), nên đến hạn ôn sau 1 đến 10 phút.
 - Project thử nghiệm có một tài khoản thử `tester@lisb.test` với quyền quản trị, tạo ngày 2026-11-23. Xóa trước khi dùng project này cho người thật.
+- Chủ đề bảng chữ cái dạy tên 26 chữ cái như 26 từ. Phiên âm tên chữ cái (và mạo từ a) là nhập tay vì ipa-dict chỉ có phiên âm của từ; đây là 27 phiên âm duy nhất không lấy từ từ điển.
+- Trang Lộ trình coi mọi bài đứng trước bài đang học là đã học. Nếu sau này chèn bài mới vào trước vị trí của người đang học, bài đó sẽ hiện là đã học dù họ chưa làm.

@@ -1,0 +1,717 @@
+{
+  "course": "english",
+  "level": "pre-a1",
+  "unit": "alphabet-and-sounds",
+  "names": [],
+  "assumed_words": [],
+  "lessons": [
+    {
+      "key": "letters-a-g",
+      "title": {
+        "vi": "Chữ cái A đến G",
+        "en-US": "Letters A to G"
+      },
+      "grammar_tip": {
+        "vi": "Tiếng Anh có 26 chữ cái. Mỗi chữ có một cái tên riêng, khác với âm của nó trong từ. Khi đánh vần, người ta đọc tên chữ.",
+        "en-US": "English has 26 letters. Each letter has a name. The name is different from its sound in a word. To spell a word, say the letter names."
+      },
+      "pronunciation_tip": {
+        "vi": "A đọc là \"ây\", không phải \"a\". E đọc là \"i\", không phải \"e\". Người Việt hay nhầm hai chữ này nhất.",
+        "en-US": "A sounds like \"ay\". E sounds like \"ee\". Do not mix them up."
+      },
+      "words": [
+        {
+          "lemma": "A",
+          "pos": "letter",
+          "pronunciation": "/eɪ/",
+          "meaning": {
+            "vi": "chữ A, đọc gần giống \"ây\"",
+            "en-US": "the letter A"
+          },
+          "accepted": {
+            "vi": [
+              "chữ A"
+            ]
+          }
+        },
+        {
+          "lemma": "B",
+          "pos": "letter",
+          "pronunciation": "/bi/",
+          "meaning": {
+            "vi": "chữ B, đọc gần giống \"bi\"",
+            "en-US": "the letter B"
+          },
+          "accepted": {
+            "vi": [
+              "chữ B"
+            ]
+          }
+        },
+        {
+          "lemma": "C",
+          "pos": "letter",
+          "pronunciation": "/si/",
+          "meaning": {
+            "vi": "chữ C, đọc gần giống \"xi\"",
+            "en-US": "the letter C"
+          },
+          "accepted": {
+            "vi": [
+              "chữ C"
+            ]
+          }
+        },
+        {
+          "lemma": "D",
+          "pos": "letter",
+          "pronunciation": "/di/",
+          "meaning": {
+            "vi": "chữ D, đọc gần giống \"đi\"",
+            "en-US": "the letter D"
+          },
+          "accepted": {
+            "vi": [
+              "chữ D"
+            ]
+          }
+        },
+        {
+          "lemma": "E",
+          "pos": "letter",
+          "pronunciation": "/i/",
+          "meaning": {
+            "vi": "chữ E, đọc gần giống \"i\"",
+            "en-US": "the letter E"
+          },
+          "accepted": {
+            "vi": [
+              "chữ E"
+            ]
+          }
+        },
+        {
+          "lemma": "F",
+          "pos": "letter",
+          "pronunciation": "/ɛf/",
+          "meaning": {
+            "vi": "chữ F, đọc gần giống \"ép\"",
+            "en-US": "the letter F"
+          },
+          "accepted": {
+            "vi": [
+              "chữ F"
+            ]
+          }
+        },
+        {
+          "lemma": "G",
+          "pos": "letter",
+          "pronunciation": "/dʒi/",
+          "meaning": {
+            "vi": "chữ G, đọc gần giống \"gi\"",
+            "en-US": "the letter G"
+          },
+          "accepted": {
+            "vi": [
+              "chữ G"
+            ]
+          }
+        }
+      ],
+      "sentences": [
+        {
+          "key": "s1",
+          "text": "A, B, C.",
+          "accepted": [
+            "A B C",
+            "ABC"
+          ],
+          "translation": {
+            "vi": "A, B, C."
+          }
+        },
+        {
+          "key": "s2",
+          "text": "D, E, F, G.",
+          "accepted": [
+            "D E F G",
+            "DEFG"
+          ],
+          "translation": {
+            "vi": "D, E, F, G."
+          }
+        },
+        {
+          "key": "s3",
+          "text": "C, A, B.",
+          "accepted": [
+            "C A B",
+            "CAB"
+          ],
+          "translation": {
+            "vi": "C, A, B."
+          },
+          "note": {
+            "vi": "Đánh vần từ cab (xe taxi).",
+            "en-US": "This spells cab."
+          }
+        },
+        {
+          "key": "s4",
+          "text": "F, A, C, E.",
+          "accepted": [
+            "F A C E",
+            "FACE"
+          ],
+          "translation": {
+            "vi": "F, A, C, E."
+          },
+          "note": {
+            "vi": "Đánh vần từ face (khuôn mặt).",
+            "en-US": "This spells face."
+          }
+        },
+        {
+          "key": "s5",
+          "text": "B, E, D.",
+          "accepted": [
+            "B E D",
+            "BED"
+          ],
+          "translation": {
+            "vi": "B, E, D."
+          },
+          "note": {
+            "vi": "Đánh vần từ bed (cái giường).",
+            "en-US": "This spells bed."
+          }
+        }
+      ]
+    },
+    {
+      "key": "letters-h-n",
+      "title": {
+        "vi": "Chữ cái H đến N",
+        "en-US": "Letters H to N"
+      },
+      "grammar_tip": {
+        "vi": "Để đánh vần tên mình, đọc lần lượt tên từng chữ cái. Ví dụ tên Minh: M, I, N, H.",
+        "en-US": "To spell your name, say each letter name in order. For example, Minh: M, I, N, H."
+      },
+      "pronunciation_tip": {
+        "vi": "I đọc là \"ai\", không phải \"i\". H đọc là \"ết-ch\", J đọc là \"giây\", K đọc là \"kây\".",
+        "en-US": "I sounds like \"eye\". H is \"aitch\", J is \"jay\", K is \"kay\"."
+      },
+      "words": [
+        {
+          "lemma": "H",
+          "pos": "letter",
+          "pronunciation": "/eɪtʃ/",
+          "meaning": {
+            "vi": "chữ H, đọc gần giống \"ết-ch\"",
+            "en-US": "the letter H"
+          },
+          "accepted": {
+            "vi": [
+              "chữ H"
+            ]
+          }
+        },
+        {
+          "lemma": "I",
+          "pos": "letter",
+          "pronunciation": "/aɪ/",
+          "meaning": {
+            "vi": "chữ I, đọc gần giống \"ai\"",
+            "en-US": "the letter I"
+          },
+          "accepted": {
+            "vi": [
+              "chữ I"
+            ]
+          }
+        },
+        {
+          "lemma": "J",
+          "pos": "letter",
+          "pronunciation": "/dʒeɪ/",
+          "meaning": {
+            "vi": "chữ J, đọc gần giống \"giây\"",
+            "en-US": "the letter J"
+          },
+          "accepted": {
+            "vi": [
+              "chữ J"
+            ]
+          }
+        },
+        {
+          "lemma": "K",
+          "pos": "letter",
+          "pronunciation": "/keɪ/",
+          "meaning": {
+            "vi": "chữ K, đọc gần giống \"kây\"",
+            "en-US": "the letter K"
+          },
+          "accepted": {
+            "vi": [
+              "chữ K"
+            ]
+          }
+        },
+        {
+          "lemma": "L",
+          "pos": "letter",
+          "pronunciation": "/ɛl/",
+          "meaning": {
+            "vi": "chữ L, đọc gần giống \"eo\"",
+            "en-US": "the letter L"
+          },
+          "accepted": {
+            "vi": [
+              "chữ L"
+            ]
+          }
+        },
+        {
+          "lemma": "M",
+          "pos": "letter",
+          "pronunciation": "/ɛm/",
+          "meaning": {
+            "vi": "chữ M, đọc gần giống \"em\"",
+            "en-US": "the letter M"
+          },
+          "accepted": {
+            "vi": [
+              "chữ M"
+            ]
+          }
+        },
+        {
+          "lemma": "N",
+          "pos": "letter",
+          "pronunciation": "/ɛn/",
+          "meaning": {
+            "vi": "chữ N, đọc gần giống \"en\"",
+            "en-US": "the letter N"
+          },
+          "accepted": {
+            "vi": [
+              "chữ N"
+            ]
+          }
+        }
+      ],
+      "sentences": [
+        {
+          "key": "s1",
+          "text": "H, I, J.",
+          "accepted": [
+            "H I J",
+            "HIJ"
+          ],
+          "translation": {
+            "vi": "H, I, J."
+          }
+        },
+        {
+          "key": "s2",
+          "text": "K, L, M, N.",
+          "accepted": [
+            "K L M N",
+            "KLMN"
+          ],
+          "translation": {
+            "vi": "K, L, M, N."
+          }
+        },
+        {
+          "key": "s3",
+          "text": "M, I, N, H.",
+          "accepted": [
+            "M I N H",
+            "MINH"
+          ],
+          "translation": {
+            "vi": "M, I, N, H."
+          },
+          "note": {
+            "vi": "Đánh vần tên Minh.",
+            "en-US": "This spells the name Minh."
+          }
+        },
+        {
+          "key": "s4",
+          "text": "L, I, N, H.",
+          "accepted": [
+            "L I N H",
+            "LINH"
+          ],
+          "translation": {
+            "vi": "L, I, N, H."
+          },
+          "note": {
+            "vi": "Đánh vần tên Linh.",
+            "en-US": "This spells the name Linh."
+          }
+        },
+        {
+          "key": "s5",
+          "text": "K, I, M.",
+          "accepted": [
+            "K I M",
+            "KIM"
+          ],
+          "translation": {
+            "vi": "K, I, M."
+          },
+          "note": {
+            "vi": "Đánh vần tên Kim.",
+            "en-US": "This spells the name Kim."
+          }
+        }
+      ]
+    },
+    {
+      "key": "letters-o-u",
+      "title": {
+        "vi": "Chữ cái O đến U",
+        "en-US": "Letters O to U"
+      },
+      "grammar_tip": {
+        "vi": "Khi người khác chưa nghe rõ tên bạn, hãy đánh vần chậm từng chữ.",
+        "en-US": "When people do not hear your name clearly, spell it slowly, one letter at a time."
+      },
+      "pronunciation_tip": {
+        "vi": "R đọc là \"a\" kèm uốn lưỡi, không rung lưỡi như tiếng Việt. U đọc là \"diu\", Q đọc là \"kiu\".",
+        "en-US": "R is \"ar\": curl your tongue back. U is \"you\", Q is \"cue\"."
+      },
+      "words": [
+        {
+          "lemma": "O",
+          "pos": "letter",
+          "pronunciation": "/oʊ/",
+          "meaning": {
+            "vi": "chữ O, đọc gần giống \"âu\"",
+            "en-US": "the letter O"
+          },
+          "accepted": {
+            "vi": [
+              "chữ O"
+            ]
+          }
+        },
+        {
+          "lemma": "P",
+          "pos": "letter",
+          "pronunciation": "/pi/",
+          "meaning": {
+            "vi": "chữ P, đọc gần giống \"pi\"",
+            "en-US": "the letter P"
+          },
+          "accepted": {
+            "vi": [
+              "chữ P"
+            ]
+          }
+        },
+        {
+          "lemma": "Q",
+          "pos": "letter",
+          "pronunciation": "/kju/",
+          "meaning": {
+            "vi": "chữ Q, đọc gần giống \"kiu\"",
+            "en-US": "the letter Q"
+          },
+          "accepted": {
+            "vi": [
+              "chữ Q"
+            ]
+          }
+        },
+        {
+          "lemma": "R",
+          "pos": "letter",
+          "pronunciation": "/ɑɹ/",
+          "meaning": {
+            "vi": "chữ R, đọc gần giống \"a (uốn lưỡi)\"",
+            "en-US": "the letter R"
+          },
+          "accepted": {
+            "vi": [
+              "chữ R"
+            ]
+          }
+        },
+        {
+          "lemma": "S",
+          "pos": "letter",
+          "pronunciation": "/ɛs/",
+          "meaning": {
+            "vi": "chữ S, đọc gần giống \"ét-x\"",
+            "en-US": "the letter S"
+          },
+          "accepted": {
+            "vi": [
+              "chữ S"
+            ]
+          }
+        },
+        {
+          "lemma": "T",
+          "pos": "letter",
+          "pronunciation": "/ti/",
+          "meaning": {
+            "vi": "chữ T, đọc gần giống \"ti\"",
+            "en-US": "the letter T"
+          },
+          "accepted": {
+            "vi": [
+              "chữ T"
+            ]
+          }
+        },
+        {
+          "lemma": "U",
+          "pos": "letter",
+          "pronunciation": "/ju/",
+          "meaning": {
+            "vi": "chữ U, đọc gần giống \"diu\"",
+            "en-US": "the letter U"
+          },
+          "accepted": {
+            "vi": [
+              "chữ U"
+            ]
+          }
+        }
+      ],
+      "sentences": [
+        {
+          "key": "s1",
+          "text": "O, P, Q.",
+          "accepted": [
+            "O P Q",
+            "OPQ"
+          ],
+          "translation": {
+            "vi": "O, P, Q."
+          }
+        },
+        {
+          "key": "s2",
+          "text": "R, S, T, U.",
+          "accepted": [
+            "R S T U",
+            "RSTU"
+          ],
+          "translation": {
+            "vi": "R, S, T, U."
+          }
+        },
+        {
+          "key": "s3",
+          "text": "T, O, M.",
+          "accepted": [
+            "T O M",
+            "TOM"
+          ],
+          "translation": {
+            "vi": "T, O, M."
+          },
+          "note": {
+            "vi": "Đánh vần tên Tom.",
+            "en-US": "This spells the name Tom."
+          }
+        },
+        {
+          "key": "s4",
+          "text": "S, O, N.",
+          "accepted": [
+            "S O N",
+            "SON"
+          ],
+          "translation": {
+            "vi": "S, O, N."
+          },
+          "note": {
+            "vi": "Đánh vần tên Sơn.",
+            "en-US": "This spells the name Son."
+          }
+        },
+        {
+          "key": "s5",
+          "text": "T, U, A, N.",
+          "accepted": [
+            "T U A N",
+            "TUAN"
+          ],
+          "translation": {
+            "vi": "T, U, A, N."
+          },
+          "note": {
+            "vi": "Đánh vần tên Tuấn.",
+            "en-US": "This spells the name Tuan."
+          }
+        }
+      ]
+    },
+    {
+      "key": "letters-v-z",
+      "title": {
+        "vi": "Chữ cái V đến Z",
+        "en-US": "Letters V to Z"
+      },
+      "grammar_tip": {
+        "vi": "Bạn đã biết đủ 26 chữ cái. Tiếng Anh không có dấu thanh, nên tên tiếng Việt được đánh vần không dấu: Việt là V, I, E, T.",
+        "en-US": "Now you know all 26 letters. English has no tone marks, so Vietnamese names are spelled without them: Viet is V, I, E, T."
+      },
+      "pronunciation_tip": {
+        "vi": "W đọc là \"đấp-bồ-diu\" (nghĩa là hai chữ U). Y đọc là \"oai\". Z trong tiếng Anh Mỹ đọc là \"di\", môi rung nhẹ.",
+        "en-US": "W is \"double-you\". Y is \"why\". In American English, Z is \"zee\"."
+      },
+      "words": [
+        {
+          "lemma": "V",
+          "pos": "letter",
+          "pronunciation": "/vi/",
+          "meaning": {
+            "vi": "chữ V, đọc gần giống \"vi\"",
+            "en-US": "the letter V"
+          },
+          "accepted": {
+            "vi": [
+              "chữ V"
+            ]
+          }
+        },
+        {
+          "lemma": "W",
+          "pos": "letter",
+          "pronunciation": "/ˈdʌbəlju/",
+          "meaning": {
+            "vi": "chữ W, đọc gần giống \"đấp-bồ-diu\"",
+            "en-US": "the letter W"
+          },
+          "accepted": {
+            "vi": [
+              "chữ W"
+            ]
+          }
+        },
+        {
+          "lemma": "X",
+          "pos": "letter",
+          "pronunciation": "/ɛks/",
+          "meaning": {
+            "vi": "chữ X, đọc gần giống \"éc-x\"",
+            "en-US": "the letter X"
+          },
+          "accepted": {
+            "vi": [
+              "chữ X"
+            ]
+          }
+        },
+        {
+          "lemma": "Y",
+          "pos": "letter",
+          "pronunciation": "/waɪ/",
+          "meaning": {
+            "vi": "chữ Y, đọc gần giống \"oai\"",
+            "en-US": "the letter Y"
+          },
+          "accepted": {
+            "vi": [
+              "chữ Y"
+            ]
+          }
+        },
+        {
+          "lemma": "Z",
+          "pos": "letter",
+          "pronunciation": "/zi/",
+          "meaning": {
+            "vi": "chữ Z, đọc gần giống \"di\"",
+            "en-US": "the letter Z"
+          },
+          "accepted": {
+            "vi": [
+              "chữ Z"
+            ]
+          }
+        }
+      ],
+      "sentences": [
+        {
+          "key": "s1",
+          "text": "V, W, X.",
+          "accepted": [
+            "V W X",
+            "VWX"
+          ],
+          "translation": {
+            "vi": "V, W, X."
+          }
+        },
+        {
+          "key": "s2",
+          "text": "Y, Z.",
+          "accepted": [
+            "Y Z",
+            "YZ"
+          ],
+          "translation": {
+            "vi": "Y, Z."
+          }
+        },
+        {
+          "key": "s3",
+          "text": "V, I, E, T.",
+          "accepted": [
+            "V I E T",
+            "VIET"
+          ],
+          "translation": {
+            "vi": "V, I, E, T."
+          },
+          "note": {
+            "vi": "Đánh vần tên Việt.",
+            "en-US": "This spells the name Viet."
+          }
+        },
+        {
+          "key": "s4",
+          "text": "N, A, M.",
+          "accepted": [
+            "N A M",
+            "NAM"
+          ],
+          "translation": {
+            "vi": "N, A, M."
+          },
+          "note": {
+            "vi": "Đánh vần tên Nam.",
+            "en-US": "This spells the name Nam."
+          }
+        },
+        {
+          "key": "s5",
+          "text": "A, N, N, A.",
+          "accepted": [
+            "A N N A",
+            "ANNA"
+          ],
+          "translation": {
+            "vi": "A, N, N, A."
+          },
+          "note": {
+            "vi": "Đánh vần tên Anna.",
+            "en-US": "This spells the name Anna."
+          }
+        }
+      ]
+    }
+  ]
+}

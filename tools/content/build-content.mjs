@@ -118,6 +118,7 @@ function build(units, ipa, cefr) {
   const outputs = new Map(); // "course-level" -> sql lines
   const known = new Map(); // "course" -> Map(surface lowercase -> word)
   const stats = [];
+  const overrides = [];
 
   for (const { file, data } of units) {
     const err = (m) => errors.push(`${file}: ${m}`);
@@ -140,10 +141,13 @@ function build(units, ipa, cefr) {
 
     const emitWord = (w, where) => {
       const id = stableId("word", data.course, w.lemma, w.pos);
-      const pron = ipa.get(w.lemma.toLowerCase()) ?? null;
+      // Phiên âm lấy từ ipa-dict. Trường pronunciation trong JSON chỉ dùng khi từ điển không áp dụng được
+      // (ví dụ tên chữ cái: từ điển chỉ có phiên âm của từ "a", không có tên chữ "A").
+      if (w.pronunciation) overrides.push(w.lemma);
+      const pron = w.pronunciation ?? ipa.get(w.lemma.toLowerCase()) ?? null;
       const level = cefr.get(w.lemma.toLowerCase()) ?? null;
       if (!pron) warn(`${where}: từ "${w.lemma}" không có phiên âm trong ipa-dict`);
-      if (w.pos !== "proper noun" && w.pos !== "contraction") {
+      if (!["proper noun", "contraction", "letter"].includes(w.pos)) {
         if (!level) warn(`${where}: từ "${w.lemma}" không có trong CEFR-J`);
         else if (CEFR_ORDER.indexOf(level) > CEFR_ORDER.indexOf(rules.maxCefr))
           warn(`${where}: từ "${w.lemma}" ở cấp ${level}, cao hơn ${rules.maxCefr}`);
@@ -164,7 +168,7 @@ function build(units, ipa, cefr) {
             `usage_note = excluded.usage_note, source_hash = excluded.source_hash, status = 'ok';`,
         );
       }
-      const entry = { id, lemma: w.lemma };
+      const entry = { id, lemma: w.lemma, pos: w.pos };
       for (const surface of [w.lemma, ...(w.forms ?? [])]) vocab.set(surface.toLowerCase(), entry);
       return entry;
     };
@@ -212,7 +216,9 @@ function build(units, ipa, cefr) {
       // Từ mới của bài.
       const newWords = [];
       for (const w of lesson.words) {
-        if (vocab.has(w.lemma.toLowerCase())) err(`${where}: từ "${w.lemma}" đã được dạy ở bài trước`);
+        // Cùng chữ viết nhưng khác từ loại (chữ cái A và mạo từ a) là hai từ khác nhau;
+        // từ dạy sau được dùng khi tách các câu về sau.
+        if (vocab.get(w.lemma.toLowerCase())?.pos === w.pos) err(`${where}: từ "${w.lemma}" đã được dạy ở bài trước`);
         newWords.push({ ...emitWord(w, where), used: false, exampleSentenceId: null });
       }
       const newById = new Map(newWords.map((w) => [w.id, w]));
@@ -276,14 +282,15 @@ function build(units, ipa, cefr) {
       stats.push({ unit: data.unit, lesson: lesson.key, words: lesson.words.length, sentences: lesson.sentences.length });
     });
   }
-  return { errors, warnings, outputs, stats };
+  return { errors, warnings, outputs, stats, overrides };
 }
 
 await ensureData();
-const { errors, warnings, outputs, stats } = build(readUnits(), loadIpa(), loadCefr());
+const { errors, warnings, outputs, stats, overrides } = build(readUnits(), loadIpa(), loadCefr());
 
 console.log(`\nĐã đọc ${stats.length} bài học:`);
 for (const s of stats) console.log(`  ${s.unit} / ${s.lesson}: ${s.words} từ mới, ${s.sentences} câu`);
+if (overrides.length) console.log(`\nPhiên âm nhập tay (không lấy từ ipa-dict): ${overrides.length} từ: ${overrides.join(", ")}`);
 console.log(`\nCảnh báo: ${warnings.length}`);
 for (const w of warnings) console.log(`  - ${w}`);
 console.log(`\nLỗi: ${errors.length}`);

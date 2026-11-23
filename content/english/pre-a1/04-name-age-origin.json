@@ -2,15 +2,19 @@
   "course": "english",
   "level": "pre-a1",
   "unit": "name-age-origin",
-  "names": ["Anna", "Minh", "Tom"],
-  "assumed_words": [
-    { "from_unit": "numbers-0-20", "lemma": "eighteen", "pos": "number", "meaning": { "vi": "mười tám", "en-US": "the number 18" } },
-    { "from_unit": "numbers-0-20", "lemma": "twenty", "pos": "number", "meaning": { "vi": "hai mươi", "en-US": "the number 20" } }
+  "names": [
+    "Anna",
+    "Minh",
+    "Tom"
   ],
+  "assumed_words": [],
   "lessons": [
     {
       "key": "your-name",
-      "title": { "vi": "Bạn tên là gì?", "en-US": "What's your name?" },
+      "title": {
+        "vi": "Bạn tên là gì?",
+        "en-US": "What's your name?"
+      },
       "grammar_tip": {
         "vi": "What's là dạng viết gọn của What is. Có hai cách nói tên: My name is Anna (trang trọng hơn) và I'm Anna (thông dụng hơn).",
         "en-US": "What's is the short form of What is. You can say your name in two ways: My name is Anna, or I'm Anna."
@@ -20,26 +24,213 @@
         "en-US": "Link the words: name is sounds like \"nay-miz\". Say the last sound /m/ in name and I'm."
       },
       "words": [
-        { "lemma": "what's", "pos": "contraction", "meaning": { "vi": "là gì (viết gọn của what is)", "en-US": "the short form of what is" }, "accepted": { "vi": ["cái gì là", "là gì"] } },
-        { "lemma": "your", "pos": "determiner", "meaning": { "vi": "của bạn", "en-US": "belonging to the person I am talking to" }, "accepted": { "vi": ["của anh", "của chị", "của em"] } },
-        { "lemma": "name", "pos": "noun", "meaning": { "vi": "tên", "en-US": "the word that people call you" }, "accepted": { "vi": [] } },
-        { "lemma": "my", "pos": "determiner", "meaning": { "vi": "của tôi", "en-US": "belonging to me" }, "accepted": { "vi": ["của mình"] } },
-        { "lemma": "is", "pos": "verb", "meaning": { "vi": "là, thì (dùng với một người hoặc một vật)", "en-US": "a form of be; use it with one person or one thing" }, "accepted": { "vi": ["là", "thì"] } },
-        { "lemma": "nice", "pos": "adjective", "meaning": { "vi": "vui, dễ chịu", "en-US": "good and pleasant" }, "accepted": { "vi": ["vui", "dễ chịu", "tốt"] } },
-        { "lemma": "to", "pos": "preposition", "meaning": { "vi": "để; đến, tới", "en-US": "a word you put before a verb; also shows where someone goes" }, "accepted": { "vi": ["để", "đến", "tới"] }, "usage_note": { "vi": "Trong Nice to meet you, to đứng trước động từ meet và không dịch riêng. Trong Welcome to America, to nghĩa là đến.", "en-US": "In Nice to meet you, to comes before the verb meet. In Welcome to America, to shows a place." } },
-        { "lemma": "meet", "pos": "verb", "meaning": { "vi": "gặp, làm quen", "en-US": "to see and talk to someone for the first time" }, "accepted": { "vi": ["gặp", "làm quen", "gặp gỡ"] } }
+        {
+          "lemma": "what's",
+          "pos": "contraction",
+          "meaning": {
+            "vi": "là gì (viết gọn của what is)",
+            "en-US": "the short form of what is"
+          },
+          "accepted": {
+            "vi": [
+              "cái gì là",
+              "là gì"
+            ]
+          }
+        },
+        {
+          "lemma": "your",
+          "pos": "determiner",
+          "meaning": {
+            "vi": "của bạn",
+            "en-US": "belonging to the person I am talking to"
+          },
+          "accepted": {
+            "vi": [
+              "của anh",
+              "của chị",
+              "của em"
+            ]
+          }
+        },
+        {
+          "lemma": "name",
+          "pos": "noun",
+          "meaning": {
+            "vi": "tên",
+            "en-US": "the word that people call you"
+          },
+          "accepted": {
+            "vi": []
+          }
+        },
+        {
+          "lemma": "my",
+          "pos": "determiner",
+          "meaning": {
+            "vi": "của tôi",
+            "en-US": "belonging to me"
+          },
+          "accepted": {
+            "vi": [
+              "của mình"
+            ]
+          }
+        },
+        {
+          "lemma": "is",
+          "pos": "verb",
+          "meaning": {
+            "vi": "là, thì (dùng với một người hoặc một vật)",
+            "en-US": "a form of be; use it with one person or one thing"
+          },
+          "accepted": {
+            "vi": [
+              "là",
+              "thì"
+            ]
+          }
+        },
+        {
+          "lemma": "nice",
+          "pos": "adjective",
+          "meaning": {
+            "vi": "vui, dễ chịu",
+            "en-US": "good and pleasant"
+          },
+          "accepted": {
+            "vi": [
+              "vui",
+              "dễ chịu",
+              "tốt"
+            ]
+          }
+        },
+        {
+          "lemma": "to",
+          "pos": "preposition",
+          "meaning": {
+            "vi": "để; đến, tới",
+            "en-US": "a word you put before a verb; also shows where someone goes"
+          },
+          "accepted": {
+            "vi": [
+              "để",
+              "đến",
+              "tới"
+            ]
+          },
+          "usage_note": {
+            "vi": "Trong Nice to meet you, to đứng trước động từ meet và không dịch riêng. Trong Welcome to America, to nghĩa là đến.",
+            "en-US": "In Nice to meet you, to comes before the verb meet. In Welcome to America, to shows a place."
+          }
+        },
+        {
+          "lemma": "meet",
+          "pos": "verb",
+          "meaning": {
+            "vi": "gặp, làm quen",
+            "en-US": "to see and talk to someone for the first time"
+          },
+          "accepted": {
+            "vi": [
+              "gặp",
+              "làm quen",
+              "gặp gỡ"
+            ]
+          }
+        }
       ],
       "sentences": [
-        { "key": "s1", "text": "What's your name?", "accepted": ["What is your name?"], "translation": { "vi": "Bạn tên là gì?" }, "accepted_translation": { "vi": ["Tên bạn là gì?", "Bạn tên gì?"] } },
-        { "key": "s2", "text": "My name is Anna.", "accepted": ["My name's Anna."], "translation": { "vi": "Tên tôi là Anna." }, "accepted_translation": { "vi": ["Tôi tên là Anna.", "Mình tên là Anna."] } },
-        { "key": "s3", "text": "I'm Minh.", "accepted": ["I am Minh."], "translation": { "vi": "Tôi là Minh." }, "accepted_translation": { "vi": ["Mình là Minh."] } },
-        { "key": "s4", "text": "Nice to meet you.", "translation": { "vi": "Rất vui được gặp bạn." }, "accepted_translation": { "vi": ["Rất vui được làm quen với bạn.", "Hân hạnh được gặp bạn.", "Rất vui được biết bạn."] }, "note": { "vi": "Nói khi gặp ai đó lần đầu.", "en-US": "Say it when you meet someone for the first time." } },
-        { "key": "s5", "text": "Hi, I'm Tom.", "accepted": ["Hi, I am Tom."], "translation": { "vi": "Chào, tôi là Tom." }, "accepted_translation": { "vi": ["Chào, mình là Tom.", "Xin chào, tôi là Tom."] } }
+        {
+          "key": "s1",
+          "text": "What's your name?",
+          "accepted": [
+            "What is your name?"
+          ],
+          "translation": {
+            "vi": "Bạn tên là gì?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Tên bạn là gì?",
+              "Bạn tên gì?"
+            ]
+          }
+        },
+        {
+          "key": "s2",
+          "text": "My name is Anna.",
+          "accepted": [
+            "My name's Anna."
+          ],
+          "translation": {
+            "vi": "Tên tôi là Anna."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Tôi tên là Anna.",
+              "Mình tên là Anna."
+            ]
+          }
+        },
+        {
+          "key": "s3",
+          "text": "I'm Minh.",
+          "accepted": [
+            "I am Minh."
+          ],
+          "translation": {
+            "vi": "Tôi là Minh."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Mình là Minh."
+            ]
+          }
+        },
+        {
+          "key": "s4",
+          "text": "Nice to meet you.",
+          "translation": {
+            "vi": "Rất vui được gặp bạn."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Rất vui được làm quen với bạn.",
+              "Hân hạnh được gặp bạn.",
+              "Rất vui được biết bạn."
+            ]
+          },
+          "note": {
+            "vi": "Nói khi gặp ai đó lần đầu.",
+            "en-US": "Say it when you meet someone for the first time."
+          }
+        },
+        {
+          "key": "s5",
+          "text": "Hi, I'm Tom.",
+          "accepted": [
+            "Hi, I am Tom."
+          ],
+          "translation": {
+            "vi": "Chào, tôi là Tom."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Chào, mình là Tom.",
+              "Xin chào, tôi là Tom."
+            ]
+          }
+        }
       ]
     },
     {
       "key": "your-age",
-      "title": { "vi": "Bạn bao nhiêu tuổi?", "en-US": "How old are you?" },
+      "title": {
+        "vi": "Bạn bao nhiêu tuổi?",
+        "en-US": "How old are you?"
+      },
       "grammar_tip": {
         "vi": "Tiếng Anh dùng động từ be để nói tuổi: I'm twenty (không nói I have twenty). Trả lời ngắn: Yes, I am hoặc No, I'm not. Không viết gọn thành Yes, I'm.",
         "en-US": "Use be to say your age: I'm twenty. Short answers: Yes, I am, or No, I'm not. Do not say Yes, I'm."
@@ -49,23 +240,176 @@
         "en-US": "Say the last sound /d/ in old and /z/ in years. Link the words: years old."
       },
       "words": [
-        { "lemma": "old", "pos": "adjective", "meaning": { "vi": "già, cũ; dùng để nói tuổi", "en-US": "not young; also used to say your age" }, "accepted": { "vi": ["già", "cũ", "tuổi"] } },
-        { "lemma": "year", "pos": "noun", "forms": ["years"], "meaning": { "vi": "năm; years old nghĩa là tuổi", "en-US": "12 months; years old tells your age" }, "accepted": { "vi": ["năm", "tuổi"] } },
-        { "lemma": "I", "pos": "pronoun", "meaning": { "vi": "tôi", "en-US": "the person who is speaking" }, "accepted": { "vi": ["mình", "tớ"] }, "usage_note": { "vi": "I luôn viết hoa, kể cả khi đứng giữa câu.", "en-US": "Always write I with a capital letter." } },
-        { "lemma": "am", "pos": "verb", "meaning": { "vi": "là, thì (dùng với I)", "en-US": "a form of be; use it with I" }, "accepted": { "vi": ["là", "thì"] } },
-        { "lemma": "not", "pos": "adverb", "meaning": { "vi": "không, không phải", "en-US": "a word that makes a sentence negative" }, "accepted": { "vi": ["không", "không phải"] } }
+        {
+          "lemma": "old",
+          "pos": "adjective",
+          "meaning": {
+            "vi": "già, cũ; dùng để nói tuổi",
+            "en-US": "not young; also used to say your age"
+          },
+          "accepted": {
+            "vi": [
+              "già",
+              "cũ",
+              "tuổi"
+            ]
+          }
+        },
+        {
+          "lemma": "year",
+          "pos": "noun",
+          "forms": [
+            "years"
+          ],
+          "meaning": {
+            "vi": "năm; years old nghĩa là tuổi",
+            "en-US": "12 months; years old tells your age"
+          },
+          "accepted": {
+            "vi": [
+              "năm",
+              "tuổi"
+            ]
+          }
+        },
+        {
+          "lemma": "I",
+          "pos": "pronoun",
+          "meaning": {
+            "vi": "tôi",
+            "en-US": "the person who is speaking"
+          },
+          "accepted": {
+            "vi": [
+              "mình",
+              "tớ"
+            ]
+          },
+          "usage_note": {
+            "vi": "I luôn viết hoa, kể cả khi đứng giữa câu.",
+            "en-US": "Always write I with a capital letter."
+          }
+        },
+        {
+          "lemma": "am",
+          "pos": "verb",
+          "meaning": {
+            "vi": "là, thì (dùng với I)",
+            "en-US": "a form of be; use it with I"
+          },
+          "accepted": {
+            "vi": [
+              "là",
+              "thì"
+            ]
+          }
+        },
+        {
+          "lemma": "not",
+          "pos": "adverb",
+          "meaning": {
+            "vi": "không, không phải",
+            "en-US": "a word that makes a sentence negative"
+          },
+          "accepted": {
+            "vi": [
+              "không",
+              "không phải"
+            ]
+          }
+        }
       ],
       "sentences": [
-        { "key": "s1", "text": "How old are you?", "translation": { "vi": "Bạn bao nhiêu tuổi?" }, "accepted_translation": { "vi": ["Bạn mấy tuổi?", "Bạn bao nhiêu tuổi rồi?"] } },
-        { "key": "s2", "text": "I'm twenty years old.", "accepted": ["I am twenty years old.", "I'm twenty.", "I am twenty.", "I'm 20 years old.", "I am 20 years old."], "translation": { "vi": "Tôi hai mươi tuổi." }, "accepted_translation": { "vi": ["Tôi 20 tuổi.", "Mình hai mươi tuổi.", "Mình 20 tuổi."] } },
-        { "key": "s3", "text": "Are you eighteen?", "accepted": ["Are you 18?", "Are you eighteen years old?"], "translation": { "vi": "Bạn mười tám tuổi phải không?" }, "accepted_translation": { "vi": ["Bạn 18 tuổi phải không?", "Bạn mười tám tuổi à?", "Bạn có phải mười tám tuổi không?"] } },
-        { "key": "s4", "text": "Yes, I am.", "translation": { "vi": "Vâng, đúng vậy." }, "accepted_translation": { "vi": ["Vâng, đúng rồi.", "Đúng vậy.", "Vâng, phải."] } },
-        { "key": "s5", "text": "No, I'm not.", "accepted": ["No, I am not."], "translation": { "vi": "Không, không phải." }, "accepted_translation": { "vi": ["Không, tôi không phải.", "Không phải."] } }
+        {
+          "key": "s1",
+          "text": "How old are you?",
+          "translation": {
+            "vi": "Bạn bao nhiêu tuổi?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn mấy tuổi?",
+              "Bạn bao nhiêu tuổi rồi?"
+            ]
+          }
+        },
+        {
+          "key": "s2",
+          "text": "I'm twenty years old.",
+          "accepted": [
+            "I am twenty years old.",
+            "I'm twenty.",
+            "I am twenty.",
+            "I'm 20 years old.",
+            "I am 20 years old."
+          ],
+          "translation": {
+            "vi": "Tôi hai mươi tuổi."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Tôi 20 tuổi.",
+              "Mình hai mươi tuổi.",
+              "Mình 20 tuổi."
+            ]
+          }
+        },
+        {
+          "key": "s3",
+          "text": "Are you eighteen?",
+          "accepted": [
+            "Are you 18?",
+            "Are you eighteen years old?"
+          ],
+          "translation": {
+            "vi": "Bạn mười tám tuổi phải không?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn 18 tuổi phải không?",
+              "Bạn mười tám tuổi à?",
+              "Bạn có phải mười tám tuổi không?"
+            ]
+          }
+        },
+        {
+          "key": "s4",
+          "text": "Yes, I am.",
+          "translation": {
+            "vi": "Vâng, đúng vậy."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Vâng, đúng rồi.",
+              "Đúng vậy.",
+              "Vâng, phải."
+            ]
+          }
+        },
+        {
+          "key": "s5",
+          "text": "No, I'm not.",
+          "accepted": [
+            "No, I am not."
+          ],
+          "translation": {
+            "vi": "Không, không phải."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Không, tôi không phải.",
+              "Không phải."
+            ]
+          }
+        }
       ]
     },
     {
       "key": "where-from",
-      "title": { "vi": "Bạn đến từ đâu?", "en-US": "Where are you from?" },
+      "title": {
+        "vi": "Bạn đến từ đâu?",
+        "en-US": "Where are you from?"
+      },
       "grammar_tip": {
         "vi": "Câu khẳng định: You are from Vietnam. Câu hỏi: đảo are lên trước you thành Are you from Vietnam? Tên nước và tên thành phố luôn viết hoa chữ đầu.",
         "en-US": "Statement: You are from Vietnam. Question: put are before you: Are you from Vietnam? Names of countries and cities start with a capital letter."
@@ -75,24 +419,181 @@
         "en-US": "Say the last sound /m/ in from. Link the words in I'm from."
       },
       "words": [
-        { "lemma": "where", "pos": "adverb", "meaning": { "vi": "ở đâu, đâu", "en-US": "a question word: in what place" }, "accepted": { "vi": ["ở đâu", "đâu"] } },
-        { "lemma": "from", "pos": "preposition", "meaning": { "vi": "từ, đến từ", "en-US": "a word that shows the place where someone or something starts" }, "accepted": { "vi": ["từ", "đến từ"] } },
-        { "lemma": "Vietnam", "pos": "proper noun", "meaning": { "vi": "Việt Nam", "en-US": "a country in Southeast Asia" }, "accepted": { "vi": ["nước Việt Nam"] } },
-        { "lemma": "America", "pos": "proper noun", "meaning": { "vi": "nước Mỹ", "en-US": "the United States, a country in North America" }, "accepted": { "vi": ["Mỹ", "Hoa Kỳ"] } },
-        { "lemma": "England", "pos": "proper noun", "meaning": { "vi": "nước Anh", "en-US": "a country in Europe; it is part of the United Kingdom" }, "accepted": { "vi": ["Anh"] } },
-        { "lemma": "too", "pos": "adverb", "meaning": { "vi": "cũng", "en-US": "also" }, "accepted": { "vi": ["cũng vậy", "nữa"] }, "usage_note": { "vi": "Too với nghĩa cũng đứng ở cuối câu, sau dấu phẩy.", "en-US": "Too goes at the end of the sentence, after a comma." } }
+        {
+          "lemma": "where",
+          "pos": "adverb",
+          "meaning": {
+            "vi": "ở đâu, đâu",
+            "en-US": "a question word: in what place"
+          },
+          "accepted": {
+            "vi": [
+              "ở đâu",
+              "đâu"
+            ]
+          }
+        },
+        {
+          "lemma": "from",
+          "pos": "preposition",
+          "meaning": {
+            "vi": "từ, đến từ",
+            "en-US": "a word that shows the place where someone or something starts"
+          },
+          "accepted": {
+            "vi": [
+              "từ",
+              "đến từ"
+            ]
+          }
+        },
+        {
+          "lemma": "Vietnam",
+          "pos": "proper noun",
+          "meaning": {
+            "vi": "Việt Nam",
+            "en-US": "a country in Southeast Asia"
+          },
+          "accepted": {
+            "vi": [
+              "nước Việt Nam"
+            ]
+          }
+        },
+        {
+          "lemma": "America",
+          "pos": "proper noun",
+          "meaning": {
+            "vi": "nước Mỹ",
+            "en-US": "the United States, a country in North America"
+          },
+          "accepted": {
+            "vi": [
+              "Mỹ",
+              "Hoa Kỳ"
+            ]
+          }
+        },
+        {
+          "lemma": "England",
+          "pos": "proper noun",
+          "meaning": {
+            "vi": "nước Anh",
+            "en-US": "a country in Europe; it is part of the United Kingdom"
+          },
+          "accepted": {
+            "vi": [
+              "Anh"
+            ]
+          }
+        },
+        {
+          "lemma": "too",
+          "pos": "adverb",
+          "meaning": {
+            "vi": "cũng",
+            "en-US": "also"
+          },
+          "accepted": {
+            "vi": [
+              "cũng vậy",
+              "nữa"
+            ]
+          },
+          "usage_note": {
+            "vi": "Too với nghĩa cũng đứng ở cuối câu, sau dấu phẩy.",
+            "en-US": "Too goes at the end of the sentence, after a comma."
+          }
+        }
       ],
       "sentences": [
-        { "key": "s1", "text": "Where are you from?", "translation": { "vi": "Bạn đến từ đâu?" }, "accepted_translation": { "vi": ["Bạn từ đâu đến?", "Bạn là người nước nào?", "Bạn quê ở đâu?"] } },
-        { "key": "s2", "text": "I'm from Vietnam.", "accepted": ["I am from Vietnam.", "I'm from Viet Nam.", "I am from Viet Nam."], "translation": { "vi": "Tôi đến từ Việt Nam." }, "accepted_translation": { "vi": ["Tôi là người Việt Nam.", "Mình đến từ Việt Nam."] } },
-        { "key": "s3", "text": "Are you from America?", "translation": { "vi": "Bạn đến từ Mỹ phải không?" }, "accepted_translation": { "vi": ["Bạn có phải đến từ Mỹ không?", "Bạn đến từ nước Mỹ phải không?", "Bạn là người Mỹ à?"] } },
-        { "key": "s4", "text": "No, I'm from England.", "accepted": ["No, I am from England."], "translation": { "vi": "Không, tôi đến từ nước Anh." }, "accepted_translation": { "vi": ["Không, tôi đến từ Anh.", "Không, tôi là người Anh."] } },
-        { "key": "s5", "text": "You are from Vietnam, too.", "accepted": ["You're from Vietnam, too.", "You are from Vietnam too.", "You're from Vietnam too."], "translation": { "vi": "Bạn cũng đến từ Việt Nam." }, "accepted_translation": { "vi": ["Bạn cũng là người Việt Nam."] } }
+        {
+          "key": "s1",
+          "text": "Where are you from?",
+          "translation": {
+            "vi": "Bạn đến từ đâu?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn từ đâu đến?",
+              "Bạn là người nước nào?",
+              "Bạn quê ở đâu?"
+            ]
+          }
+        },
+        {
+          "key": "s2",
+          "text": "I'm from Vietnam.",
+          "accepted": [
+            "I am from Vietnam.",
+            "I'm from Viet Nam.",
+            "I am from Viet Nam."
+          ],
+          "translation": {
+            "vi": "Tôi đến từ Việt Nam."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Tôi là người Việt Nam.",
+              "Mình đến từ Việt Nam."
+            ]
+          }
+        },
+        {
+          "key": "s3",
+          "text": "Are you from America?",
+          "translation": {
+            "vi": "Bạn đến từ Mỹ phải không?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn có phải đến từ Mỹ không?",
+              "Bạn đến từ nước Mỹ phải không?",
+              "Bạn là người Mỹ à?"
+            ]
+          }
+        },
+        {
+          "key": "s4",
+          "text": "No, I'm from England.",
+          "accepted": [
+            "No, I am from England."
+          ],
+          "translation": {
+            "vi": "Không, tôi đến từ nước Anh."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Không, tôi đến từ Anh.",
+              "Không, tôi là người Anh."
+            ]
+          }
+        },
+        {
+          "key": "s5",
+          "text": "You are from Vietnam, too.",
+          "accepted": [
+            "You're from Vietnam, too.",
+            "You are from Vietnam too.",
+            "You're from Vietnam too."
+          ],
+          "translation": {
+            "vi": "Bạn cũng đến từ Việt Nam."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn cũng là người Việt Nam."
+            ]
+          }
+        }
       ]
     },
     {
       "key": "getting-to-know",
-      "title": { "vi": "Làm quen với người mới", "en-US": "Getting to know someone new" },
+      "title": {
+        "vi": "Làm quen với người mới",
+        "en-US": "Getting to know someone new"
+      },
       "grammar_tip": {
         "vi": "That's là dạng viết gọn của That is. Ôn lại: câu hỏi với be luôn bắt đầu bằng Are you...? và trả lời ngắn bằng Yes, I am hoặc No, I'm not.",
         "en-US": "That's is the short form of That is. Remember: questions with be start with Are you...? Short answers are Yes, I am, or No, I'm not."
@@ -102,18 +603,150 @@
         "en-US": "Say the last sound /t/ in right and /ts/ in that's. Your voice goes up at the end of Are you new here? and Really?"
       },
       "words": [
-        { "lemma": "that's", "pos": "contraction", "meaning": { "vi": "đó là, điều đó thì (viết gọn của that is)", "en-US": "the short form of that is" }, "accepted": { "vi": ["đó là", "điều đó"] } },
-        { "lemma": "right", "pos": "adjective", "meaning": { "vi": "đúng", "en-US": "correct; true" }, "accepted": { "vi": ["chính xác", "phải"] } },
-        { "lemma": "new", "pos": "adjective", "meaning": { "vi": "mới", "en-US": "not here before; not old" }, "accepted": { "vi": [] } },
-        { "lemma": "here", "pos": "adverb", "meaning": { "vi": "ở đây", "en-US": "in this place" }, "accepted": { "vi": ["đây", "tại đây"] } },
-        { "lemma": "really", "pos": "adverb", "meaning": { "vi": "thật sao, thật vậy", "en-US": "a word you say when you are surprised; also means very" }, "accepted": { "vi": ["thật à", "thật sao", "thế à"] } }
+        {
+          "lemma": "that's",
+          "pos": "contraction",
+          "meaning": {
+            "vi": "đó là, điều đó thì (viết gọn của that is)",
+            "en-US": "the short form of that is"
+          },
+          "accepted": {
+            "vi": [
+              "đó là",
+              "điều đó"
+            ]
+          }
+        },
+        {
+          "lemma": "right",
+          "pos": "adjective",
+          "meaning": {
+            "vi": "đúng",
+            "en-US": "correct; true"
+          },
+          "accepted": {
+            "vi": [
+              "chính xác",
+              "phải"
+            ]
+          }
+        },
+        {
+          "lemma": "new",
+          "pos": "adjective",
+          "meaning": {
+            "vi": "mới",
+            "en-US": "not here before; not old"
+          },
+          "accepted": {
+            "vi": []
+          }
+        },
+        {
+          "lemma": "here",
+          "pos": "adverb",
+          "meaning": {
+            "vi": "ở đây",
+            "en-US": "in this place"
+          },
+          "accepted": {
+            "vi": [
+              "đây",
+              "tại đây"
+            ]
+          }
+        },
+        {
+          "lemma": "really",
+          "pos": "adverb",
+          "meaning": {
+            "vi": "thật sao, thật vậy",
+            "en-US": "a word you say when you are surprised; also means very"
+          },
+          "accepted": {
+            "vi": [
+              "thật à",
+              "thật sao",
+              "thế à"
+            ]
+          }
+        }
       ],
       "sentences": [
-        { "key": "s1", "text": "Are you Tom?", "translation": { "vi": "Bạn là Tom phải không?" }, "accepted_translation": { "vi": ["Bạn có phải là Tom không?", "Bạn là Tom à?"] } },
-        { "key": "s2", "text": "Yes, that's right.", "accepted": ["Yes, that is right."], "translation": { "vi": "Vâng, đúng rồi." }, "accepted_translation": { "vi": ["Vâng, đúng vậy.", "Đúng rồi."] } },
-        { "key": "s3", "text": "Are you new here?", "translation": { "vi": "Bạn là người mới ở đây phải không?" }, "accepted_translation": { "vi": ["Bạn mới đến đây phải không?", "Bạn mới ở đây à?", "Bạn là người mới ở đây à?"] } },
-        { "key": "s4", "text": "Really? I'm from Vietnam, too.", "accepted": ["Really? I am from Vietnam, too.", "Really? I'm from Vietnam too."], "translation": { "vi": "Thật sao? Tôi cũng đến từ Việt Nam." }, "accepted_translation": { "vi": ["Thật à? Tôi cũng đến từ Việt Nam.", "Thế à? Tôi cũng là người Việt Nam."] } },
-        { "key": "s5", "text": "Welcome to America!", "translation": { "vi": "Chào mừng bạn đến nước Mỹ!" }, "accepted_translation": { "vi": ["Chào mừng đến với nước Mỹ!", "Chào mừng bạn đến Mỹ!", "Chào mừng đến Mỹ!"] } }
+        {
+          "key": "s1",
+          "text": "Are you Tom?",
+          "translation": {
+            "vi": "Bạn là Tom phải không?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn có phải là Tom không?",
+              "Bạn là Tom à?"
+            ]
+          }
+        },
+        {
+          "key": "s2",
+          "text": "Yes, that's right.",
+          "accepted": [
+            "Yes, that is right."
+          ],
+          "translation": {
+            "vi": "Vâng, đúng rồi."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Vâng, đúng vậy.",
+              "Đúng rồi."
+            ]
+          }
+        },
+        {
+          "key": "s3",
+          "text": "Are you new here?",
+          "translation": {
+            "vi": "Bạn là người mới ở đây phải không?"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Bạn mới đến đây phải không?",
+              "Bạn mới ở đây à?",
+              "Bạn là người mới ở đây à?"
+            ]
+          }
+        },
+        {
+          "key": "s4",
+          "text": "Really? I'm from Vietnam, too.",
+          "accepted": [
+            "Really? I am from Vietnam, too.",
+            "Really? I'm from Vietnam too."
+          ],
+          "translation": {
+            "vi": "Thật sao? Tôi cũng đến từ Việt Nam."
+          },
+          "accepted_translation": {
+            "vi": [
+              "Thật à? Tôi cũng đến từ Việt Nam.",
+              "Thế à? Tôi cũng là người Việt Nam."
+            ]
+          }
+        },
+        {
+          "key": "s5",
+          "text": "Welcome to America!",
+          "translation": {
+            "vi": "Chào mừng bạn đến nước Mỹ!"
+          },
+          "accepted_translation": {
+            "vi": [
+              "Chào mừng đến với nước Mỹ!",
+              "Chào mừng bạn đến Mỹ!",
+              "Chào mừng đến Mỹ!"
+            ]
+          }
+        }
       ]
     }
   ]
