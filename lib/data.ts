@@ -304,3 +304,89 @@ export async function countSessionsToday(ctx: LearnerContext): Promise<number> {
     .gte("completed_at", startOfTodayIso(ctx.profile.timezone));
   return count ?? 0;
 }
+
+/** Các phiên đã hoàn thành của từng bài: dùng để hiện trạng thái thật trên lộ trình. */
+export async function getLessonProgress(supabase: SupabaseClient, userId: string): Promise<Map<string, Set<string>>> {
+  const { data, error } = await supabase
+    .from("session_logs")
+    .select("lesson_id, session_type")
+    .eq("user_id", userId)
+    .not("lesson_id", "is", null)
+    .not("completed_at", "is", null);
+  if (error) throw new Error(error.message);
+  const progress = new Map<string, Set<string>>();
+  for (const row of data ?? []) {
+    const types = progress.get(row.lesson_id as string) ?? new Set<string>();
+    types.add(row.session_type as string);
+    progress.set(row.lesson_id as string, types);
+  }
+  return progress;
+}
+
+export type Bilingual = { target: string | null; source: string | null };
+
+export type LessonDetail = {
+  id: string;
+  number: number;
+  title: string;
+  unitTitle: string | null;
+  canDo: string | null;
+  grammarTip: Bilingual;
+  pronunciationTip: Bilingual;
+  wordIds: string[];
+  sentenceIds: string[];
+  content: ContentBundle;
+  /** Số bước của từng phiên luyện tập. */
+  exerciseCounts: Record<string, number>;
+};
+
+/** Toàn bộ nội dung của một bài để hiển thị trang "Bài học": từ mới, câu mẫu, mẹo, các phiên luyện tập. */
+export async function loadLessonDetail(ctx: LearnerContext, lessonId: string): Promise<LessonDetail | null> {
+  const { supabase } = ctx;
+  const locales = { target: ctx.course.targetLang, source: ctx.enrollment.sourceLang };
+
+  const [lessonRes, wordsRes, sentencesRes, exercisesRes] = await Promise.all([
+    supabase
+      .from("lessons")
+      .select("id, sort_order, lesson_translations(locale, title, grammar_tip, pronunciation_tip), units(unit_translations(locale, title, can_do))")
+      .eq("id", lessonId)
+      .maybeSingle(),
+    supabase.from("lesson_words").select("word_id, sort_order, example_sentence_id").eq("lesson_id", lessonId).order("sort_order"),
+    supabase.from("sentences").select("id, sort_order").eq("lesson_id", lessonId).order("sort_order"),
+    supabase.from("exercises").select("session_type").eq("lesson_id", lessonId),
+  ]);
+  const error = lessonRes.error ?? wordsRes.error ?? sentencesRes.error ?? exercisesRes.error;
+  if (error) throw new Error(error.message);
+  if (!lessonRes.data) return null;
+
+  type TipRow = { locale: string; title: string; grammar_tip: string | null; pronunciation_tip: string | null };
+  type UnitRow = { unit_translations: { locale: string; title: string; can_do: string | null }[] } | null;
+  const lesson = lessonRes.data as unknown as { id: string; sort_order: number; lesson_translations: TipRow[]; units: UnitRow };
+  const tipTarget = pick(lesson.lesson_translations, locales.target);
+  const tipSource = pick(lesson.lesson_translations, locales.source);
+  const unit = pick(lesson.units?.unit_translations, locales.source);
+
+  const wordIds = (wordsRes.data ?? []).map((r) => r.word_id as string);
+  const sentenceIds = (sentencesRes.data ?? []).map((r) => r.id as string);
+  const exampleByWord = new Map((wordsRes.data ?? []).map((r) => [r.word_id as string, r.example_sentence_id as string | null]));
+  const content = await loadContent(supabase, { wordIds, sentenceIds }, locales, ctx.course.targetLang, exampleByWord);
+
+  const exerciseCounts: Record<string, number> = {};
+  for (const row of exercisesRes.data ?? []) {
+    exerciseCounts[row.session_type as string] = (exerciseCounts[row.session_type as string] ?? 0) + 1;
+  }
+
+  return {
+    id: lesson.id,
+    number: lesson.sort_order,
+    title: tipSource?.title ?? tipTarget?.title ?? "",
+    unitTitle: unit?.title ?? null,
+    canDo: unit?.can_do ?? null,
+    grammarTip: { target: tipTarget?.grammar_tip ?? null, source: tipSource?.grammar_tip ?? null },
+    pronunciationTip: { target: tipTarget?.pronunciation_tip ?? null, source: tipSource?.pronunciation_tip ?? null },
+    wordIds: wordIds.filter((id) => content.words[id]),
+    sentenceIds: sentenceIds.filter((id) => content.sentences[id]),
+    content,
+    exerciseCounts,
+  };
+}

@@ -61,7 +61,8 @@
     "currentLesson": "Bài đang học",
     "streak": "{count, plural, =0 {Chưa có chuỗi ngày} other {# ngày liên tục}}",
     "due": "{count, plural, =0 {Không có thẻ đến hạn} other {# thẻ đến hạn}}",
-    "sessionsToday": "Hôm nay: {done}/{goal} phiên"
+    "sessionsToday": "Hôm nay: {done}/{goal} phiên",
+    "openLesson": "Xem nội dung bài"
   },
   "session": {
     "vocab": "Từ vựng",
@@ -121,7 +122,22 @@
     "lesson": "Bài {number}",
     "done": "Đã học",
     "current": "Đang học",
-    "locked": "Chưa mở"
+    "locked": "Chưa mở",
+    "eyebrow": "Lộ trình học",
+    "chooseLevel": "Chọn cấp độ",
+    "chooseLevelHint": "Học lần lượt từ cấp thấp lên cấp cao",
+    "levelProgress": "{done}/{total} bài đã hoàn thành",
+    "levelLessons": "{count} bài trong cấp này",
+    "levelEmpty": "Nội dung của cấp này đang được soạn.",
+    "unitLabel": "Chủ đề {number}",
+    "viewLesson": "Xem bài học",
+    "lockedHint": "Học xong bài trước để mở",
+    "state": {
+      "done": "Đã học",
+      "current": "Đang học",
+      "available": "Chưa học xong",
+      "locked": "Khóa"
+    }
   },
   "levels": {
     "pre-a1": "Khởi động",
@@ -238,5 +254,37 @@
     "contactHeading": "Liên hệ",
     "contactText": "Mọi câu hỏi và yêu cầu về dữ liệu, xin gửi tới:",
     "contactEmail": "lecuongg242@gmail.com"
+  },
+  "levelDesc": {
+    "pre-a1": "Làm quen chữ cái, số đếm, lời chào và những câu giới thiệu đầu tiên.",
+    "a1": "Giao tiếp các nhu cầu cơ bản bằng câu đơn.",
+    "a2": "Xử lý tình huống quen thuộc, kể chuyện đã qua, nói về kế hoạch.",
+    "b1": "Trò chuyện về chủ đề quen thuộc và nêu ý kiến."
+  },
+  "lesson": {
+    "back": "Lộ trình",
+    "eyebrow": "{unit} · Bài {number}",
+    "goal": "Mục tiêu của chủ đề",
+    "practice": "Luyện tập",
+    "practiceHint": "Học phần Từ vựng trước, rồi tới phần Nghe.",
+    "steps": "{count} bước",
+    "start": "Bắt đầu",
+    "redo": "Làm lại",
+    "locked": "Học phần trước để mở",
+    "done": "Đã xong",
+    "words": "Từ mới",
+    "wordsCount": "{count} từ",
+    "sentences": "Câu mẫu",
+    "sentencesCount": "{count} câu",
+    "grammar": "Ngữ pháp",
+    "pronunciation": "Phát âm",
+    "listen": "Nghe",
+    "notReady": "Bài này chưa có bài tập.",
+    "status": {
+      "done": "Bạn đã học xong bài này.",
+      "current": "Đây là bài bạn đang học.",
+      "available": "Bạn chưa học xong bài này.",
+      "locked": "Bài này chưa mở. Học xong các bài trước để mở."
+    }
   }
 }

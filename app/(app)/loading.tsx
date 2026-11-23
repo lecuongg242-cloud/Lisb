@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 export default function Loading() {
   const t = useTranslations("common");
   return (
-    <div className="flex flex-col gap-4" role="status" aria-label={t("loading")}>
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4" role="status" aria-label={t("loading")}>
       <div className="h-8 w-40 animate-pulse rounded-xl bg-line" />
       <div className="h-36 animate-pulse rounded-3xl bg-line" />
       <div className="h-24 animate-pulse rounded-3xl bg-line" />

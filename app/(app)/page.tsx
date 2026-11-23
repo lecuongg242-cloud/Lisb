@@ -39,7 +39,7 @@ export default async function HomePage() {
 
   const name = ctx.profile.display_name;
   return (
-    <div className="flex flex-col gap-5">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-5">
       <div>
         <h1 className="text-2xl font-bold">{name ? t("home.greeting", { name }) : t("home.greetingNoName")}</h1>
         <p className="mt-1 text-sm text-muted">{t("home.sessionsToday", { done: sessionsToday, goal: ctx.profile.daily_goal })}</p>
@@ -73,6 +73,9 @@ export default async function HomePage() {
           <div>
             <p className="text-sm text-muted">{t("home.currentLesson")}</p>
             <h2 className="text-lg font-semibold">{lessonTitle}</h2>
+            <Link href={`/lesson/${lessonId}`} className="mt-1 inline-block text-sm font-semibold text-brand-dark hover:underline">
+              {t("home.openLesson")} →
+            </Link>
           </div>
           <ul className="flex flex-col gap-2">
             {SESSION_TYPES.map((type, i) => {

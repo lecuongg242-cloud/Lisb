@@ -11,7 +11,7 @@ export default async function ReviewPage() {
   const { cards, content } = await loadDueCards(ctx, REVIEW_BATCH);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-5">
       <h1 className="text-2xl font-bold">{t("title")}</h1>
       {cards.length === 0 ? (
         <p className="card text-center text-muted">{t("empty")}</p>

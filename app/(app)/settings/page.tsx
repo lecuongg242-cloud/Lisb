@@ -7,7 +7,7 @@ export default async function SettingsPage() {
   const { user, profile } = await getProfile();
   const t = await getTranslations("settings");
   return (
-    <div className="flex flex-col gap-5">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-5">
       <h1 className="text-2xl font-bold">{t("title")}</h1>
       <SettingsForm displayName={profile.display_name ?? ""} dailyGoal={profile.daily_goal} newCardsPerDay={profile.new_cards_per_day} />
       <section className="card flex flex-col gap-3">
