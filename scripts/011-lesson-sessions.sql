@@ -23,10 +23,26 @@ create policy lesson_sessions_admin on public.lesson_sessions
 -- Bài tập thuộc về một phiên; thứ tự là duy nhất trong phiên.
 alter table public.exercises add column session_no smallint not null default 1;
 alter table public.exercises drop constraint exercises_lesson_id_session_type_sort_order_key;
+
+-- Dữ liệu có sẵn: trước đây mỗi bài có đúng hai phiên (từ vựng rồi nghe), thứ tự bài tập đánh số riêng
+-- trong từng loại. Gán phiên 1 cho từ vựng và phiên 2 cho nghe để thứ tự vẫn duy nhất trong phiên,
+-- và tạo danh sách phiên tương ứng. Xuất bản lại bài sẽ thay các phiên này bằng các phiên ngắn mới.
+update public.exercises set session_no = case when session_type = 'vocab' then 1 else 2 end;
+
+insert into public.lesson_sessions (lesson_id, session_no, session_type, kind, step_count)
+select e.lesson_id,
+       e.session_no,
+       min(e.session_type),
+       case when min(e.session_type) = 'vocab' then 'vocab_learn' else 'listen_recognize' end,
+       count(*)
+from public.exercises e
+group by e.lesson_id, e.session_no;
 alter table public.exercises add constraint exercises_lesson_session_order_key unique (lesson_id, session_no, sort_order);
 
 -- Nhật ký phiên học ghi phiên số mấy. Dòng cũ để null (trước khi có phiên đánh số).
 alter table public.session_logs add column session_no smallint;
+update public.session_logs set session_no = case when session_type = 'vocab' then 1 else 2 end
+where lesson_id is not null and session_type in ('vocab', 'listening');
 create index session_logs_user_lesson_session_idx on public.session_logs (user_id, lesson_id, session_no);
 
 -- Hàm xuất bản nhận thêm danh sách phiên.
