@@ -52,7 +52,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 3 | Nội dung chưa qua kiểm tra chéo | 24 bài do một model soạn, chỉ qua kiểm tra tự động | Có công cụ kiểm tra chéo bằng model thứ hai; cả 24 bài đã chạy qua và các vấn đề được xử lý. Cần khóa API Anthropic từ chủ dự án |
 | 4 | Phiên âm có chỗ không chuẩn giọng Mỹ | Lấy thẳng từ ipa-dict, ví dụ "new" ra /nju/ | Công cụ nội dung đối chiếu phiên âm với phiên âm của model giọng đọc; chỗ lệch được sửa hoặc ghi nhận |
 | 5 | Âm thanh chưa được nghe duyệt | 618 file, mới nghe 24 mẫu thử | Có trang nghe duyệt cho quản trị; chủ dự án nghe hết chữ cái, số và một mẫu câu; từ đọc sai được sinh lại |
-| 6 | Chưa có bài ôn cuối chủ đề và kiểm tra cuối cấp | Có thiết kế, chưa làm | Mỗi chủ đề có bài ôn; cấp Khởi động có bài kiểm tra cuối cấp, đạt 80% mới tính hoàn thành cấp |
+| 6 | Chưa có bài ôn cuối chủ đề và kiểm tra cuối cấp | **Một nửa, 2026-11-23.** Bài ôn cuối chủ đề đã có cho cả 6 chủ đề: hai phần (ôn từ, ôn nghe), mỗi phần phải đúng từ 80% ở lần trả lời đầu; đã chạy thử cả trường hợp đạt và không đạt trên máy. Kiểm tra cuối cấp chưa làm | Còn lại: bài kiểm tra cuối cấp Khởi động chấm ở máy chủ, đạt 80% mới tính hoàn thành cấp; chủ dự án làm thử một bài ôn trên bản thật |
 | 7 | Chưa có nút báo lỗi nội dung | Bảng dữ liệu có, giao diện chưa có | Người học báo lỗi được trên từng từ và câu; quản trị xem được danh sách |
 | 8 | Trang quản trị không xem được nội dung bài | Chỉ có nút xuất bản | Quản trị xem trước từ, câu, bài tập của một bài trước khi xuất bản |
 | 9 | Chưa có trang lỗi và trang không tìm thấy riêng | Dùng trang mặc định | Có trang lỗi và trang 404 bằng tiếng Việt, có đường quay về |
