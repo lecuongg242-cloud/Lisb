@@ -41,13 +41,16 @@ export async function getProfile() {
 /** Ngữ cảnh của người học: hồ sơ, khóa đang học, ngôn ngữ. Chưa ghi danh thì chuyển sang màn hình chào mừng. */
 export async function getLearnerContext(): Promise<LearnerContext> {
   const { supabase, user, profile } = await getProfile();
-  const { data } = await supabase
+  // courses nối tới languages theo hai đường (target_lang và bảng course_source_langs),
+  // nên phải chỉ rõ khóa ngoại cần dùng.
+  const { data, error } = await supabase
     .from("enrollments")
-    .select("course_id, source_lang, current_lesson_id, courses(id, target_lang, languages(tts_locale))")
+    .select("course_id, source_lang, current_lesson_id, courses(id, target_lang, languages!courses_target_lang_fkey(tts_locale))")
     .eq("user_id", user.id)
     .eq("is_active", true)
     .limit(1)
     .maybeSingle();
+  if (error) throw new Error(`Không đọc được thông tin ghi danh: ${error.message}`);
   if (!data) redirect("/onboarding");
 
   const course = data.courses as unknown as { id: string; target_lang: string; languages: { tts_locale: string | null } | null };

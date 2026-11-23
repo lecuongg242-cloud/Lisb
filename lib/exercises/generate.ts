@@ -1,7 +1,8 @@
 import { editDistance, stableHash } from "../lang/distance";
 import type { GeneratedExercise } from "./types";
 
-export type GenWord = { id: string; lemma: string; pos: string };
+/** meanings: nghĩa chính và các nghĩa được chấp nhận của từ (ở ngôn ngữ giải thích), dùng để tránh đáp án nhiễu đồng nghĩa. */
+export type GenWord = { id: string; lemma: string; pos: string; meanings?: string[] };
 /** tokens: các từ của câu ở dạng hiển thị trên thẻ (không dấu câu). */
 export type GenSentence = { id: string; text: string; tokens: string[] };
 
@@ -23,12 +24,21 @@ function shuffle<T>(items: T[], seed: string, key: (item: T) => string): T[] {
   return [...items].sort((a, b) => stableHash(seed + key(a)) - stableHash(seed + key(b)) || key(a).localeCompare(key(b)));
 }
 
+const meaningKey = (m: string) => m.trim().toLowerCase();
+
+/** Hai từ có chung một nghĩa (ví dụ hello và hi đều là "xin chào") thì không dùng làm đáp án nhiễu của nhau. */
+function sharesMeaning(a: GenWord, b: GenWord): boolean {
+  if (!a.meanings?.length || !b.meanings?.length) return false;
+  const own = new Set(a.meanings.map(meaningKey));
+  return b.meanings.some((m) => own.has(meaningKey(m)));
+}
+
 /** Chọn n từ giống từ đích nhất: cùng từ loại trước, rồi tới chữ viết gần nhất. */
 function similarWords(target: GenWord, candidates: GenWord[], n: number): GenWord[] {
   const seen = new Set([target.id]);
   return candidates
     .filter((c) => {
-      if (seen.has(c.id) || c.lemma.toLowerCase() === target.lemma.toLowerCase()) return false;
+      if (seen.has(c.id) || c.lemma.toLowerCase() === target.lemma.toLowerCase() || sharesMeaning(target, c)) return false;
       seen.add(c.id);
       return true;
     })
@@ -116,7 +126,8 @@ export function generateExercises(input: GenerateInput): GeneratedExercise[] {
     introduced.push(...group);
     for (const w of group) {
       const options = shuffle([w, ...similarWords(w, introduced, 3)], `meaning:${w.id}`, (o) => o.id);
-      vocab("choose_meaning", w.id, { word_id: w.id, option_word_ids: options.map((o) => o.id) });
+      // Chưa đủ từ để làm lựa chọn (bài đầu tiên, các từ đồng nghĩa nhau) thì bỏ qua câu hỏi này.
+      if (options.length >= 2) vocab("choose_meaning", w.id, { word_id: w.id, option_word_ids: options.map((o) => o.id) });
     }
   }
   if (words.length >= 2) {

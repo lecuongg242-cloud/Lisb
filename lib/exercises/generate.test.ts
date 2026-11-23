@@ -68,6 +68,15 @@ describe("generateExercises", () => {
     expect(ids).toContain(uuid(3));
   });
 
+  it("từ đồng nghĩa không làm đáp án nhiễu của nhau", () => {
+    const hello = { ...words[0], meanings: ["xin chào", "chào"] };
+    const hi = { ...words[1], meanings: ["chào (thân mật)", "Xin chào"] };
+    const out = generateExercises({ ...input, words: [hello, hi, ...words.slice(2)] });
+    const options = (id: string) => (out.find((e) => e.type === "choose_meaning" && e.source_id === id)!.payload as { option_word_ids: string[] }).option_word_ids;
+    expect(options(hello.id)).not.toContain(hi.id);
+    expect(options(hi.id)).not.toContain(hello.id);
+  });
+
   it("match_pairs chia nhóm đều, không quá 5 từ", () => {
     const groups = vocab.filter((e) => e.type === "match_pairs").map((e) => (e.payload as { word_ids: string[] }).word_ids.length);
     expect(groups).toEqual([3, 3]);

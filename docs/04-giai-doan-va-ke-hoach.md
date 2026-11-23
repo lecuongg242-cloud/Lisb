@@ -147,3 +147,27 @@ Việc cần làm:
 | Project Supabase thử nghiệm | Đã có (tyovmslxlrcvihbqxttq, vùng ap-northeast-1). Đã chạy migration 001-008 và nạp 2 chủ đề mẫu ngày 2026-11-23 |
 | Project Supabase chính thức | Chưa, tạo trước giai đoạn 3 |
 | Prompt v0 cho giai đoạn 1 | Xong (`v0-prompt.md`), viết theo schema hiện tại |
+
+## Tiến độ giai đoạn 1 (cập nhật 2026-11-23)
+
+Cách làm đã chốt: toàn bộ mã do Claude viết trong kho này; v0 chỉ dùng để triển khai bản chính thức.
+
+| Việc | Trạng thái |
+|---|---|
+| Đăng nhập bằng email và mật khẩu, màn hình chào mừng, ghi danh | Xong, đã chạy thử trên trình duyệt |
+| Trang chủ với nút "Tôi có 2 phút" | Xong, đã chạy thử |
+| Phiên từ vựng và phiên nghe (8 dạng bài tập, câu sai quay lại cuối phiên) | Xong, đã chạy thử trọn một bài |
+| Ôn tập bằng ts-fsrs | Xong, đã chạy thử một lượt 6 thẻ |
+| Lộ trình, cài đặt | Xong; chưa chạy thử kỹ trên trình duyệt |
+| Trang quản trị xuất bản bài (sinh bài tập tự động) | Xong, đã xuất bản 8 bài mẫu trên project thử nghiệm |
+| Kiểm thử tự động cho logic trong `lib/` | 21 test |
+| Migration 009 (chuỗi ngày), 010 (xuất bản bài) | Đã chạy trên project thử nghiệm |
+| Nội dung 4 chủ đề còn lại của Pre-A1 | Chưa |
+| Giới hạn số thẻ mới mỗi ngày (`new_cards_per_day`) | Chưa áp dụng: cài đặt lưu được nhưng app chưa dùng |
+| Đăng nhập Google, PWA, nhắc học | Chưa (giai đoạn 3) |
+
+Ghi nhận từ lần chạy thử:
+
+- Phiên từ vựng của bài 8 từ có 26 bước, dài hơn khung 2-3 phút. Cần đo bằng việc học thật rồi quyết định cắt bớt (ví dụ chuyển phần gõ từ sang lượt ôn).
+- Thẻ mới được tính là đã gặp một lần ngay trong phiên học (Nhớ, hoặc Quên nếu có trả lời sai), nên đến hạn ôn sau 1 đến 10 phút.
+- Project thử nghiệm có một tài khoản thử `tester@lisb.test` với quyền quản trị, tạo ngày 2026-11-23. Xóa trước khi dùng project này cho người thật.

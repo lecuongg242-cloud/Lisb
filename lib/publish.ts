@@ -11,7 +11,12 @@ export type PublishResult =
   | { ok: false; reason: "forbidden" | "not_found" | "no_content" | "error"; detail?: string }
   | { ok: false; reason: "missing_translations"; words: string[] };
 
-type WordRow = { id: string; lemma: string; part_of_speech: string };
+type WordRow = {
+  id: string;
+  lemma: string;
+  part_of_speech: string;
+  word_translations: { locale: string; meaning: string; accepted_forms: string[] | null }[];
+};
 type SentenceRow = {
   id: string;
   lesson_id: string;
@@ -43,7 +48,10 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   const lessonIds = [...earlierIds, lessonId];
 
   const [{ data: lessonWords, error: e1 }, { data: sentenceData, error: e2 }, { data: sourceLangs, error: e3 }] = await Promise.all([
-    supabase.from("lesson_words").select("lesson_id, sort_order, words(id, lemma, part_of_speech)").in("lesson_id", lessonIds),
+    supabase
+      .from("lesson_words")
+      .select("lesson_id, sort_order, words(id, lemma, part_of_speech, word_translations(locale, meaning, accepted_forms))")
+      .in("lesson_id", lessonIds),
     supabase
       .from("sentences")
       .select("id, lesson_id, sort_order, text, sentence_words(position, surface, word_id, words(lemma))")
@@ -53,7 +61,14 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   const error = e1 ?? e2 ?? e3;
   if (error) return { ok: false, reason: "error", detail: error.message };
 
-  const toGenWord = (w: WordRow): GenWord => ({ id: w.id, lemma: w.lemma, pos: w.part_of_speech });
+  const targetLang = level.courses.target_lang;
+  const toGenWord = (w: WordRow): GenWord => ({
+    id: w.id,
+    lemma: w.lemma,
+    pos: w.part_of_speech,
+    // Nghĩa ở các ngôn ngữ giải thích (không tính lời giải thích bằng chính ngôn ngữ đích).
+    meanings: w.word_translations.filter((t) => t.locale !== targetLang).flatMap((t) => [t.meaning, ...(t.accepted_forms ?? [])]),
+  });
   const toGenSentence = (s: SentenceRow): GenSentence => {
     const lemmaAt = new Map(s.sentence_words.map((sw) => [sw.position, sw.words?.lemma ?? null]));
     const tokens = lang.tokenize(s.text).map((surface, i) => ({ surface, lemma: lemmaAt.get(i + 1) ?? null }));
