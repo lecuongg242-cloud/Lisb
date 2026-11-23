@@ -47,6 +47,7 @@
     "goalLabel": "Mỗi ngày bạn muốn học mấy phiên?",
     "goalOption": "{count} phiên (khoảng {minutes} phút)",
     "start": "Bắt đầu học",
+    "starting": "Đang chuẩn bị bài học...",
     "noCourse": "Chưa có khóa học nào được xuất bản. Quản trị viên cần xuất bản bài học trước."
   },
   "home": {

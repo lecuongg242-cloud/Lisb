@@ -2,13 +2,14 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { completeOnboarding } from "@/app/actions";
 import { getProfile } from "@/lib/data";
+import { StartButton } from "./StartButton";
 import { TimezoneField } from "./TimezoneField";
 
 const GOALS = [3, 4, 6, 8];
 
 export default async function OnboardingPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { supabase, user, profile } = await getProfile();
-  const { data: enrollment } = await supabase.from("enrollments").select("course_id").eq("user_id", user.id).limit(1).maybeSingle();
+  const { data: enrollment } = await supabase.from("enrollments").select("course_id").eq("user_id", user.id).eq("is_active", true).limit(1).maybeSingle();
   if (enrollment) redirect("/");
 
   const t = await getTranslations("onboarding");
@@ -41,9 +42,7 @@ export default async function OnboardingPage({ searchParams }: { searchParams: P
             </label>
           ))}
         </fieldset>
-        <button type="submit" className="btn btn-primary">
-          {t("start")}
-        </button>
+        <StartButton label={t("start")} pendingLabel={t("starting")} />
       </form>
     </main>
   );
