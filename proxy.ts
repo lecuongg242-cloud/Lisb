@@ -7,11 +7,22 @@ const PUBLIC_PATHS = ["/login", "/auth", "/icon", "/apple-icon"];
 // Làm mới phiên Supabase ở mỗi request và chặn người chưa đăng nhập.
 // Đây chỉ là lớp chặn sớm: mọi trang và server action vẫn tự kiểm tra lại (lib/auth.ts).
 export async function proxy(request: NextRequest) {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  if (!supabaseUrl || !supabaseKey) {
+    // Thiếu cấu hình thì báo rõ, thay vì để máy chủ trả về "Internal Server Error" không lời giải thích.
+    return new NextResponse(
+      "Thiếu cấu hình Supabase. Thêm NEXT_PUBLIC_SUPABASE_URL và NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY " +
+        "trong phần Environment Variables của dự án rồi triển khai lại.",
+      { status: 503, headers: { "content-type": "text/plain; charset=utf-8" } },
+    );
+  }
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    supabaseUrl,
+    supabaseKey,
     {
       cookies: {
         getAll: () => request.cookies.getAll(),
