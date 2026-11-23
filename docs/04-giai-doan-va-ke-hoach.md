@@ -1,175 +1,124 @@
 # 04. Giai đoạn và kế hoạch
 
-Trạng thái: bản nháp v1, chờ duyệt. Ngày: 2026-11-23.
+Trạng thái: bản v2, viết lại ngày 2026-11-23 theo định hướng IELTS (tài liệu 07). Chờ duyệt.
 
-Thời lượng dưới đây là ước lượng với việc bạn làm toàn thời gian (đã chốt 2026-11-23). Thời gian xây tính năng ngắn, nhưng các giai đoạn 1-3 còn bị giới hạn bởi thời gian dùng thật để kiểm chứng (14 ngày học liên tục, 4 tuần thử nghiệm), nên không rút ngắn hơn được bằng cách làm nhanh hơn. Trong lúc chờ kiểm chứng, làm trước nội dung và tính năng của giai đoạn sau.
+## Nguyên tắc làm việc
 
-## Tổng quan
+1. **Hoàn thiện rồi mới mở rộng.** Không bắt đầu giai đoạn sau khi giai đoạn trước còn việc dang dở.
+2. **Mỗi hạng mục có tiêu chí hoàn thành** (mục bên dưới). Chưa đủ tiêu chí thì ghi là "đang làm", không ghi là "xong".
+3. **Việc bỏ lại phải được ghi vào danh sách việc dang dở** ngay lúc bỏ lại, kèm lý do.
+4. **Nghiên cứu và thiết kế trước, viết mã sau** với mọi thay đổi lớn (cấu trúc lộ trình, kỹ năng mới, dạng bài thi).
+5. Mọi quyết định của chủ dự án được ghi vào bảng quyết định kèm ngày.
 
-| Giai đoạn | Tên | Người dùng | Thời lượng | Kết quả chính |
-|---|---|---|---|---|
-| 0 | Nền móng | Chưa có | 3-4 ngày | Tài liệu được duyệt, schema, thiết kế màn hình, 2 chủ đề mẫu |
-| 1 | Bản cá nhân | Mình bạn | 1 tuần xây, 2 tuần dùng thử | Học được từ vựng và nghe hằng ngày với cấp Pre-A1 |
-| 2 | Đủ 4 kỹ năng | Mình bạn | 1-2 tuần xây, 2 tuần dùng thử | Thêm nói, viết, hội thoại AI, công cụ soạn nội dung |
-| 3 | Thử nghiệm kín | 10-30 người | 1-2 tuần xây, 4 tuần thử nghiệm | Sẵn sàng cho người lạ dùng, đủ nội dung A1 |
-| 4 | Ra mắt công khai | Công chúng | 2 tuần rồi liên tục | Trang giới thiệu, pháp lý, giám sát, nội dung A2 |
-| 5 | Ngôn ngữ đích thứ hai | Mở rộng | Lập sau | Người Việt học một ngôn ngữ khác trên cùng nền tảng |
+## Tiêu chí hoàn thành
 
-Thời gian dùng thử của giai đoạn 1 và thời gian xây của giai đoạn 2 chạy chồng lên nhau, nên tổng thời gian từ bắt đầu tới hết thử nghiệm kín vào khoảng 10-12 tuần.
+Một hạng mục chỉ được coi là xong khi đủ các điều sau; phần nào không áp dụng thì ghi rõ lý do.
 
-Nguyên tắc: không sang giai đoạn sau khi chưa đạt điều kiện qua giai đoạn. Bạn dùng app hằng ngày từ giai đoạn 1, nên mỗi giai đoạn đều được kiểm chứng bằng việc học thật.
+| Loại việc | Tiêu chí |
+|---|---|
+| Tính năng | Chạy đúng trên điện thoại và máy tính, ở cả chế độ sáng và tối; có trạng thái đang tải, trống và lỗi; logic có kiểm thử tự động; đã chạy thử trọn luồng trên bản triển khai thật; mọi cài đặt hiển thị cho người dùng đều có tác dụng thật |
+| Nội dung bài học | Qua kiểm tra tự động không lỗi; qua kiểm tra chéo bằng model thứ hai; có đủ âm thanh; đã xuất bản và mở thử một bài trên bản thật |
+| Âm thanh | Có file cho mọi từ và câu; một mẫu ngẫu nhiên đã được người nghe duyệt |
+| Tài liệu | Phản ánh đúng hiện trạng; không còn mục mâu thuẫn với quyết định mới nhất |
 
-## Giai đoạn 0: Nền móng
+## Các giai đoạn
 
-Việc cần làm:
+| Giai đoạn | Tên | Kết quả chính | Điều kiện qua giai đoạn |
+|---|---|---|---|
+| 1 | Hoàn thiện cấp Khởi động | Một cấp học trọn vẹn, không còn việc dang dở | Hết danh sách "phải xong ở giai đoạn 1"; chủ dự án học hết cấp Khởi động trên bản thật |
+| 2 | Ba nhánh và cấp A1 | Lộ trình ba nhánh, bài ngữ pháp có lý thuyết, kỹ năng đọc, kiểm tra đầu vào và vượt cấp, trọn cấp A1 | Trọn cấp A1 đạt tiêu chí nội dung; kiểm tra cuối cấp A1 hoạt động |
+| 3 | Cấp A2 và kỹ năng tạo ra ngôn ngữ | Viết câu và đoạn có AI sửa, nói theo mẫu, nghe hiểu hội thoại, thêm giọng Anh, trang tiến độ, trọn cấp A2 | Trọn cấp A2; chi phí AI mỗi người dùng đã đo |
+| 4 | Thử nghiệm kín | Project Supabase chính thức, nhắc học, giám sát lỗi, 10-30 người dùng thử | Có số liệu quay lại ngày 7 và ngày 30; không còn lỗi nghiêm trọng |
+| 5 | Cấp B1 và kỹ năng thi phần 1 | Nhánh Kỹ năng thi, đủ dạng câu hỏi Listening và Reading, Writing Task 1 và 2 dạng rút gọn, Speaking Part 1 và 2, AI nhận xét theo tiêu chí công khai | Trọn cấp B1; đề luyện từng kỹ năng hoạt động |
+| 6 | Cấp B2 và đề thi thử | Bài đọc và nghe dài như đề thật, đề thi thử tính giờ, ước lượng band | Trọn cấp B2; một đề thi thử đầy đủ |
+| 7 | Ra mắt công khai | Trang giới thiệu, điều khoản, mô-đun thu phí nếu cần | Ổn định 4 tuần với người dùng thật |
+| 8 | Mở rộng | Phần luyện định dạng TOEFL; ngôn ngữ đích thứ hai | Lập kế hoạch khi tới nơi |
 
-- Duyệt 4 tài liệu, chốt các quyết định ở mục "Quyết định còn mở".
-- Đặt tên sản phẩm, chọn phong cách giao diện.
-- Vẽ sơ đồ màn hình cho luồng chính: trang chủ, trình phát phiên học, ôn tập.
-- Viết file migration cho toàn bộ mô hình dữ liệu ở tài liệu 03 (kể cả các bảng đa ngôn ngữ).
-- Soạn và kiểm tra chéo 2 chủ đề đầu của Pre-A1 để kiểm chứng mẫu bài học.
-- Chuẩn bị danh sách từ và nguồn phiên âm, kiểm tra giấy phép.
+Thử nghiệm kín (giai đoạn 4) có thể chạy song song với giai đoạn 5 khi cấp A2 đã xong.
 
-Điều kiện qua giai đoạn: tài liệu được duyệt; 2 chủ đề mẫu qua kiểm tra tự động và kiểm tra chéo; schema chạy được trên Supabase thử nghiệm.
+Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là nội dung, và tốc độ soạn chỉ biết được sau khi quy trình soạn, kiểm tra chéo và sinh âm thanh chạy trơn ở giai đoạn 1. Ước lượng sẽ được bổ sung khi giai đoạn 1 kết thúc.
 
-## Giai đoạn 1: Bản cá nhân
+## Giai đoạn 1: hoàn thiện cấp Khởi động
 
-Việc cần làm:
+Đây là giai đoạn hiện tại. Danh sách dưới đây là toàn bộ những gì đã làm dở hoặc làm chưa tới nơi, ghi nhận ngày 2026-11-23.
 
-- Đăng nhập, hồ sơ, ghi danh khóa học.
-- Trang chủ với nút "Tôi có 2 phút", danh sách phiên trong ngày.
-- Trình phát phiên học chạy theo dữ liệu bài tập, với các dạng của phiên từ vựng và phiên nghe.
-- Ôn tập lặp lại ngắt quãng, có test cho thuật toán.
-- Giao diện dùng next-intl ngay từ đầu, dù mới có tiếng Việt.
-- Nội dung: đủ 6 chủ đề Pre-A1.
+### Phải xong ở giai đoạn 1
 
-Điều kiện qua giai đoạn: bạn học 14 ngày liên tục mà không gặp lỗi chặn; học hết ít nhất 3 chủ đề; lịch ôn hoạt động đúng (thẻ đến hạn xuất hiện, thẻ sai quay lại sớm).
+| # | Việc dang dở | Hiện trạng | Tiêu chí hoàn thành |
+|---|---|---|---|
+| 1 | Phiên từ vựng quá dài | 17 đến 26 bước, vượt khung 2-3 phút | Mỗi phiên tối đa khoảng 12-15 bước; bài nhiều từ được chia thành nhiều phiên; đo thời gian thật trên 3 bài |
+| 2 | Cài đặt "số thẻ mới mỗi ngày" không có tác dụng | Lưu được nhưng app không dùng | App áp dụng giới hạn và có kiểm thử; hoặc gỡ cài đặt khỏi giao diện |
+| 3 | Nội dung chưa qua kiểm tra chéo | 24 bài do một model soạn, chỉ qua kiểm tra tự động | Có công cụ kiểm tra chéo bằng model thứ hai; cả 24 bài đã chạy qua và các vấn đề được xử lý. Cần khóa API Anthropic từ chủ dự án |
+| 4 | Phiên âm có chỗ không chuẩn giọng Mỹ | Lấy thẳng từ ipa-dict, ví dụ "new" ra /nju/ | Công cụ nội dung đối chiếu phiên âm với phiên âm của model giọng đọc; chỗ lệch được sửa hoặc ghi nhận |
+| 5 | Âm thanh chưa được nghe duyệt | 618 file, mới nghe 24 mẫu thử | Có trang nghe duyệt cho quản trị; chủ dự án nghe hết chữ cái, số và một mẫu câu; từ đọc sai được sinh lại |
+| 6 | Chưa có bài ôn cuối chủ đề và kiểm tra cuối cấp | Có thiết kế, chưa làm | Mỗi chủ đề có bài ôn; cấp Khởi động có bài kiểm tra cuối cấp, đạt 80% mới tính hoàn thành cấp |
+| 7 | Chưa có nút báo lỗi nội dung | Bảng dữ liệu có, giao diện chưa có | Người học báo lỗi được trên từng từ và câu; quản trị xem được danh sách |
+| 8 | Trang quản trị không xem được nội dung bài | Chỉ có nút xuất bản | Quản trị xem trước từ, câu, bài tập của một bài trước khi xuất bản |
+| 9 | Chưa có trang lỗi và trang không tìm thấy riêng | Dùng trang mặc định | Có trang lỗi và trang 404 bằng tiếng Việt, có đường quay về |
+| 10 | Chưa có kiểm thử luồng chính | Chỉ có kiểm thử logic | Kiểm thử tự động cho luồng đăng nhập, học một phiên, ôn tập |
+| 11 | Luồng sau đăng nhập trên bản thật chưa được kiểm chứng đầy đủ | Mới kiểm trên máy; bản thật do chủ dự án dùng | Chủ dự án xác nhận từng màn hình trên điện thoại theo danh sách kiểm tra |
+| 12 | Dọn dẹp tài khoản và bí mật | Tài khoản thử có quyền quản trị; mật khẩu database đã đi qua khung chat; file client secret trong thư mục Downloads; project Google Cloud "Lisbon" thừa | Xóa tài khoản thử; đổi mật khẩu database; xóa file bí mật; xử lý project thừa. Phần lớn cần chủ dự án thao tác |
+| 13 | Tài liệu 01, 02, 03 chưa khớp với định hướng IELTS | Mới có ghi chú trỏ sang tài liệu 07 | Cập nhật 01 và 03; tài liệu 02 viết lại ở đầu giai đoạn 2 cùng thiết kế ba nhánh |
+| 14 | Triển khai đôi lúc không tự chạy | Một lần Vercel bỏ qua commit, phải đẩy commit rỗng | Biết nguyên nhân, hoặc có bước kiểm tra trạng thái triển khai sau mỗi lần đẩy |
 
-## Giai đoạn 2: Đủ 4 kỹ năng
+### Để sang giai đoạn sau (có lý do)
 
-Việc cần làm:
+| Việc | Lý do hoãn | Giai đoạn |
+|---|---|---|
+| Kỹ năng nói, viết, đọc | Cần thiết kế cùng cấu trúc ba nhánh | 2 và 3 |
+| Trang tiến độ theo kỹ năng | Có ý nghĩa khi có nhiều hơn hai kỹ năng | 3 |
+| Nhắc học, dùng khi mất mạng | Thuộc phần chuẩn bị cho người dùng ngoài | 4 |
+| Giám sát lỗi | Thuộc phần chuẩn bị cho người dùng ngoài | 4 |
+| Project Supabase chính thức tách khỏi thử nghiệm | Cần trước khi có người dùng ngoài | 4 |
+| Bảng `audio_assets` và lưu âm thanh trên Supabase Storage | File tĩnh trong kho mã đủ dùng ở quy mô hiện tại | Khi âm thanh vượt khoảng 50 MB |
 
-- Phiên viết với AI sửa bài và giải thích song ngữ.
-- Phiên nói: nhắc lại theo mẫu, so chữ nhận diện, hội thoại nhập vai.
-- Lỗi sai ở mọi phiên tự thành thẻ ôn.
-- Lưu nhanh: dán văn bản, AI tách từ chưa học.
-- Trang tiến độ theo từng kỹ năng.
-- Công cụ quản trị: sinh nháp bài học, kiểm tra tự động, kiểm tra chéo, xuất bản.
-- Trần lượt gọi AI và ghi nhận chi phí.
-- Nội dung: 10 chủ đề đầu của A1.
+### Đã làm trong giai đoạn 1
 
-Điều kiện qua giai đoạn: bạn hoàn thành đủ 4 phiên mỗi ngày trong 14 ngày; có số đo chi phí AI cho một người dùng một tháng; soạn một chủ đề mới bằng công cụ quản trị mất dưới 1 giờ.
+| Việc | Ghi chú |
+|---|---|
+| Schema, phân quyền, migration 001-010 | Đã chạy trên project thử nghiệm; có kiểm tra phân quyền tự động trên Postgres cục bộ |
+| Đăng nhập email và Google, ghi danh | Chạy trên bản thật |
+| Phiên từ vựng, phiên nghe, ôn tập ngắt quãng | Chạy được; còn việc số 1 và 2 ở trên |
+| 24 bài cấp Khởi động | Đã xuất bản; còn việc số 3 và 4 |
+| Giọng đọc sinh sẵn, nam và nữ | Còn việc số 5 |
+| Chế độ sáng và tối | Xong |
+| Trang lộ trình có cột cấp độ và đường đi đánh số; trang bài học | Xong ở dạng một nhánh; ba nhánh làm ở giai đoạn 2 |
+| Triển khai Vercel, máy chủ đặt tại Tokyo | Xong; còn việc số 14 |
+| Trang chính sách quyền riêng tư | Bản nháp, chủ dự án cần đọc lại |
 
-## Giai đoạn 3: Thử nghiệm kín
+## Quyết định
 
-Việc cần làm:
+| Ngày | Quyết định | Kết quả |
+|---|---|---|
+| 2026-11-23 | Quỹ thời gian | Toàn thời gian |
+| 2026-11-23 | Duyệt nội dung | Không có người duyệt; AI kiểm tra chéo bằng Claude |
+| 2026-11-23 | Thu phí | Miễn phí cho tới khi chủ dự án quyết định khác; mô-đun gói dịch vụ tách riêng |
+| 2026-11-23 | Mở rộng ngôn ngữ | Người Việt học ngôn ngữ khác, bắt đầu bằng tiếng Anh; chỉ cần nền tảng có khả năng mở rộng |
+| 2026-11-23 | Vai trò của v0 | Chỉ để triển khai; toàn bộ mã do Claude viết trong kho này |
+| 2026-11-23 | Tên sản phẩm | LisB |
+| 2026-11-23 | Giọng đọc | Kokoro, giọng nữ af_heart và giọng nam am_michael, người học tự chọn |
+| 2026-11-23 | Giao diện | Có chế độ sáng và tối; lộ trình rõ ràng theo kiểu cột cấp độ và đường đi đánh số |
+| 2026-11-23 | Bài thi mục tiêu | IELTS Academic là chính; TOEFL thêm sau |
+| 2026-11-23 | Điểm đích | IELTS 6.5 |
+| 2026-11-23 | Cấu trúc lộ trình | Ba nhánh: Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR; thêm Kỹ năng thi từ B1 |
+| 2026-11-23 | Cách làm | Hoàn thiện cái đang có rồi mới mở rộng |
 
-- Màn hình chào mừng, kiểm tra đầu vào, hướng dẫn cài lên điện thoại.
-- PWA và nhắc học bằng thông báo.
-- File âm thanh sinh sẵn thay cho giọng trình duyệt.
-- Nút báo lỗi nội dung và hàng đợi xử lý.
-- Ghi lỗi, sự kiện sản phẩm, trang số liệu quản trị.
-- Toàn bộ nội dung Pre-A1 và A1 qua kiểm tra chéo bằng Claude; trang giới thiệu và trong app ghi rõ nội dung do AI soạn và kiểm tra, chưa có giáo viên duyệt.
-- Rà soát bảo mật: phân quyền dữ liệu, giới hạn tần suất, kiểm tra đầu vào.
-- Nội dung: đủ 20 chủ đề A1, bài kiểm tra cuối cấp.
+## Quyết định còn mở
 
-Điều kiện qua giai đoạn: ít nhất 10 người dùng thử trong 4 tuần; có số liệu quay lại ngày 7 và ngày 30; không còn lỗi nghiêm trọng đang mở; biết chi phí trên mỗi người dùng hoạt động; nội dung A1 đã qua kiểm tra chéo; mọi báo lỗi nội dung từ người thử nghiệm đã được xử lý.
-
-## Giai đoạn 4: Ra mắt công khai
-
-Việc cần làm:
-
-- Trang giới thiệu, tối ưu tìm kiếm, tên miền.
-- Chính sách quyền riêng tư, điều khoản, xóa tài khoản.
-- Miễn phí hoàn toàn. Mô-đun gói dịch vụ đã có sẵn trong schema nhưng chỉ có gói miễn phí; cổng thanh toán chỉ làm khi bạn quyết định thu phí.
-- Chống lạm dụng: xác minh email, trần AI mỗi ngày cho mỗi người.
-- Kế hoạch sao lưu và khôi phục dữ liệu.
-- Nội dung: phát hành dần A2 theo từng mô-đun.
-
-Điều kiện qua giai đoạn: hệ thống ổn định 4 tuần với người dùng thật; chi phí mỗi người dùng nằm trong ngưỡng đã đặt; có quy trình phát hành nội dung đều đặn.
-
-## Giai đoạn 5: Ngôn ngữ đích thứ hai
-
-Hướng đã chốt: người Việt học một ngôn ngữ khác. Chưa chọn ngôn ngữ nào; trước giai đoạn này chỉ cần nền tảng sẵn sàng mở rộng.
-
-Việc cần làm:
-
-- Chọn ngôn ngữ đích, khung trình độ của nó, nguồn từ vựng và phiên âm.
-- Soạn lộ trình mới theo quy trình ở tài liệu 02; thêm cấp học chữ nếu ngôn ngữ đó không dùng chữ Latin.
-- Viết bản cài đặt xử lý ngôn ngữ (tách từ, chuẩn hóa, so sánh đáp án, hiển thị phiên âm) cho ngôn ngữ mới.
-- Sửa mọi chỗ còn ngầm định tiếng Anh lộ ra trong quá trình này.
-
-Điều kiện qua giai đoạn: thêm được ngôn ngữ mới mà không đổi cấu trúc dữ liệu và không sửa code của trình phát phiên học.
+| Quyết định | Cần trước khi |
+|---|---|
+| Khóa API Anthropic cho bước kiểm tra chéo | Việc số 3 của giai đoạn 1 |
+| Có thuê người duyệt nội dung khi tới B1 không | Giai đoạn 5 |
+| Nguồn giọng Úc cho bài nghe | Giai đoạn 5 |
+| Tên miền riêng | Giai đoạn 7 |
 
 ## Rủi ro
 
 | Rủi ro | Mức | Cách giảm |
 |---|---|---|
-| Nội dung AI sinh có lỗi mà bạn không tự phát hiện được, và không có người duyệt | Cao | Kiểm tra tự động theo CEFR-J và ipa-dict, kiểm tra chéo bằng Claude, bài tập do code sinh chứ không do AI viết, nút báo lỗi trên mọi câu, ghi rõ cho người dùng là nội dung do AI soạn. Rủi ro còn lại: lỗi cả hai model cùng bỏ sót vẫn có thể lọt |
-| Mất động lực giữa chừng, dự án dở dang | Cao | Giai đoạn 1 nhỏ, dùng được thật trong 3-4 tuần; bạn là người dùng hằng ngày |
-| Phạm vi phình ra | Cao | Điều kiện qua giai đoạn cố định; ý tưởng mới ghi vào danh sách chờ, không chen vào giai đoạn đang làm |
-| Giọng đọc và nhận diện giọng nói của trình duyệt không đồng đều | Trung bình | File âm thanh sinh sẵn từ giai đoạn 3; phiên nói có phương án thay thế |
-| Chi phí AI tăng khi mở công khai | Trung bình | Nội dung dùng chung, trần lượt gọi, đo chi phí từ giai đoạn 2 |
-| Code v0 sinh ra khó bảo trì | Trung bình | Logic quan trọng nằm trong `lib/` có test; v0 chỉ lo giao diện |
-| Giấy phép danh sách từ | Thấp | Kiểm tra điều khoản ở giai đoạn 0, ghi nguồn |
-| Người dùng không quay lại | Trung bình | Nhắc học, chuỗi ngày, phiên rất ngắn; đo ở giai đoạn 3 trước khi đầu tư ra mắt |
-
-## Quyết định đã chốt (2026-11-23)
-
-| # | Quyết định | Kết quả |
-|---|---|---|
-| 1 | Quỹ thời gian | Toàn thời gian |
-| 2 | Ai duyệt nội dung tiếng Anh | Không có người duyệt; chỉ dùng AI kiểm tra chéo |
-| 3 | Thu phí | Miễn phí hoàn toàn cho tới khi chủ dự án báo cần thu phí; phần thu phí làm thành mô-đun riêng |
-| 4 | Hướng mở rộng ngôn ngữ | Người Việt học ngôn ngữ khác, bắt đầu bằng tiếng Anh; chỉ cần nền tảng có khả năng mở rộng |
-| 5 | Danh sách chủ đề Pre-A1 và A1 | Duyệt như tài liệu 02 |
-| 6 | Model kiểm tra chéo | Claude (cần một khóa API Anthropic) |
-
-## Quyết định còn mở
-
-| # | Quyết định | Khuyến nghị |
-|---|---|---|
-| 1 | Tên sản phẩm và tên miền | Chọn tên không gắn với "English" để còn mở rộng |
-| 2 | Có làm app native không | Chưa, dùng PWA đến hết giai đoạn 4 |
-| 3 | Dịch vụ sinh âm thanh và chấm phát âm | Đánh giá ở đầu giai đoạn 3, so sánh chất lượng giọng và giá |
-
-## Tiến độ giai đoạn 0
-
-| Việc | Trạng thái |
-|---|---|
-| Tài liệu 01-05 | Xong bản nháp, đã cập nhật theo các quyết định |
-| Đọc mã nguồn tham khảo (freelingo, LibreLingo) | Xong, bài học ghi ở tài liệu 03 mục 9 |
-| File migration `scripts/001` đến `008` | Xong, đã chạy thử trên Postgres cục bộ kèm kiểm tra phân quyền; chưa chạy lên Supabase vì chưa có project |
-| Tên sản phẩm | LisB. Chưa kiểm tra tên miền và nhãn hiệu |
-| Kho mã | github.com/lecuongg242-cloud/Lisb |
-| Soạn 2 chủ đề mẫu của Pre-A1 | Xong: "Chào hỏi và tạm biệt", "Tên, tuổi, quê quán" (8 bài, 40 câu, 53 từ mới). Do Claude soạn, qua kiểm tra tự động, chưa qua kiểm tra chéo bởi model thứ hai |
-| Công cụ kiểm tra nội dung và sinh SQL | Xong (`tools/content/build-content.mjs`) |
-| Project Supabase thử nghiệm | Đã có (tyovmslxlrcvihbqxttq, vùng ap-northeast-1). Đã chạy migration 001-008 và nạp 2 chủ đề mẫu ngày 2026-11-23 |
-| Project Supabase chính thức | Chưa, tạo trước giai đoạn 3 |
-| Prompt v0 cho giai đoạn 1 | Xong (`v0-prompt.md`), viết theo schema hiện tại |
-
-## Tiến độ giai đoạn 1 (cập nhật 2026-11-23)
-
-Cách làm đã chốt: toàn bộ mã do Claude viết trong kho này; v0 chỉ dùng để triển khai bản chính thức.
-
-| Việc | Trạng thái |
-|---|---|
-| Đăng nhập bằng email và mật khẩu, màn hình chào mừng, ghi danh | Xong, đã chạy thử trên trình duyệt |
-| Trang chủ với nút "Tôi có 2 phút" | Xong, đã chạy thử |
-| Phiên từ vựng và phiên nghe (8 dạng bài tập, câu sai quay lại cuối phiên) | Xong, đã chạy thử trọn một bài |
-| Ôn tập bằng ts-fsrs | Xong, đã chạy thử một lượt 6 thẻ |
-| Lộ trình, cài đặt | Xong; chưa chạy thử kỹ trên trình duyệt |
-| Trang quản trị xuất bản bài (sinh bài tập tự động) | Xong, đã xuất bản 8 bài mẫu trên project thử nghiệm |
-| Kiểm thử tự động cho logic trong `lib/` | 21 test |
-| Migration 009 (chuỗi ngày), 010 (xuất bản bài) | Đã chạy trên project thử nghiệm |
-| Nội dung đủ 6 chủ đề Pre-A1 (24 bài, 120 câu, 144 từ) | Xong, đã nạp và xuất bản trên project thử nghiệm. Do Claude soạn, qua kiểm tra tự động, chưa qua kiểm tra chéo bởi model thứ hai |
-| Giới hạn số thẻ mới mỗi ngày (`new_cards_per_day`) | Chưa áp dụng: cài đặt lưu được nhưng app chưa dùng |
-| Đăng nhập Google, PWA, nhắc học | Chưa (giai đoạn 3) |
-
-Ghi nhận từ lần chạy thử:
-
-- Phiên từ vựng của bài 8 từ có 26 bước, dài hơn khung 2-3 phút. Cần đo bằng việc học thật rồi quyết định cắt bớt (ví dụ chuyển phần gõ từ sang lượt ôn).
-- Thẻ mới được tính là đã gặp một lần ngay trong phiên học (Nhớ, hoặc Quên nếu có trả lời sai), nên đến hạn ôn sau 1 đến 10 phút.
-- Project thử nghiệm có một tài khoản thử `tester@lisb.test` với quyền quản trị, tạo ngày 2026-11-23. Xóa trước khi dùng project này cho người thật.
-- Chủ đề bảng chữ cái dạy tên 26 chữ cái như 26 từ. Phiên âm tên chữ cái (và mạo từ a) là nhập tay vì ipa-dict chỉ có phiên âm của từ; đây là 27 phiên âm duy nhất không lấy từ từ điển.
-- Trang Lộ trình coi mọi bài đứng trước bài đang học là đã học. Nếu sau này chèn bài mới vào trước vị trí của người đang học, bài đó sẽ hiện là đã học dù họ chưa làm.
+| Làm dở rồi chuyển việc khác | Cao | Tiêu chí hoàn thành và danh sách việc dang dở ở trên; không mở giai đoạn mới khi còn việc "phải xong" |
+| Khối lượng nội dung tới B2 | Cao | Quy trình soạn, kiểm tra và sinh âm thanh phải tự động hóa tốt ở giai đoạn 1 và 2 |
+| Nội dung sai mà không ai phát hiện | Cao | Kiểm tra tự động, kiểm tra chéo, nút báo lỗi, ghi rõ nội dung do AI soạn |
+| Người học bỏ cuộc trên quãng đường 500-600 giờ | Cao | Hiện tiến độ theo band; mốc nhỏ; khuyến khích học nhiều phiên liền nhau |
+| AI chấm viết và nói lệch so với giám khảo | Cao | Chỉ nhận xét theo tiêu chí và khoảng band, kèm ghi chú là ước lượng |
+| Chi phí AI khi có nhiều người dùng | Trung bình | Nội dung dùng chung; trần lượt gọi mỗi ngày; đo từ giai đoạn 3 |
