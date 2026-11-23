@@ -126,7 +126,17 @@ Nơi chấm bài:
 | 1-2 | `speechSynthesis` của trình duyệt, giọng en-US | `SpeechRecognition` của trình duyệt: so chữ nhận được với câu mẫu |
 | 3 trở đi | File âm thanh sinh sẵn bằng dịch vụ đọc văn bản, lưu Supabase Storage, hai tốc độ | Giữ như trên; đánh giá thêm dịch vụ chấm phát âm đến từng âm |
 
-Lý do đổi ở giai đoạn 3: giọng trình duyệt khác nhau giữa các máy và có máy đọc rất kém, không chấp nhận được khi có người dùng thật. Vì nội dung dùng chung nên chi phí sinh file chỉ phát sinh một lần cho mỗi câu. Nhận diện giọng nói của trình duyệt không chạy trên Firefox và hoạt động hạn chế trên iPhone, nên phiên nói phải có phương án thay thế (tự nghe lại bản ghi và tự đánh giá).
+Cập nhật 2026-11-23: phần giọng đọc đã chuyển sang file sinh sẵn ngay ở giai đoạn 1, vì giọng trình duyệt nghe khó chịu khi học thật.
+
+- Nguồn giọng: Kokoro-82M (mã nguồn mở, Apache 2.0), chạy trên máy bằng `tools/audio/generate.mjs`, không tốn phí và không cần khóa API.
+- Hai giọng Mỹ: nữ `af_heart` và nam `am_michael`; người học đổi trong Cài đặt (lưu theo thiết bị).
+- File nằm ở `public/audio/<giọng>/<khóa>.mp3`, khóa là 20 ký tự đầu của sha1(văn bản). Có file cho mọi từ, mọi câu và mọi từ xuất hiện trong câu.
+- "Nghe chậm" phát cùng file ở tốc độ 0,7, giữ nguyên cao độ.
+- Đoạn văn bản nào chưa có file (nội dung mới chưa sinh âm thanh) thì app tự dùng giọng trình duyệt.
+- Sau khi thêm hoặc sửa nội dung, chạy lại `node tools/audio/generate.mjs`; chỉ các đoạn mới được sinh.
+- Bảng `audio_assets` trong schema chưa được dùng; sẽ dùng khi chuyển file sang Supabase Storage.
+
+Lý do ban đầu định đổi ở giai đoạn 3: giọng trình duyệt khác nhau giữa các máy và có máy đọc rất kém, không chấp nhận được khi có người dùng thật. Vì nội dung dùng chung nên chi phí sinh file chỉ phát sinh một lần cho mỗi câu. Nhận diện giọng nói của trình duyệt không chạy trên Firefox và hoạt động hạn chế trên iPhone, nên phiên nói phải có phương án thay thế (tự nghe lại bản ghi và tự đánh giá).
 
 ## 6. Lớp AI
 

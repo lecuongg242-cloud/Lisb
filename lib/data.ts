@@ -2,6 +2,7 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cache } from "react";
 import { redirect } from "next/navigation";
+import { audioKey } from "./audio/key";
 import { requireUser } from "./auth";
 import { sentenceChips } from "./content/chips";
 import { parseExercise, type Exercise, type SessionType } from "./exercises/types";
@@ -183,6 +184,7 @@ export async function loadContent(
         usageNoteTarget: target?.usage_note ?? null,
         usageNoteSource: source?.usage_note ?? null,
         exampleSentenceId: exampleByWord.get(w.id) ?? null,
+        audioKey: audioKey(w.lemma),
       };
     }
   }
@@ -190,7 +192,7 @@ export async function loadContent(
   const sentences: Record<string, SentenceView> = {};
   for (const s of sentenceRows) {
     const byPosition = new Map(s.sentence_words.map((sw) => [sw.position, sw.word_id]));
-    const tokens = lang.tokenize(s.text).map((surface, i) => ({ surface, wordId: byPosition.get(i + 1) ?? null }));
+    const tokens = lang.tokenize(s.text).map((surface, i) => ({ surface, wordId: byPosition.get(i + 1) ?? null, audioKey: audioKey(surface) }));
     sentences[s.id] = {
       id: s.id,
       text: s.text,
@@ -200,6 +202,7 @@ export async function loadContent(
       noteSource: pick(s.sentence_translations, locales.source)?.note ?? null,
       tokens,
       chips: sentenceChips(tokens.map((t) => ({ surface: t.surface, lemma: t.wordId ? (words[t.wordId]?.lemma ?? null) : null }))),
+      audioKey: audioKey(s.text),
     };
   }
   return { words, sentences };

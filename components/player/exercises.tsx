@@ -73,7 +73,7 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
           <div className="card flex flex-col items-center gap-3 text-center">
             <p className="text-4xl font-bold">{word.lemma}</p>
             {word.pronunciation && <p className="text-lg text-muted">{word.pronunciation}</p>}
-            <SpeakButtons text={word.lemma} locale={ttsLocale} autoPlay />
+            <SpeakButtons text={word.lemma} locale={ttsLocale} audioKey={word.audioKey} autoPlay />
             <Meaning word={word} className="text-lg" />
             {(word.usageNoteTarget || word.usageNoteSource) && (
               <div className="rounded-2xl bg-page px-4 py-3 text-left text-sm">
@@ -105,7 +105,7 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
           <Prompt>{t("chooseMeaning")}</Prompt>
           <div className="flex flex-col items-center gap-3">
             <p className="text-4xl font-bold">{word.lemma}</p>
-            <SpeakButtons text={word.lemma} locale={ttsLocale} autoPlay />
+            <SpeakButtons text={word.lemma} locale={ttsLocale} audioKey={word.audioKey} autoPlay />
           </div>
           <OptionList
             options={options}
@@ -155,7 +155,7 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
       return (
         <div className="flex flex-col gap-5">
           <Prompt>{t("listenChoose")}</Prompt>
-          <SpeakButtons text={sentence.text} locale={ttsLocale} autoPlay large />
+          <SpeakButtons text={sentence.text} locale={ttsLocale} audioKey={sentence.audioKey} autoPlay large />
           <OptionList
             options={options}
             disabled={locked}
@@ -173,7 +173,7 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
           seed={exercise.id}
           chips={[...sentence.chips, ...exercise.payload.distractor_tokens]}
           locked={locked}
-          header={<SpeakButtons text={sentence.text} locale={ttsLocale} autoPlay large />}
+          header={<SpeakButtons text={sentence.text} locale={ttsLocale} audioKey={sentence.audioKey} autoPlay large />}
           onSubmit={(answer) => {
             const given = lang.normalize(answer);
             const correct = [sentence.text, ...sentence.accepted].some((c) => lang.normalize(c) === given);
@@ -189,7 +189,7 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
       return (
         <div className="flex flex-col gap-5">
           <Prompt>{t("listenType")}</Prompt>
-          <SpeakButtons text={sentence.text} locale={ttsLocale} autoPlay large />
+          <SpeakButtons text={sentence.text} locale={ttsLocale} audioKey={sentence.audioKey} autoPlay large />
           <TextAnswerForm
             locked={locked}
             lang={ttsLocale}

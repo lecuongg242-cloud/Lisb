@@ -12,9 +12,11 @@ export type WordView = {
   usageNoteTarget: string | null;
   usageNoteSource: string | null;
   exampleSentenceId: string | null;
+  /** Khóa file âm thanh sinh sẵn của từ. */
+  audioKey: string;
 };
 
-export type SentenceToken = { surface: string; wordId: string | null };
+export type SentenceToken = { surface: string; wordId: string | null; audioKey: string };
 
 export type SentenceView = {
   id: string;
@@ -26,6 +28,8 @@ export type SentenceView = {
   tokens: SentenceToken[];
   /** Các từ của câu ở dạng thẻ để sắp xếp. */
   chips: string[];
+  /** Khóa file âm thanh sinh sẵn của cả câu. */
+  audioKey: string;
 };
 
 export type ContentBundle = {

@@ -96,7 +96,7 @@ export function ReviewClient({ cards, content, ttsLocale }: { cards: ReviewCard[
               <div className="flex flex-col items-center gap-2 border-t border-line pt-4">
                 <p className="text-4xl font-bold">{word.lemma}</p>
                 {word.pronunciation && <p className="text-muted">{word.pronunciation}</p>}
-                <SpeakButtons text={word.lemma} locale={ttsLocale} autoPlay />
+                <SpeakButtons text={word.lemma} locale={ttsLocale} audioKey={word.audioKey} autoPlay />
               </div>
             )}
           </>
@@ -104,7 +104,7 @@ export function ReviewClient({ cards, content, ttsLocale }: { cards: ReviewCard[
         {sentence && (
           <>
             <p className="text-sm font-semibold tracking-wide text-muted uppercase">{t("review.recallSentence")}</p>
-            <SpeakButtons text={sentence.text} locale={ttsLocale} autoPlay large />
+            <SpeakButtons text={sentence.text} locale={ttsLocale} audioKey={sentence.audioKey} autoPlay large />
             {revealed && (
               <div className="w-full border-t border-line pt-4 text-left">
                 <TappableSentence sentence={sentence} words={content.words} locale={ttsLocale} />

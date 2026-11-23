@@ -12,3 +12,5 @@
 *.tsbuildinfo
 next-env.d.ts
 tools/content/data/
+node_modules/
+audio-samples/

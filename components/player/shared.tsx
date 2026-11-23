@@ -8,21 +8,23 @@ import type { SentenceView, WordView } from "@/lib/views";
 const noopSubscribe = () => () => {};
 
 /** Hai nút nghe: tốc độ thường và chậm. `autoPlay` phát ngay khi hiện ra. */
-export function SpeakButtons({ text, locale, autoPlay = false, large = false }: { text: string; locale: string; autoPlay?: boolean; large?: boolean }) {
+type SpeakButtonsProps = { text: string; locale: string; audioKey?: string; autoPlay?: boolean; large?: boolean };
+
+export function SpeakButtons({ text, locale, audioKey, autoPlay = false, large = false }: SpeakButtonsProps) {
   const t = useTranslations("common");
   const supported = useSyncExternalStore(noopSubscribe, canSpeak, () => true);
 
   useEffect(() => {
-    if (autoPlay) speak(text, locale);
-  }, [autoPlay, text, locale]);
+    if (autoPlay) speak(text, locale, { audioKey });
+  }, [autoPlay, text, locale, audioKey]);
 
   if (!supported) return <p className="rounded-2xl bg-warn-bg px-4 py-3 text-sm text-warn-text">{t("noVoice")}</p>;
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
-      <button type="button" className={`btn btn-primary ${large ? "min-h-16 px-8 text-lg" : ""}`} onClick={() => speak(text, locale)}>
+      <button type="button" className={`btn btn-primary ${large ? "min-h-16 px-8 text-lg" : ""}`} onClick={() => speak(text, locale, { audioKey })}>
         {t("listen")}
       </button>
-      <button type="button" className={`btn btn-secondary ${large ? "min-h-16" : ""}`} onClick={() => speak(text, locale, { slow: true })}>
+      <button type="button" className={`btn btn-secondary ${large ? "min-h-16" : ""}`} onClick={() => speak(text, locale, { slow: true, audioKey })}>
         {t("listenSlow")}
       </button>
     </div>
@@ -58,7 +60,7 @@ export function TappableSentence({ sentence, words, locale }: { sentence: Senten
             disabled={!token.wordId}
             onClick={() => {
               setOpenIndex(openIndex === i ? null : i);
-              speak(token.surface, locale);
+              speak(token.surface, locale, { audioKey: token.audioKey });
             }}
             className={`rounded-xl border px-2.5 py-1 text-sm ${openIndex === i ? "border-brand bg-brand-soft" : "border-line bg-surface"} disabled:opacity-60`}
           >

@@ -3,7 +3,7 @@
 import { useActionState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { updateSettings } from "@/app/actions";
-import { getSpeechRate, setSpeechRate, subscribeSpeechRate } from "@/lib/audio/speak";
+import { getSpeechRate, getVoiceChoice, setSpeechRate, setVoiceChoice, subscribeSpeechSettings, type VoiceChoice } from "@/lib/audio/speak";
 import { getThemeChoice, setThemeChoice, subscribeTheme, type ThemeChoice } from "@/lib/theme";
 
 type Props = { displayName: string; dailyGoal: number; newCardsPerDay: number };
@@ -12,7 +12,8 @@ export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) 
   const t = useTranslations();
   const [state, action, pending] = useActionState(updateSettings, { saved: false, error: false });
   // Tốc độ giọng đọc là tùy chọn của riêng thiết bị này nên lưu trên trình duyệt.
-  const rate = useSyncExternalStore(subscribeSpeechRate, getSpeechRate, () => 1);
+  const rate = useSyncExternalStore(subscribeSpeechSettings, getSpeechRate, () => 1);
+  const voice = useSyncExternalStore(subscribeSpeechSettings, getVoiceChoice, (): VoiceChoice => "female");
   const theme = useSyncExternalStore(subscribeTheme, getThemeChoice, (): ThemeChoice => "system");
 
   return (
@@ -28,6 +29,13 @@ export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) 
       <label className="flex flex-col gap-1.5 text-sm font-medium">
         {t("settings.newCards")}
         <input className="field" name="newCardsPerDay" type="number" inputMode="numeric" min={0} max={50} defaultValue={newCardsPerDay} required />
+      </label>
+      <label className="flex flex-col gap-1.5 text-sm font-medium">
+        {t("settings.voice")}
+        <select className="field" value={voice} onChange={(e) => setVoiceChoice(e.target.value as VoiceChoice)}>
+          <option value="female">{t("settings.voiceFemale")}</option>
+          <option value="male">{t("settings.voiceMale")}</option>
+        </select>
       </label>
       <label className="flex flex-col gap-1.5 text-sm font-medium">
         {t("settings.speechRate")}

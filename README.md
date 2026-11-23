@@ -30,6 +30,8 @@ Mã ứng dụng dùng Next.js 16 (App Router). Phiên bản này khác nhiều 
 | `content/` | Nội dung bài học dạng JSON, theo `khóa/cấp/chủ-đề.json` |
 | `content/build/` | File SQL nạp nội dung, sinh tự động từ JSON |
 | `tools/content/` | Công cụ kiểm tra nội dung và sinh SQL |
+| `tools/audio/` | Công cụ sinh file giọng đọc (Kokoro) cho mọi từ và câu |
+| `public/audio/` | File giọng đọc sinh sẵn, theo từng giọng |
 
 ## Bắt đầu đọc từ đâu
 
