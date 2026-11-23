@@ -13,7 +13,8 @@ export default async function LearnPage({ params }: { params: Promise<{ lessonId
   const t = await getTranslations();
   // RLS chỉ trả về phiên của bài đã xuất bản; bài không tồn tại hoặc còn nháp thì coi như không có.
   const sessions = (await getLessonSessions(ctx.supabase, [lessonId])).get(lessonId) ?? [];
-  if (!sessions.some((s) => s.no === sessionNo)) notFound();
+  const session = sessions.find((s) => s.no === sessionNo);
+  if (!session) notFound();
   const labels = sessionLabels(sessions, { has: (key) => t.has(key), text: (key) => t(key) });
 
   const { exercises, content } = await loadSession(ctx, lessonId, sessionNo);
@@ -23,6 +24,7 @@ export default async function LearnPage({ params }: { params: Promise<{ lessonId
       key={`${lessonId}:${sessionNo}`}
       lessonId={lessonId}
       sessionNo={sessionNo}
+      passPercent={session.passPercent}
       title={labels.get(sessionNo) ?? ""}
       exercises={exercises}
       content={content}

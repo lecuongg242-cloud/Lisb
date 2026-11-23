@@ -25,7 +25,7 @@ export type Exercise = {
 }[ExerciseType];
 
 /** Kiểu của một phiên học trong bài. Tên hiển thị nằm ở messages (sessionKind.*). */
-export const SESSION_KINDS = ["vocab_learn", "vocab_recall", "listen_recognize", "listen_dictation"] as const;
+export const SESSION_KINDS = ["vocab_learn", "vocab_recall", "listen_recognize", "listen_dictation", "review_vocab", "review_listening"] as const;
 export type SessionKind = (typeof SESSION_KINDS)[number];
 
 /** Một phiên học ngắn của bài: số thứ tự trong bài, loại kỹ năng, kiểu phiên và số bước. */
@@ -34,6 +34,8 @@ export type GeneratedSession = {
   session_type: SessionType;
   kind: SessionKind;
   step_count: number;
+  /** Ngưỡng đạt (phần trăm đúng ở lần trả lời đầu). Bỏ trống với phiên luyện tập thường. */
+  pass_percent?: number | null;
 };
 
 export type GeneratedExercise = {

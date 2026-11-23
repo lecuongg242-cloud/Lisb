@@ -123,7 +123,7 @@ export async function getCompletedSessions(supabase: SupabaseClient, userId: str
   return new Set((data ?? []).map((r) => r.session_no as number));
 }
 
-export type LessonSession = { no: number; type: SessionType; kind: string; steps: number };
+export type LessonSession = { no: number; type: SessionType; kind: string; steps: number; passPercent: number | null };
 
 /** Danh sách phiên của từng bài, theo thứ tự học. */
 export async function getLessonSessions(supabase: SupabaseClient, lessonIds: string[]): Promise<Map<string, LessonSession[]>> {
@@ -131,13 +131,19 @@ export async function getLessonSessions(supabase: SupabaseClient, lessonIds: str
   if (!lessonIds.length) return out;
   const { data, error } = await supabase
     .from("lesson_sessions")
-    .select("lesson_id, session_no, session_type, kind, step_count")
+    .select("lesson_id, session_no, session_type, kind, step_count, pass_percent")
     .in("lesson_id", lessonIds)
     .order("session_no");
   if (error) throw new Error(error.message);
   for (const row of data ?? []) {
     const list = out.get(row.lesson_id as string) ?? [];
-    list.push({ no: row.session_no as number, type: row.session_type as SessionType, kind: row.kind as string, steps: row.step_count as number });
+    list.push({
+      no: row.session_no as number,
+      type: row.session_type as SessionType,
+      kind: row.kind as string,
+      steps: row.step_count as number,
+      passPercent: (row.pass_percent as number | null) ?? null,
+    });
     out.set(row.lesson_id as string, list);
   }
   return out;

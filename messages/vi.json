@@ -103,7 +103,11 @@
     "backHome": "Về trang chính",
     "nextSession": "Học phần tiếp theo",
     "lessonDone": "Bạn đã học xong bài này.",
-    "backLesson": "Về trang bài học"
+    "backLesson": "Về trang bài học",
+    "notPassedTitle": "Chưa đạt",
+    "passed": "Đạt {percent}% (cần {required}%)",
+    "notPassed": "Bạn đúng {percent}%, cần {required}% để qua. Xem lại bài rồi thử lần nữa nhé.",
+    "tryAgain": "Làm lại"
   },
   "review": {
     "title": "Ôn tập",
@@ -183,7 +187,10 @@
     "exercises": "{count} bài tập",
     "missingTranslations": "Thiếu nghĩa cho các từ: {words}",
     "noContent": "Bài chưa có từ hoặc câu.",
-    "forbidden": "Bạn không có quyền quản trị."
+    "forbidden": "Bạn không có quyền quản trị.",
+    "createReview": "Tạo bài ôn chủ đề",
+    "updateReview": "Sinh lại bài ôn",
+    "reviewLesson": "Bài ôn chủ đề"
   },
   "ai": {
     "notice": "Nội dung bài học do AI soạn và kiểm tra, chưa có giáo viên duyệt. Thấy chỗ sai, hãy báo cho chúng tôi."
@@ -290,18 +297,24 @@
       "available": "Bạn chưa học xong bài này.",
       "locked": "Bài này chưa mở. Học xong các bài trước để mở."
     },
-    "partNumber": "Phần {number}"
+    "partNumber": "Phần {number}",
+    "reviewIntro": "Bài ôn kiểm tra lại từ và câu của cả chủ đề. Mỗi phần cần đúng từ 80% trở lên ở lần trả lời đầu thì mới tính là qua.",
+    "reviewBadge": "Ôn tập"
   },
   "sessionKind": {
     "vocab_learn": "Học từ mới",
     "vocab_recall": "Nhớ lại từ",
     "listen_recognize": "Nghe hiểu",
-    "listen_dictation": "Nghe chép"
+    "listen_dictation": "Nghe chép",
+    "review_vocab": "Ôn từ vựng",
+    "review_listening": "Ôn nghe"
   },
   "sessionKindHint": {
     "vocab_learn": "Làm quen với từ, nghĩa và cách đọc",
     "vocab_recall": "Nhìn nghĩa, gõ lại từ",
     "listen_recognize": "Nghe và nhận ra câu",
-    "listen_dictation": "Nghe và gõ lại cả câu"
+    "listen_dictation": "Nghe và gõ lại cả câu",
+    "review_vocab": "Cần đúng 80% để qua",
+    "review_listening": "Cần đúng 80% để qua"
   }
 }

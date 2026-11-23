@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { sentenceChips } from "./content/chips";
 import { getOrderedLessons } from "./data";
 import { generateExercises, type GenSentence, type GenWord } from "./exercises/generate";
+import { generateReview } from "./exercises/review";
 import { getLanguageModule } from "./lang";
 
 export type PublishResult =
@@ -32,7 +33,7 @@ type SentenceRow = {
 export async function publishLesson(supabase: SupabaseClient, lessonId: string): Promise<PublishResult> {
   const { data: lesson } = await supabase
     .from("lessons")
-    .select("id, units(levels(course_id, courses(target_lang)))")
+    .select("id, kind, unit_id, units(levels(course_id, courses(target_lang)))")
     .eq("id", lessonId)
     .maybeSingle();
   if (!lesson) return { ok: false, reason: "not_found" };
@@ -45,7 +46,11 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   const index = ordered.findIndex((l) => l.id === lessonId);
   if (index < 0) return { ok: false, reason: "not_found" };
   const earlierIds = ordered.slice(0, index).map((l) => l.id);
-  const lessonIds = [...earlierIds, lessonId];
+  // Bài ôn cuối chủ đề không có nội dung riêng: nó lấy từ và câu của mọi bài học trong cùng chủ đề.
+  const isReview = lesson.kind === "review";
+  const lessonIds = isReview ? ordered.filter((l) => l.unitId === lesson.unit_id && l.kind === "lesson").map((l) => l.id) : [...earlierIds, lessonId];
+  if (!lessonIds.length) return { ok: false, reason: "no_content" };
+  const isOwn = (id: string) => isReview || id === lessonId;
 
   const [{ data: lessonWords, error: e1 }, { data: sentenceData, error: e2 }, { data: sourceLangs, error: e3 }] = await Promise.all([
     supabase
@@ -81,14 +86,14 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   const byLessonOrder = <T extends { lesson_id: string; sort_order: number }>(a: T, b: T) =>
     rank.get(a.lesson_id)! - rank.get(b.lesson_id)! || a.sort_order - b.sort_order;
 
-  const words = lwRows.filter((r) => r.lesson_id === lessonId).sort(byLessonOrder).map((r) => toGenWord(r.words));
-  const sentences = sRows.filter((s) => s.lesson_id === lessonId).sort(byLessonOrder).map(toGenSentence);
+  const words = lwRows.filter((r) => isOwn(r.lesson_id)).sort(byLessonOrder).map((r) => toGenWord(r.words));
+  const sentences = sRows.filter((s) => isOwn(s.lesson_id)).sort(byLessonOrder).map(toGenSentence);
   if (!words.length || !sentences.length) return { ok: false, reason: "no_content" };
 
   // Mọi từ xuất hiện trong câu của bài phải có nghĩa ở mọi ngôn ngữ giải thích của khóa.
   const usedWordIds = new Set<string>(words.map((w) => w.id));
   const lemmaById = new Map<string, string>(words.map((w) => [w.id, w.lemma]));
-  for (const s of sRows.filter((r) => r.lesson_id === lessonId)) {
+  for (const s of sRows.filter((r) => isOwn(r.lesson_id))) {
     for (const sw of s.sentence_words) {
       usedWordIds.add(sw.word_id);
       if (sw.words) lemmaById.set(sw.word_id, sw.words.lemma);
@@ -108,12 +113,15 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   }
   if (missing.size) return { ok: false, reason: "missing_translations", words: [...missing] };
 
-  const { sessions, exercises: generated } = generateExercises({
-    words,
-    sentences,
-    poolWords: lwRows.filter((r) => r.lesson_id !== lessonId).sort(byLessonOrder).map((r) => toGenWord(r.words)),
-    poolSentences: sRows.filter((s) => s.lesson_id !== lessonId).sort(byLessonOrder).map(toGenSentence),
-  });
+  const { sessions, exercises: generated } = isReview
+    ? generateReview({ words, sentences, seed: lessonId })
+    : generateExercises({
+        words,
+        sentences,
+        poolWords: lwRows.filter((r) => r.lesson_id !== lessonId).sort(byLessonOrder).map((r) => toGenWord(r.words)),
+        poolSentences: sRows.filter((s) => s.lesson_id !== lessonId).sort(byLessonOrder).map(toGenSentence),
+      });
+  if (!sessions.length) return { ok: false, reason: "no_content" };
 
   // Giữ id của bài tập đã tồn tại để không mất lịch sử làm bài khi sinh lại.
   const { data: existing, error: e5 } = await supabase
@@ -139,4 +147,40 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
   });
   if (e6) return { ok: false, reason: e6.message.includes("forbidden") ? "forbidden" : "error", detail: e6.message };
   return { ok: true, count: count as number };
+}
+
+/** Tên bài ôn cuối chủ đề theo từng ngôn ngữ giải thích. Ngôn ngữ chưa có tên thì dùng tiếng Anh. */
+const REVIEW_TITLES: Record<string, string> = { vi: "Ôn tập chủ đề", en: "Unit review" };
+
+/**
+ * Tạo (nếu chưa có) bài ôn cuối chủ đề rồi sinh bài tập và xuất bản nó.
+ * Bài ôn là một dòng lessons có kind = 'review', đứng sau mọi bài học của chủ đề.
+ */
+export async function publishUnitReview(supabase: SupabaseClient, unitId: string): Promise<PublishResult> {
+  const { data: lessons, error } = await supabase.from("lessons").select("id, kind, sort_order").eq("unit_id", unitId).order("sort_order");
+  if (error) return { ok: false, reason: "error", detail: error.message };
+  if (!lessons?.some((l) => l.kind === "lesson")) return { ok: false, reason: "no_content" };
+
+  let reviewId = lessons.find((l) => l.kind === "review")?.id as string | undefined;
+  if (!reviewId) {
+    reviewId = randomUUID();
+    const nextOrder = Math.max(...lessons.map((l) => l.sort_order as number)) + 1;
+    const { error: insertError } = await supabase.from("lessons").insert({ id: reviewId, unit_id: unitId, sort_order: nextOrder, kind: "review" });
+    if (insertError) return { ok: false, reason: insertError.code === "42501" ? "forbidden" : "error", detail: insertError.message };
+  }
+
+  const { data: unit } = await supabase.from("units").select("levels(course_id)").eq("id", unitId).maybeSingle();
+  const courseId = (unit?.levels as unknown as { course_id: string } | null)?.course_id;
+  const { data: locales } = await supabase.from("course_source_langs").select("source_lang").eq("course_id", courseId ?? "");
+  const titles = (locales ?? []).map(({ source_lang }) => ({
+    lesson_id: reviewId,
+    locale: source_lang as string,
+    title: REVIEW_TITLES[(source_lang as string).split("-")[0]] ?? REVIEW_TITLES.en,
+  }));
+  if (titles.length) {
+    const { error: titleError } = await supabase.from("lesson_translations").upsert(titles, { onConflict: "lesson_id,locale" });
+    if (titleError) return { ok: false, reason: "error", detail: titleError.message };
+  }
+
+  return publishLesson(supabase, reviewId);
 }

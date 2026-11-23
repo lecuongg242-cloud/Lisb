@@ -5,8 +5,9 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireUser } from "@/lib/auth";
 import { getCompletedSessions, getLearnerContext, getLessonSessions, getOrderedLessons, getProfile } from "@/lib/data";
+import { scoreFirstTries } from "@/lib/exercises/review";
 import { nextSessionNo } from "@/lib/progress";
-import { publishLesson, type PublishResult } from "@/lib/publish";
+import { publishLesson, publishUnitReview, type PublishResult } from "@/lib/publish";
 import { newCardSchedule, scheduleReview, type CardSchedule } from "@/lib/srs/fsrs";
 
 const SCHEDULE_COLUMNS =
@@ -56,7 +57,11 @@ const completeSessionSchema = z.object({
     .max(200),
 });
 
-export type CompleteSessionResult = { ok: true; streak: number; nextSessionNo: number | null } | { ok: false };
+/**
+ * passed: phiên có ngưỡng đạt (bài ôn) chỉ tính là xong khi đạt ngưỡng; phiên thường luôn là true.
+ * percent: phần trăm đúng ở lần trả lời đầu.
+ */
+export type CompleteSessionResult = { ok: true; streak: number; nextSessionNo: number | null; passed: boolean; percent: number } | { ok: false };
 
 export async function completeSession(input: z.infer<typeof completeSessionSchema>): Promise<CompleteSessionResult> {
   const parsed = completeSessionSchema.safeParse(input);
@@ -76,6 +81,7 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
   if (!session || !exerciseRows?.length) return { ok: false };
   const exerciseById = new Map(exerciseRows.map((e) => [e.id as string, e]));
   const valid = attempts.filter((a) => exerciseById.has(a.exerciseId));
+  const score = scoreFirstTries(valid, session.passPercent);
 
   /** Phiên kế tiếp của bài sau khi phiên này được tính là xong. */
   const remainingAfter = async () => {
@@ -98,13 +104,16 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
         correct_items: valid.filter((a) => a.isCorrect).length,
         duration_sec: durationSec,
         started_at: new Date(now.getTime() - durationSec * 1000).toISOString(),
-        completed_at: now.toISOString(),
+        // Chưa đạt ngưỡng thì lượt làm vẫn được ghi lại nhưng phiên chưa tính là xong.
+        completed_at: score.passed ? now.toISOString() : null,
       },
       { onConflict: "id", ignoreDuplicates: true },
     )
     .select("id");
   if (logError) return { ok: false };
-  if (!inserted?.length) return { ok: true, streak: ctx.profile.streak_count, nextSessionNo: (await remainingAfter()).next };
+  if (!inserted?.length) {
+    return { ok: true, streak: ctx.profile.streak_count, nextSessionNo: (await remainingAfter()).next, passed: score.passed, percent: score.percent };
+  }
 
   if (valid.length) {
     await supabase.from("exercise_attempts").insert(
@@ -168,7 +177,7 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
 
   const { data: streak } = await supabase.rpc("touch_streak");
   revalidatePath("/", "layout");
-  return { ok: true, streak: (streak as number | null) ?? ctx.profile.streak_count, nextSessionNo: next };
+  return { ok: true, streak: (streak as number | null) ?? ctx.profile.streak_count, nextSessionNo: next, passed: score.passed, percent: score.percent };
 }
 
 // ---------- Ôn tập ----------
@@ -264,6 +273,16 @@ export async function signOut() {
 }
 
 // ---------- Quản trị ----------
+
+/** Tạo hoặc cập nhật bài ôn cuối chủ đề. */
+export async function publishUnitReviewAction(unitId: string): Promise<PublishResult> {
+  if (!z.string().uuid().safeParse(unitId).success) return { ok: false, reason: "not_found" };
+  const { supabase, profile } = await getProfile();
+  if (profile.role !== "admin") return { ok: false, reason: "forbidden" };
+  const result = await publishUnitReview(supabase, unitId);
+  if (result.ok) revalidatePath("/", "layout");
+  return result;
+}
 
 export async function publishLessonAction(lessonId: string): Promise<PublishResult> {
   if (!z.string().uuid().safeParse(lessonId).success) return { ok: false, reason: "not_found" };

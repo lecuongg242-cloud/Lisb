@@ -13,6 +13,8 @@ import { TappableSentence } from "./shared";
 type Props = {
   lessonId: string;
   sessionNo: number;
+  /** Ngưỡng đạt của phiên (bài ôn); null với phiên luyện tập thường. */
+  passPercent: number | null;
   title: string;
   exercises: Exercise[];
   content: ContentBundle;
@@ -30,7 +32,7 @@ const FEEDBACK_STYLE: Record<AnswerResult, string> = {
   wrong: "border-bad-border bg-bad-bg",
 };
 
-export function Player({ lessonId, sessionNo, title, exercises, content, targetLang, ttsLocale }: Props) {
+export function Player({ lessonId, sessionNo, passPercent, title, exercises, content, targetLang, ttsLocale }: Props) {
   const t = useTranslations();
   const lang = getLanguageModule(targetLang);
   const [queue, setQueue] = useState<Item[]>(() => exercises.map((exercise) => ({ exercise, retry: false })));
@@ -38,10 +40,12 @@ export function Player({ lessonId, sessionNo, title, exercises, content, targetL
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [phase, setPhase] = useState<"run" | "saving" | "done" | "error">("run");
-  const [summary, setSummary] = useState<{ durationSec: number; streak: number | null; nextSessionNo: number | null }>({
+  const [summary, setSummary] = useState<{ durationSec: number; streak: number | null; nextSessionNo: number | null; passed: boolean; percent: number }>({
     durationSec: 0,
     streak: null,
     nextSessionNo: null,
+    passed: true,
+    percent: 0,
   });
   const startedAt = useRef<number | null>(null);
   const sessionId = useRef<string | null>(null);
@@ -64,7 +68,7 @@ export function Player({ lessonId, sessionNo, title, exercises, content, targetL
         attempts: finalAttempts.map(({ exerciseId, isCorrect, answer }) => ({ exerciseId, isCorrect, answer })),
       });
       if (!result.ok) return setPhase("error");
-      setSummary({ durationSec, streak: result.streak, nextSessionNo: result.nextSessionNo });
+      setSummary({ durationSec, streak: result.streak, nextSessionNo: result.nextSessionNo, passed: result.passed, percent: result.percent });
       setPhase("done");
     } catch {
       setPhase("error");
@@ -75,7 +79,7 @@ export function Player({ lessonId, sessionNo, title, exercises, content, targetL
     setFeedback(null);
     if (index + 1 < currentQueue.length) return setIndex(index + 1);
     const durationSec = Math.min(3600, Math.round((Date.now() - (startedAt.current ?? Date.now())) / 1000));
-    setSummary({ durationSec, streak: null, nextSessionNo: null });
+    setSummary({ durationSec, streak: null, nextSessionNo: null, passed: true, percent: 0 });
     void save(currentAttempts, durationSec);
   };
 
@@ -129,7 +133,14 @@ export function Player({ lessonId, sessionNo, title, exercises, content, targetL
     return (
       <Shell title={title} progress={1}>
         <div className="card flex flex-col items-center gap-3 text-center">
-          <h1 className="text-2xl font-bold">{t("player.summaryTitle")}</h1>
+          <h1 className="text-2xl font-bold">{phase === "done" && !summary.passed ? t("player.notPassedTitle") : t("player.summaryTitle")}</h1>
+          {phase === "done" && passPercent !== null && (
+            <p className={summary.passed ? "font-semibold text-brand-dark" : "font-semibold text-bad-text"}>
+              {summary.passed
+                ? t("player.passed", { percent: summary.percent, required: passPercent })
+                : t("player.notPassed", { percent: summary.percent, required: passPercent })}
+            </p>
+          )}
           <p className="text-lg">{t("player.summaryScore", { correct: firstTries.filter((a) => a.isCorrect).length, total: firstTries.length })}</p>
           <p className="text-muted">
             {t("player.summaryTime", { minutes: Math.floor(summary.durationSec / 60), seconds: summary.durationSec % 60 })}
@@ -147,14 +158,20 @@ export function Player({ lessonId, sessionNo, title, exercises, content, targetL
             </>
           )}
         </div>
-        {phase === "done" && summary.nextSessionNo !== null && (
+        {phase === "done" && !summary.passed && (
+          // Thẻ a thường (không phải Link) để tải lại trang: phiên bắt đầu lại từ đầu với trạng thái mới.
+          <a href={`/learn/${lessonId}/${sessionNo}`} className="btn btn-primary">
+            {t("player.tryAgain")}
+          </a>
+        )}
+        {phase === "done" && summary.passed && summary.nextSessionNo !== null && (
           <Link href={`/learn/${lessonId}/${summary.nextSessionNo}`} className="btn btn-primary">
             {t("player.nextSession")}
           </Link>
         )}
-        {phase === "done" && summary.nextSessionNo === null && <p className="text-center font-semibold text-brand-dark">{t("player.lessonDone")}</p>}
+        {phase === "done" && summary.passed && summary.nextSessionNo === null && <p className="text-center font-semibold text-brand-dark">{t("player.lessonDone")}</p>}
         {phase !== "saving" && (
-          <Link href={`/lesson/${lessonId}`} className={`btn ${phase === "done" && summary.nextSessionNo !== null ? "btn-secondary" : "btn-primary"}`}>
+          <Link href={`/lesson/${lessonId}`} className={`btn ${phase === "done" && (summary.nextSessionNo !== null || !summary.passed) ? "btn-secondary" : "btn-primary"}`}>
             {t("player.backLesson")}
           </Link>
         )}
