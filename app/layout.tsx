@@ -12,7 +12,11 @@ const appFont = Be_Vietnam_Pro({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("app");
-  return { title: t("name"), description: t("tagline") };
+  return {
+    title: t("name"),
+    description: t("tagline"),
+    appleWebApp: { capable: true, title: t("name"), statusBarStyle: "default" },
+  };
 }
 
 export const viewport: Viewport = {

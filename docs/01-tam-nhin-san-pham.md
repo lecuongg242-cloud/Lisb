@@ -87,3 +87,4 @@ Các mục tiêu trên là điểm xuất phát để so sánh, sẽ chỉnh l�
 | 03. Kiến trúc kỹ thuật | Công nghệ, mô hình dữ liệu đa ngôn ngữ, lớp AI, âm thanh, bảo mật |
 | 04. Giai đoạn và kế hoạch | Các giai đoạn, sản phẩm bàn giao, điều kiện qua giai đoạn, rủi ro, quyết định còn mở |
 | 05. Tài nguyên và mã nguồn tham khảo | Thư viện, dữ liệu mở, tài liệu lộ trình, dự án mã nguồn mở tương tự, kèm ghi chú giấy phép |
+| 06. Triển khai | Đưa app lên mạng, cấu hình Supabase, cài lên điện thoại, việc cần làm trước khi cho người khác dùng |
