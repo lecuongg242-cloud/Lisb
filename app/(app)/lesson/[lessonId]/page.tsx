@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { SpeakIconButton } from "@/components/SpeakIconButton";
 import { getCompletedSessions, getLearnerContext, getOrderedLessons, loadLessonDetail, type Bilingual } from "@/lib/data";
 import { lessonState, nextSessionNo } from "@/lib/progress";
+import { sessionLabels } from "@/lib/session-label";
 
 function Tip({ title, tip }: { title: string; tip: Bilingual }) {
   if (!tip.target && !tip.source) return null;
@@ -38,6 +39,7 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonI
     sessionNos.length,
   );
   const nextNo = nextSessionNo(sessionNos, completed);
+  const labels = sessionLabels(detail.sessions, { has: (key) => t.has(key), text: (key) => t(key) });
   const locked = state === "locked";
   const locale = ctx.course.ttsLocale;
   const { words, sentences } = detail.content;
@@ -128,7 +130,6 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonI
                 const isDone = completed.has(session.no);
                 // Phiên mở khi bài đã mở và mọi phiên đứng trước đã xong.
                 const blocked = locked || (!isDone && session.no !== nextNo);
-                const label = t.has(`sessionKind.${session.kind}`) ? t(`sessionKind.${session.kind}`) : t(`session.${session.type}`);
                 return (
                   <li key={session.no} className={`flex items-center gap-3 rounded-2xl border p-3 ${isDone ? "border-ok-border bg-ok-bg" : "border-line"}`}>
                     <span
@@ -137,7 +138,7 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonI
                       {isDone ? "✓" : session.no}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold">{label}</p>
+                      <p className="font-semibold">{labels.get(session.no)}</p>
                       <p className="text-sm text-muted">
                         {blocked && !locked
                           ? t("lesson.locked")

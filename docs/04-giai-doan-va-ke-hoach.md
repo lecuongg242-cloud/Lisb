@@ -20,6 +20,7 @@ Một hạng mục chỉ được coi là xong khi đủ các điều sau; phầ
 | Nội dung bài học | Qua kiểm tra tự động không lỗi; qua kiểm tra chéo bằng model thứ hai; có đủ âm thanh; đã xuất bản và mở thử một bài trên bản thật |
 | Âm thanh | Có file cho mọi từ và câu; một mẫu ngẫu nhiên đã được người nghe duyệt |
 | Tài liệu | Phản ánh đúng hiện trạng; không còn mục mâu thuẫn với quyết định mới nhất |
+| Migration | Chạy thử trên Postgres cục bộ đã có dữ liệu giống thật (nội dung, bài tập, nhật ký học), không chỉ trên database trống; chạy migration và xác nhận kết quả trước khi đẩy mã phụ thuộc vào nó |
 
 ## Các giai đoạn
 
@@ -46,8 +47,8 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 
 | # | Việc dang dở | Hiện trạng | Tiêu chí hoàn thành |
 |---|---|---|---|
-| 1 | Phiên từ vựng quá dài | 17 đến 26 bước, vượt khung 2-3 phút | Mỗi phiên tối đa khoảng 12-15 bước; bài nhiều từ được chia thành nhiều phiên; đo thời gian thật trên 3 bài |
-| 2 | Cài đặt "số thẻ mới mỗi ngày" không có tác dụng | Lưu được nhưng app không dùng | App áp dụng giới hạn và có kiểm thử; hoặc gỡ cài đặt khỏi giao diện |
+| 1 | Phiên từ vựng quá dài | **Đã làm 2026-11-23, chờ đo thời gian thật.** Mỗi bài giờ gồm 4-5 phiên ngắn (học từ mới, nhớ lại từ, nghe hiểu, nghe chép), dài nhất 11 bước; có kiểm thử giới hạn độ dài; đã chạy thử trọn một phiên trên máy | Còn lại: chủ dự án học 3 bài trên bản thật và cho biết thời gian mỗi phiên |
+| 2 | Cài đặt "số thẻ mới mỗi ngày" không có tác dụng | **Xong 2026-11-23.** Đã gỡ khỏi giao diện: nhịp học do số phiên mỗi ngày quyết định, và khi có từ 5 thẻ đến hạn thì trang chủ ưu tiên ôn trước. Cột trong database được giữ lại, không dùng | Đủ |
 | 3 | Nội dung chưa qua kiểm tra chéo | 24 bài do một model soạn, chỉ qua kiểm tra tự động | Có công cụ kiểm tra chéo bằng model thứ hai; cả 24 bài đã chạy qua và các vấn đề được xử lý. Cần khóa API Anthropic từ chủ dự án |
 | 4 | Phiên âm có chỗ không chuẩn giọng Mỹ | Lấy thẳng từ ipa-dict, ví dụ "new" ra /nju/ | Công cụ nội dung đối chiếu phiên âm với phiên âm của model giọng đọc; chỗ lệch được sửa hoặc ghi nhận |
 | 5 | Âm thanh chưa được nghe duyệt | 618 file, mới nghe 24 mẫu thử | Có trang nghe duyệt cho quản trị; chủ dự án nghe hết chữ cái, số và một mẫu câu; từ đọc sai được sinh lại |
@@ -122,3 +123,10 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | Người học bỏ cuộc trên quãng đường 500-600 giờ | Cao | Hiện tiến độ theo band; mốc nhỏ; khuyến khích học nhiều phiên liền nhau |
 | AI chấm viết và nói lệch so với giám khảo | Cao | Chỉ nhận xét theo tiêu chí và khoảng band, kèm ghi chú là ước lượng |
 | Chi phí AI khi có nhiều người dùng | Trung bình | Nội dung dùng chung; trần lượt gọi mỗi ngày; đo từ giai đoạn 3 |
+
+## Sự cố đã xảy ra
+
+| Ngày | Sự cố | Nguyên nhân | Cách phòng |
+|---|---|---|---|
+| 2026-11-23 | Bản trên mạng lỗi vài phút khi chia phiên ngắn | Migration 011 chỉ được thử trên database trống nên không lộ xung đột với bài tập có sẵn; lệnh đẩy mã lại được nối ngay sau lệnh chạy migration | Tiêu chí hoàn thành cho migration ở trên: thử trên dữ liệu giống thật, xác nhận kết quả rồi mới đẩy mã |
+| 2026-11-23 | Trang web chậm, bấm nút như không phản hồi | Máy chủ ở Mỹ, database ở Tokyo | Đã chuyển máy chủ về Tokyo, thêm màn hình chờ |

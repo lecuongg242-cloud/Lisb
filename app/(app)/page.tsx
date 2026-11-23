@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { countDueCards, countSessionsToday, getCompletedSessions, getLearnerContext, getLessonSessions, type LessonSession } from "@/lib/data";
 import { nextSessionNo } from "@/lib/progress";
+import { sessionLabels } from "@/lib/session-label";
 
 /** Từ 5 thẻ đến hạn trở lên thì ưu tiên ôn trước khi học phần mới. */
 const REVIEW_FIRST_THRESHOLD = 5;
@@ -33,13 +34,13 @@ export default async function HomePage() {
     done,
   );
   const nextSession = sessions.find((s) => s.no === nextNo);
-  const kindLabel = (kind: string, type: string) => (t.has(`sessionKind.${kind}`) ? t(`sessionKind.${kind}`) : t(`session.${type}`));
+  const labels = sessionLabels(sessions, { has: (key) => t.has(key), text: (key) => t(key) });
 
   let next: { href: string; label: string } | null = null;
   if (due >= REVIEW_FIRST_THRESHOLD || (!nextSession && due > 0)) {
     next = { href: "/review", label: t("home.nextReview", { count: due }) };
   } else if (lessonId && nextSession) {
-    next = { href: `/learn/${lessonId}/${nextSession.no}`, label: kindLabel(nextSession.kind, nextSession.type) };
+    next = { href: `/learn/${lessonId}/${nextSession.no}`, label: labels.get(nextSession.no) ?? "" };
   }
 
   const name = ctx.profile.display_name;
@@ -96,7 +97,7 @@ export default async function HomePage() {
                   >
                     {isDone ? "✓" : session.no}
                   </span>
-                  <span className="min-w-0 flex-1 font-medium">{kindLabel(session.kind, session.type)}</span>
+                  <span className="min-w-0 flex-1 font-medium">{labels.get(session.no)}</span>
                   <span className={`shrink-0 text-sm ${isDone ? "text-brand-dark" : "text-muted"}`}>
                     {isDone ? t("session.done") : locked ? t("session.locked") : t("lesson.steps", { count: session.steps })}
                   </span>
