@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { LoginForm } from "./LoginForm";
 
@@ -18,6 +19,7 @@ async function isGoogleEnabled(): Promise<boolean> {
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const t = await getTranslations("app");
+  const tLogin = await getTranslations("login");
   const [{ error }, googleEnabled] = await Promise.all([searchParams, isGoogleEnabled()]);
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center gap-6 px-4 py-10">
@@ -26,6 +28,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <p className="mt-1 text-sm text-muted">{t("tagline")}</p>
       </div>
       <LoginForm confirmFailed={error === "confirm" || error === "oauth"} googleEnabled={googleEnabled} />
+      <Link href="/privacy" className="text-center text-sm text-muted underline-offset-4 hover:underline">
+        {tLogin("privacyLink")}
+      </Link>
     </main>
   );
 }

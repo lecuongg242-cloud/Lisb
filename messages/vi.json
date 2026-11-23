@@ -38,7 +38,8 @@
     "checkEmail": "Đã gửi email xác nhận. Mở email và bấm vào đường dẫn để hoàn tất.",
     "invalid": "Email hoặc mật khẩu không đúng.",
     "signupFailed": "Không tạo được tài khoản. Kiểm tra lại email và mật khẩu.",
-    "confirmFailed": "Đường dẫn xác nhận không hợp lệ hoặc đã hết hạn."
+    "confirmFailed": "Đường dẫn xác nhận không hợp lệ hoặc đã hết hạn.",
+    "privacyLink": "Chính sách quyền riêng tư"
   },
   "onboarding": {
     "title": "Chào mừng bạn đến với LisB",
@@ -162,5 +163,76 @@
   },
   "ai": {
     "notice": "Nội dung bài học do AI soạn và kiểm tra, chưa có giáo viên duyệt. Thấy chỗ sai, hãy báo cho chúng tôi."
+  },
+  "privacy": {
+    "title": "Chính sách quyền riêng tư",
+    "updated": "Cập nhật lần cuối: 23/11/2026",
+    "intro": "LisB là ứng dụng học ngoại ngữ. Trang này cho biết LisB thu thập dữ liệu gì, dùng vào việc gì và bạn có những quyền gì với dữ liệu của mình.",
+    "back": "Về trang đăng nhập",
+    "sections": [
+      {
+        "heading": "Dữ liệu LisB thu thập",
+        "items": [
+          "Thông tin tài khoản: địa chỉ email của bạn. Nếu bạn đăng nhập bằng Google, LisB nhận thêm tên hiển thị từ tài khoản Google. LisB không nhận mật khẩu Google của bạn và không truy cập thư, danh bạ hay tệp của bạn.",
+          "Dữ liệu học tập: bài đã học, câu trả lời bạn nhập, kết quả đúng sai, lịch ôn tập, số ngày học liên tục.",
+          "Cài đặt: mục tiêu học mỗi ngày, tên hiển thị và múi giờ (để tính đúng ngày học).",
+          "LisB không ghi âm giọng nói, không thu thập vị trí, và không thu thập thông tin thanh toán."
+        ]
+      },
+      {
+        "heading": "Dữ liệu được dùng để làm gì",
+        "items": [
+          "Cho bạn đăng nhập và giữ tiến độ học giữa các thiết bị.",
+          "Chọn bài học và thẻ ôn tập phù hợp với bạn.",
+          "Phát hiện lỗi và cải thiện nội dung bài học, dựa trên số liệu tổng hợp.",
+          "LisB không bán dữ liệu của bạn và không dùng dữ liệu để quảng cáo."
+        ]
+      },
+      {
+        "heading": "Dữ liệu được lưu ở đâu",
+        "items": [
+          "Tài khoản và dữ liệu học tập được lưu trên Supabase (dịch vụ cơ sở dữ liệu và đăng nhập). Ứng dụng được vận hành trên Vercel. Đăng nhập bằng Google do Google thực hiện.",
+          "Các nhà cung cấp này chỉ xử lý dữ liệu để vận hành dịch vụ cho LisB.",
+          "Giọng đọc dùng tính năng đọc văn bản có sẵn trên thiết bị của bạn; tùy trình duyệt, câu cần đọc có thể được gửi tới nhà cung cấp giọng đọc của trình duyệt đó."
+        ]
+      },
+      {
+        "heading": "Cookie và lưu trữ trên trình duyệt",
+        "items": [
+          "LisB chỉ dùng cookie cần thiết để giữ phiên đăng nhập.",
+          "Lựa chọn giao diện sáng hoặc tối và tốc độ giọng đọc được lưu ngay trên trình duyệt của bạn, không gửi về máy chủ.",
+          "LisB không dùng cookie theo dõi hay cookie quảng cáo."
+        ]
+      },
+      {
+        "heading": "Nội dung do AI soạn",
+        "items": [
+          "Nội dung bài học do AI soạn và kiểm tra. Hiện tại câu trả lời của bạn không được gửi tới dịch vụ AI nào.",
+          "Nếu sau này LisB thêm tính năng dùng AI để sửa bài viết hoặc hội thoại, trang này sẽ được cập nhật trước khi tính năng đó hoạt động."
+        ]
+      },
+      {
+        "heading": "Lưu giữ và xóa dữ liệu",
+        "items": [
+          "Dữ liệu được giữ cho tới khi bạn yêu cầu xóa tài khoản.",
+          "Bạn có thể yêu cầu xem, sửa hoặc xóa toàn bộ dữ liệu của mình bằng cách gửi email tới địa chỉ liên hệ bên dưới, từ chính email đã đăng ký. Yêu cầu xóa được xử lý trong vòng 30 ngày."
+        ]
+      },
+      {
+        "heading": "Trẻ em",
+        "items": [
+          "LisB không dành cho trẻ em dưới 13 tuổi và không chủ ý thu thập dữ liệu của trẻ em dưới 13 tuổi."
+        ]
+      },
+      {
+        "heading": "Thay đổi chính sách",
+        "items": [
+          "Khi chính sách thay đổi, ngày cập nhật ở đầu trang sẽ được sửa. Thay đổi quan trọng sẽ được thông báo trong ứng dụng."
+        ]
+      }
+    ],
+    "contactHeading": "Liên hệ",
+    "contactText": "Mọi câu hỏi và yêu cầu về dữ liệu, xin gửi tới:",
+    "contactEmail": "lecuongg242@gmail.com"
   }
 }

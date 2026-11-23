@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-// Trang đăng nhập, đường dẫn xác nhận email và biểu tượng app không cần phiên đăng nhập.
-const PUBLIC_PATHS = ["/login", "/auth", "/icon", "/apple-icon"];
+// Trang đăng nhập, đường dẫn xác nhận email, chính sách quyền riêng tư và biểu tượng app không cần phiên đăng nhập.
+const PUBLIC_PATHS = ["/login", "/auth", "/privacy", "/icon", "/apple-icon"];
 
 // Làm mới phiên Supabase ở mỗi request và chặn người chưa đăng nhập.
 // Đây chỉ là lớp chặn sớm: mọi trang và server action vẫn tự kiểm tra lại (lib/auth.ts).
