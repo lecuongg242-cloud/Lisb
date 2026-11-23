@@ -25,9 +25,9 @@ type Attempt = { exerciseId: string; isCorrect: boolean; answer: string | null; 
 type Feedback = { result: AnswerResult; answer: string | null; correctText: string | null };
 
 const FEEDBACK_STYLE: Record<AnswerResult, string> = {
-  correct: "border-emerald-200 bg-emerald-50",
-  almost: "border-amber-200 bg-amber-50",
-  wrong: "border-red-200 bg-red-50",
+  correct: "border-ok-border bg-ok-bg",
+  almost: "border-warn-border bg-warn-bg",
+  wrong: "border-bad-border bg-bad-bg",
 };
 
 export function Player({ lessonId, sessionType, title, exercises, content, targetLang, ttsLocale }: Props) {
@@ -134,7 +134,7 @@ export function Player({ lessonId, sessionType, title, exercises, content, targe
           {phase === "done" && summary.streak !== null && <p className="font-semibold text-brand-dark">{t("player.summaryStreak", { count: summary.streak })}</p>}
           {phase === "error" && (
             <>
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-sm text-bad-text">
                 {t("player.saveFailed")}
               </p>
               <button type="button" className="btn btn-secondary" onClick={() => void save(attempts, summary.durationSec)}>
@@ -168,7 +168,7 @@ export function Player({ lessonId, sessionType, title, exercises, content, targe
               {lang.diffWords(feedback.correctText!, feedback.answer!).map((part, i) => (
                 <span
                   key={i}
-                  className={part.status === "ok" ? "" : part.status === "missing" ? "rounded bg-emerald-200 px-1 font-semibold" : "rounded bg-red-200 px-1 line-through"}
+                  className={part.status === "ok" ? "" : part.status === "missing" ? "rounded bg-ok-border px-1 font-semibold" : "rounded bg-bad-border px-1 line-through"}
                 >
                   {part.word}
                 </span>

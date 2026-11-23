@@ -133,6 +133,10 @@
     "speechRate": "Tốc độ giọng đọc",
     "speechNormal": "Bình thường",
     "speechSlow": "Chậm",
+    "theme": "Giao diện",
+    "themeSystem": "Theo thiết bị",
+    "themeLight": "Sáng",
+    "themeDark": "Tối",
     "signOut": "Đăng xuất",
     "account": "Tài khoản"
   },

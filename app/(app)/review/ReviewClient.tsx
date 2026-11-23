@@ -10,10 +10,10 @@ import type { ReviewRating } from "@/lib/srs/fsrs";
 import type { ContentBundle, ReviewCard } from "@/lib/views";
 
 const RATINGS: { rating: ReviewRating; key: "again" | "hard" | "good" | "easy"; style: string }[] = [
-  { rating: 1, key: "again", style: "border-red-200 bg-red-50 text-red-800" },
-  { rating: 2, key: "hard", style: "border-amber-200 bg-amber-50 text-amber-800" },
-  { rating: 3, key: "good", style: "border-emerald-200 bg-emerald-50 text-emerald-800" },
-  { rating: 4, key: "easy", style: "border-sky-200 bg-sky-50 text-sky-800" },
+  { rating: 1, key: "again", style: "border-bad-border bg-bad-bg text-bad-text" },
+  { rating: 2, key: "hard", style: "border-warn-border bg-warn-bg text-warn-text" },
+  { rating: 3, key: "good", style: "border-ok-border bg-ok-bg text-ok-text" },
+  { rating: 4, key: "easy", style: "border-info-border bg-info-bg text-info-text" },
 ];
 
 function elapsedSeconds(startedAt: number | null): number {
@@ -64,7 +64,7 @@ export function ReviewClient({ cards, content, ttsLocale }: { cards: ReviewCard[
         <h2 className="text-xl font-bold">{t("review.doneTitle")}</h2>
         <p className="text-muted">{t("review.doneCount", { count: cards.length })}</p>
         {failed && (
-          <p role="alert" className="text-sm text-red-700">
+          <p role="alert" className="text-sm text-bad-text">
             {t("player.saveFailed")}
           </p>
         )}

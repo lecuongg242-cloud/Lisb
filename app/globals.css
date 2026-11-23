@@ -1,24 +1,116 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: var(--font-app), ui-sans-serif, system-ui, sans-serif;
-  --color-brand: #059669;
-  --color-brand-dark: #047857;
-  --color-brand-soft: #ecfdf5;
-  --color-ink: #1c1917;
-  --color-muted: #78716c;
-  --color-line: #e7e5e4;
-  --color-surface: #ffffff;
-  --color-page: #fafaf9;
+/*
+  Màu sắc đi qua token để hỗ trợ chế độ sáng và tối.
+  Mặc định theo thiết bị; người dùng có thể ép sáng hoặc tối trong Cài đặt (thuộc tính data-theme trên <html>).
+  Component chỉ dùng tên token (bg-surface, text-muted, bg-ok-bg...), không dùng màu cố định của Tailwind.
+*/
+:root {
+  color-scheme: light;
+  --page: #fafaf9;
+  --surface: #ffffff;
+  --ink: #1c1917;
+  --muted: #6b645f;
+  --line: #e7e5e4;
+  --brand: #059669;
+  --brand-dark: #047857;
+  --brand-soft: #ecfdf5;
+  --on-brand: #ffffff;
+  --ok-bg: #ecfdf5;
+  --ok-border: #a7f3d0;
+  --ok-text: #065f46;
+  --warn-bg: #fffbeb;
+  --warn-border: #fde68a;
+  --warn-text: #92400e;
+  --bad-bg: #fef2f2;
+  --bad-border: #fecaca;
+  --bad-text: #b91c1c;
+  --info-bg: #f0f9ff;
+  --info-border: #bae6fd;
+  --info-text: #075985;
 }
 
-html {
-  color-scheme: light;
+/* Bảng màu tối. Khai báo hai lần: một cho "theo thiết bị", một cho khi người dùng ép chế độ tối. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0f1412;
+    --surface: #1a211e;
+    --ink: #f1f5f3;
+    --muted: #a3afaa;
+    --line: #2f3b36;
+    --brand: #34d399;
+    --brand-dark: #6ee7b7;
+    --brand-soft: #12332a;
+    --on-brand: #04130d;
+    --ok-bg: #0f2e25;
+    --ok-border: #1f5a48;
+    --ok-text: #6ee7b7;
+    --warn-bg: #33270b;
+    --warn-border: #6b5211;
+    --warn-text: #fcd34d;
+    --bad-bg: #361515;
+    --bad-border: #7a2424;
+    --bad-text: #fca5a5;
+    --info-bg: #0f2a3a;
+    --info-border: #1f536f;
+    --info-text: #7dd3fc;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0f1412;
+  --surface: #1a211e;
+  --ink: #f1f5f3;
+  --muted: #a3afaa;
+  --line: #2f3b36;
+  --brand: #34d399;
+  --brand-dark: #6ee7b7;
+  --brand-soft: #12332a;
+  --on-brand: #04130d;
+  --ok-bg: #0f2e25;
+  --ok-border: #1f5a48;
+  --ok-text: #6ee7b7;
+  --warn-bg: #33270b;
+  --warn-border: #6b5211;
+  --warn-text: #fcd34d;
+  --bad-bg: #361515;
+  --bad-border: #7a2424;
+  --bad-text: #fca5a5;
+  --info-bg: #0f2a3a;
+  --info-border: #1f536f;
+  --info-text: #7dd3fc;
+}
+
+@theme inline {
+  --font-sans: var(--font-app), ui-sans-serif, system-ui, sans-serif;
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-ok-bg: var(--ok-bg);
+  --color-ok-border: var(--ok-border);
+  --color-ok-text: var(--ok-text);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-border: var(--warn-border);
+  --color-warn-text: var(--warn-text);
+  --color-bad-bg: var(--bad-bg);
+  --color-bad-border: var(--bad-border);
+  --color-bad-text: var(--bad-text);
+  --color-info-bg: var(--info-bg);
+  --color-info-border: var(--info-border);
+  --color-info-text: var(--info-text);
 }
 
 body {
-  background: var(--color-page);
-  color: var(--color-ink);
+  background: var(--page);
+  color: var(--ink);
 }
 
 button,
@@ -31,7 +123,7 @@ a {
     @apply inline-flex min-h-12 items-center justify-center rounded-2xl px-5 text-base font-semibold transition active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100;
   }
   .btn-primary {
-    @apply bg-brand text-white hover:bg-brand-dark;
+    @apply bg-brand text-on-brand hover:bg-brand-dark;
   }
   .btn-secondary {
     @apply border border-line bg-surface text-ink hover:bg-page;
@@ -40,6 +132,6 @@ a {
     @apply rounded-3xl border border-line bg-surface p-5;
   }
   .field {
-    @apply min-h-12 w-full rounded-2xl border border-line bg-surface px-4 text-base outline-none focus:border-brand focus:ring-2 focus:ring-brand/20;
+    @apply min-h-12 w-full rounded-2xl border border-line bg-surface px-4 text-base text-ink outline-none focus:border-brand focus:ring-2 focus:ring-brand/20;
   }
 }

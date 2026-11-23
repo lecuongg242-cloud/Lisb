@@ -48,10 +48,10 @@ export default async function HomePage() {
       {next ? (
         <Link
           href={next.href}
-          className="flex min-h-36 flex-col items-center justify-center gap-1 rounded-3xl bg-brand px-6 py-8 text-center text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark active:scale-[0.99]"
+          className="flex min-h-36 flex-col items-center justify-center gap-1 rounded-3xl bg-brand px-6 py-8 text-center text-on-brand shadow-lg shadow-brand/25 transition hover:bg-brand-dark active:scale-[0.99]"
         >
           <span className="text-3xl font-bold">{t("home.twoMinutes")}</span>
-          <span className="text-base text-white/85">{next.label}</span>
+          <span className="text-base text-on-brand/85">{next.label}</span>
         </Link>
       ) : (
         <div className="card text-center text-muted">{t("home.allDone")}</div>

@@ -16,7 +16,7 @@ export function SpeakButtons({ text, locale, autoPlay = false, large = false }: 
     if (autoPlay) speak(text, locale);
   }, [autoPlay, text, locale]);
 
-  if (!supported) return <p className="rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800">{t("noVoice")}</p>;
+  if (!supported) return <p className="rounded-2xl bg-warn-bg px-4 py-3 text-sm text-warn-text">{t("noVoice")}</p>;
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
       <button type="button" className={`btn btn-primary ${large ? "min-h-16 px-8 text-lg" : ""}`} onClick={() => speak(text, locale)}>

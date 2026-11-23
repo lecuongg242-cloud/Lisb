@@ -37,12 +37,12 @@ export function LoginForm({ confirmFailed }: { confirmFailed: boolean }) {
       </label>
 
       {state.error && (
-        <p role="alert" className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-2xl bg-bad-bg px-4 py-3 text-sm text-bad-text">
           {t(state.error)}
         </p>
       )}
       {!state.error && confirmFailed && (
-        <p role="alert" className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-2xl bg-bad-bg px-4 py-3 text-sm text-bad-text">
           {t("confirmFailed")}
         </p>
       )}

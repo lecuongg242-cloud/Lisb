@@ -252,7 +252,7 @@ function MatchPairs({ wordIds, content, locked, onAnswer, seed }: { wordIds: str
                 type="button"
                 disabled={locked || matched.includes(id)}
                 onClick={() => pickRight(id)}
-                className={`${cell} ${wrong === id ? "border-red-400 bg-red-50" : "border-line bg-surface"}`}
+                className={`${cell} ${wrong === id ? "border-bad-border bg-bad-bg" : "border-line bg-surface"}`}
               >
                 {content.words[id].meaningSource}
               </button>

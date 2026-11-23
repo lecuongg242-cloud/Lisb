@@ -22,7 +22,7 @@ export default async function OnboardingPage({ searchParams }: { searchParams: P
       </div>
 
       {error === "no-course" && (
-        <p role="alert" className="rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <p role="alert" className="rounded-2xl bg-warn-bg px-4 py-3 text-sm text-warn-text">
           {t("noCourse")}
         </p>
       )}

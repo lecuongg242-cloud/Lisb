@@ -25,7 +25,7 @@ export function PublishButton({ lessonId, published }: { lessonId: string; publi
         {published ? t("admin.republish") : t("admin.publish")}
       </button>
       {message && (
-        <p role="status" className={`max-w-xs text-sm ${message.ok ? "text-brand-dark" : "text-red-700"}`}>
+        <p role="status" className={`max-w-xs text-sm ${message.ok ? "text-brand-dark" : "text-bad-text"}`}>
           {message.text}
         </p>
       )}

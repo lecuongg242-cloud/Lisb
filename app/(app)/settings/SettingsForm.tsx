@@ -4,6 +4,7 @@ import { useActionState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { updateSettings } from "@/app/actions";
 import { getSpeechRate, setSpeechRate, subscribeSpeechRate } from "@/lib/audio/speak";
+import { getThemeChoice, setThemeChoice, subscribeTheme, type ThemeChoice } from "@/lib/theme";
 
 type Props = { displayName: string; dailyGoal: number; newCardsPerDay: number };
 
@@ -12,6 +13,7 @@ export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) 
   const [state, action, pending] = useActionState(updateSettings, { saved: false, error: false });
   // Tốc độ giọng đọc là tùy chọn của riêng thiết bị này nên lưu trên trình duyệt.
   const rate = useSyncExternalStore(subscribeSpeechRate, getSpeechRate, () => 1);
+  const theme = useSyncExternalStore(subscribeTheme, getThemeChoice, (): ThemeChoice => "system");
 
   return (
     <form action={action} className="card flex flex-col gap-4">
@@ -35,8 +37,17 @@ export function SettingsForm({ displayName, dailyGoal, newCardsPerDay }: Props) 
         </select>
       </label>
 
+      <label className="flex flex-col gap-1.5 text-sm font-medium">
+        {t("settings.theme")}
+        <select className="field" value={theme} onChange={(e) => setThemeChoice(e.target.value as ThemeChoice)}>
+          <option value="system">{t("settings.themeSystem")}</option>
+          <option value="light">{t("settings.themeLight")}</option>
+          <option value="dark">{t("settings.themeDark")}</option>
+        </select>
+      </label>
+
       {state.error && (
-        <p role="alert" className="text-sm text-red-700">
+        <p role="alert" className="text-sm text-bad-text">
           {t("common.error")}
         </p>
       )}
