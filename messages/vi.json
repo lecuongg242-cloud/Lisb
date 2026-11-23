@@ -30,6 +30,8 @@
     "password": "Mật khẩu",
     "passwordHint": "Ít nhất 8 ký tự",
     "signIn": "Đăng nhập",
+    "google": "Tiếp tục với Google",
+    "or": "hoặc dùng email",
     "signUp": "Tạo tài khoản",
     "toSignUp": "Chưa có tài khoản? Tạo tài khoản",
     "toSignIn": "Đã có tài khoản? Đăng nhập",

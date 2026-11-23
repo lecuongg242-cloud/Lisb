@@ -45,6 +45,30 @@ run-sql -c "update public.profiles set role = 'admin' where id = (select id from
 
 Tài khoản mới sẽ bắt đầu từ bài đầu tiên của chủ đề bảng chữ cái.
 
+## Đăng nhập bằng Google
+
+Mã đã hỗ trợ sẵn. Nút "Tiếp tục với Google" tự hiện trên trang đăng nhập sau khi bật Google trong Supabase (trang đăng nhập hỏi lại Supabase mỗi phút); chưa bật thì nút không hiện.
+
+Bước 1, tạo thông tin đăng nhập ở Google (console.cloud.google.com):
+
+1. Tạo một project (hoặc chọn project có sẵn).
+2. Vào APIs & Services > OAuth consent screen: chọn loại External, điền tên app (LisB), email hỗ trợ. Khi còn ở chế độ Testing, chỉ các email được thêm vào mục Test users mới đăng nhập được; bấm Publish app để mọi tài khoản Google dùng được.
+3. Vào APIs & Services > Credentials > Create Credentials > OAuth client ID, loại Web application.
+4. Ở Authorized redirect URIs thêm đúng một dòng: `https://tyovmslxlrcvihbqxttq.supabase.co/auth/v1/callback`
+5. Lưu lại, chép Client ID và Client Secret.
+
+Bước 2, bật trong Supabase:
+
+1. Authentication > Sign In / Providers > Google: bật lên, dán Client ID và Client Secret, lưu.
+2. Authentication > URL Configuration: bảo đảm Redirect URLs đã có `https://lisb.vercel.app/**` (và `http://localhost:3000/**` để chạy trên máy).
+
+Lưu ý:
+
+- Client Secret là thông tin bí mật: chỉ dán vào Supabase, không đưa vào kho mã hay file `.env`.
+- Người đăng nhập bằng Google không cần email xác nhận.
+- Nếu một email đã đăng ký bằng mật khẩu rồi đăng nhập bằng Google với cùng email đã xác minh, Supabase gộp vào cùng một tài khoản.
+- Khi tạo project Supabase chính thức, phải thêm địa chỉ callback của project đó vào Authorized redirect URIs.
+
 ## 4. Cài lên điện thoại
 
 | Thiết bị | Cách cài |

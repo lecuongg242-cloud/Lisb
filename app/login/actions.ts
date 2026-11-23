@@ -21,6 +21,18 @@ export async function signIn(_prev: LoginState, formData: FormData): Promise<Log
   redirect("/");
 }
 
+/** Bắt đầu đăng nhập bằng Google: chuyển sang trang chọn tài khoản của Google, xong sẽ quay về /auth/confirm. */
+export async function signInWithGoogle() {
+  const supabase = await createClient();
+  const origin = (await headers()).get("origin") ?? "";
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${origin}/auth/confirm` },
+  });
+  if (error || !data.url) redirect("/login?error=oauth");
+  redirect(data.url);
+}
+
 export async function signUp(_prev: LoginState, formData: FormData): Promise<LoginState> {
   const parsed = credentials.safeParse({ email: formData.get("email"), password: formData.get("password") });
   if (!parsed.success) return { error: "signupFailed", notice: null };
