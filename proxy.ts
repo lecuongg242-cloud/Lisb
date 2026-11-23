@@ -35,7 +35,9 @@ export async function proxy(request: NextRequest) {
     },
   );
 
-  const { data } = await supabase.auth.getUser();
+  // getClaims() kiểm tra token tại chỗ và tự làm mới phiên khi hết hạn; không gọi mạng ở mỗi request.
+  const { data } = await supabase.auth.getClaims();
+  const signedIn = Boolean(data?.claims?.sub);
   const { pathname, searchParams } = request.nextUrl;
 
   // Đường dẫn xác nhận email có thể quay về trang gốc kèm ?code=...
@@ -46,13 +48,13 @@ export async function proxy(request: NextRequest) {
   }
 
   const isPublic = PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
-  if (!data.user && !isPublic) {
+  if (!signedIn && !isPublic) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";
     return NextResponse.redirect(url);
   }
-  if (data.user && pathname === "/login") {
+  if (signedIn && pathname === "/login") {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     url.search = "";

@@ -1,5 +1,6 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { requireUser } from "./auth";
 import { sentenceChips } from "./content/chips";
@@ -31,15 +32,16 @@ export type LearnerContext = {
 const PROFILE_COLUMNS =
   "id, display_name, role, ui_locale, daily_goal, new_cards_per_day, timezone, streak_count, longest_streak, last_active_date";
 
-export async function getProfile() {
+// cache(): layout và trang cùng cần hồ sơ trong một request thì chỉ hỏi database một lần.
+export const getProfile = cache(async () => {
   const { supabase, user } = await requireUser();
   const { data, error } = await supabase.from("profiles").select(PROFILE_COLUMNS).eq("id", user.id).single();
   if (error || !data) throw new Error("Không đọc được hồ sơ người dùng");
   return { supabase, user, profile: data as Profile };
-}
+});
 
 /** Ngữ cảnh của người học: hồ sơ, khóa đang học, ngôn ngữ. Chưa ghi danh thì chuyển sang màn hình chào mừng. */
-export async function getLearnerContext(): Promise<LearnerContext> {
+export const getLearnerContext = cache(async (): Promise<LearnerContext> => {
   const { supabase, user, profile } = await getProfile();
   // courses nối tới languages theo hai đường (target_lang và bảng course_source_langs),
   // nên phải chỉ rõ khóa ngoại cần dùng.
@@ -61,7 +63,7 @@ export async function getLearnerContext(): Promise<LearnerContext> {
     enrollment: { courseId: data.course_id, sourceLang: data.source_lang, currentLessonId: data.current_lesson_id },
     course: { id: course.id, targetLang: course.target_lang, ttsLocale: course.languages?.tts_locale ?? course.target_lang },
   };
-}
+});
 
 export type OrderedLesson = {
   id: string;
