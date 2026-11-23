@@ -144,5 +144,6 @@ Việc cần làm:
 | Kho mã | github.com/lecuongg242-cloud/Lisb |
 | Soạn 2 chủ đề mẫu của Pre-A1 | Xong: "Chào hỏi và tạm biệt", "Tên, tuổi, quê quán" (8 bài, 40 câu, 53 từ mới). Do Claude soạn, qua kiểm tra tự động, chưa qua kiểm tra chéo bởi model thứ hai |
 | Công cụ kiểm tra nội dung và sinh SQL | Xong (`tools/content/build-content.mjs`) |
-| Tạo project Supabase (thử nghiệm và chính thức) | Chưa |
-| Prompt v0 cho giai đoạn 1 | Chưa (file `v0-prompt.md` cũ đã lỗi thời) |
+| Project Supabase thử nghiệm | Đã có (tyovmslxlrcvihbqxttq, vùng ap-northeast-1). Đã chạy migration 001-008 và nạp 2 chủ đề mẫu ngày 2026-11-23 |
+| Project Supabase chính thức | Chưa, tạo trước giai đoạn 3 |
+| Prompt v0 cho giai đoạn 1 | Xong (`v0-prompt.md`), viết theo schema hiện tại |

@@ -1,92 +1,109 @@
-# English learning web app for Vietnamese beginners
+# LisB, phase 1: personal learning app (vocabulary + listening)
 
-Build a production web app that teaches everyday conversational English to Vietnamese speakers starting from zero. Learners study in many very short sessions (2-3 minutes) spread through the day, on both phone and desktop.
+Build phase 1 of LisB, a language-learning web app for Vietnamese speakers starting from zero. Learners study in very short sessions (2-3 minutes) many times a day, on phone and desktop. The first course teaches everyday American English. The platform must stay language-agnostic so other target languages can be added later.
+
+This repository already contains the database schema (`scripts/001` to `008`), sample lesson content (`content/`), and project docs (`docs/`). Read `docs/03-kien-truc-ky-thuat.md` before writing code. **Do not create, alter, or drop database tables.** If you think the schema needs a change, say so instead of changing it.
 
 ## Stack
 
-- Next.js App Router, TypeScript, Tailwind, shadcn/ui.
-- Supabase: Auth (email + Google), Postgres, Row Level Security on every user-owned table.
-- AI: Google Gemini over plain REST `fetch`, server-side only (route handlers). No SDK.
-  - Endpoint: `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`
-  - Keep the model name in one exported constant `GEMINI_MODEL`.
-  - Always request JSON with `generationConfig.responseMimeType = "application/json"` and a `responseSchema`, then validate the parsed result with zod.
-  - Put all Gemini code in `lib/ai/gemini.ts`. Never expose the key to the client.
-- Audio: browser `speechSynthesis` with an `en-US` voice for playback (normal and 0.7x slow). Browser `SpeechRecognition` (`en-US`) for speaking practice; if the browser lacks it, hide speaking sessions and show a short notice.
-- Installable PWA (manifest + icons). Mobile-first layout that also works well on desktop.
+- Next.js App Router, TypeScript (strict), Tailwind, shadcn/ui.
+- Supabase Auth + Postgres via `@supabase/ssr`. Row Level Security is already configured; use the signed-in user's session for all reads and for writes to the user's own rows.
+- `next-intl` for all UI text. Ship one locale, `vi`, but put every string in `messages/vi.json`. No hard-coded UI strings in components.
+- `ts-fsrs` for spaced-repetition scheduling. Do not write your own algorithm.
+- `zod` for validating every server action input and every `exercises.payload`.
+- Vitest for the pure logic in `lib/`.
+- No AI calls in this phase.
 
-## Language rules
+Environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY` (server only).
 
-- Target accent: American English.
-- UI text is Vietnamese.
-- Every explanation, meaning, and correction is shown in both languages: simple English first, Vietnamese directly below it.
+## Three independent language roles
 
-## Core concept: one sentence, four encounters
+Never derive one from another, and never hard-code "en" or "vi" in logic:
 
-Content is organized as Topics -> Lessons. Each lesson has 5 everyday sentences and 5-8 new words. The learner meets the same sentences four ways, each as its own 2-3 minute session:
+- Target language: `courses.target_lang` (what is being learned).
+- Explanation language: `enrollments.source_lang` (language of meanings and tips).
+- UI language: `profiles.ui_locale`.
 
-1. Vocabulary: flashcards for new words plus cards due for review.
-2. Listening: hear a sentence, type it (dictation). Slow replay available. Show a word-level diff of the answer.
-3. Speaking: shadow the sentence aloud; compare the recognized text with the target and highlight missed words. Then a 3-4 turn AI role-play that reuses the lesson's sentences.
-4. Writing: write 2-3 sentences from a prompt tied to the lesson; AI corrects them and explains each mistake.
+Explanations are shown bilingually: the row for the target-language locale first (simple English), then the row for the learner's `source_lang` below it. Both come from the `*_translations` tables.
 
-Every mistake in any session (wrong dictation word, missed spoken word, writing error) becomes or resets a review card, so review adapts to the learner's weak points.
+All language-specific text handling lives behind one interface in `lib/lang/`, with one implementation per target language (`lib/lang/en.ts` now):
 
-## Curriculum
+- `tokenize(text)`: split a sentence into words.
+- `normalize(text)`: lowercase, strip punctuation, unify apostrophes, collapse spaces.
+- `checkAnswer(input, expected, acceptedForms)`: returns `correct`, `almost` (one character off in a word of 5+ letters), or `wrong`. Any entry of `accepted_forms` counts as correct.
+- `diffWords(expected, actual)`: word-level diff for showing dictation mistakes.
 
-- Beginner path starting from zero: sounds and alphabet, greetings, introducing yourself, numbers and time, family, food and drink, shopping, directions, daily routine, feelings, weather, making plans.
-- Prioritize the roughly 1000 most common words. Teach grammar inside sentences with one short tip per lesson, not as separate grammar chapters.
-- Lesson content is generated by Gemini once, stored in the database, and shared by all users. Never generate it per user. Provide an admin-only page to generate, review, edit, and publish lessons.
-- Seed the first topic (greetings, 3 lessons) so the app works immediately after setup.
+## Database tables you will use
+
+Content (read-only for users; only published rows are visible):
+
+- `courses`, `levels`, `units`, `lessons` (hierarchy; ordering column is `sort_order`)
+- `unit_translations`, `lesson_translations` (titles, `grammar_tip`, `pronunciation_tip` per locale)
+- `words` (`lemma`, `part_of_speech`, `pronunciation`), `word_translations` (`meaning`, `accepted_forms`, `usage_note`)
+- `sentences` (`text`, `accepted_forms`), `sentence_translations` (`text`, `accepted_forms`, `note`)
+- `lesson_words` (new words of a lesson, with `example_sentence_id`), `sentence_words` (which word each token of a sentence is, with `position` and `surface`)
+- `exercises` (`session_type`, `sort_order`, `type`, `source_type`, `source_id`, `payload`)
+
+Learner data (own rows only):
+
+- `profiles` (the user may update only `display_name`, `ui_locale`, `daily_goal`, `new_cards_per_day`, `reminder_times`, `timezone`)
+- `enrollments` (`course_id`, `source_lang`, `current_lesson_id`)
+- `cards` (columns mirror the ts-fsrs `Card`: `due_at`, `stability`, `difficulty`, `elapsed_days`, `scheduled_days`, `learning_steps`, `reps`, `lapses`, `state`, `last_review_at`; `kind` is `word`, `sentence`, `mistake`, or `custom`)
+- `review_logs`, `session_logs`, `exercise_attempts`
+
+`review_logs.id` and `session_logs.id` are generated on the client with `crypto.randomUUID()` and inserted with "on conflict do nothing", so a retried request never records twice.
+
+Streak fields on `profiles` (`streak_count`, `longest_streak`, `last_active_date`) are not writable by the user. Update them in a server action using `SUPABASE_SECRET_KEY`, computed in the user's `timezone`, when a session completes.
+
+## Exercises are generated by code, not written by hand
+
+Implement `lib/exercises/generate.ts`: a pure, deterministic function that takes one lesson's words, sentences, and translations, plus the pool of words and sentences taught earlier in the course, and returns exercise rows. Distractors come from that pool, chosen by similarity (same part of speech first, then closest spelling), never random at runtime.
+
+Vocabulary session (`session_type = 'vocab'`), in this order per new word, easy to hard:
+
+| type | payload | task |
+|---|---|---|
+| `word_intro` | `{ word_id }` | show word, pronunciation, both meanings, example sentence, audio; no answer |
+| `choose_meaning` | `{ word_id, option_word_ids }` | see the word, pick its meaning from 4 |
+| `choose_word` | `{ word_id, option_word_ids }` | see the meaning, pick the word from 4 |
+| `match_pairs` | `{ word_ids }` | match 4-5 words to meanings |
+| `type_word` | `{ word_id }` | see the meaning, type the word |
+
+Listening session (`session_type = 'listening'`), per sentence:
+
+| type | payload | task |
+|---|---|---|
+| `listen_choose` | `{ sentence_id, option_sentence_ids }` | hear the sentence, pick the matching text from 3 |
+| `listen_arrange` | `{ sentence_id, distractor_tokens }` | hear the sentence, arrange word chips |
+| `listen_type` | `{ sentence_id }` | hear the sentence, type it; show a word-level diff |
+
+Admin-only page `/admin/lessons`: list lessons with status; a "Publish" action runs the generator, replaces that lesson's exercise rows while keeping the `id` of rows whose (`type`, `source_id`) already exist, and sets the lesson to `published`. It refuses to publish if any word in `sentence_words` lacks a translation in every published `course_source_langs` locale. Access requires `profiles.role = 'admin'`.
+
+## Audio
+
+Use the browser `speechSynthesis` API with the voice locale from `languages.tts_locale`, at normal speed and at 0.7x. Wrap it in `lib/audio/speak.ts` so it can be replaced by pre-generated files later. If no matching voice exists, show a short notice and keep the text visible.
 
 ## Screens
 
-- Landing page: value proposition, sign-up button.
-- Onboarding: daily goal (number of short sessions), reminder times.
-- Home: one large "Tôi có 2 phút" button that starts the most useful session right now (due reviews first, then the next unfinished session of today's lesson). Below it: today's four sessions with done/not done state, streak, cards due.
-- Session player: full screen, one task at a time, progress bar, large touch targets, finishes with a short summary.
-- Review: spaced-repetition queue across words, sentences, and mistakes.
-- Quick add: paste any English sentence or paragraph; AI extracts words the learner has not learned and offers them as new cards.
-- Progress: words learned, streak calendar, accuracy per skill (vocabulary, listening, speaking, writing).
-- Settings: goal, reminders, speech rate, account.
-- Admin: lesson generation and publishing, usage overview.
+- `/login`: email magic link and Google sign-in.
+- Onboarding (first sign-in): creates the enrollment for the English course with `source_lang = 'vi'`, asks for the daily goal, and sets `current_lesson_id` to the first published lesson.
+- `/` Home: one large button "Tôi có 2 phút" that starts the most useful session right now: due reviews first (if 5 or more cards are due), otherwise the next unfinished session of the current lesson. Below it: the current lesson with its two sessions and their done state, cards due, streak.
+- `/learn/[lessonId]/[sessionType]` Session player: full screen, one exercise at a time, progress bar, large touch targets, instant feedback (correct, almost, wrong, with the right answer), a short summary at the end. Tapping any word in a sentence shows its meaning in both languages. Answers are checked on the client; attempts are saved in the background and must never block the next exercise.
+- `/review` Review: due cards in sessions of at most 15, graded Again, Hard, Good, Easy through ts-fsrs.
+- `/course` Course map: levels, units, lessons with locked, available, and done states.
+- `/settings`: display name, daily goal, new cards per day, speech rate.
 
-## Spaced repetition
+Card rules: finishing a vocabulary session creates a `word` card for each new word; finishing a listening session creates a `sentence` card for each sentence. A wrong answer on an exercise whose word or sentence already has a card counts as an Again review on that card. Respect `new_cards_per_day`.
 
-Use an SM-2 style scheduler. Each card stores `ease`, `interval_days`, `due_at`, `lapses`. Grades: Again, Hard, Good, Easy. A mistake in listening, speaking, or writing counts as Again for the related card.
-
-## Data model (Supabase)
-
-- `profiles` (id = auth user, display_name, role `user|admin`, daily_goal, reminder_times, streak_count, last_active_date)
-- `topics` (id, order, title_en, title_vi, published)
-- `lessons` (id, topic_id, order, title_en, title_vi, grammar_tip_en, grammar_tip_vi, published)
-- `sentences` (id, lesson_id, order, text_en, text_vi, note_en, note_vi)
-- `words` (id, lesson_id, word, ipa, part_of_speech, meaning_en, meaning_vi, example_en, example_vi)
-- `cards` (id, user_id, kind `word|sentence|mistake`, word_id, sentence_id, custom_front, custom_back, ease, interval_days, due_at, lapses)
-- `session_logs` (id, user_id, lesson_id, type `vocab|listening|speaking|writing|review`, score, duration_sec, created_at)
-- `writing_entries` (id, user_id, lesson_id, original_text, corrected_text, feedback jsonb, created_at)
-- `chat_messages` (id, user_id, lesson_id, role, content, correction jsonb, created_at)
-- `ai_usage` (user_id, date, calls) with a unique key on (user_id, date)
-
-Content tables are readable by any signed-in user and writable by admins only. User tables are restricted to `auth.uid() = user_id`. Deliver the schema as numbered SQL migration files in `scripts/`.
-
-## AI endpoints
-
-All require a signed-in user, validate input with zod, and enforce a daily per-user call limit through `ai_usage` (default 30 calls/day, configurable by env var). Return a friendly Vietnamese message when the limit is reached.
-
-- `POST /api/ai/correct-writing`: returns the corrected text and a list of mistakes, each with the original fragment, the fix, and an explanation in English and Vietnamese.
-- `POST /api/ai/chat`: role-play reply at beginner level (short sentences, lesson vocabulary), plus an optional gentle correction of the learner's last message in both languages.
-- `POST /api/ai/extract-words`: from pasted text, returns candidate words with IPA, meanings in both languages, and an example.
-- `POST /api/admin/generate-lesson`: admin only; returns a full lesson (sentences, words, grammar tip) for a given topic and level.
+A lesson is done when both of its sessions are completed. Then `current_lesson_id` advances to the next published lesson.
 
 ## Quality bar
 
-- Loading, empty, and error states on every screen.
-- Sessions must be resumable and feel instant; do not block the session UI on AI calls except where the AI answer is the task itself.
-- Accessible contrast, keyboard support on desktop, no horizontal scroll on phones.
-- Environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `AI_DAILY_LIMIT`.
+- Mobile-first, works at 360px wide without horizontal scroll; also comfortable on desktop with keyboard support (number keys to pick options, Enter to continue).
+- Loading, empty, and error states on every screen. Sessions resume where the learner stopped.
+- Vitest tests for `lib/lang/en.ts`, `lib/exercises/generate.ts`, the ts-fsrs wrapper, and the streak calculation.
+- Keep logic out of components: scheduling, answer checking, exercise generation, and streak rules live in `lib/` as pure functions.
 
-## Build order
+## Out of scope for this phase
 
-1. Auth, schema, seed data, home, vocabulary and listening sessions, review queue.
-2. Writing correction, AI chat, quick add.
-3. Speaking sessions, progress page, admin lesson generator, PWA reminders.
+Speaking and writing sessions, AI features, pre-generated audio, placement test, push notifications, payments, public landing page.
