@@ -2,6 +2,8 @@
 
 Trạng thái: bản nháp v1, chờ duyệt. Ngày: 2026-11-23.
 
+> Cập nhật 2026-11-23: mục tiêu sản phẩm đã đổi thành **đưa người Việt từ số 0 tới IELTS 6.5**, lộ trình chia ba nhánh. Chi tiết ở tài liệu 07; phần "giao tiếp hằng ngày" bên dưới chỉ còn đúng cho chặng Nền tảng. Tài liệu này sẽ được cập nhật đầy đủ trong giai đoạn 1 (việc số 13 ở tài liệu 04).
+
 ## 1. Sản phẩm là gì
 
 Một web app học ngoại ngữ cho người bắt đầu từ số 0, học bằng nhiều phiên rất ngắn (2-3 phút) trong ngày. Khóa đầu tiên là tiếng Anh giao tiếp hằng ngày cho người Việt. Nền tảng được thiết kế ngay từ đầu để thêm ngôn ngữ khác mà không phải viết lại.
@@ -88,3 +90,4 @@ Các mục tiêu trên là điểm xuất phát để so sánh, sẽ chỉnh l�
 | 04. Giai đoạn và kế hoạch | Các giai đoạn, sản phẩm bàn giao, điều kiện qua giai đoạn, rủi ro, quyết định còn mở |
 | 05. Tài nguyên và mã nguồn tham khảo | Thư viện, dữ liệu mở, tài liệu lộ trình, dự án mã nguồn mở tương tự, kèm ghi chú giấy phép |
 | 06. Triển khai | Đưa app lên mạng, cấu hình Supabase, cài lên điện thoại, việc cần làm trước khi cho người khác dùng |
+| 07. Định hướng IELTS | Nghiên cứu về IELTS và TOEFL, mục tiêu từng cấp theo band, cấu trúc ba nhánh, kỹ năng và dạng bài theo thời gian |

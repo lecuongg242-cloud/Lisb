@@ -2,6 +2,8 @@
 
 Trạng thái: bản nháp v1, chờ duyệt. Ngày: 2026-11-23.
 
+> Cập nhật 2026-11-23: lộ trình sẽ được tổ chức lại thành ba nhánh (Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR) và kéo dài tới B2 theo đích IELTS 6.5. Xem tài liệu 07. Tài liệu này sẽ được viết lại ở đầu giai đoạn 2; cho tới lúc đó, danh sách chủ đề A1 và A2 bên dưới chỉ là bản cũ để tham khảo. Phần cấp Khởi động (mục 4) và quy trình soạn, duyệt nội dung (mục 8) vẫn đúng.
+
 ## 1. Phương pháp
 
 | Nguyên lý | Áp dụng trong app |

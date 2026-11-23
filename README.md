@@ -1,8 +1,8 @@
 # LisB
 
-Web app học ngoại ngữ cho người Việt bắt đầu từ số 0, học bằng nhiều phiên rất ngắn (2-3 phút) trong ngày. Khóa đầu tiên là tiếng Anh giao tiếp hằng ngày; nền tảng được thiết kế để thêm ngôn ngữ khác về sau.
+Web app đưa người Việt từ số 0 tới IELTS 6.5, học bằng nhiều phiên ngắn (2-3 phút) trong ngày. Nền tảng được thiết kế để thêm ngôn ngữ khác về sau.
 
-Trạng thái: giai đoạn 1 (bản cá nhân): đăng nhập, học từ vựng, luyện nghe, ôn tập ngắt quãng.
+Trạng thái: giai đoạn 1, hoàn thiện cấp Khởi động. Kế hoạch và danh sách việc dang dở ở docs/04; định hướng IELTS ở docs/07.
 
 ## Chạy trên máy
 
