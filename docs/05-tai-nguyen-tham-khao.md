@@ -33,6 +33,14 @@ Lưu ý về giấy phép code: AGPL và GPL yêu cầu công khai mã nguồn c
 | [English Grammar Profile](https://www.englishprofile.org/) | Ngữ pháp tiếng Anh gán theo cấp CEFR | Chỉ tham khảo. Nguồn thứ cấp ghi miễn phí cho mục đích phi thương mại |
 | CEFR-J Grammar Profile (trong olp-en-cefrj ở trên) | Ngữ pháp gán cấp, cho phép dùng thương mại | Dùng trực tiếp. Mới dịch một phần từ tiếng Nhật |
 
+Bổ sung 2026-11-24, theo quyết định dùng chương trình chuẩn làm khung (tài liệu 04):
+
+| Nguồn | Giấy phép | Dùng thế nào |
+|---|---|---|
+| Danh sách từ các kỳ thi Cambridge (Pre-A1 Starters, A1 Movers, A2 Flyers và Key, B1 Preliminary, B2 First), tải miễn phí ở cambridgeenglish.org | Có bản quyền | Chỉ đối chiếu: kiểm tra từ của mỗi cấp có nằm trong danh sách của kỳ thi cùng cấp không. Không đưa file danh sách vào kho mã |
+| [Tatoeba](https://tatoeba.org/vi/downloads), kho câu do cộng đồng đóng góp, có cặp câu Anh-Việt | CC BY 2.0 FR (một phần CC0), phải ghi nguồn | Đối chiếu câu mẫu và nghĩa tiếng Việt; chất lượng không đều nên chỉ dùng để phát hiện chỗ lệch, không dùng làm đáp án. File tiếng Việt 0,4 MB, tiếng Anh 25 MB, bảng liên kết 150 MB |
+| [kaikki.org](https://kaikki.org/dictionary/English/) (Wiktionary dạng JSON) | CC BY-SA | Chưa dùng: file tiếng Anh nặng 3,4 GB. Xét lại khi cần định nghĩa và ví dụ cho cấp B1 trở lên |
+
 ## 4. Mã nguồn mở để tham khảo cách làm
 
 | Dự án | Là gì | Giấy phép | Giá trị tham khảo |
