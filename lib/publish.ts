@@ -5,6 +5,7 @@ import { sentenceChips } from "./content/chips";
 import { getOrderedLessons } from "./data";
 import { generateExercises, type GenSentence, type GenWord } from "./exercises/generate";
 import { generateReview } from "./exercises/review";
+import type { GeneratedExercise, GeneratedSession } from "./exercises/types";
 import { getLanguageModule } from "./lang";
 
 export type PublishResult =
@@ -26,11 +27,13 @@ type SentenceRow = {
   sentence_words: { position: number; surface: string; word_id: string; words: { lemma: string } | null }[];
 };
 
+export type PrepareResult = { ok: true; sessions: GeneratedSession[]; exercises: GeneratedExercise[] } | Extract<PublishResult, { ok: false }>;
+
 /**
- * Sinh bài tập cho một bài học rồi xuất bản.
- * Chạy bằng phiên của quản trị viên; RLS và hàm publish_lesson tự kiểm tra quyền.
+ * Sinh các phiên và bài tập của một bài từ nội dung hiện có, chưa ghi gì vào database.
+ * Dùng khi xuất bản và khi quản trị xem trước bài chưa xuất bản.
  */
-export async function publishLesson(supabase: SupabaseClient, lessonId: string): Promise<PublishResult> {
+export async function prepareLesson(supabase: SupabaseClient, lessonId: string): Promise<PrepareResult> {
   const { data: lesson } = await supabase
     .from("lessons")
     .select("id, kind, unit_id, units(levels(course_id, courses(target_lang)))")
@@ -122,6 +125,17 @@ export async function publishLesson(supabase: SupabaseClient, lessonId: string):
         poolSentences: sRows.filter((s) => s.lesson_id !== lessonId).sort(byLessonOrder).map(toGenSentence),
       });
   if (!sessions.length) return { ok: false, reason: "no_content" };
+  return { ok: true, sessions, exercises: generated };
+}
+
+/**
+ * Sinh bài tập cho một bài học rồi xuất bản.
+ * Chạy bằng phiên của quản trị viên; RLS và hàm publish_lesson tự kiểm tra quyền.
+ */
+export async function publishLesson(supabase: SupabaseClient, lessonId: string): Promise<PublishResult> {
+  const prepared = await prepareLesson(supabase, lessonId);
+  if (!prepared.ok) return prepared;
+  const { sessions, exercises: generated } = prepared;
 
   // Giữ id của bài tập đã tồn tại để không mất lịch sử làm bài khi sinh lại.
   const { data: existing, error: e5 } = await supabase

@@ -7,6 +7,7 @@ import { requireUser } from "@/lib/auth";
 import { getCompletedSessions, getLearnerContext, getLessonSessions, getOrderedLessons, getProfile } from "@/lib/data";
 import { scoreFirstTries } from "@/lib/exercises/review";
 import { nextSessionNo } from "@/lib/progress";
+import { REPORT_REASONS } from "@/lib/report";
 import { publishLesson, publishUnitReview, type PublishResult } from "@/lib/publish";
 import { newCardSchedule, scheduleReview, type CardSchedule } from "@/lib/srs/fsrs";
 
@@ -241,6 +242,43 @@ export async function finishReviewSession(input: z.infer<typeof finishReviewSche
   await ctx.supabase.rpc("touch_streak");
   revalidatePath("/", "layout");
   return { ok: true };
+}
+
+// ---------- Báo lỗi nội dung ----------
+
+const reportSchema = z.object({
+  ownerType: z.enum(["word", "sentence"]),
+  ownerId: z.string().uuid(),
+  reason: z.enum(REPORT_REASONS),
+  note: z.string().trim().max(500),
+});
+
+/** Số báo cáo tối đa một người gửi được trong 24 giờ, để một tài khoản không làm ngập danh sách. */
+const REPORTS_PER_DAY = 30;
+
+export type ReportResult = { ok: true; duplicate: boolean } | { ok: false; reason: "invalid" | "not_found" | "too_many" | "error" };
+
+/** Người học báo một từ hoặc một câu có lỗi. Báo trùng (cùng mục, cùng lý do, báo cáo trước còn mở) được coi là đã nhận. */
+export async function reportContentAction(input: z.infer<typeof reportSchema>): Promise<ReportResult> {
+  const parsed = reportSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, reason: "invalid" };
+  const { ownerType, ownerId, reason, note } = parsed.data;
+  const ctx = await getLearnerContext();
+  const { supabase, userId } = ctx;
+
+  // RLS chỉ trả về nội dung người học được phép thấy, nên không báo được mục của bài chưa xuất bản.
+  const { data: owner } = await supabase.from(ownerType === "word" ? "words" : "sentences").select("id").eq("id", ownerId).maybeSingle();
+  if (!owner) return { ok: false, reason: "not_found" };
+
+  const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
+  const { count } = await supabase.from("content_reports").select("id", { count: "exact", head: true }).eq("user_id", userId).gte("created_at", since);
+  if ((count ?? 0) >= REPORTS_PER_DAY) return { ok: false, reason: "too_many" };
+
+  const { error } = await supabase
+    .from("content_reports")
+    .insert({ user_id: userId, owner_type: ownerType, owner_id: ownerId, locale: ctx.enrollment.sourceLang, reason, note: note || null });
+  if (error) return error.code === "23505" ? { ok: true, duplicate: true } : { ok: false, reason: "error" };
+  return { ok: true, duplicate: false };
 }
 
 // ---------- Cài đặt ----------

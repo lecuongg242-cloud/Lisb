@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getOrderedLessons, getProfile } from "@/lib/data";
 import { LevelTestButton } from "./LevelTestButton";
@@ -50,7 +51,7 @@ export default async function AdminLessonsPage() {
   const levelName = (code: string) => (t.has(`levels.${code}`) ? t(`levels.${code}`) : code.toUpperCase());
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <div>
         <h1 className="text-2xl font-bold">{t("admin.title")}</h1>
         <p className="mt-1 text-sm text-muted">{t("admin.intro")}</p>
@@ -83,9 +84,16 @@ export default async function AdminLessonsPage() {
                     <p className="text-sm text-muted">
                       {unitTitle.get(lesson.unitId)} · {t("course.lesson", { number: lesson.number })}
                     </p>
-                    <p className="font-semibold">{title.get(lesson.id)}</p>
+                    <p className="font-semibold">
+                      <Link href={`/admin/lessons/${lesson.id}`} className="hover:underline">
+                        {title.get(lesson.id)}
+                      </Link>
+                    </p>
                     <p className="text-sm text-muted">
-                      {t(`admin.status.${lesson.status}`)} · {t("admin.exercises", { count: counts.get(lesson.id) ?? 0 })}
+                      {t(`admin.status.${lesson.status}`)} · {t("admin.exercises", { count: counts.get(lesson.id) ?? 0 })} ·{" "}
+                      <Link href={`/admin/lessons/${lesson.id}`} className="font-semibold text-brand-dark hover:underline">
+                        {t("admin.viewContent")}
+                      </Link>
                     </p>
                   </div>
                   <PublishButton lessonId={lesson.id} published={lesson.status === "published"} />

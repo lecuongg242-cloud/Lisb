@@ -66,6 +66,9 @@ export const getLearnerContext = cache(async (): Promise<LearnerContext> => {
   };
 });
 
+/** Phần ngữ cảnh đủ để đọc nội dung bài học: dùng được cho cả người học lẫn trang quản trị. */
+export type ContentContext = { supabase: SupabaseClient; course: { targetLang: string }; enrollment: { sourceLang: string } };
+
 export type OrderedLesson = {
   id: string;
   kind: string;
@@ -236,6 +239,22 @@ export async function loadContent(
   return { words, sentences };
 }
 
+/** Mọi từ và câu mà một nhóm bài tập nhắc tới (cả đáp án lẫn lựa chọn nhiễu). */
+export function exerciseRefs(exercises: { payload: unknown }[]): { wordIds: Set<string>; sentenceIds: Set<string> } {
+  const wordIds = new Set<string>();
+  const sentenceIds = new Set<string>();
+  for (const e of exercises) {
+    const p = e.payload as Record<string, unknown>;
+    for (const key of ["word_id", "sentence_id"] as const) {
+      if (typeof p[key] === "string") (key === "word_id" ? wordIds : sentenceIds).add(p[key] as string);
+    }
+    for (const id of (p.option_word_ids as string[] | undefined) ?? []) wordIds.add(id);
+    for (const id of (p.word_ids as string[] | undefined) ?? []) wordIds.add(id);
+    for (const id of (p.option_sentence_ids as string[] | undefined) ?? []) sentenceIds.add(id);
+  }
+  return { wordIds, sentenceIds };
+}
+
 /** Bài tập của một phiên học kèm toàn bộ nội dung cần hiển thị. */
 export async function loadSession(ctx: LearnerContext, lessonId: string, sessionNo: number) {
   const { supabase } = ctx;
@@ -248,17 +267,7 @@ export async function loadSession(ctx: LearnerContext, lessonId: string, session
   if (error) throw new Error(error.message);
 
   const exercises = (rows ?? []).map(parseExercise).filter((e): e is Exercise => e !== null);
-  const wordIds = new Set<string>();
-  const sentenceIds = new Set<string>();
-  for (const e of exercises) {
-    const p = e.payload as Record<string, unknown>;
-    for (const key of ["word_id", "sentence_id"] as const) {
-      if (typeof p[key] === "string") (key === "word_id" ? wordIds : sentenceIds).add(p[key] as string);
-    }
-    for (const id of (p.option_word_ids as string[] | undefined) ?? []) wordIds.add(id);
-    for (const id of (p.word_ids as string[] | undefined) ?? []) wordIds.add(id);
-    for (const id of (p.option_sentence_ids as string[] | undefined) ?? []) sentenceIds.add(id);
-  }
+  const { wordIds, sentenceIds } = exerciseRefs(exercises);
 
   const { data: lessonWords } = await supabase.from("lesson_words").select("word_id, example_sentence_id").eq("lesson_id", lessonId);
   const exampleByWord = new Map((lessonWords ?? []).map((r) => [r.word_id as string, r.example_sentence_id as string | null]));
@@ -370,7 +379,7 @@ export type LessonDetail = {
 };
 
 /** Toàn bộ nội dung của một bài để hiển thị trang "Bài học": từ mới, câu mẫu, mẹo, các phiên luyện tập. */
-export async function loadLessonDetail(ctx: LearnerContext, lessonId: string): Promise<LessonDetail | null> {
+export async function loadLessonDetail(ctx: ContentContext, lessonId: string): Promise<LessonDetail | null> {
   const { supabase } = ctx;
   const locales = { target: ctx.course.targetLang, source: ctx.enrollment.sourceLang };
 

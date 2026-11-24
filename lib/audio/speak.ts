@@ -8,6 +8,22 @@ const RECORDED_VOICES: Record<string, Record<VoiceChoice, string>> = {
   en: { female: "af_heart", male: "am_michael" },
 };
 
+/** Các giọng sinh sẵn của một ngôn ngữ đích (mã ngôn ngữ hoặc locale); rỗng nếu ngôn ngữ đó chưa có giọng. */
+export function recordedVoices(locale: string): { choice: VoiceChoice; dir: string }[] {
+  const voices = RECORDED_VOICES[locale.split("-")[0].toLowerCase()];
+  return voices ? (Object.keys(voices) as VoiceChoice[]).map((choice) => ({ choice, dir: voices[choice] })) : [];
+}
+
+/** Tên thư mục này có phải một giọng sinh sẵn đã khai báo không. */
+export function isRecordedVoice(dir: string): boolean {
+  return Object.values(RECORDED_VOICES).some((voices) => Object.values(voices).includes(dir));
+}
+
+/** Đường dẫn file âm thanh sinh sẵn. */
+export function recordedAudioUrl(voiceDir: string, audioKey: string): string {
+  return `/audio/${voiceDir}/${audioKey}.mp3`;
+}
+
 const RATE_KEY = "lisb.speechRate";
 const VOICE_KEY = "lisb.voice";
 const SLOW_FACTOR = 0.7;
@@ -98,7 +114,7 @@ export function speak(text: string, locale: string, options: { slow?: boolean; a
     return;
   }
 
-  const audio = new Audio(`/audio/${voiceDir}/${options.audioKey}.mp3`);
+  const audio = new Audio(recordedAudioUrl(voiceDir, options.audioKey));
   player = audio;
   audio.preservesPitch = true;
   audio.playbackRate = rate;

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { finishReviewSession, submitReview } from "@/app/actions";
 import { Meaning, SpeakButtons, TappableSentence } from "@/components/player/shared";
+import { ReportButton } from "@/components/ReportButton";
 import type { ReviewRating } from "@/lib/srs/fsrs";
 import type { ContentBundle, ReviewCard } from "@/lib/views";
 
@@ -97,6 +98,7 @@ export function ReviewClient({ cards, content, ttsLocale }: { cards: ReviewCard[
                 <p className="text-4xl font-bold">{word.lemma}</p>
                 {word.pronunciation && <p className="text-muted">{word.pronunciation}</p>}
                 <SpeakButtons text={word.lemma} locale={ttsLocale} audioKey={word.audioKey} autoPlay />
+                <ReportButton variant="link" ownerType="word" ownerId={word.id} text={word.lemma} />
               </div>
             )}
           </>
@@ -106,8 +108,9 @@ export function ReviewClient({ cards, content, ttsLocale }: { cards: ReviewCard[
             <p className="text-sm font-semibold tracking-wide text-muted uppercase">{t("review.recallSentence")}</p>
             <SpeakButtons text={sentence.text} locale={ttsLocale} audioKey={sentence.audioKey} autoPlay large />
             {revealed && (
-              <div className="w-full border-t border-line pt-4 text-left">
+              <div className="flex w-full flex-col gap-3 border-t border-line pt-4 text-left">
                 <TappableSentence sentence={sentence} words={content.words} locale={ttsLocale} />
+                <ReportButton variant="link" className="self-start" ownerType="sentence" ownerId={sentence.id} text={sentence.text} />
               </div>
             )}
           </>

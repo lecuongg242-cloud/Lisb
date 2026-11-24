@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { ReportButton } from "@/components/ReportButton";
 import { SpeakIconButton } from "@/components/SpeakIconButton";
 import {
   getCompletedSessions,
@@ -116,7 +117,7 @@ export default async function LessonPage({
                         audioKey={word.audioKey}
                         label={t("lesson.listen")}
                       />
-                      <div className="min-w-0">
+                      <div className="min-w-0 flex-1">
                         <p className="flex flex-wrap items-baseline gap-x-2">
                           <span className="text-lg font-bold">
                             {word.lemma}
@@ -134,6 +135,7 @@ export default async function LessonPage({
                           </p>
                         )}
                       </div>
+                      <ReportButton ownerType="word" ownerId={id} text={word.lemma} />
                     </li>
                   );
                 })}
@@ -180,6 +182,7 @@ export default async function LessonPage({
                           </p>
                         )}
                       </div>
+                      <ReportButton ownerType="sentence" ownerId={id} text={sentence.text} />
                     </li>
                   );
                 })}

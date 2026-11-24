@@ -196,7 +196,77 @@
     "levelTestNone": "Chưa có đề",
     "createLevelTest": "Tạo đề kiểm tra",
     "updateLevelTest": "Sinh lại đề",
-    "levelTestPublished": "Đã nạp {count} câu hỏi."
+    "levelTestPublished": "Đã nạp {count} câu hỏi.",
+    "tabs": {
+      "lessons": "Bài học",
+      "audio": "Âm thanh",
+      "reports": "Báo lỗi"
+    },
+    "viewContent": "Xem nội dung",
+    "preview": {
+      "back": "Danh sách bài học",
+      "exercises": "Bài tập",
+      "sourceSaved": "{count} bài tập đang lưu: đây là thứ người học thấy.",
+      "sourceGenerated": "{count} bài tập sinh thử từ nội dung hiện tại, chưa lưu. Xuất bản thì bài tập mới được lưu và mở cho người học.",
+      "sourceNone": "Chưa có bài tập.",
+      "passMark": "cần đúng {percent}%",
+      "alsoAccepted": "Cũng chấm đúng: {forms}",
+      "noMeaning": "Thiếu nghĩa tiếng Việt",
+      "noPronunciation": "Thiếu phiên âm",
+      "unlinkedTokens": "Từ chưa gắn với từ điển: {tokens}",
+      "missingRef": "Bài tập trỏ tới nội dung không còn tồn tại. Hãy sinh lại bài tập.",
+      "showFresh": "Xem bài tập sẽ sinh ra từ nội dung hiện tại",
+      "showSaved": "Xem bài tập đang lưu"
+    },
+    "audio": {
+      "title": "Nghe duyệt âm thanh",
+      "intro": "Bấm tên giọng để nghe, rồi đánh dấu ✓ nếu đọc đúng hoặc ✗ nếu đọc sai. Bấm lại dấu đang chọn để bỏ đánh dấu. File đánh dấu sai sẽ được sửa cách đọc và sinh lại.",
+      "progress": "Đã duyệt {reviewed}/{total} file · {bad} file sai",
+      "badCount": "{count} sai",
+      "unitsLabel": "Chủ đề",
+      "noUnits": "Chưa có nội dung nào có giọng đọc sinh sẵn.",
+      "filterLabel": "Lọc",
+      "filter": {
+        "all": "Tất cả",
+        "pending": "Chưa duyệt",
+        "bad": "Sai"
+      },
+      "kind": {
+        "word": "Từ của bài",
+        "sentence": "Câu mẫu",
+        "token": "Từ lẻ trong câu"
+      },
+      "markOk": "Đọc đúng",
+      "markBad": "Đọc sai",
+      "notePlaceholder": "Sai ở đâu? (không bắt buộc)",
+      "missingFile": "Không có file âm thanh cho giọng này.",
+      "saveFailed": "Chưa lưu được đánh dấu vừa rồi. Hãy thử lại.",
+      "empty": "Chủ đề này chưa có đoạn văn bản nào.",
+      "emptyPending": "Chủ đề này đã được nghe duyệt hết.",
+      "emptyBad": "Chủ đề này không có file nào bị đánh dấu sai."
+    },
+    "reports": {
+      "title": "Lỗi nội dung do người học báo",
+      "intro": "Sửa nội dung xong thì bấm \"Đã sửa\". Báo nhầm thì bấm \"Không phải lỗi\".",
+      "statusLabel": "Trạng thái",
+      "status": {
+        "open": "Đang mở",
+        "fixed": "Đã sửa",
+        "rejected": "Không phải lỗi"
+      },
+      "owner": {
+        "word": "Từ",
+        "sentence": "Câu"
+      },
+      "anonymous": "Người học",
+      "targetGone": "Nội dung này không còn trong khóa học.",
+      "openLesson": "Xem bài chứa nội dung này",
+      "markFixed": "Đã sửa",
+      "markRejected": "Không phải lỗi",
+      "reopen": "Mở lại",
+      "emptyOpen": "Không có báo lỗi nào đang mở.",
+      "empty": "Không có báo cáo nào ở mục này."
+    }
   },
   "ai": {
     "notice": "Nội dung bài học do AI soạn và kiểm tra, chưa có giáo viên duyệt. Thấy chỗ sai, hãy báo cho chúng tôi."
@@ -361,5 +431,27 @@
     "bannerStart": "Làm bài kiểm tra",
     "bannerRetake": "Làm lại",
     "levelDone": "Đã hoàn thành cấp"
+  },
+  "report": {
+    "button": "Báo lỗi",
+    "title": "Báo lỗi nội dung",
+    "intro": "Bạn thấy chỗ nào chưa đúng?",
+    "reason": {
+      "meaning": "Nghĩa hoặc bản dịch chưa đúng",
+      "audio": "Âm thanh hoặc phiên âm chưa đúng",
+      "text": "Sai chính tả hoặc ngữ pháp",
+      "grading": "Trả lời đúng nhưng bị chấm sai",
+      "other": "Lỗi khác"
+    },
+    "noteLabel": "Mô tả thêm (không bắt buộc)",
+    "notePlaceholder": "Ví dụ: từ này còn có nghĩa là...",
+    "chooseReason": "Hãy chọn một lý do.",
+    "send": "Gửi báo lỗi",
+    "sending": "Đang gửi...",
+    "cancel": "Hủy",
+    "close": "Đóng",
+    "sent": "Cảm ơn bạn. Báo lỗi đã được ghi nhận.",
+    "duplicate": "Bạn đã báo lỗi này rồi. Chúng tôi đang xem.",
+    "tooMany": "Hôm nay bạn đã gửi nhiều báo lỗi. Hãy thử lại vào ngày mai."
   }
 }

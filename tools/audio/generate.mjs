@@ -3,6 +3,12 @@
 //   cd tools/audio && npm install        (lần đầu; model tự tải về khi chạy)
 //   node tools/audio/generate.mjs        sinh các file còn thiếu
 //   node tools/audio/generate.mjs --force   sinh lại tất cả
+//   node tools/audio/generate.mjs --redo "A" --redo "Good night!"   sinh lại riêng các đoạn này (cả hai giọng)
+//
+// Sửa một file đọc sai (quản trị đánh dấu ở trang Quản trị > Âm thanh):
+//   1. Thêm vào tools/audio/overrides.json cách viết khác để model đọc đúng, ví dụ { "english": { "A": "ay" } }.
+//      Model đọc cách viết đó, nhưng file vẫn mang khóa của văn bản gốc nên app không phải đổi gì.
+//   2. Chạy lại với --redo "<văn bản gốc>" rồi nghe lại ở trang quản trị.
 //
 // Kết quả: public/audio/<giọng>/<khóa>.mp3, trong đó khóa = 20 ký tự đầu của sha1(văn bản).
 // App tính khóa theo đúng công thức này (lib/audio/key.ts), nên không cần bảng tra.
@@ -19,6 +25,10 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", ".
 const CONTENT_DIR = path.join(ROOT, "content");
 const OUT_DIR = path.join(ROOT, "public", "audio");
 const FORCE = process.argv.includes("--force");
+const REDO = new Set(process.argv.flatMap((arg, i, all) => (arg === "--redo" && all[i + 1] ? [all[i + 1]] : [])));
+const OVERRIDES_FILE = path.join(path.dirname(fileURLToPath(import.meta.url)), "overrides.json");
+/** Cách viết thay thế để model đọc đúng: { "<khóa học>": { "<văn bản gốc>": "<văn bản đưa cho model>" } }. */
+const OVERRIDES = fs.existsSync(OVERRIDES_FILE) ? JSON.parse(fs.readFileSync(OVERRIDES_FILE, "utf8")) : {};
 
 // Giọng theo khóa học. Tên thư mục trùng với cấu hình trong lib/audio/voices.ts.
 const VOICES_BY_COURSE = { english: ["af_heart", "am_michael"] };
@@ -97,12 +107,12 @@ for (const [course, texts] of byCourse) {
       const key = audioKey(text);
       wanted.add(`${key}.mp3`);
       const file = path.join(dir, `${key}.mp3`);
-      if (!FORCE && fs.existsSync(file)) {
+      if (!FORCE && !REDO.has(text) && fs.existsSync(file)) {
         skipped++;
         continue;
       }
       tts ??= await KokoroTTS.from_pretrained("onnx-community/Kokoro-82M-v1.0-ONNX", { dtype: "fp32", device: "cpu" });
-      const audio = await tts.generate(text, { voice });
+      const audio = await tts.generate(OVERRIDES[course]?.[text] ?? text, { voice });
       const mp3 = toMp3(audio.audio, audio.sampling_rate);
       fs.writeFileSync(file, mp3);
       created++;
@@ -113,5 +123,8 @@ for (const [course, texts] of byCourse) {
     console.log(`${course} / ${voice}: ${texts.length} đoạn văn bản, ${orphans.length} file không còn dùng`);
   }
 }
+
+const known = new Set([...byCourse.values()].flat());
+for (const text of REDO) if (!known.has(text)) console.log(`Không tìm thấy đoạn "${text}" trong nội dung: kiểm tra lại chữ hoa, dấu câu.`);
 
 console.log(`\nSinh mới ${created} file (${(bytes / 1024 / 1024).toFixed(1)} MB), bỏ qua ${skipped} file đã có.`);

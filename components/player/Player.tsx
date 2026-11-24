@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { completeSession } from "@/app/actions";
+import { ReportButton } from "@/components/ReportButton";
 import type { Exercise } from "@/lib/exercises/types";
 import { getLanguageModule, type AnswerResult } from "@/lib/lang";
 import type { ContentBundle } from "@/lib/views";
@@ -107,7 +108,8 @@ export function Player({ lessonId, sessionNo, passPercent, title, exercises, con
   useEffect(() => {
     if (!hasFeedback) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
+      // Đang mở hộp thoại báo lỗi thì phím Enter thuộc về hộp thoại.
+      if (e.key === "Enter" && !document.querySelector("dialog[open]")) {
         e.preventDefault();
         continueRef.current();
       }
@@ -179,8 +181,9 @@ export function Player({ lessonId, sessionNo, passPercent, title, exercises, con
     );
   }
 
-  const payload = item.exercise.payload as { sentence_id?: string };
+  const payload = item.exercise.payload as { sentence_id?: string; word_id?: string };
   const sentence = payload.sentence_id ? content.sentences[payload.sentence_id] : undefined;
+  const word = payload.word_id ? content.words[payload.word_id] : undefined;
   const showDiff = feedback && feedback.result !== "correct" && item.exercise.type === "listen_type" && feedback.answer && feedback.correctText;
 
   return (
@@ -215,6 +218,11 @@ export function Player({ lessonId, sessionNo, passPercent, title, exercises, con
           <button type="button" className="btn btn-primary" onClick={handleContinue}>
             {t("common.continue")}
           </button>
+          {sentence ? (
+            <ReportButton variant="link" className="self-start" ownerType="sentence" ownerId={sentence.id} text={sentence.text} />
+          ) : (
+            word && <ReportButton variant="link" className="self-start" ownerType="word" ownerId={word.id} text={word.lemma} />
+          )}
         </div>
       )}
     </Shell>

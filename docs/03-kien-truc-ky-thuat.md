@@ -126,6 +126,13 @@ Cập nhật 2026-11-24, bài kiểm tra cuối cấp (`scripts/013-level-tests.
 - Hàm `normalize_answer` trong SQL phải cho kết quả giống `normalize()` trong `lib/lang/en.ts`; có kiểm thử so hai bên trên toàn bộ từ và câu của khóa học.
 - Kiểm thử database nằm ở `tests/db/`, chạy bằng pglite cùng lệnh `npx vitest run`. Trên Windows phải đứng ở đường dẫn có ổ đĩa viết hoa (`D:/...`), nếu không Vitest báo không tìm thấy bộ kiểm thử.
 
+Cập nhật 2026-11-24, công cụ quản trị (`scripts/014-admin-tools.sql`):
+
+- Khu quản trị có ba mục: Bài học (`/admin/lessons`, mỗi bài có trang xem nội dung), Âm thanh (`/admin/audio`), Báo lỗi (`/admin/reports`). Quyền được chặn ở RLS và ở từng server action; phần giao diện chỉ ẩn mục với người không phải quản trị.
+- Báo lỗi nội dung dùng bảng `content_reports`: `reason` là mã lý do (`lib/report.ts`), `note` là lời người báo. Người học chỉ tạo được báo cáo đang mở cho chính mình; chỉ mục duy nhất chặn báo trùng khi báo cáo trước còn mở.
+- Nghe duyệt âm thanh dùng bảng `audio_reviews` (khóa file, giọng, đạt hoặc sai, ghi chú); chỉ quản trị đọc và ghi. Khóa file luôn được máy chủ tính lại từ văn bản.
+- `lib/publish.ts` tách thành `prepareLesson` (sinh phiên và bài tập, chưa ghi) và `publishLesson` (ghi và xuất bản); trang xem trước dùng `prepareLesson`.
+
 ## 5. Âm thanh
 
 | Giai đoạn | Giọng đọc | Chấm nói |
