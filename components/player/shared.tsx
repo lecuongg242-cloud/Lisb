@@ -36,7 +36,11 @@ export function Meaning({ word, className = "" }: { word: WordView; className?: 
   return (
     <div className={className}>
       {word.meaningTarget && <p className="text-muted">{word.meaningTarget}</p>}
-      {word.meaningSource && <p className="font-medium">{word.meaningSource}</p>}
+      {word.meaningSource && (
+        <p className="font-medium" data-testid="meaning-source">
+          {word.meaningSource}
+        </p>
+      )}
     </div>
   );
 }

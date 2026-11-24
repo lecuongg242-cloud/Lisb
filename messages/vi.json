@@ -453,5 +453,16 @@
     "sent": "Cảm ơn bạn. Báo lỗi đã được ghi nhận.",
     "duplicate": "Bạn đã báo lỗi này rồi. Chúng tôi đang xem.",
     "tooMany": "Hôm nay bạn đã gửi nhiều báo lỗi. Hãy thử lại vào ngày mai."
+  },
+  "errors": {
+    "notFoundTitle": "Không tìm thấy trang",
+    "notFoundBody": "Trang này không tồn tại, hoặc bài học chưa được mở.",
+    "errorCode": "Lỗi",
+    "errorTitle": "Có lỗi xảy ra",
+    "errorBody": "Trang này gặp sự cố. Hãy thử lại; nếu vẫn lỗi, bạn quay về trang chính nhé.",
+    "digest": "Mã lỗi: {digest}",
+    "retry": "Thử lại",
+    "home": "Về trang chính",
+    "course": "Xem lộ trình"
   }
 }

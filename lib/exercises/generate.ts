@@ -1,10 +1,8 @@
-import { editDistance, stableHash } from "../lang/distance";
+import { stableHash } from "../lang/distance";
+import { sentenceDistractors, tokenDistractors, wordDistractors, type GenSentence, type GenWord } from "./distractors";
 import type { GeneratedExercise, GeneratedSession, SessionKind, SessionType } from "./types";
 
-/** meanings: nghĩa chính và các nghĩa được chấp nhận của từ (ở ngôn ngữ giải thích), dùng để tránh đáp án nhiễu đồng nghĩa. */
-export type GenWord = { id: string; lemma: string; pos: string; meanings?: string[] };
-/** tokens: các từ của câu ở dạng hiển thị trên thẻ (không dấu câu). */
-export type GenSentence = { id: string; text: string; tokens: string[] };
+export type { GenSentence, GenWord };
 
 export type GenerateInput = {
   /** Từ mới của bài, theo thứ tự dạy. */
@@ -26,67 +24,6 @@ const INTRO_BATCH = 2;
 /** Sắp xếp có tính tất định theo mã băm, để thứ tự lựa chọn không lộ đáp án và không đổi giữa các lần sinh. */
 function shuffle<T>(items: T[], seed: string, key: (item: T) => string): T[] {
   return [...items].sort((a, b) => stableHash(seed + key(a)) - stableHash(seed + key(b)) || key(a).localeCompare(key(b)));
-}
-
-const meaningKey = (m: string) => m.trim().toLowerCase();
-
-/** Hai từ có chung một nghĩa (ví dụ hello và hi đều là "xin chào") thì không dùng làm đáp án nhiễu của nhau. */
-function sharesMeaning(a: GenWord, b: GenWord): boolean {
-  if (!a.meanings?.length || !b.meanings?.length) return false;
-  const own = new Set(a.meanings.map(meaningKey));
-  return b.meanings.some((m) => own.has(meaningKey(m)));
-}
-
-/** Chọn n từ giống từ đích nhất: cùng từ loại trước, rồi tới chữ viết gần nhất. */
-function similarWords(target: GenWord, candidates: GenWord[], n: number): GenWord[] {
-  const seen = new Set([target.id]);
-  return candidates
-    .filter((c) => {
-      if (seen.has(c.id) || c.lemma.toLowerCase() === target.lemma.toLowerCase() || sharesMeaning(target, c)) return false;
-      seen.add(c.id);
-      return true;
-    })
-    .map((c) => ({
-      c,
-      score: (c.pos === target.pos ? 0 : 100) + editDistance(c.lemma.toLowerCase(), target.lemma.toLowerCase()),
-    }))
-    .sort((a, b) => a.score - b.score || a.c.id.localeCompare(b.c.id))
-    .slice(0, n)
-    .map((x) => x.c);
-}
-
-function similarSentences(target: GenSentence, candidates: GenSentence[], n: number): GenSentence[] {
-  const seen = new Set([target.id]);
-  const text = target.text.toLowerCase();
-  return candidates
-    .filter((c) => {
-      if (seen.has(c.id) || c.text.toLowerCase() === text) return false;
-      seen.add(c.id);
-      return true;
-    })
-    .map((c) => ({ c, score: editDistance(c.text.toLowerCase(), text) }))
-    .sort((a, b) => a.score - b.score || a.c.id.localeCompare(b.c.id))
-    .slice(0, n)
-    .map((x) => x.c);
-}
-
-function distractorTokens(target: GenSentence, candidates: GenSentence[], n: number): string[] {
-  const own = new Set(target.tokens.map((t) => t.toLowerCase()));
-  const best = new Map<string, { token: string; score: number }>();
-  for (const s of candidates) {
-    if (s.id === target.id) continue;
-    for (const token of s.tokens) {
-      const lower = token.toLowerCase();
-      if (own.has(lower)) continue;
-      const score = Math.min(...target.tokens.map((t) => editDistance(t.toLowerCase(), lower)));
-      const prev = best.get(lower);
-      if (!prev || score < prev.score) best.set(lower, { token, score });
-    }
-  }
-  return [...best.values()]
-    .sort((a, b) => a.score - b.score || a.token.localeCompare(b.token))
-    .slice(0, n)
-    .map((x) => x.token);
 }
 
 function chunk<T>(items: T[], size: number): T[][] {
@@ -149,7 +86,7 @@ export function generateExercises(input: GenerateInput): GenerateOutput {
       for (const w of batch) add("word_intro", "word", w.id, { word_id: w.id });
       introduced.push(...batch);
       for (const w of batch) {
-        const options = shuffle([w, ...similarWords(w, introduced, 3)], `meaning:${w.id}`, (o) => o.id);
+        const options = shuffle([w, ...wordDistractors(w, introduced, 3)], `meaning:${w.id}`, (o) => o.id);
         // Chưa đủ từ để làm lựa chọn (bài đầu tiên, các từ đồng nghĩa nhau) thì bỏ qua câu hỏi này.
         if (options.length >= 2) add("choose_meaning", "word", w.id, { word_id: w.id, option_word_ids: options.map((o) => o.id) });
       }
@@ -167,12 +104,12 @@ export function generateExercises(input: GenerateInput): GenerateOutput {
   if (sentences.length) {
     const add = openSession("listening", "listen_recognize");
     for (const s of sentences) {
-      const options = shuffle([s, ...similarSentences(s, allSentences, 2)], `listen:${s.id}`, (o) => o.id);
+      const options = shuffle([s, ...sentenceDistractors(s, allSentences, 2)], `listen:${s.id}`, (o) => o.id);
       if (options.length >= 2) add("listen_choose", "sentence", s.id, { sentence_id: s.id, option_sentence_ids: options.map((o) => o.id) });
     }
     for (const s of sentences) {
       if (s.tokens.length < 2) continue;
-      const extra = distractorTokens(s, allSentences, s.tokens.length >= 4 ? 3 : 2);
+      const extra = tokenDistractors(s, allSentences, s.tokens.length >= 4 ? 3 : 2);
       add("listen_arrange", "sentence", s.id, { sentence_id: s.id, distractor_tokens: extra });
     }
   }

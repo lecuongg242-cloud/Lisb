@@ -71,7 +71,9 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
         <div className="flex flex-col gap-5">
           <Prompt>{t("newWord")}</Prompt>
           <div className="card flex flex-col items-center gap-3 text-center">
-            <p className="text-4xl font-bold">{word.lemma}</p>
+            <p className="text-4xl font-bold" data-testid="intro-lemma">
+              {word.lemma}
+            </p>
             {word.pronunciation && <p className="text-lg text-muted">{word.pronunciation}</p>}
             <SpeakButtons text={word.lemma} locale={ttsLocale} audioKey={word.audioKey} autoPlay />
             <Meaning word={word} className="text-lg" />
@@ -104,7 +106,9 @@ export function ExerciseView({ exercise, content, lang, ttsLocale, locked, onAns
         <div className="flex flex-col gap-5">
           <Prompt>{t("chooseMeaning")}</Prompt>
           <div className="flex flex-col items-center gap-3">
-            <p className="text-4xl font-bold">{word.lemma}</p>
+            <p className="text-4xl font-bold" data-testid="prompt-lemma">
+              {word.lemma}
+            </p>
             <SpeakButtons text={word.lemma} locale={ttsLocale} audioKey={word.audioKey} autoPlay />
           </div>
           <OptionList
@@ -228,7 +232,7 @@ function MatchPairs({ wordIds, content, locked, onAnswer, seed }: { wordIds: str
     <div className="flex flex-col gap-5">
       <Prompt>{t("matchPairs")}</Prompt>
       <div className="grid grid-cols-2 gap-3">
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2" data-testid="pair-words">
           {wordIds.map((id) => (
             <li key={id}>
               <button

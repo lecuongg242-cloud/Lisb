@@ -70,8 +70,10 @@ export async function prepareLesson(supabase: SupabaseClient, lessonId: string):
   if (error) return { ok: false, reason: "error", detail: error.message };
 
   const targetLang = level.courses.target_lang;
-  const toGenWord = (w: WordRow): GenWord => ({
+  const unitOf = new Map(ordered.map((l) => [l.id, l.unitId]));
+  const toGenWord = (w: WordRow, lessonId: string): GenWord => ({
     id: w.id,
+    unitId: unitOf.get(lessonId),
     lemma: w.lemma,
     pos: w.part_of_speech,
     // Nghĩa ở các ngôn ngữ giải thích (không tính lời giải thích bằng chính ngôn ngữ đích).
@@ -80,7 +82,7 @@ export async function prepareLesson(supabase: SupabaseClient, lessonId: string):
   const toGenSentence = (s: SentenceRow): GenSentence => {
     const lemmaAt = new Map(s.sentence_words.map((sw) => [sw.position, sw.words?.lemma ?? null]));
     const tokens = lang.tokenize(s.text).map((surface, i) => ({ surface, lemma: lemmaAt.get(i + 1) ?? null }));
-    return { id: s.id, text: s.text, tokens: sentenceChips(tokens) };
+    return { id: s.id, text: s.text, tokens: sentenceChips(tokens), unitId: unitOf.get(s.lesson_id) };
   };
 
   const lwRows = (lessonWords ?? []) as unknown as { lesson_id: string; sort_order: number; words: WordRow }[];
@@ -89,7 +91,7 @@ export async function prepareLesson(supabase: SupabaseClient, lessonId: string):
   const byLessonOrder = <T extends { lesson_id: string; sort_order: number }>(a: T, b: T) =>
     rank.get(a.lesson_id)! - rank.get(b.lesson_id)! || a.sort_order - b.sort_order;
 
-  const words = lwRows.filter((r) => isOwn(r.lesson_id)).sort(byLessonOrder).map((r) => toGenWord(r.words));
+  const words = lwRows.filter((r) => isOwn(r.lesson_id)).sort(byLessonOrder).map((r) => toGenWord(r.words, r.lesson_id));
   const sentences = sRows.filter((s) => isOwn(s.lesson_id)).sort(byLessonOrder).map(toGenSentence);
   if (!words.length || !sentences.length) return { ok: false, reason: "no_content" };
 
@@ -121,7 +123,7 @@ export async function prepareLesson(supabase: SupabaseClient, lessonId: string):
     : generateExercises({
         words,
         sentences,
-        poolWords: lwRows.filter((r) => r.lesson_id !== lessonId).sort(byLessonOrder).map((r) => toGenWord(r.words)),
+        poolWords: lwRows.filter((r) => r.lesson_id !== lessonId).sort(byLessonOrder).map((r) => toGenWord(r.words, r.lesson_id)),
         poolSentences: sRows.filter((s) => s.lesson_id !== lessonId).sort(byLessonOrder).map(toGenSentence),
       });
   if (!sessions.length) return { ok: false, reason: "no_content" };

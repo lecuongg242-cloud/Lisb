@@ -1,4 +1,5 @@
-import { editDistance, stableHash } from "../lang/distance";
+import { stableHash } from "../lang/distance";
+import { sentenceDistractors, wordDistractors } from "./distractors";
 import type { GenSentence, GenWord } from "./generate";
 import type { GeneratedExercise, GeneratedSession, SessionKind, SessionType } from "./types";
 
@@ -24,31 +25,14 @@ export function sample<T extends { id: string }>(items: T[], n: number, seed: st
   return [...items].sort((a, b) => stableHash(seed + a.id) - stableHash(seed + b.id) || a.id.localeCompare(b.id)).slice(0, n);
 }
 
-function sharesMeaning(a: GenWord, b: GenWord): boolean {
-  if (!a.meanings?.length || !b.meanings?.length) return false;
-  const own = new Set(a.meanings.map((m) => m.trim().toLowerCase()));
-  return b.meanings.some((m) => own.has(m.trim().toLowerCase()));
-}
-
+/** Từ đích cùng ba từ nhiễu, đã xáo trộn. */
 export function wordOptions(target: GenWord, all: GenWord[], seed: string): GenWord[] {
-  const distractors = all
-    .filter((c) => c.id !== target.id && c.lemma.toLowerCase() !== target.lemma.toLowerCase() && !sharesMeaning(target, c))
-    .map((c) => ({ c, score: (c.pos === target.pos ? 0 : 100) + editDistance(c.lemma.toLowerCase(), target.lemma.toLowerCase()) }))
-    .sort((a, b) => a.score - b.score || a.c.id.localeCompare(b.c.id))
-    .slice(0, 3)
-    .map((x) => x.c);
-  return sample([target, ...distractors], 4, `${seed}:options:${target.id}`);
+  return sample([target, ...wordDistractors(target, all, 3)], 4, `${seed}:options:${target.id}`);
 }
 
+/** Câu đích cùng hai câu nhiễu, đã xáo trộn. */
 export function sentenceOptions(target: GenSentence, all: GenSentence[], seed: string): GenSentence[] {
-  const text = target.text.toLowerCase();
-  const distractors = all
-    .filter((c) => c.id !== target.id && c.text.toLowerCase() !== text)
-    .map((c) => ({ c, score: editDistance(c.text.toLowerCase(), text) }))
-    .sort((a, b) => a.score - b.score || a.c.id.localeCompare(b.c.id))
-    .slice(0, 2)
-    .map((x) => x.c);
-  return sample([target, ...distractors], 3, `${seed}:options:${target.id}`);
+  return sample([target, ...sentenceDistractors(target, all, 2)], 3, `${seed}:options:${target.id}`);
 }
 
 /**

@@ -133,6 +133,12 @@ Cập nhật 2026-11-24, công cụ quản trị (`scripts/014-admin-tools.sql`)
 - Nghe duyệt âm thanh dùng bảng `audio_reviews` (khóa file, giọng, đạt hoặc sai, ghi chú); chỉ quản trị đọc và ghi. Khóa file luôn được máy chủ tính lại từ văn bản.
 - `lib/publish.ts` tách thành `prepareLesson` (sinh phiên và bài tập, chưa ghi) và `publishLesson` (ghi và xuất bản); trang xem trước dùng `prepareLesson`.
 
+Cập nhật 2026-11-24, độ vững:
+
+- Ba lớp kiểm thử: logic (`npx vitest run`, gồm cả kiểm thử database bằng pglite ở `tests/db/`), và luồng trên trình duyệt (`npm run test:e2e`, Playwright ở `tests/e2e/`, dùng Chrome cài sẵn, cần `E2E_EMAIL` và `E2E_PASSWORD` trong `.env.local`). Kiểm thử luồng ghi dữ liệu học thật cho tài khoản thử.
+- Trang lỗi và trang không tìm thấy: `app/error.tsx`, `app/not-found.tsx` (toàn màn hình), `app/(app)/error.tsx`, `app/(app)/not-found.tsx` (giữ thanh điều hướng), `app/global-error.tsx` (khung gốc hỏng). Bản Next này truyền `retry` cho trang lỗi, không phải `reset`.
+- Đáp án nhiễu của mọi loại bài (bài học, bài ôn, bài kiểm tra cuối cấp) đều do `lib/exercises/distractors.ts` chọn.
+
 ## 5. Âm thanh
 
 | Giai đoạn | Giọng đọc | Chấm nói |
