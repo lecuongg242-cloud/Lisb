@@ -42,7 +42,7 @@ Trong Supabase Dashboard, vào Authentication > URL Configuration:
 3. Cấp quyền quản trị cho tài khoản đó (cần để xuất bản bài học mới), chạy từ thư mục dự án:
 
 ```
-run-sql -c "update public.profiles set role = 'admin' where id = (select id from auth.users where email = '<email của bạn>')"
+npm run sql -- -c "update public.profiles set role = 'admin' where id = (select id from auth.users where email = '<email của bạn>')"
 ```
 
 Tài khoản mới sẽ bắt đầu từ bài đầu tiên của chủ đề bảng chữ cái.

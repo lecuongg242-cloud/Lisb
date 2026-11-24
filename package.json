@@ -9,6 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "content": "node tools/content/build-content.mjs",
+    "sql": "node tools/db/run-sql.mjs",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test"
   },
@@ -32,6 +33,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "postgres": "^3.4.7",
     "tailwindcss": "4.3.3",
     "typescript": "^5",
     "vitest": "^5.1.1"
