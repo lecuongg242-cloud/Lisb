@@ -49,7 +49,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 |---|---|---|---|
 | 1 | Phiên từ vựng quá dài | **Đã làm 2026-11-23, chờ đo thời gian thật.** Mỗi bài giờ gồm 4-5 phiên ngắn (học từ mới, nhớ lại từ, nghe hiểu, nghe chép), dài nhất 11 bước; có kiểm thử giới hạn độ dài; đã chạy thử trọn một phiên trên máy | Còn lại: chủ dự án học 3 bài trên bản thật và cho biết thời gian mỗi phiên |
 | 2 | Cài đặt "số thẻ mới mỗi ngày" không có tác dụng | **Xong 2026-11-23.** Đã gỡ khỏi giao diện: nhịp học do số phiên mỗi ngày quyết định, và khi có từ 5 thẻ đến hạn thì trang chủ ưu tiên ôn trước. Cột trong database được giữ lại, không dùng | Đủ |
-| 3 | Nội dung chưa qua kiểm tra chéo | 24 bài do một model soạn, chỉ qua kiểm tra tự động | Có công cụ kiểm tra chéo bằng model thứ hai; cả 24 bài đã chạy qua và các vấn đề được xử lý. Cần khóa API Anthropic từ chủ dự án |
+| 3 | Nội dung chưa qua kiểm tra chéo | 24 bài do Claude soạn (câu mẫu, nghĩa tiếng Việt, mẹo), chỉ qua kiểm tra tự động; chưa có người hay model nào khác duyệt | Có công cụ kiểm tra chéo bằng model thứ hai; cả 24 bài đã chạy qua và các vấn đề được xử lý. Model kiểm tra phải khác hãng với model soạn, nên cần khóa API của một hãng khác (ví dụ Gemini) từ chủ dự án; xem quyết định còn mở |
 | 4 | Phiên âm có chỗ không chuẩn giọng Mỹ | Lấy thẳng từ ipa-dict, ví dụ "new" ra /nju/ | Công cụ nội dung đối chiếu phiên âm với phiên âm của model giọng đọc; chỗ lệch được sửa hoặc ghi nhận |
 | 5 | Âm thanh chưa được nghe duyệt | **Công cụ đã có 2026-11-24, chưa ai nghe duyệt.** Trang Quản trị > Âm thanh liệt kê 618 file theo chủ đề (từ của bài, câu mẫu, từ lẻ trong câu), mỗi đoạn hai giọng; đánh dấu đạt hoặc sai kèm ghi chú, lọc theo chưa duyệt và sai. Trang chỉ phát file sinh sẵn, thiếu file thì báo thiếu. Công cụ sinh âm thanh có thêm `--redo` và `tools/audio/overrides.json` để sửa cách đọc rồi sinh lại riêng file sai | Còn lại: chủ dự án nghe hết chữ cái, số và một mẫu câu; file bị đánh dấu sai được sửa cách đọc, sinh lại và nghe lại. Cách viết thay thế có sửa được lỗi đọc hay không thì chưa kiểm chứng, vì chưa có file nào bị đánh dấu sai |
 | 6 | Chưa có bài ôn cuối chủ đề và kiểm tra cuối cấp | **Đã làm 2026-11-24, chờ chủ dự án thử trên bản thật.** Bài ôn cuối chủ đề đã có cho cả 6 chủ đề: hai phần (ôn từ, ôn nghe), mỗi phần phải đúng từ 80% ở lần trả lời đầu. Bài kiểm tra cuối cấp Khởi động: 20 câu (5 chọn từ, 5 gõ từ, 5 nghe chọn câu, 5 nghe chép) rút ngẫu nhiên từ ngân hàng 264 câu trải đều 6 chủ đề; đề được rút và chấm ở database, đáp án không gửi xuống trình duyệt; đạt 80% thì cấp được ghi là hoàn thành; làm lại được nhiều lần, làm được bất cứ lúc nào nên cũng là bài vượt cấp. Có kiểm thử tự động chạy trên Postgres trong bộ nhớ (quyền truy cập, chấm điểm, quy tắc chuẩn hóa khớp với mã TypeScript). Đã chạy thử trên máy cả trường hợp đạt và không đạt, ở máy tính và điện thoại, chế độ sáng và tối | Còn lại: chủ dự án làm thử một bài ôn và bài kiểm tra cuối cấp trên bản thật, nghe thử câu hỏi nghe. Chưa làm ở giai đoạn này (để giai đoạn 2): dùng kết quả kiểm tra để mở khóa cấp A1 và kiểm tra đầu vào |
@@ -59,8 +59,8 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 10 | Chưa có kiểm thử luồng chính | **Xong 2026-11-24.** `npm run test:e2e` chạy 7 kiểm thử trên Chrome thật ở kích thước điện thoại: chưa đăng nhập bị đưa về trang đăng nhập, sai mật khẩu, đăng nhập đúng, học trọn một phiên học từ (đọc màn giới thiệu rồi trả lời đúng hết, kết quả được lưu), trả lời sai, ôn một thẻ. Đã đối chiếu database: phiên học và lần ôn được ghi thật | Đủ cho giai đoạn 1. Kiểm thử chạy trên app ở máy với database thử và tài khoản thử trong `.env.local`; khi xóa tài khoản `tester@lisb.test` (mục 12) phải trỏ sang một tài khoản thử khác. Chưa chạy tự động khi đẩy mã |
 | 11 | Luồng sau đăng nhập trên bản thật chưa được kiểm chứng đầy đủ | **Chờ chủ dự án, từ 2026-11-24.** Danh sách kiểm tra từng màn hình nằm ở `docs/08-kiem-tra-tren-thiet-bi.md`; gồm cả việc bấm giờ 3 bài (mục 1), thử bài ôn và bài kiểm tra (mục 6), nghe duyệt âm thanh (mục 5) | Chủ dự án xác nhận từng màn hình trên điện thoại theo danh sách kiểm tra |
 | 12 | Dọn dẹp tài khoản và bí mật | Tài khoản thử có quyền quản trị; mật khẩu database đã đi qua khung chat; file client secret trong thư mục Downloads; project Google Cloud "Lisbon" thừa | Xóa tài khoản thử; đổi mật khẩu database; xóa file bí mật; xử lý project thừa. Phần lớn cần chủ dự án thao tác |
-| 13 | Tài liệu 01, 02, 03 chưa khớp với định hướng IELTS | Mới có ghi chú trỏ sang tài liệu 07 | Cập nhật 01 và 03; tài liệu 02 viết lại ở đầu giai đoạn 2 cùng thiết kế ba nhánh |
-| 14 | Triển khai đôi lúc không tự chạy | Một lần Vercel bỏ qua commit, phải đẩy commit rỗng | Biết nguyên nhân, hoặc có bước kiểm tra trạng thái triển khai sau mỗi lần đẩy |
+| 13 | Tài liệu 01, 02, 03 chưa khớp với định hướng IELTS | **Xong 2026-11-24, chờ chủ dự án đọc.** Tài liệu 01 viết lại theo đích IELTS 6.5. Tài liệu 03 viết lại theo mã đang chạy, ghi rõ phần nào chưa làm. Tài liệu 06 và README sửa các chỗ lỗi thời. Tài liệu 02 có ghi chú liệt kê những chỗ đã khác thực tế | Đủ cho giai đoạn 1. Tài liệu 02 viết lại ở đầu giai đoạn 2 cùng thiết kế ba nhánh |
+| 14 | Triển khai đôi lúc không tự chạy | **Xong 2026-11-24.** Một lần Vercel bỏ qua commit, phải đẩy commit rỗng; nguyên nhân chưa rõ và chưa lặp lại. Bước kiểm tra trạng thái triển khai sau mỗi lần đẩy đã ghi ở tài liệu 06, mục 6 | Đủ theo vế thứ hai của tiêu chí: có bước kiểm tra. Bước này làm bằng tay, chưa tự động |
 | 15 | Lựa chọn nhiễu lấy từ bài chữ cái lọt vào bài khác | **Đã sửa 2026-11-24.** Bộ chọn đáp án nhiễu dùng chung (`lib/exercises/distractors.ts`) ưu tiên cùng loại nội dung, rồi cùng chủ đề, cùng từ loại, chữ viết gần; có kiểm thử chạy trên nội dung thật của 24 bài. Đã sinh lại bài tập cho 30 bài và đề kiểm tra; đối chiếu database: không còn câu đánh vần hay thẻ chữ cái lẻ làm nhiễu trong bài nghe | Còn 3 câu hỏi chọn nghĩa (hello, hi, goodbye ở bài đầu của chủ đề Chào hỏi) vẫn có lựa chọn là chữ cái, vì lúc đó người học mới gặp chữ cái và một hai từ; chấp nhận, vì quy tắc là chỉ dùng từ đã học làm lựa chọn |
 
 ### Để sang giai đoạn sau (có lý do)
@@ -78,9 +78,12 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 
 | Việc | Ghi chú |
 |---|---|
-| Schema, phân quyền, migration 001-010 | Đã chạy trên project thử nghiệm; có kiểm tra phân quyền tự động trên Postgres cục bộ |
+| Schema, phân quyền, migration 001-014 | Đã chạy trên project thử nghiệm; có kiểm tra phân quyền tự động trên Postgres cục bộ |
 | Đăng nhập email và Google, ghi danh | Chạy trên bản thật |
-| Phiên từ vựng, phiên nghe, ôn tập ngắt quãng | Chạy được; còn việc số 1 và 2 ở trên |
+| Phiên từ vựng, phiên nghe, ôn tập ngắt quãng | Chạy được; còn việc số 1 ở trên |
+| Bài ôn cuối chủ đề, kiểm tra cuối cấp | Còn việc số 6 (chờ chủ dự án thử) |
+| Công cụ quản trị: xem nội dung bài, nghe duyệt âm thanh, báo lỗi | Còn việc số 5, 7, 8 (chờ chủ dự án thử) |
+| Trang lỗi, kiểm thử luồng trên trình duyệt | Xong |
 | 24 bài cấp Khởi động | Đã xuất bản; còn việc số 3 và 4 |
 | Giọng đọc sinh sẵn, nam và nữ | Còn việc số 5 |
 | Chế độ sáng và tối | Xong |
@@ -109,7 +112,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 
 | Quyết định | Cần trước khi |
 |---|---|
-| Khóa API Anthropic cho bước kiểm tra chéo | Việc số 3 của giai đoạn 1 |
+| Model kiểm tra chéo và khóa API của nó. Quyết định ngày 2026-11-23 ghi là Claude, nhưng bản nháp cũng do Claude soạn; nên chọn model của hãng khác | Việc số 3 của giai đoạn 1 |
 | Có thuê người duyệt nội dung khi tới B1 không | Giai đoạn 5 |
 | Nguồn giọng Úc cho bài nghe | Giai đoạn 5 |
 | Tên miền riêng | Giai đoạn 7 |

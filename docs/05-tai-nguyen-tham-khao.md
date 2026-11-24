@@ -67,5 +67,5 @@ Lưu ý về giấy phép code: AGPL và GPL yêu cầu công khai mã nguồn c
 
 1. **Lịch ôn tập dùng ts-fsrs ngay từ giai đoạn 1**, không tự viết SM-2. Ít code hơn, chính xác hơn, không phải chuyển đổi về sau. Tài liệu 02 và 03 đã cập nhật.
 2. **Kiểm tra tự động nội dung có dữ liệu thật để dựa vào**: từ của bài phải nằm trong CEFR-J đúng cấp, phiên âm lấy từ ipa-dict.
-3. **Âm thanh sinh sẵn rẻ hơn dự tính**, nên có thể đưa lên giai đoạn 2 thay vì giai đoạn 3 nếu giọng trình duyệt trên máy bạn nghe kém.
+3. **Âm thanh sinh sẵn rẻ hơn dự tính.** Đã làm ngay ở giai đoạn 1 bằng Kokoro chạy trên máy, không tốn phí (tài liệu 03, mục 5).
 4. **Việc đầu tiên của giai đoạn 0**: đọc mã nguồn freelingo và định dạng khóa học của LibreLingo trước khi chốt mô hình dữ liệu.

@@ -1,8 +1,10 @@
 # 06. Triển khai
 
-Trạng thái: hướng dẫn cho giai đoạn 1-2 (dùng cá nhân). Ngày: 2026-11-23.
+Trạng thái: hướng dẫn cho giai đoạn 1-3 (dùng cá nhân). Cập nhật 2026-11-24.
 
-Mã nguồn đã sẵn sàng triển khai: build production chạy được, app cài được lên màn hình chính của điện thoại. Các bước dưới đây phải làm trên tài khoản Vercel và Supabase của chủ dự án.
+App đang chạy tại https://lisb.vercel.app, kho mã `lecuongg242-cloud/Lisb`, project Supabase thử nghiệm. Mục 1 đến 3 là các bước đã làm, giữ lại để làm lại khi tạo project chính thức.
+
+Các bước dưới đây phải làm trên tài khoản Vercel và Supabase của chủ dự án.
 
 ## 1. Đưa app lên mạng
 
@@ -20,7 +22,7 @@ Trước khi bấm Deploy, thêm hai biến môi trường (lấy giá trị t�
 
 Không đưa `DATABASE_URL` lên Vercel: app không dùng nó, nó chỉ để chạy migration từ máy.
 
-Sau khi triển khai xong, Vercel cấp một địa chỉ dạng `https://<tên>.vercel.app`. Từ đó mỗi lần đẩy mã lên nhánh `main`, Vercel tự triển khai lại.
+Sau khi triển khai xong, Vercel cấp một địa chỉ dạng `https://<tên>.vercel.app`. Từ đó mỗi lần đẩy mã lên nhánh `main`, Vercel tự triển khai lại. Máy chủ đặt tại Tokyo (`regions` trong `vercel.json`) để gần database.
 
 ## 2. Khai báo địa chỉ app với Supabase
 
@@ -76,7 +78,7 @@ Lưu ý:
 | iPhone (Safari) | Mở địa chỉ app, bấm nút Chia sẻ, chọn "Thêm vào Màn hình chính" |
 | Android (Chrome) | Mở địa chỉ app, mở menu ba chấm, chọn "Cài đặt ứng dụng" hoặc "Thêm vào màn hình chính" |
 
-App mở toàn màn hình như ứng dụng thường. Giọng đọc dùng giọng có sẵn của điện thoại.
+App mở toàn màn hình như ứng dụng thường. Giọng đọc là file sinh sẵn đi kèm app, nghe giống nhau trên mọi máy. App cần có mạng; chưa dùng được khi mất mạng.
 
 ## 5. Việc cần làm trước khi cho người khác dùng
 
@@ -84,15 +86,27 @@ Hiện app chạy trên project Supabase thử nghiệm. Dùng cho một mình c
 
 - Xóa tài khoản thử `tester@lisb.test` (đang có quyền quản trị).
 - Đổi mật khẩu database, vì mật khẩu hiện tại đã được gửi qua khung chat; sau đó cập nhật `DATABASE_URL` trong `.env.local`.
-- Tạo project Supabase riêng cho bản chính thức, chạy `scripts/001` đến `010` và `content/build/english-pre-a1.sql`, rồi xuất bản các bài trong trang Quản trị.
+- Xóa tài khoản thử xong thì trỏ `E2E_EMAIL`, `E2E_PASSWORD` trong `.env.local` sang một tài khoản thử khác không có quyền quản trị, nếu không `npm run test:e2e` sẽ hỏng.
+- Tạo project Supabase riêng cho bản chính thức, chạy mọi file trong `scripts/` theo thứ tự số và `content/build/english-pre-a1.sql`, rồi trong trang Quản trị xuất bản các bài, các bài ôn chủ đề và nạp đề kiểm tra cuối cấp.
 - Cấu hình dịch vụ gửi email riêng: dịch vụ email mặc định của Supabase giới hạn rất ít thư mỗi giờ, chỉ đủ để thử.
 
 ## 6. Kiểm tra sau khi triển khai
 
+Sau mỗi lần đẩy mã, xem bản mới đã lên chưa. Từng có lần Vercel bỏ qua một commit và phải đẩy thêm một commit rỗng; nguyên nhân chưa rõ.
+
+```
+git rev-parse HEAD
+curl -s https://api.github.com/repos/lecuongg242-cloud/Lisb/commits/<mã commit>/status
+```
+
+Trường `state` là `success` thì bản mới đã chạy; `pending` thì đợi một hai phút rồi xem lại; `failure` thì đọc nhật ký build trên Vercel. Nếu sau vài phút danh sách `statuses` vẫn trống thì Vercel đã bỏ qua commit đó: đẩy một commit rỗng (`git commit --allow-empty`).
+
+Sau đó mở thử trên bản thật. Kiểm tra nhanh:
+
 | Kiểm tra | Kết quả mong đợi |
 |---|---|
 | Mở địa chỉ app khi chưa đăng nhập | Chuyển về trang đăng nhập |
-| Đăng ký, bấm đường dẫn trong email | Vào màn hình chào mừng, rồi trang chủ |
-| Bấm "Tôi có 2 phút" | Vào phiên từ vựng của bài đầu tiên, nghe được giọng đọc |
+| Đăng nhập, bấm "Tôi có 2 phút" | Vào phiên học kế tiếp, nghe được giọng đọc |
 | Học xong một phiên | Màn hình tổng kết hiện số ngày liên tục |
-| Mở lại sau khoảng 10 phút | Trang chủ báo có thẻ đến hạn ôn |
+
+Danh sách đầy đủ từng màn hình, làm sau mỗi thay đổi lớn, nằm ở tài liệu 08.

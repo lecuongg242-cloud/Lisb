@@ -2,7 +2,12 @@
 
 Trạng thái: bản nháp v1, chờ duyệt. Ngày: 2026-11-23.
 
-> Cập nhật 2026-11-23: lộ trình sẽ được tổ chức lại thành ba nhánh (Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR) và kéo dài tới B2 theo đích IELTS 6.5. Xem tài liệu 07. Tài liệu này sẽ được viết lại ở đầu giai đoạn 2; cho tới lúc đó, danh sách chủ đề A1 và A2 bên dưới chỉ là bản cũ để tham khảo. Phần cấp Khởi động (mục 4) và quy trình soạn, duyệt nội dung (mục 8) vẫn đúng.
+> Cập nhật 2026-11-23: lộ trình sẽ được tổ chức lại thành ba nhánh (Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR) và kéo dài tới B2 theo đích IELTS 6.5. Xem tài liệu 07. Tài liệu này sẽ được viết lại ở đầu giai đoạn 2; cho tới lúc đó, danh sách chủ đề A1 và A2 bên dưới chỉ là bản cũ để tham khảo. Phần cấp Khởi động (mục 4) vẫn đúng.
+>
+> Những chỗ đã khác thực tế (2026-11-24), mô tả đúng nằm ở tài liệu 03, mục 4:
+> - Mục 3: một bài hiện gồm 4-5 phiên ngắn thuộc hai kỹ năng từ vựng và nghe; chưa có phiên nói và viết. Bài ôn cuối chủ đề gồm hai phiên, không có đoạn hội thoại. Kiểm tra cuối cấp có 20 câu từ vựng và nghe; chưa có kiểm tra đầu vào.
+> - Mục 8: bản nháp 24 bài do Claude soạn, không phải Gemini, và chưa qua kiểm tra chéo. Model kiểm tra chéo vì vậy phải là của hãng khác (quyết định còn mở ở tài liệu 04). Các trạng thái "đã kiểm tra tự động", "đã kiểm tra chéo" chưa có trong dữ liệu; bài chỉ có nháp và đã xuất bản.
+> - Mục 9: mới có thẻ từ và thẻ câu; không có giới hạn thẻ mới mỗi ngày (đã gỡ, xem việc số 2 ở tài liệu 04).
 
 ## 1. Phương pháp
 
