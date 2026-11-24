@@ -1,0 +1,123 @@
+{
+  "course": "english",
+  "level": "a1",
+  "unit": "introducing-yourself",
+  "names": ["Anna", "Minh", "Tom", "Smith", "Hanoi"],
+  "assumed_words": [],
+  "lessons": [
+    {
+      "key": "he-and-she",
+      "title": { "vi": "Anh ấy, cô ấy", "en-US": "He and she" },
+      "grammar_tip": {
+        "vi": "He dùng cho nam, she dùng cho nữ. His là của anh ấy, her là của cô ấy. Chọn his hay her theo người sở hữu, không theo đồ vật: Anna's book là her book. He's, she's là dạng viết gọn của he is, she is.",
+        "en-US": "Use he for a man and she for a woman. His and her show who has something: Anna's book is her book. He's and she's are short for he is and she is."
+      },
+      "pronunciation_tip": {
+        "vi": "She /ʃiː/ tròn môi, đẩy hơi như khi suỵt; đừng đọc thành see /siː/. Teacher có trọng âm ở âm tiết đầu: TEA-cher.",
+        "en-US": "Say she with round lips, like shh. Do not say see. In teacher, the first part is strong: TEA-cher."
+      },
+      "words": [
+        { "lemma": "he", "pos": "pronoun", "meaning": { "vi": "anh ấy, ông ấy, cậu ấy", "en-US": "a man or boy that you talk about" }, "accepted": { "vi": ["anh ấy", "ông ấy", "cậu ấy", "nó"] } },
+        { "lemma": "she", "pos": "pronoun", "meaning": { "vi": "cô ấy, bà ấy, chị ấy", "en-US": "a woman or girl that you talk about" }, "accepted": { "vi": ["cô ấy", "bà ấy", "chị ấy", "em ấy"] } },
+        { "lemma": "he's", "pos": "contraction", "meaning": { "vi": "anh ấy là (viết gọn của he is)", "en-US": "the short form of he is" }, "accepted": { "vi": ["anh ấy là", "ông ấy là"] } },
+        { "lemma": "she's", "pos": "contraction", "meaning": { "vi": "cô ấy là (viết gọn của she is)", "en-US": "the short form of she is" }, "accepted": { "vi": ["cô ấy là", "bà ấy là"] } },
+        { "lemma": "his", "pos": "determiner", "meaning": { "vi": "của anh ấy", "en-US": "belonging to him" }, "accepted": { "vi": ["của ông ấy", "của cậu ấy"] } },
+        { "lemma": "her", "pos": "determiner", "meaning": { "vi": "của cô ấy; cô ấy", "en-US": "belonging to her; also used after a verb, as in I see her" }, "accepted": { "vi": ["của cô ấy", "của bà ấy", "của chị ấy", "cô ấy"] }, "usage_note": { "vi": "Her vừa là của cô ấy (her name), vừa là cô ấy khi đứng sau động từ (I see her).", "en-US": "Her means belonging to her (her name). After a verb it means the woman (I see her)." } },
+        { "lemma": "friend", "pos": "noun", "forms": ["friends"], "meaning": { "vi": "bạn, bạn bè", "en-US": "a person you know well and like" }, "accepted": { "vi": ["bạn", "bạn bè", "người bạn"] } },
+        { "lemma": "teacher", "pos": "noun", "forms": ["teachers"], "meaning": { "vi": "giáo viên, thầy cô", "en-US": "a person whose job is to teach" }, "accepted": { "vi": ["giáo viên", "thầy giáo", "cô giáo", "thầy", "cô"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "This is my friend. His name is Minh.", "accepted": ["This is my friend. His name's Minh."], "translation": { "vi": "Đây là bạn tôi. Tên anh ấy là Minh." }, "accepted_translation": { "vi": ["Đây là bạn của tôi. Anh ấy tên là Minh.", "Đây là bạn mình. Cậu ấy tên là Minh."] } },
+        { "key": "s2", "text": "He's from Vietnam.", "accepted": ["He is from Vietnam."], "translation": { "vi": "Anh ấy đến từ Việt Nam." }, "accepted_translation": { "vi": ["Anh ấy là người Việt Nam.", "Cậu ấy đến từ Việt Nam."] } },
+        { "key": "s3", "text": "She's my teacher. She is from England.", "accepted": ["She is my teacher. She is from England.", "She's my teacher. She's from England."], "translation": { "vi": "Cô ấy là giáo viên của tôi. Cô ấy đến từ nước Anh." }, "accepted_translation": { "vi": ["Cô ấy là cô giáo của tôi. Cô ấy là người Anh.", "Cô ấy là giáo viên của tôi. Cô ấy đến từ Anh."] } },
+        { "key": "s4", "text": "Her name is Anna.", "accepted": ["Her name's Anna."], "translation": { "vi": "Tên cô ấy là Anna." }, "accepted_translation": { "vi": ["Cô ấy tên là Anna."] } },
+        { "key": "s5", "text": "Is he your friend? Yes, he is.", "translation": { "vi": "Anh ấy là bạn của bạn à? Vâng, đúng vậy." }, "accepted_translation": { "vi": ["Anh ấy có phải là bạn của bạn không? Vâng, đúng vậy.", "Cậu ấy là bạn của bạn phải không? Vâng, đúng rồi."] }, "note": { "vi": "Trả lời ngắn dùng Yes, he is; không viết gọn thành Yes, he's.", "en-US": "The short answer is Yes, he is. Do not say Yes, he's." } }
+      ]
+    },
+    {
+      "key": "we-and-they",
+      "title": { "vi": "Chúng tôi, họ", "en-US": "We and they" },
+      "grammar_tip": {
+        "vi": "We, you, they đi với are: we are, they are; viết gọn là we're, they're. Our là của chúng tôi, their là của họ. Us là chúng tôi khi đứng sau động từ: Excuse us.",
+        "en-US": "Use are with we, you and they: we are, they are, or we're, they're. Our and their show who has something. Use us after a verb: Excuse us."
+      },
+      "pronunciation_tip": {
+        "vi": "They, their bắt đầu bằng âm /ð/: đặt đầu lưỡi giữa hai hàm răng rồi phát âm, không đọc thành /d/ hay /z/. They're và their đọc giống hệt nhau. Student có trọng âm ở âm tiết đầu: STU-dent.",
+        "en-US": "They and their start with /ð/: put your tongue between your teeth. They're and their sound the same. In student, the first part is strong: STU-dent."
+      },
+      "words": [
+        { "lemma": "we", "pos": "pronoun", "meaning": { "vi": "chúng tôi, chúng ta", "en-US": "you and I; me and other people" }, "accepted": { "vi": ["chúng tôi", "chúng ta", "chúng mình", "bọn mình"] } },
+        { "lemma": "they", "pos": "pronoun", "meaning": { "vi": "họ, chúng nó", "en-US": "the people or things you talk about" }, "accepted": { "vi": ["họ", "chúng nó", "bọn họ"] } },
+        { "lemma": "we're", "pos": "contraction", "meaning": { "vi": "chúng tôi là (viết gọn của we are)", "en-US": "the short form of we are" }, "accepted": { "vi": ["chúng tôi là", "chúng ta là"] } },
+        { "lemma": "they're", "pos": "contraction", "meaning": { "vi": "họ là (viết gọn của they are)", "en-US": "the short form of they are" }, "accepted": { "vi": ["họ là"] } },
+        { "lemma": "our", "pos": "determiner", "meaning": { "vi": "của chúng tôi, của chúng ta", "en-US": "belonging to us" }, "accepted": { "vi": ["của chúng tôi", "của chúng ta", "của chúng mình"] } },
+        { "lemma": "their", "pos": "determiner", "meaning": { "vi": "của họ", "en-US": "belonging to them" }, "accepted": { "vi": ["của bọn họ"] } },
+        { "lemma": "student", "pos": "noun", "forms": ["students"], "meaning": { "vi": "học sinh, sinh viên", "en-US": "a person who studies at a school or university" }, "accepted": { "vi": ["học sinh", "sinh viên", "học viên"] } },
+        { "lemma": "us", "pos": "pronoun", "meaning": { "vi": "chúng tôi, chúng ta (đứng sau động từ)", "en-US": "we, when it comes after a verb" }, "accepted": { "vi": ["chúng tôi", "chúng ta", "chúng mình"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "We're new students here.", "accepted": ["We are new students here."], "translation": { "vi": "Chúng tôi là học sinh mới ở đây." }, "accepted_translation": { "vi": ["Chúng tôi là sinh viên mới ở đây.", "Chúng mình là học viên mới ở đây."] } },
+        { "key": "s2", "text": "Are you students? Yes, we are.", "translation": { "vi": "Các bạn là sinh viên à? Vâng, đúng vậy." }, "accepted_translation": { "vi": ["Các bạn là học sinh phải không? Vâng, đúng vậy.", "Các bạn có phải là sinh viên không? Vâng, đúng rồi."] }, "note": { "vi": "You dùng cho cả một người và nhiều người.", "en-US": "You is for one person and for more than one person." } },
+        { "key": "s3", "text": "They're from America. Their teacher is from England.", "accepted": ["They are from America. Their teacher is from England."], "translation": { "vi": "Họ đến từ Mỹ. Giáo viên của họ đến từ nước Anh." }, "accepted_translation": { "vi": ["Họ là người Mỹ. Giáo viên của họ là người Anh.", "Họ đến từ Mỹ. Thầy giáo của họ đến từ Anh."] } },
+        { "key": "s4", "text": "Are they your friends? Yes, they're our friends.", "accepted": ["Are they your friends? Yes, they are our friends."], "translation": { "vi": "Họ là bạn của bạn à? Vâng, họ là bạn của chúng tôi." }, "accepted_translation": { "vi": ["Họ có phải là bạn của các bạn không? Vâng, họ là bạn của chúng tôi.", "Họ là bạn của các bạn à? Vâng, họ là bạn chúng tôi."] } },
+        { "key": "s5", "text": "Excuse us, please.", "translation": { "vi": "Xin lỗi, cho chúng tôi đi qua." }, "accepted_translation": { "vi": ["Xin lỗi, làm ơn cho chúng tôi qua.", "Xin lỗi chúng tôi."] }, "note": { "vi": "Nói khi muốn đi qua chỗ có người đứng, hoặc khi cần rời đi.", "en-US": "Say it when you want to walk past people, or when you need to leave." } }
+      ]
+    },
+    {
+      "key": "is-not",
+      "title": { "vi": "Ai đấy? Không phải", "en-US": "Who is it? No, it isn't" },
+      "grammar_tip": {
+        "vi": "Thêm not sau be để phủ định: is not viết gọn là isn't, are not viết gọn là aren't. Hỏi về người dùng Who: Who is that man? Mr. đứng trước họ của đàn ông, Mrs. đứng trước họ của phụ nữ đã có chồng.",
+        "en-US": "Put not after be to make it negative: is not is isn't, are not is aren't. Ask about a person with Who. Use Mr. before a man's family name and Mrs. before a married woman's family name."
+      },
+      "pronunciation_tip": {
+        "vi": "Isn't, aren't có trọng âm ở âm tiết đầu: IS-n't, AR-en't; đọc rõ âm /t/ cuối. Woman đọc /ˈwʊmən/, số nhiều women đọc /ˈwɪmɪn/: chữ o đầu đọc thành âm i. Mr. đọc là mister, Mrs. đọc là missus.",
+        "en-US": "Say the first part of isn't and aren't strongly, and say the last /t/. Woman and women sound different: WOO-man, WI-min. Say Mr. as mister and Mrs. as missus."
+      },
+      "words": [
+        { "lemma": "isn't", "pos": "contraction", "meaning": { "vi": "không phải là (viết gọn của is not)", "en-US": "the short form of is not" }, "accepted": { "vi": ["không phải", "không là"] } },
+        { "lemma": "aren't", "pos": "contraction", "meaning": { "vi": "không phải là (viết gọn của are not)", "en-US": "the short form of are not" }, "accepted": { "vi": ["không phải", "không là"] } },
+        { "lemma": "who", "pos": "pronoun", "meaning": { "vi": "ai", "en-US": "a question word: what person" }, "accepted": { "vi": ["người nào"] } },
+        { "lemma": "Mr", "pos": "noun", "pronunciation": "ˈmɪstɝ", "meaning": { "vi": "ông, anh (đứng trước họ của đàn ông)", "en-US": "a title before a man's family name" }, "accepted": { "vi": ["ông", "anh", "ngài"] }, "usage_note": { "vi": "Tiếng Anh Mỹ viết có dấu chấm: Mr. Smith.", "en-US": "In American English, write it with a period: Mr. Smith." } },
+        { "lemma": "Mrs", "pos": "noun", "pronunciation": "ˈmɪsɪz", "meaning": { "vi": "bà (đứng trước họ của phụ nữ đã có chồng)", "en-US": "a title before a married woman's family name" }, "accepted": { "vi": ["bà", "cô"] }, "usage_note": { "vi": "Tiếng Anh Mỹ viết có dấu chấm: Mrs. Smith.", "en-US": "In American English, write it with a period: Mrs. Smith." } },
+        { "lemma": "man", "pos": "noun", "forms": ["men"], "meaning": { "vi": "người đàn ông", "en-US": "an adult male person" }, "accepted": { "vi": ["đàn ông", "người đàn ông", "anh", "ông"] }, "usage_note": { "vi": "Số nhiều là men, không thêm -s.", "en-US": "The plural is men." } },
+        { "lemma": "woman", "pos": "noun", "forms": ["women"], "meaning": { "vi": "người phụ nữ", "en-US": "an adult female person" }, "accepted": { "vi": ["phụ nữ", "người phụ nữ", "chị", "bà", "cô"] }, "usage_note": { "vi": "Số nhiều là women, không thêm -s.", "en-US": "The plural is women." } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "Who is that man?", "accepted": ["Who's that man?"], "translation": { "vi": "Người đàn ông kia là ai?" }, "accepted_translation": { "vi": ["Ông kia là ai?", "Người đàn ông đó là ai?", "Anh kia là ai?"] } },
+        { "key": "s2", "text": "He's Mr. Smith, our new teacher.", "accepted": ["He is Mr. Smith, our new teacher.", "He's Mr Smith, our new teacher.", "He is Mr Smith, our new teacher."], "translation": { "vi": "Đó là thầy Smith, giáo viên mới của chúng tôi." }, "accepted_translation": { "vi": ["Ông ấy là ông Smith, giáo viên mới của chúng tôi.", "Anh ấy là thầy Smith, thầy giáo mới của chúng tôi."] } },
+        { "key": "s3", "text": "Is that woman Mrs. Smith?", "accepted": ["Is that woman Mrs Smith?"], "translation": { "vi": "Người phụ nữ kia có phải là bà Smith không?" }, "accepted_translation": { "vi": ["Người phụ nữ đó là bà Smith à?", "Bà kia có phải bà Smith không?"] } },
+        { "key": "s4", "text": "No, she isn't. She's Anna.", "accepted": ["No, she is not. She is Anna.", "No, she isn't. She is Anna.", "No, she's not. She's Anna."], "translation": { "vi": "Không, không phải. Cô ấy là Anna." }, "accepted_translation": { "vi": ["Không phải. Cô ấy là Anna.", "Không, cô ấy không phải. Cô ấy là Anna."] } },
+        { "key": "s5", "text": "They aren't from Vietnam.", "accepted": ["They are not from Vietnam.", "They're not from Vietnam."], "translation": { "vi": "Họ không đến từ Việt Nam." }, "accepted_translation": { "vi": ["Họ không phải người Việt Nam."] } }
+      ]
+    },
+    {
+      "key": "where-i-live",
+      "title": { "vi": "Tôi sống ở đâu", "en-US": "Where I live" },
+      "grammar_tip": {
+        "vi": "Live in + thành phố: I live in Hanoi. Với he, she thêm -s: She lives in Hanoi. The dùng khi cả hai người đều biết đang nói về cái nào: the street (con phố đó).",
+        "en-US": "Say live in + a city: I live in Hanoi. With he and she, add -s: She lives in Hanoi. Use the when we both know which one: the street."
+      },
+      "pronunciation_tip": {
+        "vi": "Hai từ hai âm tiết có trọng âm ở âm tiết đầu: CI-ty, E-mail. Address trong tiếng Anh Mỹ thường đọc AD-dress. Đọc rõ âm cuối /v/ trong live: răng trên chạm môi dưới.",
+        "en-US": "Say the first part strongly: CI-ty, E-mail, AD-dress. Say the last sound /v/ in live: your top teeth touch your bottom lip."
+      },
+      "words": [
+        { "lemma": "the", "pos": "determiner", "meaning": { "vi": "cái, con, người... (chỉ thứ cả hai đã biết)", "en-US": "a word before a noun when we know which one" }, "accepted": { "vi": ["cái", "con", "người", "này", "đó"] }, "usage_note": { "vi": "Tiếng Việt thường không dịch the. Trước nguyên âm, the thường đọc là /ði/.", "en-US": "Before a vowel sound, the often sounds like thee." } },
+        { "lemma": "live", "pos": "verb", "forms": ["lives"], "meaning": { "vi": "sống, ở", "en-US": "to have your home in a place" }, "accepted": { "vi": ["sống", "ở", "cư trú"] } },
+        { "lemma": "in", "pos": "preposition", "meaning": { "vi": "ở, trong", "en-US": "inside a place" }, "accepted": { "vi": ["ở", "trong", "tại"] } },
+        { "lemma": "city", "pos": "noun", "meaning": { "vi": "thành phố", "en-US": "a big town" }, "accepted": { "vi": ["thành phố", "đô thị"] } },
+        { "lemma": "street", "pos": "noun", "meaning": { "vi": "con phố, đường phố", "en-US": "a road in a town or city, with houses or shops" }, "accepted": { "vi": ["phố", "đường", "con đường", "con phố"] } },
+        { "lemma": "address", "pos": "noun", "meaning": { "vi": "địa chỉ", "en-US": "the number and street of a house; where someone lives" }, "accepted": { "vi": [] } },
+        { "lemma": "email", "pos": "noun", "meaning": { "vi": "thư điện tử, email", "en-US": "a message you send on a computer or phone" }, "accepted": { "vi": ["email", "thư điện tử", "thư"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "I live in Hanoi.", "accepted": ["I live in Ha Noi."], "translation": { "vi": "Tôi sống ở Hà Nội." }, "accepted_translation": { "vi": ["Tôi ở Hà Nội.", "Mình sống ở Hà Nội."] } },
+        { "key": "s2", "text": "She lives in a big city.", "translation": { "vi": "Cô ấy sống ở một thành phố lớn." }, "accepted_translation": { "vi": ["Cô ấy sống ở thành phố lớn.", "Cô ấy ở một thành phố lớn."] } },
+        { "key": "s3", "text": "What's your address?", "accepted": ["What is your address?"], "translation": { "vi": "Địa chỉ của bạn là gì?" }, "accepted_translation": { "vi": ["Bạn ở địa chỉ nào?", "Địa chỉ của bạn là gì vậy?"] } },
+        { "key": "s4", "text": "The street is long and beautiful.", "translation": { "vi": "Con phố đó dài và đẹp." }, "accepted_translation": { "vi": ["Con đường đó dài và đẹp.", "Con phố này dài và đẹp."] } },
+        { "key": "s5", "text": "What's your email address?", "accepted": ["What is your email address?", "What's your email?"], "translation": { "vi": "Địa chỉ email của bạn là gì?" }, "accepted_translation": { "vi": ["Email của bạn là gì?", "Bạn dùng email gì?"] } }
+      ]
+    }
+  ]
+}
