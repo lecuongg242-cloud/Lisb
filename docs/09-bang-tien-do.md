@@ -15,7 +15,7 @@ Ký hiệu:
 | Giai đoạn | Nội dung | Tình trạng |
 |---|---|---|
 | 1 | Hoàn thiện cấp Khởi động | Đang làm: 7 việc xong, 6 việc chờ chủ dự án, 2 việc chưa làm |
-| 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Chưa bắt đầu, chờ khóa Azure |
+| 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Kẹt: Azure từ chối đăng ký, chờ chủ dự án chọn phương án khác |
 | 2 | Ba nhánh và cấp A1 | Chưa bắt đầu |
 | 3 | Cấp A2, viết và nói | Chưa bắt đầu |
 | 4 | Thử nghiệm kín | Chưa bắt đầu |
@@ -31,7 +31,7 @@ Gom lại một chỗ để bạn biết mình cần làm gì. Làm xong việc 
 1. Thử app trên điện thoại theo tài liệu 08: học 3 bài có bấm giờ, ôn tập, bài ôn chủ đề, kiểm tra cuối cấp, gửi một báo lỗi, mở trang xem nội dung.
 2. Nghe duyệt âm thanh ở Quản trị > Âm thanh: 26 chữ cái, số 0-20, khoảng 10 câu mỗi chủ đề, cả hai giọng.
 3. Cấp khóa API của một hãng khác Anthropic (ví dụ Gemini) để kiểm tra chéo nội dung: tự dán vào `.env.local`, không gửi qua khung chat.
-4. Tạo tài nguyên Azure Speech và dán khóa vào `.env.local` (cho giai đoạn 1B).
+4. Chọn phương án chấm phát âm thay cho Azure (bảng ở giai đoạn 1B). Nếu chọn Gemini thì khóa ở việc 3 dùng luôn cho việc này.
 5. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
 6. Đọc lại trang chính sách quyền riêng tư.
 
@@ -59,29 +59,35 @@ Số trong ngoặc là số việc ở tài liệu 04.
 
 ## Giai đoạn 1B: luyện nói và chấm phát âm
 
-Quyết định 2026-11-24: dùng Azure Pronunciation Assessment để chấm tới từng âm. Phạm vi của giai đoạn này là từ và câu của cấp Khởi động; các cấp sau dùng lại.
+Mục tiêu: bạn nói vào điện thoại, app đánh giá và chỉ ra từ hoặc âm đọc sai. Phạm vi là từ và câu của cấp Khởi động; các cấp sau dùng lại.
 
-Điều đã biết và chưa biết (tra ngày 2026-11-24):
+**Tình trạng 2026-11-24: đang kẹt ở việc chọn dịch vụ chấm.** Quyết định ban đầu là Azure Pronunciation Assessment, nhưng Azure từ chối cho chủ dự án đăng ký ("You are not eligible for an Azure subscription"); nguyên nhân Microsoft không nêu, thường do loại thẻ hoặc thông tin không khớp. Chưa chọn phương án thay thế.
 
-- Mỗi lần chấm nhận tối đa 30 giây âm thanh, trả về điểm từng từ, từng âm tiết, từng âm, cùng độ trôi chảy.
-- Giá: tính như chuyển giọng nói thành chữ. Một câu trả lời trên diễn đàn Microsoft nêu khoảng 1,32 USD mỗi giờ âm thanh và 5 giờ miễn phí mỗi tháng ở gói F0. **Chưa xác nhận được trên trang giá chính thức**; nếu đúng thì một người học dùng không hết phần miễn phí (5 giờ là khoảng 3.000 câu 6 giây).
-- Có báo cáo của người dùng rằng điểm từng âm đôi khi thiếu chính xác. Vì vậy app sẽ ghi rõ đây là đánh giá của máy, và luôn cho nghe lại bản ghi cạnh giọng mẫu.
+Các phương án, theo thứ tự Claude đề xuất thử:
 
-Các bước:
+| Phương án | Chấm được gì | Cần gì | Điểm yếu |
+|---|---|---|---|
+| Gemini nghe bản ghi | Nhận xét bằng lời: từ nào nghe sai, sai thế nào | Một khóa Gemini (dùng chung cho kiểm tra chéo nội dung) | Không được thiết kế để chấm từng âm; phải thử độ tin cậy trước khi dựng tính năng |
+| Model mã nguồn mở nhận diện âm (wav2vec2) | So chuỗi âm máy nghe được với chuỗi âm đúng | Không cần tài khoản | Model nặng vài trăm MB, có thể chậm trên điện thoại; rủi ro kỹ thuật cao |
+| Azure, đăng ký lại | Điểm từng âm, từng từ, độ trôi chảy | Thẻ tín dụng thật, tắt VPN, tài khoản Microsoft chưa từng đăng ký Azure | Không chắc lần sau sẽ qua |
+| Speechace, SpeechSuper | Tương tự Azure | Tài khoản trả phí | Chưa tra giá, chưa thử chất lượng |
+| Nhận diện giọng nói của trình duyệt | Máy nhận ra được những từ nào | Không cần gì | Không chỉ ra âm sai; kém trên iPhone |
 
-- [ ] 1. Bạn tạo tài nguyên Azure Speech (gói miễn phí F0), dán khóa và vùng vào `.env.local`
-- [ ] 2. Xác nhận trên tài khoản thật: giá, mức miễn phí, định dạng âm thanh được nhận; gửi thử một file ghi âm và đọc kết quả
-- [ ] 3. Thử ghi âm trên iPhone và Android thật: trình duyệt cho ra định dạng gì, có cần đổi sang WAV trước khi gửi không
-- [ ] 4. Viết thiết kế vào tài liệu 03: luồng ghi âm, máy chủ gọi Azure (khóa không xuống trình duyệt), giới hạn số lần mỗi ngày, không lưu bản ghi âm, cách tính đạt hay chưa đạt
-- [ ] 5. Migration: bảng lưu kết quả từng lần nói (điểm tổng, điểm từng từ, âm yếu) và đếm lượt dùng; thử trên dữ liệu giống thật
-- [ ] 6. Màn hình luyện nói một từ hoặc một câu: nghe mẫu, ghi âm, xem điểm, từ và âm sai được tô màu, nghe lại bản ghi của mình
+Điều đã biết về Azure, giữ lại phòng khi đăng ký được: mỗi lần chấm tối đa 30 giây; một câu trả lời trên diễn đàn Microsoft nêu khoảng 1,32 USD mỗi giờ âm thanh và 5 giờ miễn phí mỗi tháng ở gói F0 (chưa xác nhận trên trang giá chính thức); có báo cáo rằng điểm từng âm đôi khi thiếu chính xác.
+
+Các bước (bước 1 và 2 phụ thuộc phương án, các bước sau giống nhau):
+
+- [ ] 1. Chủ dự án chọn phương án và cấp thứ nó cần (khóa API, nếu có)
+- [ ] 2. Thử độ tin cậy trước khi viết mã giao diện: bản ghi đọc đúng và bản ghi đọc sai có chủ đích, xem dịch vụ có phân biệt được không; xác nhận giá và giới hạn. Không đạt thì quay lại bước 1 với phương án kế tiếp
+- [ ] 3. Thử ghi âm trên iPhone và Android thật: trình duyệt cho ra định dạng gì, có cần đổi định dạng trước khi gửi không
+- [ ] 4. Viết thiết kế vào tài liệu 03: luồng ghi âm, máy chủ gọi dịch vụ (khóa không xuống trình duyệt), giới hạn số lần mỗi ngày, không lưu bản ghi âm, cách tính đạt hay chưa đạt
+- [ ] 5. Migration: bảng lưu kết quả từng lần nói và đếm lượt dùng; thử trên dữ liệu giống thật
+- [ ] 6. Màn hình luyện nói một từ hoặc một câu: nghe mẫu, ghi âm, xem đánh giá, từ và âm sai được chỉ ra, nghe lại bản ghi của mình
 - [ ] 7. Thêm phiên "Luyện nói" vào mỗi bài của cấp Khởi động và xuất bản lại 24 bài
 - [ ] 8. Âm bạn hay đọc sai được gom lại thành danh sách luyện riêng
-- [ ] 9. Xử lý khi không dùng được: không cấp quyền micro, mất mạng, hết lượt, Azure lỗi
-- [ ] 10. Kiểm thử tự động cho phần tính điểm và phân quyền; cập nhật chính sách quyền riêng tư (giọng nói được gửi tới Microsoft)
-- [ ] 11. Bạn thử trên điện thoại: 10 từ và 5 câu, cho biết điểm có khớp cảm nhận không
-
-Bước 2 và 3 quyết định cách làm các bước sau, nên không viết mã giao diện trước khi xong hai bước đó.
+- [ ] 9. Xử lý khi không dùng được: không cấp quyền micro, mất mạng, hết lượt, dịch vụ lỗi
+- [ ] 10. Kiểm thử tự động cho phần tính điểm và phân quyền; cập nhật chính sách quyền riêng tư (giọng nói được gửi tới bên thứ ba nào)
+- [ ] 11. Bạn thử trên điện thoại: 10 từ và 5 câu, cho biết đánh giá có khớp cảm nhận không
 
 ## Giai đoạn 2: ba nhánh và cấp A1
 

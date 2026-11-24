@@ -110,7 +110,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 2026-11-23 | Cấu trúc lộ trình | Ba nhánh: Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR; thêm Kỹ năng thi từ B1 |
 | 2026-11-23 | Cách làm | Hoàn thiện cái đang có rồi mới mở rộng |
 | 2026-11-24 | Nguồn nội dung bài học | Theo chương trình chuẩn: danh sách từ và thứ tự ngữ pháp của các chương trình đã công bố (Cambridge Starters đến B2 First, Oxford 3000, CEFR-J) làm khung cho mọi cấp. Câu mẫu vẫn do AI viết, được đối chiếu với kho câu mở Tatoeba. Không chép bài từ giáo trình vào kho mã, vì kho đang công khai |
-| 2026-11-24 | Chấm phát âm | Dùng Azure Pronunciation Assessment, chấm tới từng âm. Làm thành giai đoạn 1B cho cấp Khởi động, các bước ở tài liệu 09. Giá và mức miễn phí phải xác nhận trên tài khoản thật trước khi viết mã |
+| 2026-11-24 | Chấm phát âm | Chọn Azure Pronunciation Assessment, làm thành giai đoạn 1B cho cấp Khởi động. Cùng ngày Azure từ chối cho chủ dự án đăng ký, nên việc chọn dịch vụ mở lại; các phương án ở tài liệu 09 |
 | 2026-11-24 | Theo dõi tiến độ | Tài liệu 09 là bảng tiến độ có ô đánh dấu, cập nhật mỗi khi xong một việc |
 | 2026-11-24 | Phạm vi sử dụng | Chủ dự án cho biết hiện chỉ dùng cho bản thân, không thương mại. Kế hoạch các giai đoạn giữ nguyên, để ngỏ khả năng mở công khai sau này |
 
@@ -119,6 +119,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | Quyết định | Cần trước khi |
 |---|---|
 | Model kiểm tra chéo và khóa API của nó. Quyết định ngày 2026-11-23 ghi là Claude, nhưng bản nháp cũng do Claude soạn; nên chọn model của hãng khác | Việc số 3 của giai đoạn 1 |
+| Dịch vụ chấm phát âm thay cho Azure: Gemini, model mã nguồn mở, thử lại Azure, hay dịch vụ trả phí khác | Giai đoạn 1B |
 | Có thuê người duyệt nội dung khi tới B1 không | Giai đoạn 5 |
 | Nguồn giọng Úc cho bài nghe | Giai đoạn 5 |
 | Tên miền riêng | Giai đoạn 7 |
