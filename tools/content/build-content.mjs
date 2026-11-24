@@ -57,6 +57,14 @@ function loadIpa() {
     const word = line.slice(0, tab).toLowerCase();
     if (!map.has(word)) map.set(word, line.slice(tab + 1).split(",")[0].trim());
   }
+  // ipa-dict có thể có nhiều cách đọc cho một từ và cách đầu tiên không phải lúc nào cũng là cách giọng đọc dùng.
+  // tools/audio/ipa-check.mjs --write ghi lại cách đọc khớp với giọng đọc cho những từ như vậy.
+  const preferredFile = path.join(path.dirname(DATA_DIR), "ipa-preferred.json");
+  if (fs.existsSync(preferredFile)) {
+    for (const [word, pron] of Object.entries(JSON.parse(fs.readFileSync(preferredFile, "utf8")))) map.set(word, pron);
+  }
+  // ipa-dict ghi mọi âm l bằng ký hiệu ɫ; từ điển cho người học ghi là l.
+  for (const [word, pron] of map) if (pron.includes("ɫ")) map.set(word, pron.replaceAll("ɫ", "l"));
   return map;
 }
 

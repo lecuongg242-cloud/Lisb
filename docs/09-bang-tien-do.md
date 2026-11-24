@@ -14,7 +14,7 @@ Ký hiệu:
 
 | Giai đoạn | Nội dung | Tình trạng |
 |---|---|---|
-| 1 | Hoàn thiện cấp Khởi động | Đang làm: 6 việc xong, 6 việc chờ chủ dự án, 3 việc chưa làm |
+| 1 | Hoàn thiện cấp Khởi động | Đang làm: 7 việc xong, 6 việc chờ chủ dự án, 2 việc chưa làm |
 | 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Chưa bắt đầu, chờ khóa Azure |
 | 2 | Ba nhánh và cấp A1 | Chưa bắt đầu |
 | 3 | Cấp A2, viết và nói | Chưa bắt đầu |
@@ -45,6 +45,7 @@ Số trong ngoặc là số việc ở tài liệu 04.
 - [x] Cập nhật tài liệu 01, 03, 06, README (13) — 2026-11-24
 - [x] Bước kiểm tra trạng thái triển khai sau mỗi lần đẩy mã (14) — 2026-11-24
 - [x] Đáp án nhiễu không còn lấy từ bài chữ cái (15) — 2026-11-24
+- [x] Đối chiếu phiên âm với cách đọc giọng Mỹ (4) — 2026-11-24, sửa 30 từ
 - [~] Chia phiên từ vựng thành phiên ngắn (1) — chờ bạn bấm giờ 3 bài
 - [~] Nghe duyệt âm thanh (5) — công cụ đã có, chờ bạn nghe và đánh dấu; file sai sẽ được sinh lại
 - [~] Bài ôn cuối chủ đề và kiểm tra cuối cấp (6) — chờ bạn làm thử trên bản thật
@@ -52,7 +53,6 @@ Số trong ngoặc là số việc ở tài liệu 04.
 - [~] Trang xem nội dung bài cho quản trị (8) — chờ bạn mở thử
 - [~] Kiểm chứng mọi màn hình trên điện thoại (11) — chờ bạn làm theo tài liệu 08
 - [ ] Kiểm tra chéo nội dung 24 bài bằng model khác hãng (3) — đã đối chiếu với Cambridge Starters và Tatoeba ngày 2026-11-24, không thấy lỗi; phần chính chờ khóa API
-- [ ] Đối chiếu phiên âm với cách đọc giọng Mỹ (4) — Claude tự làm được, làm kế tiếp
 - [ ] Dọn dẹp tài khoản thử và bí mật (12) — phần lớn cần bạn thao tác; tài khoản thử xóa sau cùng vì kiểm thử đang dùng
 
 Điều kiện đóng giai đoạn: mọi dòng trên là `[x]`, và bạn đã học hết cấp Khởi động trên bản thật.

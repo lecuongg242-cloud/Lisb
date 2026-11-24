@@ -65,6 +65,8 @@ node tools/content/build-content.mjs --check   # chỉ kiểm tra
 node tools/content/build-content.mjs           # kiểm tra và sinh content/build/*.sql
 ```
 
+Sau khi thêm từ mới, chạy `node tools/audio/ipa-check.mjs --write` trước khi build: nó so phiên âm của ipa-dict với giọng đọc và ghi cách đọc khớp vào `tools/content/ipa-preferred.json`.
+
 Công cụ kiểm tra: mỗi bài đủ 5 câu và 5-8 từ mới, mọi từ trong câu đã được dạy, mọi từ mới xuất hiện trong ít nhất một câu, đủ nghĩa và mẹo ở cả tiếng Việt lẫn tiếng Anh, độ dài câu vừa cấp. Phiên âm lấy từ ipa-dict, cấp của từ đối chiếu với CEFR-J; hai bộ dữ liệu này tự tải về `tools/content/data/` ở lần chạy đầu.
 
 Sau khi thêm hoặc sửa nội dung, sinh âm thanh cho các đoạn mới (chạy trên máy, không cần khóa API):
