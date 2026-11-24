@@ -20,7 +20,7 @@ const LISTEN_CHOOSE_COUNT = 3;
 const LISTEN_TYPE_COUNT = 5;
 
 /** Lấy mẫu có tính tất định: sắp theo mã băm rồi lấy n phần tử đầu. */
-function sample<T extends { id: string }>(items: T[], n: number, seed: string): T[] {
+export function sample<T extends { id: string }>(items: T[], n: number, seed: string): T[] {
   return [...items].sort((a, b) => stableHash(seed + a.id) - stableHash(seed + b.id) || a.id.localeCompare(b.id)).slice(0, n);
 }
 
@@ -30,7 +30,7 @@ function sharesMeaning(a: GenWord, b: GenWord): boolean {
   return b.meanings.some((m) => own.has(m.trim().toLowerCase()));
 }
 
-function wordOptions(target: GenWord, all: GenWord[], seed: string): GenWord[] {
+export function wordOptions(target: GenWord, all: GenWord[], seed: string): GenWord[] {
   const distractors = all
     .filter((c) => c.id !== target.id && c.lemma.toLowerCase() !== target.lemma.toLowerCase() && !sharesMeaning(target, c))
     .map((c) => ({ c, score: (c.pos === target.pos ? 0 : 100) + editDistance(c.lemma.toLowerCase(), target.lemma.toLowerCase()) }))
@@ -40,7 +40,7 @@ function wordOptions(target: GenWord, all: GenWord[], seed: string): GenWord[] {
   return sample([target, ...distractors], 4, `${seed}:options:${target.id}`);
 }
 
-function sentenceOptions(target: GenSentence, all: GenSentence[], seed: string): GenSentence[] {
+export function sentenceOptions(target: GenSentence, all: GenSentence[], seed: string): GenSentence[] {
   const text = target.text.toLowerCase();
   const distractors = all
     .filter((c) => c.id !== target.id && c.text.toLowerCase() !== text)

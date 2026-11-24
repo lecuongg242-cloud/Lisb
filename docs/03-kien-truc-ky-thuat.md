@@ -119,6 +119,13 @@ Nơi chấm bài:
 | Bài tập trong phiên học và ôn tập | Máy khách chấm ngay, máy chủ ghi nhận | Phiên 2-3 phút cần phản hồi tức thì; gian lận chỉ hại chính người học |
 | Kiểm tra đầu vào, kiểm tra cuối cấp | Chỉ máy chủ chấm, không gửi đáp án xuống trình duyệt | Kết quả quyết định việc mở cấp, phải đáng tin |
 
+Cập nhật 2026-11-24, bài kiểm tra cuối cấp (`scripts/013-level-tests.sql`):
+
+- Bảng `level_tests` (số câu, mức đạt), `level_test_questions` (ngân hàng câu hỏi kèm đáp án; chỉ quản trị đọc được), `level_test_attempts` (lượt làm; người học chỉ xem được lượt của mình và không tự ghi được).
+- Người học chỉ đi qua hai hàm: `start_level_test` rút đề và trả câu hỏi không kèm đáp án; `submit_level_test` chấm và trả điểm kèm đáp án. Quản trị nạp ngân hàng bằng `publish_level_test`; nạp lại thì các lượt đang làm dở bị hủy.
+- Hàm `normalize_answer` trong SQL phải cho kết quả giống `normalize()` trong `lib/lang/en.ts`; có kiểm thử so hai bên trên toàn bộ từ và câu của khóa học.
+- Kiểm thử database nằm ở `tests/db/`, chạy bằng pglite cùng lệnh `npx vitest run`. Trên Windows phải đứng ở đường dẫn có ổ đĩa viết hoa (`D:/...`), nếu không Vitest báo không tìm thấy bộ kiểm thử.
+
 ## 5. Âm thanh
 
 | Giai đoạn | Giọng đọc | Chấm nói |

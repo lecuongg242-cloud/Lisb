@@ -190,7 +190,13 @@
     "forbidden": "Bạn không có quyền quản trị.",
     "createReview": "Tạo bài ôn chủ đề",
     "updateReview": "Sinh lại bài ôn",
-    "reviewLesson": "Bài ôn chủ đề"
+    "reviewLesson": "Bài ôn chủ đề",
+    "levelTest": "Bài kiểm tra cuối cấp {level}",
+    "levelTestQuestions": "{count} câu trong ngân hàng",
+    "levelTestNone": "Chưa có đề",
+    "createLevelTest": "Tạo đề kiểm tra",
+    "updateLevelTest": "Sinh lại đề",
+    "levelTestPublished": "Đã nạp {count} câu hỏi."
   },
   "ai": {
     "notice": "Nội dung bài học do AI soạn và kiểm tra, chưa có giáo viên duyệt. Thấy chỗ sai, hãy báo cho chúng tôi."
@@ -316,5 +322,44 @@
     "listen_dictation": "Nghe và gõ lại cả câu",
     "review_vocab": "Cần đúng 80% để qua",
     "review_listening": "Cần đúng 80% để qua"
+  },
+  "levelTest": {
+    "eyebrow": "Kiểm tra cuối cấp",
+    "title": "Kiểm tra cấp {level}",
+    "ruleCount": "{count} câu hỏi lấy từ mọi chủ đề của cấp: từ vựng và nghe.",
+    "rulePass": "Cần đúng từ {percent}% trở lên để hoàn thành cấp.",
+    "ruleNoFeedback": "Trong lúc làm không hiện đúng sai. Nộp bài xong mới có điểm và đáp án.",
+    "ruleRetake": "Làm lại được nhiều lần; mỗi lần là một bộ câu hỏi khác.",
+    "start": "Bắt đầu làm bài",
+    "starting": "Đang chuẩn bị đề...",
+    "submit": "Nộp bài",
+    "submitting": "Đang chấm bài...",
+    "questionNumber": "Câu {current}/{total}",
+    "unanswered": "Còn {count} câu chưa trả lời. Câu bỏ trống sẽ tính là sai.",
+    "unavailable": "Bài kiểm tra này hiện chưa mở.",
+    "closed": "Lượt làm bài này không còn hiệu lực (đề vừa được cập nhật hoặc bài đã nộp). Hãy bắt đầu lại.",
+    "passed": "Bạn đã hoàn thành cấp này!",
+    "failed": "Chưa đạt. Ôn lại rồi thử lần nữa nhé.",
+    "score": "Đúng {correct}/{total} câu, cần {required}% để đạt",
+    "reviewTitle": "Xem lại bài làm",
+    "yourAnswer": "Bạn trả lời: {answer}",
+    "noAnswer": "Bạn chưa trả lời câu này",
+    "retake": "Làm bài khác",
+    "backToCourse": "Về lộ trình",
+    "alreadyPassed": "Bạn đã đạt bài kiểm tra này với {percent}%. Vẫn có thể làm lại để luyện tập.",
+    "bestSoFar": "Điểm cao nhất của bạn là {percent}%, cần {required}% để đạt.",
+    "kind": {
+      "choose_word": "Chọn từ có nghĩa này",
+      "type_word": "Gõ từ có nghĩa này",
+      "listen_choose": "Nghe và chọn câu đúng",
+      "listen_type": "Nghe và gõ lại"
+    },
+    "bannerTitle": "Kiểm tra cuối cấp",
+    "bannerHint": "{count} câu, cần đúng {percent}%. Đã biết rồi thì làm luôn để vượt cấp.",
+    "bannerPassed": "Đã hoàn thành cấp · điểm cao nhất {percent}%",
+    "bannerBest": "Chưa đạt · điểm cao nhất {percent}%",
+    "bannerStart": "Làm bài kiểm tra",
+    "bannerRetake": "Làm lại",
+    "levelDone": "Đã hoàn thành cấp"
   }
 }

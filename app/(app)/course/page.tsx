@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getLearnerContext, getLessonProgress, getLessonSessions, getOrderedLessons, type OrderedLesson } from "@/lib/data";
+import { getLevelTestOverview } from "@/lib/level-test/server";
 import { lessonState, type LessonState } from "@/lib/progress";
 
 const STATE_STYLE: Record<LessonState, { dot: string; row: string; label: string }> = {
@@ -18,8 +19,13 @@ export default async function CoursePage({ searchParams }: { searchParams: Promi
   const [allLessons, progress, { data: levelRows }] = await Promise.all([
     getOrderedLessons(ctx.supabase, ctx.course.id),
     getLessonProgress(ctx.supabase, ctx.userId),
-    ctx.supabase.from("levels").select("code, sort_order").eq("course_id", ctx.course.id).order("sort_order"),
+    ctx.supabase.from("levels").select("id, code, sort_order").eq("course_id", ctx.course.id).order("sort_order"),
   ]);
+  const levelTests = await getLevelTestOverview(
+    ctx.supabase,
+    ctx.userId,
+    (levelRows ?? []).map((row) => row.id as string),
+  );
   const lessons = allLessons.filter((l) => l.status === "published");
   const currentIndex = lessons.findIndex((l) => l.id === ctx.enrollment.currentLessonId);
   const sessionsByLesson = await getLessonSessions(
@@ -34,7 +40,7 @@ export default async function CoursePage({ searchParams }: { searchParams: Promi
 
   const levels = (levelRows ?? []).map((row) => {
     const own = lessons.filter((l) => l.levelCode === row.code);
-    return { code: row.code as string, lessons: own, done: own.filter((l) => stateOf(l) === "done").length };
+    return { code: row.code as string, lessons: own, done: own.filter((l) => stateOf(l) === "done").length, test: levelTests.get(row.id as string) };
   });
   const currentLevelCode = currentIndex >= 0 ? lessons[currentIndex].levelCode : levels.find((l) => l.lessons.length)?.code;
   const selected = levels.find((l) => l.code === requestedLevel) ?? levels.find((l) => l.code === currentLevelCode) ?? levels[0];
@@ -89,7 +95,7 @@ export default async function CoursePage({ searchParams }: { searchParams: Promi
                   <span className="min-w-0 flex-1">
                     <span className="block truncate font-semibold">{levelName(level.code)}</span>
                     <span className="block text-xs text-muted">
-                      {total ? t("course.levelProgress", { done: level.done, total }) : t("course.comingSoon")}
+                      {level.test?.passed ? t("levelTest.levelDone") : total ? t("course.levelProgress", { done: level.done, total }) : t("course.comingSoon")}
                     </span>
                     {total > 0 && (
                       <span className="mt-1.5 block h-1.5 overflow-hidden rounded-full bg-line">
@@ -131,6 +137,24 @@ export default async function CoursePage({ searchParams }: { searchParams: Promi
                   </div>
                 </div>
               </div>
+
+              {selected.test && (
+                <div className={`flex flex-col gap-3 rounded-3xl border p-5 sm:flex-row sm:items-center sm:justify-between ${selected.test.passed ? "border-ok-border bg-ok-bg" : "border-brand bg-brand-soft"}`}>
+                  <div className="min-w-0">
+                    <h2 className="text-lg font-bold">{t("levelTest.bannerTitle")}</h2>
+                    <p className="text-sm">
+                      {selected.test.passed
+                        ? t("levelTest.bannerPassed", { percent: selected.test.bestPercent ?? 0 })
+                        : selected.test.bestPercent !== null
+                          ? t("levelTest.bannerBest", { percent: selected.test.bestPercent })
+                          : t("levelTest.bannerHint", { count: selected.test.questionCount, percent: selected.test.passPercent })}
+                    </p>
+                  </div>
+                  <Link href={`/test/${selected.code}`} className={`btn shrink-0 ${selected.test.passed ? "btn-secondary" : "btn-primary"}`}>
+                    {selected.test.attempts > 0 ? t("levelTest.bannerRetake") : t("levelTest.bannerStart")}
+                  </Link>
+                </div>
+              )}
 
               {unitIds.map((unitId, unitIndex) => {
                 const info = unitInfo.get(unitId);
