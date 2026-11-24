@@ -6,10 +6,10 @@ import { SpeakIconButton } from "@/components/SpeakIconButton";
 import {
   getCompletedSessions,
   getLearnerContext,
-  getOrderedLessons,
   loadLessonDetail,
   type Bilingual,
 } from "@/lib/data";
+import { getLearningPath } from "@/lib/path";
 import { lessonState, nextSessionNo } from "@/lib/progress";
 import { sessionLabels } from "@/lib/session-label";
 
@@ -36,18 +36,17 @@ export default async function LessonPage({
 
   const ctx = await getLearnerContext();
   const t = await getTranslations();
-  const [detail, completed, ordered] = await Promise.all([
+  const [detail, completed, path] = await Promise.all([
     loadLessonDetail(ctx, lessonId),
     getCompletedSessions(ctx.supabase, ctx.userId, lessonId),
-    getOrderedLessons(ctx.supabase, ctx.course.id),
+    getLearningPath(ctx),
   ]);
   if (!detail) notFound();
 
-  const published = ordered.filter((l) => l.status === "published");
   const sessionNos = detail.sessions.map((s) => s.no);
   const state = lessonState(
-    published.findIndex((l) => l.id === lessonId),
-    published.findIndex((l) => l.id === ctx.enrollment.currentLessonId),
+    path.lessons.findIndex((l) => l.id === lessonId),
+    path.currentIndex,
     sessionNos.filter((no) => completed.has(no)).length,
     sessionNos.length,
   );

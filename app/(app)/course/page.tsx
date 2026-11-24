@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { getLearnerContext, getLessonProgress, getLessonSessions, getOrderedLessons, type OrderedLesson } from "@/lib/data";
-import { getLevelTestOverview } from "@/lib/level-test/server";
+import { getLearnerContext, type OrderedLesson } from "@/lib/data";
+import { getLearningPath } from "@/lib/path";
 import { lessonState, type LessonState } from "@/lib/progress";
 
 const STATE_STYLE: Record<LessonState, { dot: string; row: string; label: string }> = {
@@ -16,31 +16,16 @@ export default async function CoursePage({ searchParams }: { searchParams: Promi
   const t = await getTranslations();
   const { level: requestedLevel } = await searchParams;
 
-  const [allLessons, progress, { data: levelRows }] = await Promise.all([
-    getOrderedLessons(ctx.supabase, ctx.course.id),
-    getLessonProgress(ctx.supabase, ctx.userId),
-    ctx.supabase.from("levels").select("id, code, sort_order").eq("course_id", ctx.course.id).order("sort_order"),
-  ]);
-  const levelTests = await getLevelTestOverview(
-    ctx.supabase,
-    ctx.userId,
-    (levelRows ?? []).map((row) => row.id as string),
-  );
-  const lessons = allLessons.filter((l) => l.status === "published");
-  const currentIndex = lessons.findIndex((l) => l.id === ctx.enrollment.currentLessonId);
-  const sessionsByLesson = await getLessonSessions(
-    ctx.supabase,
-    lessons.map((l) => l.id),
-  );
+  const { lessons, currentIndex, progress, sessionsByLesson, levels: levelRows, levelTests } = await getLearningPath(ctx);
   const stateOf = (lesson: OrderedLesson) => {
     const sessionNos = (sessionsByLesson.get(lesson.id) ?? []).map((s) => s.no);
     const done = progress.get(lesson.id);
     return lessonState(lessons.indexOf(lesson), currentIndex, done ? sessionNos.filter((no) => done.has(no)).length : 0, sessionNos.length);
   };
 
-  const levels = (levelRows ?? []).map((row) => {
+  const levels = levelRows.map((row) => {
     const own = lessons.filter((l) => l.levelCode === row.code);
-    return { code: row.code as string, lessons: own, done: own.filter((l) => stateOf(l) === "done").length, test: levelTests.get(row.id as string) };
+    return { code: row.code, lessons: own, done: own.filter((l) => stateOf(l) === "done").length, test: levelTests.get(row.id) };
   });
   const currentLevelCode = currentIndex >= 0 ? lessons[currentIndex].levelCode : levels.find((l) => l.lessons.length)?.code;
   const selected = levels.find((l) => l.code === requestedLevel) ?? levels.find((l) => l.code === currentLevelCode) ?? levels[0];
