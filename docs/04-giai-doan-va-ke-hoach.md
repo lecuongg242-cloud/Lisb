@@ -113,12 +113,14 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 2026-11-24 | Chấm phát âm | Dùng Azure Pronunciation Assessment, chấm tới từng âm. Làm thành giai đoạn 1B cho cấp Khởi động, các bước ở tài liệu 09. Giá và mức miễn phí phải xác nhận trên tài khoản thật trước khi viết mã |
 | 2026-11-24 | Theo dõi tiến độ | Tài liệu 09 là bảng tiến độ có ô đánh dấu, cập nhật mỗi khi xong một việc |
 | 2026-11-24 | Phạm vi sử dụng | Chủ dự án cho biết hiện chỉ dùng cho bản thân, không thương mại. Kế hoạch các giai đoạn giữ nguyên, để ngỏ khả năng mở công khai sau này |
+| 2026-11-24 | Thứ tự ưu tiên | Bỏ qua phần chấm phát âm (giai đoạn 1B) lúc này, ưu tiên làm bài học: chuyển sang giai đoạn 2, soạn bài từ vựng chủ đề cấp A1 trước rồi mới tới ba nhánh và bài ngữ pháp (thứ tự ở tài liệu 09). Đây là ngoại lệ của nguyên tắc 1: các việc của giai đoạn 1 đang chờ chủ dự án thử trên bản thật vẫn còn mở và không chặn việc soạn bài |
 
 ## Quyết định còn mở
 
 | Quyết định | Cần trước khi |
 |---|---|
 | Model kiểm tra chéo và khóa API của nó. Quyết định ngày 2026-11-23 ghi là Claude, nhưng bản nháp cũng do Claude soạn; nên chọn model của hãng khác | Việc số 3 của giai đoạn 1 |
+| Chấm phát âm bằng Azure hay mã nguồn mở (mô hình nhận âm vị wav2vec2-espeak trên máy chủ riêng) | Khi quay lại giai đoạn 1B |
 | Có thuê người duyệt nội dung khi tới B1 không | Giai đoạn 5 |
 | Nguồn giọng Úc cho bài nghe | Giai đoạn 5 |
 | Tên miền riêng | Giai đoạn 7 |
