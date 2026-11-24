@@ -110,3 +110,4 @@ Các mục tiêu trên là điểm xuất phát để so sánh, sẽ chỉnh l�
 | 06. Triển khai | Đưa app lên mạng, cấu hình Supabase, cài lên điện thoại, việc cần làm trước khi cho người khác dùng |
 | 07. Định hướng IELTS | Nghiên cứu về IELTS và TOEFL, mục tiêu từng cấp theo band, cấu trúc ba nhánh, kỹ năng và dạng bài theo thời gian |
 | 08. Kiểm tra trên thiết bị thật | Danh sách kiểm tra từng màn hình cho chủ dự án |
+| 09. Bảng tiến độ | Mọi việc từ bây giờ tới đích, có ô đánh dấu xong hay chưa và việc nào đang chờ chủ dự án |

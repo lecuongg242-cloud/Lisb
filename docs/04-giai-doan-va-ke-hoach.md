@@ -27,6 +27,7 @@ Một hạng mục chỉ được coi là xong khi đủ các điều sau; phầ
 | Giai đoạn | Tên | Kết quả chính | Điều kiện qua giai đoạn |
 |---|---|---|---|
 | 1 | Hoàn thiện cấp Khởi động | Một cấp học trọn vẹn, không còn việc dang dở | Hết danh sách "phải xong ở giai đoạn 1"; chủ dự án học hết cấp Khởi động trên bản thật |
+| 1B | Luyện nói và chấm phát âm | Phiên luyện nói cho từ và câu của cấp Khởi động, chấm tới từng âm | Chủ dự án thử trên điện thoại và xác nhận điểm khớp cảm nhận |
 | 2 | Ba nhánh và cấp A1 | Lộ trình ba nhánh, bài ngữ pháp có lý thuyết, kỹ năng đọc, kiểm tra đầu vào và vượt cấp, trọn cấp A1 | Trọn cấp A1 đạt tiêu chí nội dung; kiểm tra cuối cấp A1 hoạt động |
 | 3 | Cấp A2 và kỹ năng tạo ra ngôn ngữ | Viết câu và đoạn có AI sửa, nói theo mẫu, nghe hiểu hội thoại, thêm giọng Anh, trang tiến độ, trọn cấp A2 | Trọn cấp A2; chi phí AI mỗi người dùng đã đo |
 | 4 | Thử nghiệm kín | Project Supabase chính thức, nhắc học, giám sát lỗi, 10-30 người dùng thử | Có số liệu quay lại ngày 7 và ngày 30; không còn lỗi nghiêm trọng |
@@ -67,7 +68,8 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 
 | Việc | Lý do hoãn | Giai đoạn |
 |---|---|---|
-| Kỹ năng nói, viết, đọc | Cần thiết kế cùng cấu trúc ba nhánh | 2 và 3 |
+| Kỹ năng viết, đọc | Cần thiết kế cùng cấu trúc ba nhánh | 2 và 3 |
+| Kỹ năng nói | Phần chấm phát âm kéo lên giai đoạn 1B theo yêu cầu của chủ dự án; nói theo gợi ý và Speaking vẫn ở giai đoạn 3 và 5 | 1B, 3, 5 |
 | Trang tiến độ theo kỹ năng | Có ý nghĩa khi có nhiều hơn hai kỹ năng | 3 |
 | Nhắc học, dùng khi mất mạng | Thuộc phần chuẩn bị cho người dùng ngoài | 4 |
 | Giám sát lỗi | Thuộc phần chuẩn bị cho người dùng ngoài | 4 |
@@ -108,6 +110,8 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 2026-11-23 | Cấu trúc lộ trình | Ba nhánh: Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR; thêm Kỹ năng thi từ B1 |
 | 2026-11-23 | Cách làm | Hoàn thiện cái đang có rồi mới mở rộng |
 | 2026-11-24 | Nguồn nội dung bài học | Theo chương trình chuẩn: danh sách từ và thứ tự ngữ pháp của các chương trình đã công bố (Cambridge Starters đến B2 First, Oxford 3000, CEFR-J) làm khung cho mọi cấp. Câu mẫu vẫn do AI viết, được đối chiếu với kho câu mở Tatoeba. Không chép bài từ giáo trình vào kho mã, vì kho đang công khai |
+| 2026-11-24 | Chấm phát âm | Dùng Azure Pronunciation Assessment, chấm tới từng âm. Làm thành giai đoạn 1B cho cấp Khởi động, các bước ở tài liệu 09. Giá và mức miễn phí phải xác nhận trên tài khoản thật trước khi viết mã |
+| 2026-11-24 | Theo dõi tiến độ | Tài liệu 09 là bảng tiến độ có ô đánh dấu, cập nhật mỗi khi xong một việc |
 | 2026-11-24 | Phạm vi sử dụng | Chủ dự án cho biết hiện chỉ dùng cho bản thân, không thương mại. Kế hoạch các giai đoạn giữ nguyên, để ngỏ khả năng mở công khai sau này |
 
 ## Quyết định còn mở

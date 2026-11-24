@@ -27,7 +27,7 @@ Mã ứng dụng dùng Next.js 16 (App Router). Phiên bản này khác nhiều 
 | `lib/` | Logic có kiểm thử: chấm đáp án, sinh bài tập, đáp án nhiễu, lịch ôn, bài kiểm tra cuối cấp, truy vấn |
 | `tests/db/`, `tests/e2e/` | Kiểm thử database (pglite) và kiểm thử luồng trên trình duyệt (Playwright) |
 | `messages/` | Chuỗi giao diện theo ngôn ngữ (next-intl) |
-| `docs/` | Tài liệu dự án, đánh số 01 đến 08; danh sách ở cuối tài liệu 01 |
+| `docs/` | Tài liệu dự án, đánh số 01 đến 09; danh sách ở cuối tài liệu 01 |
 | `scripts/` | Migration Postgres (Supabase), đánh số, chạy theo thứ tự |
 | `content/` | Nội dung bài học dạng JSON, theo `khóa/cấp/chủ-đề.json` |
 | `content/build/` | File SQL nạp nội dung, sinh tự động từ JSON |
@@ -38,7 +38,7 @@ Mã ứng dụng dùng Next.js 16 (App Router). Phiên bản này khác nhiều 
 ## Bắt đầu đọc từ đâu
 
 1. [docs/01-tam-nhin-san-pham.md](docs/01-tam-nhin-san-pham.md)
-2. [docs/04-giai-doan-va-ke-hoach.md](docs/04-giai-doan-va-ke-hoach.md) để biết đang ở đâu và việc gì tiếp theo
+2. [docs/09-bang-tien-do.md](docs/09-bang-tien-do.md) để biết đang ở đâu và việc gì tiếp theo; chi tiết từng việc ở [docs/04-giai-doan-va-ke-hoach.md](docs/04-giai-doan-va-ke-hoach.md)
 3. [docs/03-kien-truc-ky-thuat.md](docs/03-kien-truc-ky-thuat.md) trước khi sửa mã
 
 ## Database
