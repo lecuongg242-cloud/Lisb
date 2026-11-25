@@ -1,0 +1,124 @@
+{
+  "unit": "pre-a1/05-things-around-us",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:04:28.737Z",
+  "issues": [
+    {
+      "lesson": "this-is-a",
+      "item": "pen",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"bút\", \"cây bút\", \"bút mực\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến trong tiếng Việt khi nói về đồ vật.",
+      "fix": "Thêm \"chiếc bút\" vào danh sách."
+    },
+    {
+      "lesson": "this-is-a",
+      "item": "bag",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"túi\", \"cặp\", \"cái túi\", \"cái cặp\", \"túi xách\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến.",
+      "fix": "Thêm \"chiếc túi\", \"chiếc cặp\" vào danh sách."
+    },
+    {
+      "lesson": "this-is-a",
+      "item": "s5",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Đây có phải túi của bạn không?\", \"Đây là cặp của bạn phải không?\", \"Đây là cái túi của bạn à?\"]",
+      "problem": "Thiếu cách dịch dùng cấu trúc 'có phải là' rất tự nhiên và phổ biến trong tiếng Việt.",
+      "fix": "Thêm \"Đây có phải là túi của bạn không?\", \"Đây có phải là cặp của bạn không?\""
+    },
+    {
+      "lesson": "that-is-an",
+      "item": "umbrella",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"ô\", \"dù\", \"cái ô\", \"cái dù\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến.",
+      "fix": "Thêm \"chiếc ô\", \"chiếc dù\" vào danh sách."
+    },
+    {
+      "lesson": "that-is-an",
+      "item": "s3",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Cái kia là gì?\", \"Đó là cái gì?\", \"Cái đó là gì?\"]",
+      "problem": "Thiếu cách dịch ngắn gọn, tự nhiên không có chữ 'cái'.",
+      "fix": "Thêm \"Kia là gì?\", \"Đó là gì?\""
+    },
+    {
+      "lesson": "that-is-an",
+      "item": "s5",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Kia có phải quả táo không? Không.\", \"Đó là quả táo phải không? Không.\"]",
+      "problem": "Người học có thể dịch 'No' thành 'Không phải', đây là cách nói rất tự nhiên trong ngữ cảnh này.",
+      "fix": "Thêm \"Kia là quả táo phải không? Không phải.\", \"Đó có phải là quả táo không? Không.\""
+    },
+    {
+      "lesson": "it-is",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.vi",
+      "severity": "suggestion",
+      "current": "It's kết thúc bằng /ts/: phải nghe được cả âm \"t\" lẫn âm \"x\".",
+      "problem": "Dùng 'âm x' có thể đúng với phát âm tiếng Việt nhưng về mặt chữ cái tiếng Anh là 's', nên giải thích rõ hơn để tránh làm người học bối rối.",
+      "fix": "Đổi thành: \"It's kết thúc bằng /ts/: phải nghe được cả âm 't' lẫn âm 's' (đọc như xờ nhẹ).\""
+    },
+    {
+      "lesson": "it-is",
+      "item": "table",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"bàn\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến.",
+      "fix": "Thêm \"chiếc bàn\" vào danh sách."
+    },
+    {
+      "lesson": "it-is",
+      "item": "chair",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"ghế\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến.",
+      "fix": "Thêm \"chiếc ghế\" vào danh sách."
+    },
+    {
+      "lesson": "it-is",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Nó có phải cái cửa không? Vâng.\", \"Đó là cái cửa phải không? Vâng.\", \"Nó là cái cửa phải không? Đúng rồi.\"]",
+      "problem": "Người học có thể dịch 'Yes' thành 'Đúng', 'Đúng vậy', 'Phải'.",
+      "fix": "Thêm \"Nó là cái cửa phải không? Đúng vậy.\", \"Đó có phải là cái cửa không? Vâng.\""
+    },
+    {
+      "lesson": "this-or-that",
+      "item": "watch",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"đồng hồ\", \"cái đồng hồ\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến.",
+      "fix": "Thêm \"chiếc đồng hồ\", \"chiếc đồng hồ đeo tay\" vào danh sách."
+    },
+    {
+      "lesson": "this-or-that",
+      "item": "computer",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"cái máy tính\", \"máy vi tính\"]",
+      "problem": "Thiếu lượng từ 'chiếc' rất phổ biến.",
+      "fix": "Thêm \"chiếc máy tính\" vào danh sách."
+    },
+    {
+      "lesson": "this-or-that",
+      "item": "s5",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Kia có phải cốc của bạn không?\", \"Đó là cốc của bạn phải không?\", \"Kia là cái ly của bạn phải không?\"]",
+      "problem": "Thiếu cách dịch dùng cấu trúc 'có phải là' rất tự nhiên.",
+      "fix": "Thêm \"Kia có phải là cốc của bạn không?\", \"Đó có phải là cốc của bạn không?\""
+    }
+  ]
+}

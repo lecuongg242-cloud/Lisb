@@ -1,0 +1,25 @@
+{
+  "unit": "pre-a1/01-alphabet-and-sounds",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:01:09.045Z",
+  "issues": [
+    {
+      "lesson": "letters-h-n",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.vi",
+      "severity": "error",
+      "current": "I đọc là \"ai\", không phải \"i\". H đọc là \"ết-ch\", J đọc là \"giây\", K đọc là \"kây\".",
+      "problem": "Hướng dẫn J đọc là 'giây' sẽ khiến người miền Bắc phát âm thành /zeɪ/ (sai hoàn toàn âm /dʒ/). Điều này cũng mâu thuẫn với phần giải nghĩa của từ J ở dưới (đọc là 'chây' nhưng cổ họng rung - cách giải thích này chính xác hơn).",
+      "fix": "I đọc là \"ai\", không phải \"i\". H đọc là \"ết-ch\", J đọc là \"chây\" (rung cổ họng), K đọc là \"kây\"."
+    },
+    {
+      "lesson": "letters-o-u",
+      "item": "s4",
+      "field": "note.vi",
+      "severity": "suggestion",
+      "current": "Đánh vần tên Sơn.",
+      "problem": "Bài 3 đưa ra các tên tiếng Việt có dấu và chữ cái đặc biệt (Sơn, Tuấn) và yêu cầu đánh vần không dấu (S, O, N; T, U, A, N). Tuy nhiên, quy tắc 'tên tiếng Việt đánh vần không dấu' lại nằm ở mẹo ngữ pháp của Bài 4. Người học ở cấp độ số 0 có thể thắc mắc tại sao Sơn lại mất chữ 'ơ' và dấu khi học bài 3.",
+      "fix": "Đổi câu s4 thành đánh vần tên 'Lan' (text: 'L, A, N.') và s5 thành tên 'Paul' (text: 'P, A, U, L.') để tránh dùng tên có dấu. Hoặc đơn giản nhất là dời phần giải thích 'tên tiếng Việt đánh vần không dấu' từ grammar_tip của bài 4 lên bài 3."
+    }
+  ]
+}

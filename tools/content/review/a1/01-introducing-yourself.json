@@ -1,0 +1,70 @@
+{
+  "unit": "a1/01-introducing-yourself",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:09:29.134Z",
+  "issues": [
+    {
+      "lesson": "we-and-they",
+      "item": "s4",
+      "field": "translation.vi",
+      "severity": "error",
+      "current": "Họ là bạn của bạn à? Vâng, họ là bạn của chúng tôi.",
+      "problem": "Câu trả lời dùng 'our friends' (bạn của chúng tôi), nên câu hỏi 'your friends' phải được hiểu là số nhiều (bạn của các bạn). Dịch 'bạn của bạn à' (số ít) là không hợp logic.",
+      "fix": "Họ là bạn của các bạn à? Vâng, họ là bạn của chúng tôi."
+    },
+    {
+      "lesson": "we-and-they",
+      "item": "s5",
+      "field": "accepted_translation.vi",
+      "severity": "error",
+      "current": "[\"Xin lỗi, làm ơn cho chúng tôi qua.\", \"Xin lỗi chúng tôi.\"]",
+      "problem": "\"Xin lỗi chúng tôi\" mang nghĩa \"Hãy xin lỗi chúng tôi\" (Apologize to us), đây là cách dịch sai hoàn toàn cho \"Excuse us\" trong ngữ cảnh này. Sẽ làm hệ thống chấm đúng một câu trả lời sai.",
+      "fix": "[\"Xin lỗi, làm ơn cho chúng tôi qua.\", \"Xin lỗi, cho chúng mình đi qua.\"]"
+    },
+    {
+      "lesson": "is-not",
+      "item": "Mr",
+      "field": "lemma",
+      "severity": "error",
+      "current": "Mr",
+      "problem": "Tiếng Anh Mỹ luôn dùng 'Mr.' có dấu chấm. Lemma nên là 'Mr.'.",
+      "fix": "Mr."
+    },
+    {
+      "lesson": "is-not",
+      "item": "Mrs",
+      "field": "lemma",
+      "severity": "error",
+      "current": "Mrs",
+      "problem": "Tiếng Anh Mỹ luôn dùng 'Mrs.' có dấu chấm. Lemma nên là 'Mrs.'.",
+      "fix": "Mrs."
+    },
+    {
+      "lesson": "is-not",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.vi",
+      "severity": "error",
+      "current": "Isn't, aren't có trọng âm ở âm tiết đầu: IS-n't, AR-en't; đọc rõ âm /t/ cuối. Woman đọc /ˈwʊmən/, số nhiều women đọc /ˈwɪmɪn/: chữ o đầu đọc thành âm i. Mr. đọc là mister, Mrs. đọc là missus.",
+      "problem": "Từ 'aren't' trong tiếng Anh Mỹ thường được phát âm là 1 âm tiết /ɑrnt/, không có 2 âm tiết để nhấn trọng âm vào âm tiết đầu ('AR-en't').",
+      "fix": "Isn't có trọng âm ở âm tiết đầu: IS-n't. Aren't thường đọc là 1 âm tiết /ɑrnt/. Nhớ đọc rõ âm /t/ cuối. Woman đọc /ˈwʊmən/, số nhiều women đọc /ˈwɪmɪn/: chữ o đầu đọc thành âm i. Mr. đọc là mister, Mrs. đọc là missus."
+    },
+    {
+      "lesson": "is-not",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.en-US",
+      "severity": "error",
+      "current": "Say the first part of isn't and aren't strongly, and say the last /t/. Woman and women sound different: WOO-man, WI-min. Say Mr. as mister and Mrs. as missus.",
+      "problem": "Từ 'aren't' trong tiếng Anh Mỹ thường được phát âm là 1 âm tiết /ɑrnt/, không có 2 âm tiết để nhấn trọng âm vào âm tiết đầu.",
+      "fix": "Say the first part of isn't strongly. Aren't is usually one syllable. Say the last /t/. Woman and women sound different: WOO-man, WI-min. Say Mr. as mister and Mrs. as missus."
+    },
+    {
+      "lesson": "where-i-live",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.vi",
+      "severity": "suggestion",
+      "current": "Hai từ hai âm tiết có trọng âm ở âm tiết đầu: CI-ty, E-mail. Address trong tiếng Anh Mỹ thường đọc AD-dress. Đọc rõ âm cuối /v/ trong live: răng trên chạm môi dưới.",
+      "problem": "Cụm 'Hai từ hai âm tiết' diễn đạt hơi khó hiểu, dễ gây nhầm lẫn là trong tiếng Anh chỉ có hai từ hai âm tiết.",
+      "fix": "Các từ city, email có trọng âm ở âm tiết đầu: CI-ty, E-mail. Address trong tiếng Anh Mỹ thường đọc AD-dress. Đọc rõ âm cuối /v/ trong live: răng trên chạm môi dưới."
+    }
+  ]
+}

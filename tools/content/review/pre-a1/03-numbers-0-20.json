@@ -1,0 +1,34 @@
+{
+  "unit": "pre-a1/03-numbers-0-20",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:02:40.553Z",
+  "issues": [
+    {
+      "lesson": "zero-to-five",
+      "item": "zero",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"không\", \"0\", \"số 0\"]",
+      "problem": "Nghĩa hiển thị là 'số không (0)', người học rất có thể sẽ gõ 'số không' (viết bằng chữ hoàn toàn). Nên thêm 'số không' vào danh sách chấp nhận. (Nên áp dụng tương tự cho các số khác như 'số một', 'số hai'...)",
+      "fix": "[\"không\", \"0\", \"số 0\", \"số không\"]"
+    },
+    {
+      "lesson": "sixteen-to-twenty",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.vi",
+      "severity": "suggestion",
+      "current": "Đuôi -teen kéo dài và được nhấn; đuôi -ty đọc ngắn và nhẹ. Phân biệt này rất quan trọng về sau (thirteen khác thirty). Twenty bắt đầu bằng cụm /tw/: đọc liền \"tw\", không chen nguyên âm.",
+      "problem": "Trong tiếng Anh Mỹ, từ 'twenty' rất thường được phát âm lướt (nuốt) âm /t/ ở giữa, nghe như 'twen-nee'. Thêm thông tin này sẽ giúp người học nghe hiểu người Mỹ tốt hơn trong thực tế.",
+      "fix": "Đuôi -teen kéo dài và được nhấn; đuôi -ty đọc ngắn và nhẹ. Phân biệt này rất quan trọng về sau (thirteen khác thirty). Twenty bắt đầu bằng cụm /tw/: đọc liền \"tw\". Trong tiếng Anh Mỹ, âm /t/ ở giữa từ twenty thường bị lướt đi, nghe như \"twen-nee\"."
+    },
+    {
+      "lesson": "sixteen-to-twenty",
+      "item": "twenty",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"hai mươi\", \"20\", \"số 20\"]",
+      "problem": "Trong tiếng Việt, 'hai mươi' còn rất hay được gọi là 'hai chục'. Nên thêm vào đáp án chấp nhận để linh hoạt hơn cho người học.",
+      "fix": "[\"hai mươi\", \"20\", \"số 20\", \"hai chục\"]"
+    }
+  ]
+}

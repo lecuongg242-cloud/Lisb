@@ -12,6 +12,8 @@ Cần Node 20.9 trở lên. Chép `.env.example` thành `.env.local` và điền
 npm install
 npm run dev        # http://localhost:3000
 npm test           # kiểm thử logic (lib/) và database (tests/db/, Postgres trong bộ nhớ)
+                   # Windows: chạy từ thư mục có chữ ổ đĩa viết hoa (D:\...). Git Bash đặt thành d:\ làm vitest
+                   # nạp thư viện hai lần và báo lỗi "Cannot read properties of undefined (reading 'config')"
 npm run test:e2e   # kiểm thử luồng trên Chrome; cần E2E_EMAIL, E2E_PASSWORD trong .env.local
 npm run typecheck
 npx eslint .
@@ -68,6 +70,10 @@ Trước khi soạn một cấp mới, lập khung chủ đề và bài ở `too
 node tools/content/build-content.mjs --check   # chỉ kiểm tra
 node tools/content/build-content.mjs           # kiểm tra và sinh content/build/*.sql
 ```
+
+Kiểm tra chéo bằng Gemini (cần `GEMINI_API_KEY` trong `.env.local`): `node tools/content/crosscheck-ai.mjs a1/02-...` cho một chủ đề, hoặc `a1` cho cả cấp. Báo cáo ghi vào `tools/content/review/`; đây chỉ là gợi ý, phải xem từng mục trước khi sửa.
+
+Sửa nghĩa hay đáp án của bài đã xuất bản: nạp lại file SQL là có hiệu lực ngay, vì app đọc nghĩa và đáp án lúc chấm. Sau đó chạy `node tools/content/publish-drafts.mjs --regenerate` (app chạy ở cổng 3210) để đáp án nhiễu được chọn lại theo nghĩa mới.
 
 Sau khi thêm từ mới, chạy `node tools/audio/ipa-check.mjs --write` trước khi build: nó so phiên âm của ipa-dict với giọng đọc và ghi cách đọc khớp vào `tools/content/ipa-preferred.json`.
 

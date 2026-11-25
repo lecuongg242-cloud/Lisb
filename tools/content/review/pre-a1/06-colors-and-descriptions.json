@@ -1,0 +1,34 @@
+{
+  "unit": "pre-a1/06-colors-and-descriptions",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:05:11.258Z",
+  "issues": [
+    {
+      "lesson": "big-and-small",
+      "item": "s1",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Nó lớn.\"]",
+      "problem": "Thiếu đáp án phổ biến 'Nó bự.' (từ 'bự' đã được chấp nhận trong phần từ vựng của từ 'big').",
+      "fix": "[\"Nó lớn.\", \"Nó bự.\"]"
+    },
+    {
+      "lesson": "describing-things",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "error",
+      "current": "[\"Không tệ.\", \"Nó không xấu.\", \"Cũng không tệ.\"]",
+      "problem": "Dịch 'Nó không xấu' dễ gây hiểu lầm 'bad' là 'xấu xí' (ugly). Cụm 'not bad' mang nghĩa 'không tệ, khá tốt'. Dịch 'không xấu' ở đây không tự nhiên và sai sắc thái.",
+      "fix": "[\"Không tệ.\", \"Cũng không tệ.\"]"
+    },
+    {
+      "lesson": "describing-things",
+      "item": "s5",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Nó cũ nhưng tốt.\", \"Nó cũ nhưng dễ chịu.\", \"Nó cũ mà đẹp.\"]",
+      "problem": "Dịch 'dễ chịu' không tự nhiên khi nói về đồ vật nói chung (như cái túi, cái cốc). Từ 'nice' trong trường hợp này nên được hiểu là 'tốt' hoặc 'đẹp'.",
+      "fix": "[\"Nó cũ nhưng tốt.\", \"Nó cũ mà đẹp.\"]"
+    }
+  ]
+}

@@ -4,6 +4,10 @@
 //   npx next dev -p 3210                       (một cửa sổ khác; hoặc app đang chạy ở BASE_URL)
 //   node tools/content/publish-drafts.mjs      xuất bản rồi in số bài tập của từng bài
 //   node tools/content/publish-drafts.mjs --dry-run   chỉ liệt kê việc sẽ làm
+//   node tools/content/publish-drafts.mjs --regenerate  thêm: sinh lại bài tập của mọi bài đã xuất bản
+//                                                       (kể cả bài ôn) và đề kiểm tra cuối cấp. Nghĩa và đáp án
+//                                                       được đọc lúc chấm nên nạp SQL là có hiệu lực; bước này
+//                                                       để đáp án nhiễu được chọn lại theo nghĩa mới.
 //
 // Đăng nhập bằng E2E_EMAIL / E2E_PASSWORD trong .env.local; tài khoản đó phải có quyền quản trị.
 // Mặc định trỏ tới app ở máy (http://localhost:3210), dùng database trong .env.local.
@@ -19,6 +23,7 @@ try {
 
 const BASE_URL = process.env.BASE_URL ?? "http://localhost:3210";
 const DRY_RUN = process.argv.includes("--dry-run");
+const REGENERATE = process.argv.includes("--regenerate");
 const vi = JSON.parse(fs.readFileSync("messages/vi.json", "utf8"));
 const { E2E_EMAIL: email, E2E_PASSWORD: password } = process.env;
 if (!email || !password) throw new Error("Thiếu E2E_EMAIL hoặc E2E_PASSWORD trong .env.local.");
@@ -74,6 +79,40 @@ try {
       console.log(`  ${label}: ${(await status.innerText()).trim()}`);
       await page.reload();
       await page.getByRole("heading", { name: vi.admin.title }).waitFor();
+    }
+  }
+
+  if (REGENERATE) {
+    // Sinh lại theo thứ tự từ trên xuống, vì đáp án nhiễu của một bài lấy từ các bài đứng trước.
+    await page.reload();
+    await page.getByRole("heading", { name: vi.admin.title }).waitFor();
+    const regen = page.getByRole("button", { name: vi.admin.republish, exact: true });
+    const total = await regen.count();
+    console.log(`Bài đã xuất bản (gồm bài ôn): ${total}`);
+    if (!DRY_RUN) {
+      for (let i = 0; i < total; i++) {
+        const button = regen.nth(i);
+        const card = button.locator("xpath=ancestor::div[contains(@class,'card')][1]");
+        const label = (await card.locator("p.font-semibold").innerText()).trim();
+        await button.click();
+        const status = card.getByRole("status");
+        await status.waitFor();
+        console.log(`  ${label}: ${(await status.innerText()).trim()}`);
+      }
+    }
+    const tests = page.getByRole("button", { name: vi.admin.updateLevelTest, exact: true });
+    const testCount = await tests.count();
+    console.log(`Đề kiểm tra cuối cấp: ${testCount}`);
+    if (!DRY_RUN) {
+      for (let i = 0; i < testCount; i++) {
+        const button = tests.nth(i);
+        const box = button.locator("xpath=ancestor::div[contains(@class,'rounded-3xl')][1]");
+        const label = (await box.locator("p.font-semibold").innerText()).trim();
+        await button.click();
+        const status = box.getByRole("status");
+        await status.waitFor();
+        console.log(`  ${label}: ${(await status.innerText()).trim()}`);
+      }
     }
   }
 } finally {

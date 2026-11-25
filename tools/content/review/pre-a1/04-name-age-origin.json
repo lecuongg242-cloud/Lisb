@@ -1,0 +1,43 @@
+{
+  "unit": "pre-a1/04-name-age-origin",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:03:35.414Z",
+  "issues": [
+    {
+      "lesson": "where-from",
+      "item": "too",
+      "field": "usage_note",
+      "severity": "error",
+      "current": "vi: Too với nghĩa cũng đứng ở cuối câu, sau dấu phẩy. | en-US: Too goes at the end of the sentence, after a comma.",
+      "problem": "Quy tắc bắt buộc phải có dấu phẩy trước 'too' ở cuối câu là không chính xác trong tiếng Anh hiện đại (dấu phẩy là tùy chọn). Điều này cũng mâu thuẫn với chính các đáp án không có dấu phẩy được chấp nhận ở câu s5 ('You are from Vietnam too.').",
+      "fix": "vi: Too với nghĩa 'cũng' đứng ở cuối câu. Bạn có thể dùng dấu phẩy trước 'too' hoặc không. | en-US: Too goes at the end of the sentence. You can use a comma before it, but you don't have to."
+    },
+    {
+      "lesson": "getting-to-know",
+      "item": "really",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"thật à\", \"thật sao\", \"thế à\"]",
+      "problem": "Thiếu nghĩa cơ bản và phổ biến nhất là 'thật' (người học rất dễ gõ từ này khi được yêu cầu dịch từ 'really' đứng độc lập).",
+      "fix": "[\"thật\", \"thật à\", \"thật sao\", \"thế à\"]"
+    },
+    {
+      "lesson": "getting-to-know",
+      "item": "that's",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"đó là\", \"điều đó\"]",
+      "problem": "Từ 'that' còn có nghĩa phổ biến là 'kia', nên 'that's' cũng thường được dịch là 'kia là'. Nên bổ sung để tránh chấm sai nếu người học gõ nghĩa này.",
+      "fix": "[\"đó là\", \"điều đó\", \"kia là\"]"
+    },
+    {
+      "lesson": "your-name",
+      "item": "nice",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"vui\", \"dễ chịu\", \"tốt\"]",
+      "problem": "Từ 'nice' khi đứng độc lập còn có nghĩa rất phổ biến là 'đẹp' (ví dụ: a nice day) hoặc 'tuyệt'. Nên bổ sung để người học không bị chấm sai khi gõ các nghĩa này lúc ôn tập từ vựng đơn lẻ.",
+      "fix": "[\"vui\", \"dễ chịu\", \"tốt\", \"đẹp\", \"tuyệt\"]"
+    }
+  ]
+}

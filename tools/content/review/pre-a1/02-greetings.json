@@ -1,0 +1,52 @@
+{
+  "unit": "pre-a1/02-greetings",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:02:08.024Z",
+  "issues": [
+    {
+      "lesson": "times-of-day",
+      "item": "s3",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Ngủ ngon!\", \"Ngủ ngon nhé!\"]",
+      "problem": "Câu 'Good night!' ngoài nghĩa chúc ngủ ngon còn được dùng phổ biến để chào tạm biệt khi chia tay nhau vào buổi tối. Nên bổ sung nghĩa tạm biệt để chấm đúng nếu người học dịch theo ngữ cảnh này.",
+      "fix": "Thêm \"Tạm biệt!\" và \"Chào tạm biệt!\" vào danh sách."
+    },
+    {
+      "lesson": "how-are-you",
+      "item": "s3",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Còn bạn thì sao?\"]",
+      "problem": "Thiếu cách dịch rất phổ biến, ngắn gọn và tự nhiên trong giao tiếp tiếng Việt là 'Bạn thì sao?'.",
+      "fix": "Thêm \"Bạn thì sao?\" vào danh sách."
+    },
+    {
+      "lesson": "polite-words",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Vâng, làm ơn.\", \"Có, làm ơn.\"]",
+      "problem": "Dịch 'Yes, please' thành 'Vâng, làm ơn' khi nhận lời mời là cách nói rất gượng ép, không tự nhiên và mang hơi hướng dịch máy. Người Việt thường đáp lại lời mời bằng 'Dạ có', 'Vâng', hoặc 'Vâng, cho tôi xin'.",
+      "fix": "Xóa \"Vâng, làm ơn.\" và \"Có, làm ơn.\", thay bằng \"Dạ có.\" và \"Vâng.\""
+    },
+    {
+      "lesson": "polite-words",
+      "item": "you're",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"bạn là\", \"bạn thì\"]",
+      "problem": "Giống như từ 'I'm' được chấp nhận nghĩa 'tôi', 'you're' cũng nên chấp nhận nghĩa 'bạn' vì khi dịch sang tiếng Việt không phải lúc nào cũng cần dịch sát chữ 'là/thì' (ví dụ trong cụm You're welcome).",
+      "fix": "Thêm \"bạn\" vào danh sách."
+    },
+    {
+      "lesson": "polite-words",
+      "item": "excuse",
+      "field": "meaning.en-US",
+      "severity": "suggestion",
+      "current": "Excuse me is a polite way to get someone to listen or move",
+      "problem": "Giải nghĩa này đang giải thích cho cả cụm 'Excuse me' thay vì động từ 'excuse' (thứ lỗi, bỏ qua). Dù hữu ích cho người mới học, nhưng về mặt từ vựng học thì hơi lệch so với từ loại (verb).",
+      "fix": "Đổi thành \"to forgive someone for a small mistake\" hoặc \"used in 'excuse me' to politely get attention\" để chính xác hơn với từ gốc."
+    }
+  ]
+}
