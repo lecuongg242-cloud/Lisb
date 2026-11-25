@@ -1,6 +1,6 @@
 # 09. Bảng tiến độ
 
-Cập nhật lần cuối: 2026-11-25.
+Cập nhật lần cuối: 2026-11-24.
 
 Đây là danh sách việc từ bây giờ tới đích IELTS 6.5, theo thứ tự làm. Mỗi lần xong một việc, dòng đó được đánh dấu và ghi ngày. Lý do, tiêu chí hoàn thành và chi tiết từng việc nằm ở tài liệu 04; tài liệu này chỉ để nhìn nhanh đang ở đâu.
 
@@ -15,8 +15,8 @@ Ký hiệu:
 | Giai đoạn | Nội dung | Tình trạng |
 |---|---|---|
 | 1 | Hoàn thiện cấp Khởi động | Đang làm: 7 việc xong, 6 việc chờ chủ dự án, 2 việc chưa làm |
-| 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Tạm hoãn từ 2026-11-25 theo yêu cầu của chủ dự án; xem lại muộn nhất ở đầu giai đoạn 3 |
-| 2 | Ba nhánh và cấp A1 | Chưa bắt đầu |
+| 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Hoãn từ 2026-11-24, làm sau khi có bài học cấp A1 |
+| 2 | Ba nhánh và cấp A1 | Đang làm: khung A1 xong, chủ đề 1/21 đã xuất bản |
 | 3 | Cấp A2, viết và nói | Chưa bắt đầu |
 | 4 | Thử nghiệm kín | Chưa bắt đầu |
 | 5 | Cấp B1 và kỹ năng thi | Chưa bắt đầu |
@@ -31,8 +31,9 @@ Gom lại một chỗ để bạn biết mình cần làm gì. Làm xong việc 
 1. Thử app trên điện thoại theo tài liệu 08: học 3 bài có bấm giờ, ôn tập, bài ôn chủ đề, kiểm tra cuối cấp, gửi một báo lỗi, mở trang xem nội dung.
 2. Nghe duyệt âm thanh ở Quản trị > Âm thanh: 26 chữ cái, số 0-20, khoảng 10 câu mỗi chủ đề, cả hai giọng.
 3. Cấp khóa API của một hãng khác Anthropic (ví dụ Gemini) để kiểm tra chéo nội dung: tự dán vào `.env.local`, không gửi qua khung chat.
-4. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
-5. Đọc lại trang chính sách quyền riêng tư.
+4. Tạo lại file `.env.local` trên máy đang làm việc theo `.env.example` (kết nối database, tài khoản thử): thiếu file này thì không xuất bản được bài mới và không chạy được kiểm thử luồng.
+5. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
+6. Đọc lại trang chính sách quyền riêng tư.
 
 ## Giai đoạn 1: hoàn thiện cấp Khởi động
 
@@ -56,59 +57,61 @@ Số trong ngoặc là số việc ở tài liệu 04.
 
 Điều kiện đóng giai đoạn: mọi dòng trên là `[x]`, và bạn đã học hết cấp Khởi động trên bản thật.
 
-Việc bạn học hết cấp Khởi động không chặn giai đoạn 2: khi phần của Claude ở giai đoạn 1 xong, Claude bắt đầu giai đoạn 2 trong lúc bạn vẫn học (quyết định 2026-11-25).
-
 ## Giai đoạn 1B: luyện nói và chấm phát âm
 
-Mục tiêu: bạn nói vào điện thoại, app đánh giá và chỉ ra từ hoặc âm đọc sai. Phạm vi là từ và câu của cấp Khởi động; các cấp sau dùng lại.
+**Hoãn theo quyết định 2026-11-24 của chủ dự án: ưu tiên làm bài học trước.** Các bước dưới đây giữ nguyên để làm sau. Khi quay lại cần chọn dịch vụ chấm, chưa quyết. Azure đã từ chối cho chủ dự án đăng ký ngày 2026-11-24, nên bước 1 bên dưới phải đổi theo phương án được chọn; các phương án còn lại ở tài liệu 04, mục Quyết định còn mở.
 
-**Tình trạng 2026-11-25: tạm hoãn theo yêu cầu của chủ dự án.** Giai đoạn này không chặn giai đoạn 2; xem lại muộn nhất ở đầu giai đoạn 3. Phần dưới giữ nguyên để làm tiếp khi mở lại.
+Quyết định 2026-11-24: dùng Azure Pronunciation Assessment để chấm tới từng âm. Phạm vi của giai đoạn này là từ và câu của cấp Khởi động; các cấp sau dùng lại.
 
-Tình trạng 2026-11-24: kẹt ở việc chọn dịch vụ chấm. Quyết định ban đầu là Azure Pronunciation Assessment, nhưng Azure từ chối cho chủ dự án đăng ký ("You are not eligible for an Azure subscription"); nguyên nhân Microsoft không nêu, thường do loại thẻ hoặc thông tin không khớp. Chưa chọn phương án thay thế.
+Điều đã biết và chưa biết (tra ngày 2026-11-24):
 
-Các phương án, theo thứ tự Claude đề xuất thử:
+- Mỗi lần chấm nhận tối đa 30 giây âm thanh, trả về điểm từng từ, từng âm tiết, từng âm, cùng độ trôi chảy.
+- Giá: tính như chuyển giọng nói thành chữ. Một câu trả lời trên diễn đàn Microsoft nêu khoảng 1,32 USD mỗi giờ âm thanh và 5 giờ miễn phí mỗi tháng ở gói F0. **Chưa xác nhận được trên trang giá chính thức**; nếu đúng thì một người học dùng không hết phần miễn phí (5 giờ là khoảng 3.000 câu 6 giây).
+- Có báo cáo của người dùng rằng điểm từng âm đôi khi thiếu chính xác. Vì vậy app sẽ ghi rõ đây là đánh giá của máy, và luôn cho nghe lại bản ghi cạnh giọng mẫu.
 
-| Phương án | Chấm được gì | Cần gì | Điểm yếu |
-|---|---|---|---|
-| Gemini nghe bản ghi | Nhận xét bằng lời: từ nào nghe sai, sai thế nào | Một khóa Gemini (dùng chung cho kiểm tra chéo nội dung) | Không được thiết kế để chấm từng âm; phải thử độ tin cậy trước khi dựng tính năng |
-| Model mã nguồn mở nhận diện âm (wav2vec2) | So chuỗi âm máy nghe được với chuỗi âm đúng | Không cần tài khoản | Model nặng vài trăm MB, có thể chậm trên điện thoại; rủi ro kỹ thuật cao |
-| Azure, đăng ký lại | Điểm từng âm, từng từ, độ trôi chảy | Thẻ tín dụng thật, tắt VPN, tài khoản Microsoft chưa từng đăng ký Azure | Không chắc lần sau sẽ qua |
-| Speechace, SpeechSuper | Tương tự Azure | Tài khoản trả phí | Chưa tra giá, chưa thử chất lượng |
-| Nhận diện giọng nói của trình duyệt | Máy nhận ra được những từ nào | Không cần gì | Không chỉ ra âm sai; kém trên iPhone |
+Các bước:
 
-Điều đã biết về Azure, giữ lại phòng khi đăng ký được: mỗi lần chấm tối đa 30 giây; một câu trả lời trên diễn đàn Microsoft nêu khoảng 1,32 USD mỗi giờ âm thanh và 5 giờ miễn phí mỗi tháng ở gói F0 (chưa xác nhận trên trang giá chính thức); có báo cáo rằng điểm từng âm đôi khi thiếu chính xác.
-
-Các bước (bước 1 và 2 phụ thuộc phương án, các bước sau giống nhau):
-
-- [ ] 1. Chủ dự án chọn phương án và cấp thứ nó cần (khóa API, nếu có)
-- [ ] 2. Thử độ tin cậy trước khi viết mã giao diện: bản ghi đọc đúng và bản ghi đọc sai có chủ đích, xem dịch vụ có phân biệt được không; xác nhận giá và giới hạn. Không đạt thì quay lại bước 1 với phương án kế tiếp
-- [ ] 3. Thử ghi âm trên iPhone và Android thật: trình duyệt cho ra định dạng gì, có cần đổi định dạng trước khi gửi không
-- [ ] 4. Viết thiết kế vào tài liệu 03: luồng ghi âm, máy chủ gọi dịch vụ (khóa không xuống trình duyệt), giới hạn số lần mỗi ngày, không lưu bản ghi âm, cách tính đạt hay chưa đạt
-- [ ] 5. Migration: bảng lưu kết quả từng lần nói và đếm lượt dùng; thử trên dữ liệu giống thật
-- [ ] 6. Màn hình luyện nói một từ hoặc một câu: nghe mẫu, ghi âm, xem đánh giá, từ và âm sai được chỉ ra, nghe lại bản ghi của mình
+- [ ] 1. Bạn tạo tài nguyên Azure Speech (gói miễn phí F0), dán khóa và vùng vào `.env.local`
+- [ ] 2. Xác nhận trên tài khoản thật: giá, mức miễn phí, định dạng âm thanh được nhận; gửi thử một file ghi âm và đọc kết quả
+- [ ] 3. Thử ghi âm trên iPhone và Android thật: trình duyệt cho ra định dạng gì, có cần đổi sang WAV trước khi gửi không
+- [ ] 4. Viết thiết kế vào tài liệu 03: luồng ghi âm, máy chủ gọi Azure (khóa không xuống trình duyệt), giới hạn số lần mỗi ngày, không lưu bản ghi âm, cách tính đạt hay chưa đạt
+- [ ] 5. Migration: bảng lưu kết quả từng lần nói (điểm tổng, điểm từng từ, âm yếu) và đếm lượt dùng; thử trên dữ liệu giống thật
+- [ ] 6. Màn hình luyện nói một từ hoặc một câu: nghe mẫu, ghi âm, xem điểm, từ và âm sai được tô màu, nghe lại bản ghi của mình
 - [ ] 7. Thêm phiên "Luyện nói" vào mỗi bài của cấp Khởi động và xuất bản lại 24 bài
 - [ ] 8. Âm bạn hay đọc sai được gom lại thành danh sách luyện riêng
-- [ ] 9. Xử lý khi không dùng được: không cấp quyền micro, mất mạng, hết lượt, dịch vụ lỗi
-- [ ] 10. Kiểm thử tự động cho phần tính điểm và phân quyền; cập nhật chính sách quyền riêng tư (giọng nói được gửi tới bên thứ ba nào)
-- [ ] 11. Bạn thử trên điện thoại: 10 từ và 5 câu, cho biết đánh giá có khớp cảm nhận không
+- [ ] 9. Xử lý khi không dùng được: không cấp quyền micro, mất mạng, hết lượt, Azure lỗi
+- [ ] 10. Kiểm thử tự động cho phần tính điểm và phân quyền; cập nhật chính sách quyền riêng tư (giọng nói được gửi tới Microsoft)
+- [ ] 11. Bạn thử trên điện thoại: 10 từ và 5 câu, cho biết điểm có khớp cảm nhận không
+
+Bước 2 và 3 quyết định cách làm các bước sau, nên không viết mã giao diện trước khi xong hai bước đó.
 
 ## Giai đoạn 2: ba nhánh và cấp A1
 
+Thứ tự xếp lại ngày 2026-11-24 để có bài học mới sớm nhất: bài từ vựng chủ đề của cấp A1 dùng lại nguyên dạng bài đang có, nên soạn và xuất bản được trước khi làm ba nhánh và bài ngữ pháp.
+
+Đợt 1, bài học dùng dạng bài đang có:
+
+- [x] Lập danh sách từ và thứ tự ngữ pháp cấp A1 theo chương trình chuẩn (Cambridge A1 Movers, CEFR-J); chia thành chủ đề và bài — 2026-11-24, `tools/content/syllabus/english-a1.json`: 21 chủ đề, 84 bài, 544 từ mới, cộng dồn 688; kiểm bằng `node tools/content/syllabus-check.mjs`. Migration 015 đưa 21 chủ đề vào database
+- [x] Đạt kiểm tra cuối cấp thì mở cấp sau; bài mới xuất bản sau bài cuối đã học không còn bị khóa — 2026-11-24 (kéo lên từ đợt 2 vì đã có A1)
 - [ ] Thiết kế ba nhánh (Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR) và viết lại tài liệu 02
-- [ ] Lập danh sách từ và thứ tự ngữ pháp cấp A1 theo chương trình chuẩn (Cambridge A1 Movers, CEFR-J)
-- [ ] Migration và trang Lộ trình cho ba nhánh; chuyển 24 bài hiện có vào nhánh Từ vựng chủ đề
+- [ ] Công cụ kiểm tra chéo chạy tự động cho mọi bài mới (cần khóa API hãng khác; cũng đóng việc số 3 của giai đoạn 1)
+- [ ] Soạn, kiểm tra, sinh âm thanh và xuất bản các bài từ vựng chủ đề cấp A1, từng chủ đề một. Đã xuất bản (chưa kiểm tra chéo, chưa nghe duyệt âm thanh):
+  - [~] Chủ đề 1 Giới thiệu bản thân, 4 bài + bài ôn, 30 từ — 2026-11-24, chờ bạn học thử
+  - [ ] Chủ đề 2-21
+
+Đợt 2, dạng bài mới:
+
+- [ ] Migration và trang Lộ trình cho ba nhánh; chuyển các bài hiện có vào nhánh Từ vựng chủ đề
 - [ ] Loại bài lý thuyết ngữ pháp và các dạng bài tập ngữ pháp (điền dạng đúng, sửa lỗi, sắp xếp câu)
-- [ ] Tách các điểm ngữ pháp của cấp Khởi động thành bài riêng
+- [ ] Tách các điểm ngữ pháp của cấp Khởi động thành bài riêng; soạn bài ngữ pháp cấp A1
 - [ ] Kỹ năng đọc: câu và đoạn ngắn, trắc nghiệm, ghép nối
-- [ ] Kiểm tra đầu vào; dùng kết quả kiểm tra cuối cấp để mở cấp sau
-- [ ] Công cụ kiểm tra chéo chạy tự động cho mọi bài mới
-- [ ] Soạn, kiểm tra, sinh âm thanh và xuất bản trọn cấp A1 (khoảng 550 từ mới)
+- [ ] Kiểm tra đầu vào (phần mở cấp sau bằng kiểm tra cuối cấp đã làm ở đợt 1)
 - [ ] Kiểm tra cuối cấp A1
 
 ## Giai đoạn 3: cấp A2, viết và nói
 
 - [ ] Viết câu và đoạn ngắn, AI sửa lỗi; đo chi phí AI
-- [ ] Nói theo gợi ý và trả lời câu hỏi ngắn (cần phần chấm phát âm của 1B; nếu 1B vẫn đang hoãn thì chọn dịch vụ chấm ở đầu giai đoạn này)
+- [ ] Nói theo gợi ý và trả lời câu hỏi ngắn (dùng lại phần chấm phát âm của 1B)
 - [ ] Nghe hội thoại ngắn và trả lời; thêm giọng Anh
 - [ ] Dạng bài điền chỗ trống, True/False; đọc đoạn 100-150 từ
 - [ ] Trang tiến độ theo kỹ năng và theo band

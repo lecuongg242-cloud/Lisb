@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { countDueCards, countSessionsToday, getCompletedSessions, getLearnerContext, getLessonSessions, type LessonSession } from "@/lib/data";
+import { countDueCards, countSessionsToday, getLearnerContext } from "@/lib/data";
+import { getLearningPath } from "@/lib/path";
 import { nextSessionNo } from "@/lib/progress";
 import { sessionLabels } from "@/lib/session-label";
 
@@ -10,13 +11,14 @@ const REVIEW_FIRST_THRESHOLD = 5;
 export default async function HomePage() {
   const ctx = await getLearnerContext();
   const t = await getTranslations();
-  const lessonId = ctx.enrollment.currentLessonId;
+  const path = await getLearningPath(ctx);
+  const lessonId = path.currentLessonId;
+  const done = (lessonId && path.progress.get(lessonId)) || new Set<number>();
+  const sessionsByLesson = path.sessionsByLesson;
 
-  const [due, sessionsToday, done, sessionsByLesson, lessonTitle] = await Promise.all([
+  const [due, sessionsToday, lessonTitle] = await Promise.all([
     countDueCards(ctx),
     countSessionsToday(ctx),
-    lessonId ? getCompletedSessions(ctx.supabase, ctx.userId, lessonId) : Promise.resolve(new Set<number>()),
-    lessonId ? getLessonSessions(ctx.supabase, [lessonId]) : Promise.resolve(new Map<string, LessonSession[]>()),
     lessonId
       ? ctx.supabase
           .from("lesson_translations")

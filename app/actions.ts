@@ -6,6 +6,7 @@ import { z } from "zod";
 import { requireUser } from "@/lib/auth";
 import { getCompletedSessions, getLearnerContext, getLessonSessions, getOrderedLessons, getProfile } from "@/lib/data";
 import { scoreFirstTries } from "@/lib/exercises/review";
+import { getLearningPath } from "@/lib/path";
 import { nextSessionNo } from "@/lib/progress";
 import { REPORT_REASONS } from "@/lib/report";
 import { publishLesson, publishUnitReview, type PublishResult } from "@/lib/publish";
@@ -166,13 +167,13 @@ export async function completeSession(input: z.infer<typeof completeSessionSchem
     }
   }
 
-  // Học xong mọi phiên của bài đang học thì chuyển sang bài kế tiếp.
+  // Học xong mọi phiên của một bài thì lưu lại bài đang học mới (tính như trên lộ trình: bỏ qua bài đã xong
+  // và cấp đã đạt kiểm tra). Bài đã học hết thì giữ nguyên bài được lưu.
   const { next } = await remainingAfter();
-  if (next === null && ctx.enrollment.currentLessonId === lessonId) {
-    const lessons = (await getOrderedLessons(supabase, ctx.course.id)).filter((l) => l.status === "published");
-    const nextLesson = lessons[lessons.findIndex((l) => l.id === lessonId) + 1];
-    if (nextLesson) {
-      await supabase.from("enrollments").update({ current_lesson_id: nextLesson.id }).eq("user_id", userId).eq("course_id", ctx.course.id);
+  if (next === null) {
+    const path = await getLearningPath(ctx);
+    if (path.currentLessonId && path.currentLessonId !== ctx.enrollment.currentLessonId) {
+      await supabase.from("enrollments").update({ current_lesson_id: path.currentLessonId }).eq("user_id", userId).eq("course_id", ctx.course.id);
     }
   }
 

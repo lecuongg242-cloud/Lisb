@@ -9,6 +9,7 @@ Tải thủ công vào `tools/content/data/ref/` (thư mục này không đưa l
 | File | Nguồn | Giấy phép |
 |---|---|---|
 | `starters.pdf` | Danh sách từ Pre-A1 Starters, cambridgeenglish.org | Có bản quyền, chỉ đối chiếu |
+| `movers.pdf` | Danh sách từ gộp Starters, Movers, Flyers 2018: cambridgeenglish.org/Images/351850-a1-movers-word-list-2018.pdf. Chuyển sang `movers.txt` bằng `pdftotext -layout`; `tools/content/syllabus-check.mjs` đọc file này để in nhãn S/M/F của từng từ | Có bản quyền, chỉ đối chiếu |
 | `vie_sentences.tsv.bz2`, `eng_sentences.tsv.bz2` | downloads.tatoeba.org/exports/per_language/ | CC BY 2.0 FR |
 | `links.tar.bz2` | downloads.tatoeba.org/exports/ | CC BY 2.0 FR |
 

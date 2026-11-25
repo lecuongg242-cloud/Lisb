@@ -23,7 +23,7 @@ Tài liệu này mô tả cả phần đã có lẫn phần dự định. Phần
 
 1. Toàn bộ mã do Claude viết trong kho này. v0 và Vercel chỉ dùng để triển khai (quyết định 2026-11-23).
 2. Logic quan trọng (lịch ôn, chấm bài, sinh bài tập, chọn đáp án nhiễu) nằm trong `lib/` và có kiểm thử, không để lẫn trong component.
-3. Schema là các file SQL đánh số trong `scripts/`, chạy bằng `run-sql`. Không sửa schema bằng tay trên giao diện Supabase.
+3. Schema là các file SQL đánh số trong `scripts/`, chạy bằng `npm run sql` (`tools/db/run-sql.mjs`). Không sửa schema bằng tay trên giao diện Supabase.
 4. Hiện chỉ có một project Supabase (thử nghiệm) và bản trên mạng cũng dùng nó. Vì vậy migration phải được thử trên Postgres cục bộ có dữ liệu giống thật trước khi chạy, và chạy xong mới đẩy mã phụ thuộc vào nó (tiêu chí ở tài liệu 04). Project chính thức tách riêng ở giai đoạn 4.
 5. Sau mỗi lần đẩy mã, kiểm tra trạng thái triển khai (tài liệu 06, mục 6).
 
@@ -157,7 +157,16 @@ Bài kiểm tra cuối cấp (`scripts/013-level-tests.sql`):
 
 - Người học chỉ đi qua hai hàm: `start_level_test` rút đề và trả câu hỏi không kèm đáp án; `submit_level_test` chấm và trả điểm kèm đáp án. Quản trị nạp ngân hàng bằng `publish_level_test`; nạp lại thì các lượt đang làm dở bị hủy.
 - Hàm `normalize_answer` trong SQL phải cho kết quả giống `normalize()` trong `lib/lang/en.ts`; có kiểm thử so hai bên trên toàn bộ từ và câu của khóa học.
-- Đạt thì cấp được ghi là hoàn thành. Dùng kết quả này để mở khóa cấp sau, và kiểm tra đầu vào, là việc của giai đoạn 2.
+- Đạt thì cấp được ghi là hoàn thành và cấp sau được mở (xem mục Lộ trình dưới đây). Kiểm tra đầu vào là việc của giai đoạn 2.
+
+### Lộ trình và bài đang học
+
+`enrollments.current_lesson_id` chỉ là điểm bắt đầu. Bài đang học thật sự được tính mỗi lần đọc trang (`lib/path.ts`, hàm thuần `currentLessonIndex` trong `lib/progress.ts`): từ bài được lưu, bỏ qua các bài đã học xong và các bài thuộc cấp đã đạt kiểm tra cuối cấp. Nhờ vậy:
+
+- đạt kiểm tra cuối cấp thì bài đầu tiên của cấp sau thành bài đang học; các bài bị bỏ qua vẫn mở để học lại;
+- học hết nội dung rồi mà sau đó có bài mới được xuất bản thì bài mới thành bài đang học, không bị khóa.
+
+Trang chủ, trang Lộ trình và trang bài học dùng chung cách tính này. Học xong một bài thì bài đang học mới được ghi lại vào `current_lesson_id`.
 
 ### Ôn tập
 

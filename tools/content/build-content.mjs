@@ -108,7 +108,11 @@ function readUnits() {
     if (course === "build") continue;
     const courseDir = path.join(CONTENT_DIR, course);
     if (!fs.statSync(courseDir).isDirectory()) continue;
-    for (const level of fs.readdirSync(courseDir)) {
+    // Đọc theo thứ tự cấp (pre-a1 trước a1), không theo thứ tự chữ cái, vì từ phải được dạy trước khi dùng.
+    const levelOrder = Object.keys(LEVEL_RULES);
+    const rank = (level) => (levelOrder.includes(level) ? levelOrder.indexOf(level) : levelOrder.length);
+    const levels = fs.readdirSync(courseDir).sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+    for (const level of levels) {
       const levelDir = path.join(courseDir, level);
       if (!fs.statSync(levelDir).isDirectory()) continue;
       for (const file of fs.readdirSync(levelDir).filter((f) => f.endsWith(".json")).sort()) {

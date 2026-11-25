@@ -1,0 +1,1245 @@
+{
+  "course": "english",
+  "level": "a1",
+  "status": "Bản nháp 2026-11-24, chờ chủ dự án duyệt",
+  "about": "Khung chủ đề (khóa chủ đề trùng slug trong bảng units) và bài của nhánh Từ vựng chủ đề cấp A1. Mỗi bài liệt kê từ mới theo thứ tự dạy. Viết 'lemma/từ loại' khi cùng chữ viết với một từ đã dạy nhưng khác từ loại. Kiểm tra bằng: node tools/content/syllabus-check.mjs Một số từ ở cấp A2 trong CEFR-J được giữ có chủ ý vì người lớn cần dùng ngay (menu, bill, cheap, far, wallet, motorbike...); công cụ build sẽ cảnh báo những từ này, không chặn.",
+  "units": [
+    {
+      "key": "introducing-yourself",
+      "title": "Giới thiệu bản thân",
+      "can_do": "Giới thiệu mình, nói về một người khác, cho địa chỉ và email",
+      "grammar": "Động từ be với mọi ngôi, câu phủ định và câu hỏi; tính từ sở hữu",
+      "pronunciation": "Trọng âm từ hai âm tiết",
+      "lessons": [
+        {
+          "key": "he-and-she",
+          "title": "Anh ấy, cô ấy",
+          "words": [
+            "he",
+            "she",
+            "he's/contraction",
+            "she's/contraction",
+            "his",
+            "her",
+            "friend",
+            "teacher"
+          ]
+        },
+        {
+          "key": "we-and-they",
+          "title": "Chúng tôi, họ",
+          "words": [
+            "we",
+            "they",
+            "we're/contraction",
+            "they're/contraction",
+            "our",
+            "their",
+            "student",
+            "us"
+          ]
+        },
+        {
+          "key": "is-not",
+          "title": "Không phải",
+          "words": [
+            "isn't/contraction",
+            "aren't/contraction",
+            "who",
+            "Mr/proper noun",
+            "Mrs/proper noun",
+            "man",
+            "woman"
+          ]
+        },
+        {
+          "key": "where-i-live",
+          "title": "Tôi sống ở đâu",
+          "words": [
+            "the",
+            "live",
+            "in",
+            "city",
+            "street",
+            "address",
+            "email"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "family",
+      "title": "Gia đình",
+      "can_do": "Nói về người thân: có ai, tên gì, trông thế nào",
+      "grammar": "have và has; danh từ số nhiều; sở hữu cách 's",
+      "pronunciation": "Âm /ð/ trong mother, brother",
+      "lessons": [
+        {
+          "key": "my-family",
+          "title": "Gia đình tôi",
+          "words": [
+            "family",
+            "mother",
+            "father",
+            "parent",
+            "brother",
+            "sister",
+            "son",
+            "daughter"
+          ]
+        },
+        {
+          "key": "have-has",
+          "title": "Tôi có, anh ấy có",
+          "words": [
+            "have",
+            "husband",
+            "wife",
+            "child",
+            "baby",
+            "only",
+            "mom",
+            "dad"
+          ]
+        },
+        {
+          "key": "relatives",
+          "title": "Họ hàng",
+          "words": [
+            "grandmother",
+            "grandfather",
+            "grandparent",
+            "uncle",
+            "aunt",
+            "cousin",
+            "with"
+          ]
+        },
+        {
+          "key": "describing-people",
+          "title": "Tả người",
+          "words": [
+            "young",
+            "tall",
+            "hair",
+            "eye",
+            "kind",
+            "funny",
+            "look"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "jobs",
+      "title": "Nghề nghiệp",
+      "can_do": "Hỏi và nói về công việc, nơi làm việc",
+      "grammar": "a/an + nghề; What do you do?; do, does, don't, doesn't",
+      "pronunciation": "/dʒ/ trong job; phân biệt /ʃ/ và /s/",
+      "lessons": [
+        {
+          "key": "what-do-you-do",
+          "title": "Bạn làm nghề gì",
+          "words": [
+            "do",
+            "job",
+            "work",
+            "doctor",
+            "nurse",
+            "engineer",
+            "office"
+          ]
+        },
+        {
+          "key": "more-jobs",
+          "title": "Thêm nghề",
+          "words": [
+            "driver",
+            "farmer",
+            "cook/noun",
+            "waiter",
+            "singer",
+            "at",
+            "hospital"
+          ]
+        },
+        {
+          "key": "workplaces",
+          "title": "Nơi làm việc",
+          "words": [
+            "school",
+            "factory",
+            "shop",
+            "restaurant",
+            "bank",
+            "for",
+            "hard"
+          ]
+        },
+        {
+          "key": "do-you-like-it",
+          "title": "Bạn có thích việc này không",
+          "words": [
+            "don't/contraction",
+            "doesn't/contraction",
+            "like",
+            "busy",
+            "easy",
+            "difficult",
+            "interesting",
+            "also"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "numbers-and-time",
+      "title": "Số và giờ",
+      "can_do": "Đếm tới 100, hỏi và nói giờ, nói lịch làm việc",
+      "grammar": "Số tới 100; at + giờ; What time is it?",
+      "pronunciation": "Phân biệt thirteen và thirty",
+      "lessons": [
+        {
+          "key": "to-one-hundred",
+          "title": "Số tới 100",
+          "words": [
+            "thirty",
+            "forty",
+            "fifty",
+            "sixty",
+            "seventy",
+            "eighty",
+            "ninety",
+            "hundred"
+          ]
+        },
+        {
+          "key": "what-time",
+          "title": "Mấy giờ rồi",
+          "words": [
+            "time",
+            "o'clock",
+            "half",
+            "past",
+            "quarter",
+            "minute"
+          ]
+        },
+        {
+          "key": "early-late",
+          "title": "Sớm và muộn",
+          "words": [
+            "hour",
+            "now",
+            "early",
+            "late",
+            "get",
+            "up",
+            "go"
+          ]
+        },
+        {
+          "key": "schedules",
+          "title": "Giờ mở cửa, giờ học",
+          "words": [
+            "start",
+            "finish",
+            "open/verb",
+            "close",
+            "class",
+            "until",
+            "every"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "days-and-months",
+      "title": "Ngày và tháng",
+      "can_do": "Nói thứ, tháng, ngày sinh nhật, lịch trong tuần",
+      "grammar": "on + thứ, in + tháng; next, last",
+      "pronunciation": "Trọng âm của các thứ trong tuần",
+      "lessons": [
+        {
+          "key": "weekdays",
+          "title": "Các ngày trong tuần",
+          "words": [
+            "day",
+            "week",
+            "on",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ]
+        },
+        {
+          "key": "weekend",
+          "title": "Cuối tuần",
+          "words": [
+            "Saturday",
+            "Sunday",
+            "weekend",
+            "today",
+            "month",
+            "next",
+            "last"
+          ]
+        },
+        {
+          "key": "january-to-june",
+          "title": "Tháng 1 đến tháng 6",
+          "words": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "birthday"
+          ]
+        },
+        {
+          "key": "july-to-december",
+          "title": "Tháng 7 đến tháng 12",
+          "words": [
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+            "when",
+            "first"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "daily-routine",
+      "title": "Thói quen hằng ngày",
+      "can_do": "Kể một ngày của mình",
+      "grammar": "Hiện tại đơn với I, you, we, they; trạng từ tần suất",
+      "pronunciation": "/ɪ/ và /iː/",
+      "lessons": [
+        {
+          "key": "meals",
+          "title": "Các bữa ăn",
+          "words": [
+            "wake",
+            "breakfast",
+            "lunch",
+            "dinner",
+            "eat",
+            "home"
+          ]
+        },
+        {
+          "key": "in-the-morning",
+          "title": "Buổi sáng",
+          "words": [
+            "wash",
+            "face",
+            "tooth",
+            "brush",
+            "take",
+            "shower",
+            "then"
+          ]
+        },
+        {
+          "key": "in-the-evening",
+          "title": "Buổi tối",
+          "words": [
+            "come",
+            "back",
+            "after",
+            "before",
+            "watch/verb",
+            "TV",
+            "sleep"
+          ]
+        },
+        {
+          "key": "how-often",
+          "title": "Bao lâu một lần",
+          "words": [
+            "always",
+            "usually",
+            "often",
+            "sometimes",
+            "never",
+            "read"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "what-others-do",
+      "title": "Người khác làm gì",
+      "can_do": "Kể thói quen của người khác",
+      "grammar": "Hiện tại đơn với he, she: thêm -s, does, doesn't; đại từ tân ngữ",
+      "pronunciation": "Ba cách đọc đuôi -s",
+      "lessons": [
+        {
+          "key": "languages",
+          "title": "Ngôn ngữ",
+          "words": [
+            "speak",
+            "English",
+            "Vietnamese",
+            "language",
+            "study",
+            "learn"
+          ]
+        },
+        {
+          "key": "staying-active",
+          "title": "Vận động",
+          "words": [
+            "walk",
+            "run",
+            "swim",
+            "drive",
+            "play",
+            "park"
+          ]
+        },
+        {
+          "key": "housework",
+          "title": "Việc nhà",
+          "words": [
+            "help",
+            "house",
+            "room",
+            "kitchen",
+            "cook/verb",
+            "clean/verb"
+          ]
+        },
+        {
+          "key": "wants-and-needs",
+          "title": "Muốn và cần",
+          "words": [
+            "want",
+            "need",
+            "know",
+            "understand",
+            "think",
+            "about",
+            "him",
+            "them"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "food-and-drink",
+      "title": "Đồ ăn thức uống",
+      "can_do": "Nói thích và không thích món gì",
+      "grammar": "like, don't like; some, any; danh từ đếm được và không đếm được",
+      "pronunciation": "/tʃ/ trong chicken, lunch",
+      "lessons": [
+        {
+          "key": "food",
+          "title": "Món ăn",
+          "words": [
+            "food",
+            "rice",
+            "bread",
+            "meat",
+            "fish",
+            "chicken",
+            "noodle",
+            "some"
+          ]
+        },
+        {
+          "key": "fruit-and-vegetables",
+          "title": "Rau và trái cây",
+          "words": [
+            "fruit",
+            "banana",
+            "orange/noun",
+            "vegetable",
+            "tomato",
+            "potato",
+            "any"
+          ]
+        },
+        {
+          "key": "drinks",
+          "title": "Đồ uống",
+          "words": [
+            "water",
+            "tea",
+            "coffee",
+            "milk",
+            "juice",
+            "drink",
+            "hot",
+            "cold"
+          ]
+        },
+        {
+          "key": "tastes",
+          "title": "Ngon không",
+          "words": [
+            "love",
+            "delicious",
+            "sweet",
+            "hungry",
+            "thirsty",
+            "so"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ordering-food",
+      "title": "Gọi món",
+      "can_do": "Gọi món, hỏi thêm, thanh toán ở quán",
+      "grammar": "I'd like; Can I have; a glass of, a bottle of",
+      "pronunciation": "Ngữ điệu lịch sự khi yêu cầu",
+      "lessons": [
+        {
+          "key": "id-like",
+          "title": "Cho tôi...",
+          "words": [
+            "I'd/contraction",
+            "would",
+            "can",
+            "menu",
+            "glass",
+            "bottle"
+          ]
+        },
+        {
+          "key": "dishes",
+          "title": "Các món",
+          "words": [
+            "soup",
+            "salad",
+            "sandwich",
+            "pizza",
+            "cake",
+            "of"
+          ]
+        },
+        {
+          "key": "paying",
+          "title": "Thanh toán",
+          "words": [
+            "order",
+            "bill",
+            "pay",
+            "money",
+            "card",
+            "change"
+          ]
+        },
+        {
+          "key": "at-the-table",
+          "title": "Trên bàn ăn",
+          "words": [
+            "knife",
+            "fork",
+            "spoon",
+            "plate",
+            "sugar",
+            "more"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "shopping-and-prices",
+      "title": "Mua sắm và giá cả",
+      "can_do": "Hỏi giá, chọn hàng, thử đồ, trả tiền",
+      "grammar": "How much; these, those; which",
+      "pronunciation": "Đọc giá tiền, trọng âm số",
+      "lessons": [
+        {
+          "key": "how-much",
+          "title": "Bao nhiêu tiền",
+          "words": [
+            "much",
+            "buy",
+            "price",
+            "cost",
+            "dollar",
+            "these",
+            "those"
+          ]
+        },
+        {
+          "key": "clothes",
+          "title": "Quần áo",
+          "words": [
+            "clothes",
+            "shirt",
+            "T-shirt",
+            "dress",
+            "shoe",
+            "jeans",
+            "hat"
+          ]
+        },
+        {
+          "key": "trying-on",
+          "title": "Thử đồ",
+          "words": [
+            "size",
+            "cheap",
+            "expensive",
+            "try",
+            "pair",
+            "which"
+          ]
+        },
+        {
+          "key": "at-the-market",
+          "title": "Ở chợ, siêu thị",
+          "words": [
+            "supermarket",
+            "market",
+            "shopping",
+            "list",
+            "many",
+            "store"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "home",
+      "title": "Nhà cửa",
+      "can_do": "Mô tả nhà và các phòng, nói đồ vật ở đâu",
+      "grammar": "There is, there are; giới từ chỉ vị trí",
+      "pronunciation": "Nối âm there's a, there are",
+      "lessons": [
+        {
+          "key": "rooms",
+          "title": "Các phòng",
+          "words": [
+            "there",
+            "there's/contraction",
+            "apartment",
+            "bedroom",
+            "bathroom",
+            "garden"
+          ]
+        },
+        {
+          "key": "furniture",
+          "title": "Đồ đạc",
+          "words": [
+            "bed",
+            "sofa",
+            "desk",
+            "lamp",
+            "picture",
+            "wall",
+            "floor"
+          ]
+        },
+        {
+          "key": "where-is-it",
+          "title": "Nó ở đâu",
+          "words": [
+            "under",
+            "behind",
+            "between",
+            "near",
+            "front",
+            "box"
+          ]
+        },
+        {
+          "key": "my-building",
+          "title": "Tòa nhà của tôi",
+          "words": [
+            "building",
+            "upstairs",
+            "downstairs",
+            "quiet",
+            "town",
+            "center"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "asking-directions",
+      "title": "Hỏi đường",
+      "can_do": "Hỏi và chỉ đường đơn giản",
+      "grammar": "Câu mệnh lệnh; Where is...?; Is there a... near here?",
+      "pronunciation": "Cụm phụ âm đầu: street, straight",
+      "lessons": [
+        {
+          "key": "turn-left",
+          "title": "Rẽ trái",
+          "words": [
+            "turn",
+            "left",
+            "right/adverb",
+            "straight",
+            "corner",
+            "way"
+          ]
+        },
+        {
+          "key": "places-in-town",
+          "title": "Các nơi trong phố",
+          "words": [
+            "hotel",
+            "station",
+            "cinema",
+            "museum",
+            "library",
+            "toilet"
+          ]
+        },
+        {
+          "key": "is-it-far",
+          "title": "Có xa không",
+          "words": [
+            "far",
+            "opposite",
+            "map",
+            "find",
+            "along",
+            "road"
+          ]
+        },
+        {
+          "key": "asking-for-help",
+          "title": "Nhờ giúp đỡ",
+          "words": [
+            "tell",
+            "show",
+            "again",
+            "slowly",
+            "sure",
+            "problem",
+            "question"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "getting-around",
+      "title": "Đi lại",
+      "can_do": "Nói về phương tiện, lộ trình, chuyến đi",
+      "grammar": "by bus, on foot; How do you get to...?; How long does it take?",
+      "pronunciation": "/æ/ trong taxi, /ʌ/ trong bus",
+      "lessons": [
+        {
+          "key": "transport",
+          "title": "Phương tiện",
+          "words": [
+            "bus",
+            "car",
+            "taxi",
+            "train",
+            "plane",
+            "motorbike",
+            "bike",
+            "by"
+          ]
+        },
+        {
+          "key": "at-the-airport",
+          "title": "Ở sân bay",
+          "words": [
+            "airport",
+            "ticket",
+            "arrive",
+            "leave",
+            "trip",
+            "travel"
+          ]
+        },
+        {
+          "key": "fast-and-slow",
+          "title": "Nhanh và chậm",
+          "words": [
+            "fast",
+            "slow",
+            "foot",
+            "stop",
+            "wait"
+          ]
+        },
+        {
+          "key": "visiting",
+          "title": "Đi chơi xa",
+          "words": [
+            "visit",
+            "country",
+            "holiday",
+            "beach",
+            "sea",
+            "mountain"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "hobbies",
+      "title": "Sở thích",
+      "can_do": "Nói về việc mình làm lúc rảnh",
+      "grammar": "like, love, enjoy + V-ing",
+      "pronunciation": "Âm /ŋ/ đuôi -ing",
+      "lessons": [
+        {
+          "key": "music-and-movies",
+          "title": "Âm nhạc và phim",
+          "words": [
+            "hobby",
+            "music",
+            "listen",
+            "song",
+            "sing",
+            "dance",
+            "movie"
+          ]
+        },
+        {
+          "key": "sports",
+          "title": "Thể thao",
+          "words": [
+            "sport",
+            "football",
+            "tennis",
+            "badminton",
+            "game",
+            "team"
+          ]
+        },
+        {
+          "key": "art-and-photos",
+          "title": "Vẽ và chụp ảnh",
+          "words": [
+            "free",
+            "enjoy",
+            "photo",
+            "draw",
+            "paint",
+            "art"
+          ]
+        },
+        {
+          "key": "going-out",
+          "title": "Đi chơi",
+          "words": [
+            "out",
+            "together",
+            "fun",
+            "favorite",
+            "guitar",
+            "piano"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "abilities",
+      "title": "Khả năng",
+      "can_do": "Nói mình làm được gì, nhờ người khác làm",
+      "grammar": "can, can't; Can you...? để nhờ",
+      "pronunciation": "Phân biệt can và can't khi nghe",
+      "lessons": [
+        {
+          "key": "i-can",
+          "title": "Tôi biết làm",
+          "words": [
+            "can't/contraction",
+            "well",
+            "ride",
+            "climb",
+            "jump",
+            "fly"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "Kỹ năng",
+          "words": [
+            "use",
+            "make",
+            "fix",
+            "carry",
+            "remember",
+            "forget"
+          ]
+        },
+        {
+          "key": "can-you",
+          "title": "Bạn giúp được không",
+          "words": [
+            "give",
+            "call",
+            "moment",
+            "send",
+            "message"
+          ]
+        },
+        {
+          "key": "a-little-a-lot",
+          "title": "Một chút, rất nhiều",
+          "words": [
+            "little",
+            "lot",
+            "all",
+            "everything",
+            "nothing",
+            "thing",
+            "something"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "happening-now",
+      "title": "Đang làm gì",
+      "can_do": "Mô tả việc đang diễn ra",
+      "grammar": "Hiện tại tiếp diễn",
+      "pronunciation": "Dạng rút gọn I'm, he's, they're",
+      "lessons": [
+        {
+          "key": "what-are-they-doing",
+          "title": "Họ đang làm gì",
+          "words": [
+            "sit",
+            "stand",
+            "talk",
+            "laugh",
+            "smile",
+            "wear"
+          ]
+        },
+        {
+          "key": "im-busy",
+          "title": "Tôi đang bận",
+          "words": [
+            "write",
+            "meeting",
+            "homework",
+            "test",
+            "ready",
+            "still"
+          ]
+        },
+        {
+          "key": "in-the-street",
+          "title": "Ngoài đường",
+          "words": [
+            "person",
+            "girl",
+            "boy",
+            "dog",
+            "cat",
+            "ball",
+            "people",
+            "animal"
+          ]
+        },
+        {
+          "key": "at-home-now",
+          "title": "Ở nhà lúc này",
+          "words": [
+            "dish",
+            "bath",
+            "put",
+            "away",
+            "bring"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "weather-and-clothes",
+      "title": "Thời tiết và quần áo",
+      "can_do": "Nói về thời tiết, mùa, nên mặc gì",
+      "grammar": "It's + thời tiết; wear",
+      "pronunciation": "/w/ và /v/",
+      "lessons": [
+        {
+          "key": "whats-the-weather",
+          "title": "Trời thế nào",
+          "words": [
+            "weather",
+            "sunny",
+            "rainy",
+            "cloudy",
+            "windy",
+            "warm",
+            "cool"
+          ]
+        },
+        {
+          "key": "rain-and-sun",
+          "title": "Mưa và nắng",
+          "words": [
+            "rain",
+            "snow",
+            "sun",
+            "sky",
+            "outside",
+            "inside"
+          ]
+        },
+        {
+          "key": "seasons",
+          "title": "Các mùa",
+          "words": [
+            "spring",
+            "summer",
+            "autumn",
+            "winter",
+            "season",
+            "wet"
+          ]
+        },
+        {
+          "key": "warm-clothes",
+          "title": "Áo ấm",
+          "words": [
+            "jacket",
+            "coat",
+            "sweater",
+            "scarf",
+            "cap",
+            "sock"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "health-and-feelings",
+      "title": "Sức khỏe và cảm xúc",
+      "can_do": "Nói mình thấy thế nào, đau ở đâu, khuyên đơn giản",
+      "grammar": "feel + tính từ; have a + bệnh; should, shouldn't",
+      "pronunciation": "/h/ đầu từ",
+      "lessons": [
+        {
+          "key": "body",
+          "title": "Cơ thể",
+          "words": [
+            "head",
+            "arm",
+            "leg",
+            "hand",
+            "ear",
+            "nose",
+            "mouth"
+          ]
+        },
+        {
+          "key": "im-sick",
+          "title": "Tôi bị ốm",
+          "words": [
+            "feel",
+            "sick",
+            "headache",
+            "fever",
+            "hurt",
+            "tired"
+          ]
+        },
+        {
+          "key": "advice",
+          "title": "Lời khuyên",
+          "words": [
+            "should",
+            "shouldn't/contraction",
+            "healthy",
+            "medicine",
+            "dentist",
+            "better"
+          ]
+        },
+        {
+          "key": "feelings",
+          "title": "Cảm xúc",
+          "words": [
+            "happy",
+            "sad",
+            "angry",
+            "afraid",
+            "bored",
+            "excited",
+            "because"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "yesterday",
+      "title": "Hôm qua",
+      "can_do": "Nói hôm qua ở đâu, thế nào; nói về tuổi thơ",
+      "grammar": "was, were, wasn't, weren't; ago",
+      "pronunciation": "Dạng yếu của was, were",
+      "lessons": [
+        {
+          "key": "was-were",
+          "title": "Đã ở, đã là",
+          "words": [
+            "was",
+            "were",
+            "wasn't/contraction",
+            "weren't/contraction",
+            "yesterday",
+            "ago"
+          ]
+        },
+        {
+          "key": "events",
+          "title": "Sự kiện",
+          "words": [
+            "party",
+            "concert",
+            "festival",
+            "boring",
+            "exciting"
+          ]
+        },
+        {
+          "key": "how-was-it",
+          "title": "Thế nào",
+          "words": [
+            "terrible",
+            "wonderful",
+            "OK",
+            "everyone",
+            "alone",
+            "same",
+            "different"
+          ]
+        },
+        {
+          "key": "when-i-was-young",
+          "title": "Hồi nhỏ",
+          "words": [
+            "born",
+            "age",
+            "grow",
+            "village",
+            "life"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "past-events",
+      "title": "Chuyện đã qua",
+      "can_do": "Kể việc đã làm",
+      "grammar": "Quá khứ đơn có quy tắc và bất quy tắc thông dụng; did, didn't",
+      "pronunciation": "Ba cách đọc đuôi -ed",
+      "lessons": [
+        {
+          "key": "what-did-you-do",
+          "title": "Bạn đã làm gì",
+          "words": [
+            "didn't/contraction",
+            "stay",
+            "move",
+            "happen",
+            "answer",
+            "ask"
+          ]
+        },
+        {
+          "key": "news",
+          "title": "Tin tức",
+          "words": [
+            "say",
+            "hear",
+            "news",
+            "story",
+            "true",
+            "newspaper"
+          ]
+        },
+        {
+          "key": "lost-and-found",
+          "title": "Mất và tìm thấy",
+          "words": [
+            "lose",
+            "wallet",
+            "police",
+            "lucky",
+            "luck"
+          ]
+        },
+        {
+          "key": "holiday-story",
+          "title": "Kể chuyến đi",
+          "words": [
+            "island",
+            "boat",
+            "river",
+            "lake",
+            "ship"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "plans-and-invitations",
+      "title": "Kế hoạch và hẹn gặp",
+      "can_do": "Mời, hẹn, nói dự định",
+      "grammar": "going to; Let's; Would you like to...?",
+      "pronunciation": "Ngữ điệu lên xuống trong câu hỏi",
+      "lessons": [
+        {
+          "key": "going-to",
+          "title": "Sẽ làm gì",
+          "words": [
+            "plan",
+            "tonight",
+            "soon",
+            "maybe",
+            "hope",
+            "be"
+          ]
+        },
+        {
+          "key": "lets",
+          "title": "Mình cùng...",
+          "words": [
+            "let's/contraction",
+            "why",
+            "idea",
+            "invite",
+            "join"
+          ]
+        },
+        {
+          "key": "making-plans",
+          "title": "Hẹn giờ, hẹn chỗ",
+          "words": [
+            "another",
+            "agree",
+            "perfect",
+            "place",
+            "text"
+          ]
+        },
+        {
+          "key": "celebrations",
+          "title": "Ngày vui",
+          "words": [
+            "gift",
+            "celebrate",
+            "wish",
+            "guest",
+            "special"
+          ]
+        }
+      ]
+    }
+  ]
+}

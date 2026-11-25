@@ -43,22 +43,26 @@ Mã ứng dụng dùng Next.js 16 (App Router). Phiên bản này khác nhiều 
 
 ## Database
 
-Chạy các file trong `scripts/` theo thứ tự số, mỗi file một transaction, rồi nạp nội dung:
+Chạy các file trong `scripts/` theo thứ tự số, mỗi file một transaction, rồi nạp nội dung. `npm run sql` đọc `DATABASE_URL` trong `.env.local`:
 
 ```
-run-sql scripts/001-helpers.sql
+npm run sql -- scripts/001-helpers.sql
 ...
-run-sql scripts/014-admin-tools.sql
-run-sql content/build/english-pre-a1.sql
+npm run sql -- scripts/015-a1-units.sql
+npm run sql -- content/build/english-pre-a1.sql content/build/english-a1.sql
 ```
 
-File nội dung chạy lại nhiều lần được. Bài học nạp vào ở trạng thái `draft`; xuất bản bài, bài ôn chủ đề và nạp đề kiểm tra cuối cấp ở trang Quản trị > Bài học.
+Thử trước một migration trên dữ liệu thật mà không ghi gì: `npm run sql -- --dry-run scripts/0xx.sql -c "select ..."` chạy file và câu lệnh kiểm tra trong một transaction, in kết quả rồi hủy.
+
+File nội dung chạy lại nhiều lần được. Bài học nạp vào ở trạng thái `draft`; xuất bản bài, bài ôn chủ đề và nạp đề kiểm tra cuối cấp ở trang Quản trị > Bài học. Có nhiều bài nháp thì chạy app ở máy (`npx next dev -p 3210`) rồi `node tools/content/publish-drafts.mjs`: script đăng nhập bằng tài khoản quản trị thử trong `.env.local`, xuất bản mọi bài nháp theo thứ tự và tạo bài ôn cho chủ đề còn thiếu.
 
 App trên mạng dùng chung database này, nên migration phải được thử trước theo tiêu chí ở docs/04.
 
 ## Soạn nội dung
 
 Cần Node 20 trở lên.
+
+Trước khi soạn một cấp mới, lập khung chủ đề và bài ở `tools/content/syllabus/<khóa>-<cấp>.json` và kiểm tra bằng `node tools/content/syllabus-check.mjs <khóa>-<cấp>`: số từ mỗi bài, từ trùng với bài trước, cấp CEFR-J, và từ của cấp chưa được xếp vào bài nào.
 
 ```
 node tools/content/build-content.mjs --check   # chỉ kiểm tra
