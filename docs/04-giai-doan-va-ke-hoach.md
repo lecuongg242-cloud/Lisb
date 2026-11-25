@@ -27,7 +27,7 @@ Một hạng mục chỉ được coi là xong khi đủ các điều sau; phầ
 | Giai đoạn | Tên | Kết quả chính | Điều kiện qua giai đoạn |
 |---|---|---|---|
 | 1 | Hoàn thiện cấp Khởi động | Một cấp học trọn vẹn, không còn việc dang dở | Hết danh sách "phải xong ở giai đoạn 1"; chủ dự án học hết cấp Khởi động trên bản thật |
-| 1B | Luyện nói và chấm phát âm | Phiên luyện nói cho từ và câu của cấp Khởi động, chấm tới từng âm | Chủ dự án thử trên điện thoại và xác nhận điểm khớp cảm nhận |
+| 1B | Luyện nói và chấm phát âm (tạm hoãn từ 2026-11-25) | Phiên luyện nói cho từ và câu của cấp Khởi động, chấm tới từng âm | Chủ dự án thử trên điện thoại và xác nhận điểm khớp cảm nhận |
 | 2 | Ba nhánh và cấp A1 | Lộ trình ba nhánh, bài ngữ pháp có lý thuyết, kỹ năng đọc, kiểm tra đầu vào và vượt cấp, trọn cấp A1 | Trọn cấp A1 đạt tiêu chí nội dung; kiểm tra cuối cấp A1 hoạt động |
 | 3 | Cấp A2 và kỹ năng tạo ra ngôn ngữ | Viết câu và đoạn có AI sửa, nói theo mẫu, nghe hiểu hội thoại, thêm giọng Anh, trang tiến độ, trọn cấp A2 | Trọn cấp A2; chi phí AI mỗi người dùng đã đo |
 | 4 | Thử nghiệm kín | Project Supabase chính thức, nhắc học, giám sát lỗi, 10-30 người dùng thử | Có số liệu quay lại ngày 7 và ngày 30; không còn lỗi nghiêm trọng |
@@ -69,7 +69,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | Việc | Lý do hoãn | Giai đoạn |
 |---|---|---|
 | Kỹ năng viết, đọc | Cần thiết kế cùng cấu trúc ba nhánh | 2 và 3 |
-| Kỹ năng nói | Phần chấm phát âm kéo lên giai đoạn 1B theo yêu cầu của chủ dự án; nói theo gợi ý và Speaking vẫn ở giai đoạn 3 và 5 | 1B, 3, 5 |
+| Kỹ năng nói | Phần chấm phát âm kéo lên giai đoạn 1B theo yêu cầu của chủ dự án, rồi tạm hoãn ngày 2026-11-25 vì chưa có dịch vụ chấm; nói theo gợi ý và Speaking vẫn ở giai đoạn 3 và 5 | 1B (hoãn), 3, 5 |
 | Trang tiến độ theo kỹ năng | Có ý nghĩa khi có nhiều hơn hai kỹ năng | 3 |
 | Nhắc học, dùng khi mất mạng | Thuộc phần chuẩn bị cho người dùng ngoài | 4 |
 | Giám sát lỗi | Thuộc phần chuẩn bị cho người dùng ngoài | 4 |
@@ -114,13 +114,14 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 2026-11-24 | Theo dõi tiến độ | Tài liệu 09 là bảng tiến độ có ô đánh dấu, cập nhật mỗi khi xong một việc |
 | 2026-11-24 | Phạm vi sử dụng | Chủ dự án cho biết hiện chỉ dùng cho bản thân, không thương mại. Kế hoạch các giai đoạn giữ nguyên, để ngỏ khả năng mở công khai sau này |
 | 2026-11-25 | Bắt đầu cấp A1 | Không đợi chủ dự án học hết cấp Khởi động (khoảng 4-5 tuần). Khi phần việc của Claude ở giai đoạn 1 và 1B đã xong, Claude bắt đầu thiết kế ba nhánh và soạn A1 trong lúc chủ dự án vẫn học. Điều kiện "học hết cấp Khởi động" vẫn giữ để đóng giai đoạn 1; lỗi phát hiện khi học được sửa ở cả hai cấp |
+| 2026-11-25 | Chấm phát âm | Tạm bỏ qua giai đoạn 1B theo yêu cầu của chủ dự án. Giai đoạn 1B không còn chặn giai đoạn 2. Xem lại muộn nhất ở đầu giai đoạn 3, vì phần nói theo gợi ý cần một dịch vụ chấm |
 
 ## Quyết định còn mở
 
 | Quyết định | Cần trước khi |
 |---|---|
 | Model kiểm tra chéo và khóa API của nó. Quyết định ngày 2026-11-23 ghi là Claude, nhưng bản nháp cũng do Claude soạn; nên chọn model của hãng khác | Việc số 3 của giai đoạn 1 |
-| Dịch vụ chấm phát âm thay cho Azure: Gemini, model mã nguồn mở, thử lại Azure, hay dịch vụ trả phí khác | Giai đoạn 1B |
+| Dịch vụ chấm phát âm thay cho Azure: Gemini, model mã nguồn mở, thử lại Azure, hay dịch vụ trả phí khác. Đang tạm hoãn | Muộn nhất ở đầu giai đoạn 3 |
 | Có thuê người duyệt nội dung khi tới B1 không | Giai đoạn 5 |
 | Nguồn giọng Úc cho bài nghe | Giai đoạn 5 |
 | Tên miền riêng | Giai đoạn 7 |

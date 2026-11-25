@@ -15,7 +15,7 @@ Ký hiệu:
 | Giai đoạn | Nội dung | Tình trạng |
 |---|---|---|
 | 1 | Hoàn thiện cấp Khởi động | Đang làm: 7 việc xong, 6 việc chờ chủ dự án, 2 việc chưa làm |
-| 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Kẹt: Azure từ chối đăng ký, chờ chủ dự án chọn phương án khác |
+| 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Tạm hoãn từ 2026-11-25 theo yêu cầu của chủ dự án; xem lại muộn nhất ở đầu giai đoạn 3 |
 | 2 | Ba nhánh và cấp A1 | Chưa bắt đầu |
 | 3 | Cấp A2, viết và nói | Chưa bắt đầu |
 | 4 | Thử nghiệm kín | Chưa bắt đầu |
@@ -31,9 +31,8 @@ Gom lại một chỗ để bạn biết mình cần làm gì. Làm xong việc 
 1. Thử app trên điện thoại theo tài liệu 08: học 3 bài có bấm giờ, ôn tập, bài ôn chủ đề, kiểm tra cuối cấp, gửi một báo lỗi, mở trang xem nội dung.
 2. Nghe duyệt âm thanh ở Quản trị > Âm thanh: 26 chữ cái, số 0-20, khoảng 10 câu mỗi chủ đề, cả hai giọng.
 3. Cấp khóa API của một hãng khác Anthropic (ví dụ Gemini) để kiểm tra chéo nội dung: tự dán vào `.env.local`, không gửi qua khung chat.
-4. Chọn phương án chấm phát âm thay cho Azure (bảng ở giai đoạn 1B). Nếu chọn Gemini thì khóa ở việc 3 dùng luôn cho việc này.
-5. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
-6. Đọc lại trang chính sách quyền riêng tư.
+4. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
+5. Đọc lại trang chính sách quyền riêng tư.
 
 ## Giai đoạn 1: hoàn thiện cấp Khởi động
 
@@ -57,13 +56,15 @@ Số trong ngoặc là số việc ở tài liệu 04.
 
 Điều kiện đóng giai đoạn: mọi dòng trên là `[x]`, và bạn đã học hết cấp Khởi động trên bản thật.
 
-Việc bạn học hết cấp Khởi động không chặn giai đoạn 2: khi phần của Claude ở giai đoạn 1 và 1B xong, Claude bắt đầu giai đoạn 2 trong lúc bạn vẫn học (quyết định 2026-11-25).
+Việc bạn học hết cấp Khởi động không chặn giai đoạn 2: khi phần của Claude ở giai đoạn 1 xong, Claude bắt đầu giai đoạn 2 trong lúc bạn vẫn học (quyết định 2026-11-25).
 
 ## Giai đoạn 1B: luyện nói và chấm phát âm
 
 Mục tiêu: bạn nói vào điện thoại, app đánh giá và chỉ ra từ hoặc âm đọc sai. Phạm vi là từ và câu của cấp Khởi động; các cấp sau dùng lại.
 
-**Tình trạng 2026-11-24: đang kẹt ở việc chọn dịch vụ chấm.** Quyết định ban đầu là Azure Pronunciation Assessment, nhưng Azure từ chối cho chủ dự án đăng ký ("You are not eligible for an Azure subscription"); nguyên nhân Microsoft không nêu, thường do loại thẻ hoặc thông tin không khớp. Chưa chọn phương án thay thế.
+**Tình trạng 2026-11-25: tạm hoãn theo yêu cầu của chủ dự án.** Giai đoạn này không chặn giai đoạn 2; xem lại muộn nhất ở đầu giai đoạn 3. Phần dưới giữ nguyên để làm tiếp khi mở lại.
+
+Tình trạng 2026-11-24: kẹt ở việc chọn dịch vụ chấm. Quyết định ban đầu là Azure Pronunciation Assessment, nhưng Azure từ chối cho chủ dự án đăng ký ("You are not eligible for an Azure subscription"); nguyên nhân Microsoft không nêu, thường do loại thẻ hoặc thông tin không khớp. Chưa chọn phương án thay thế.
 
 Các phương án, theo thứ tự Claude đề xuất thử:
 
@@ -107,7 +108,7 @@ Các bước (bước 1 và 2 phụ thuộc phương án, các bước sau giố
 ## Giai đoạn 3: cấp A2, viết và nói
 
 - [ ] Viết câu và đoạn ngắn, AI sửa lỗi; đo chi phí AI
-- [ ] Nói theo gợi ý và trả lời câu hỏi ngắn (dùng lại phần chấm phát âm của 1B)
+- [ ] Nói theo gợi ý và trả lời câu hỏi ngắn (cần phần chấm phát âm của 1B; nếu 1B vẫn đang hoãn thì chọn dịch vụ chấm ở đầu giai đoạn này)
 - [ ] Nghe hội thoại ngắn và trả lời; thêm giọng Anh
 - [ ] Dạng bài điền chỗ trống, True/False; đọc đoạn 100-150 từ
 - [ ] Trang tiến độ theo kỹ năng và theo band
