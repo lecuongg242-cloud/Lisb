@@ -1,0 +1,52 @@
+{
+  "unit": "a1/06-daily-routine",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:43:00.101Z",
+  "issues": [
+    {
+      "lesson": "meals",
+      "item": "home",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"nhà\", \"ở nhà\", \"nơi ở\", \"nhà mình\"]",
+      "problem": "\"ở nhà\" là cụm giới từ (at home), trong khi \"home\" đứng độc lập là danh từ hoặc trạng từ (nhà, về nhà). Nếu người học gõ \"ở nhà\" cho từ \"home\" thì không chính xác về từ loại và dễ gây nhầm lẫn khi ghép câu.",
+      "fix": "[\"nhà\", \"nơi ở\", \"nhà mình\"]"
+    },
+    {
+      "lesson": "in-the-morning",
+      "item": "shower",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"vòi sen\", \"vòi hoa sen\", \"tắm vòi sen\", \"tắm\"]",
+      "problem": "\"tắm\" và \"tắm vòi sen\" là động từ (take a shower), trong khi \"shower\" ở đây là danh từ (vòi sen). Nên bỏ các động từ để tránh người học hiểu sai từ loại của từ vựng đang học.",
+      "fix": "[\"vòi sen\", \"vòi hoa sen\", \"việc tắm vòi sen\"]"
+    },
+    {
+      "lesson": "how-often",
+      "item": "pronunciation_tip",
+      "field": "pronunciation_tip.vi",
+      "severity": "error",
+      "current": "Usually /ˈjuʒuəli/ nhấn âm đầu: U-su-al-ly, chữ s đọc /ʒ/; nói nhanh thường chỉ còn ba âm tiết /ˈjuʒəli/.",
+      "problem": "Phiên âm của từ usually đang thiếu dấu kéo dài âm /uː/ ở âm tiết đầu tiên. Phải là /ˈjuːʒuəli/ hoặc /ˈjuːʒəli/ mới chuẩn xác.",
+      "fix": "Usually /ˈjuːʒuəli/ nhấn âm đầu: U-su-al-ly, chữ s đọc /ʒ/; nói nhanh thường chỉ còn ba âm tiết /ˈjuːʒəli/."
+    },
+    {
+      "lesson": "how-often",
+      "item": "read",
+      "field": "pronunciation",
+      "severity": "error",
+      "current": "ˈɹid",
+      "problem": "Phiên âm thiếu dấu kéo dài âm /iː/, không nhất quán với mẹo phát âm đã ghi trong bài (âm /iː/ dài).",
+      "fix": "ˈɹiːd"
+    },
+    {
+      "lesson": "how-often",
+      "item": "s3",
+      "field": "translation.vi",
+      "severity": "suggestion",
+      "current": "Bạn có hay đọc sách không? Thỉnh thoảng, vào cuối tuần.",
+      "problem": "\"How often do you read?\" dùng để hỏi cụ thể về tần suất (Bao lâu một lần). Dịch \"Bạn có hay đọc sách không?\" mang tính chất câu hỏi Yes/No (Do you often read?), dù trong tiếng Việt vẫn dùng để hỏi tần suất nhưng chưa sát nghĩa gốc bằng \"Bạn đọc sách bao lâu một lần?\".",
+      "fix": "Bạn đọc sách bao lâu một lần? Thỉnh thoảng, vào cuối tuần."
+    }
+  ]
+}

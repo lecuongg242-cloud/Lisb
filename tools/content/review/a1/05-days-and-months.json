@@ -1,0 +1,61 @@
+{
+  "unit": "a1/05-days-and-months",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:48:01.537Z",
+  "issues": [
+    {
+      "lesson": "weekdays",
+      "item": "s2",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Tôi làm việc 5 ngày một tuần.\", \"Tôi làm việc năm ngày mỗi tuần.\", \"Tôi làm việc 5 ngày mỗi tuần.\", \"Tôi đi làm năm ngày một tuần.\", \"Mỗi tuần tôi làm việc năm ngày.\", \"Mỗi tuần tôi làm việc 5 ngày.\"]",
+      "problem": "Thiếu cách dịch phổ biến dùng 'đi làm' kết hợp với số '5'.",
+      "fix": "Thêm \"Tôi đi làm 5 ngày một tuần.\" vào danh sách."
+    },
+    {
+      "lesson": "weekdays",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Hẹn gặp bạn vào thứ Tư!\", \"Hẹn gặp lại thứ Tư!\", \"Thứ Tư gặp lại nhé!\", \"Hẹn gặp lại vào thứ 4!\", \"Hẹn thứ 4 gặp lại!\"]",
+      "problem": "Thiếu cách dịch phổ biến dùng số '4' nhưng không có chữ 'vào'.",
+      "fix": "Thêm \"Hẹn gặp lại thứ 4!\" vào danh sách."
+    },
+    {
+      "lesson": "weekend",
+      "item": "s2",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Tôi không đi làm vào cuối tuần.\", \"Cuối tuần tôi không làm việc.\", \"Cuối tuần tôi không đi làm.\", \"Tôi không làm việc cuối tuần.\"]",
+      "problem": "Thiếu cách dịch phổ biến dùng 'đi làm' nhưng không có chữ 'vào'.",
+      "fix": "Thêm \"Tôi không đi làm cuối tuần.\" vào danh sách."
+    },
+    {
+      "lesson": "july-to-december",
+      "item": "s1",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Sinh nhật của bạn là khi nào? Vào tháng Mười Một.\", \"Sinh nhật bạn là bao giờ? Vào tháng Mười Một.\", \"Khi nào là sinh nhật bạn? Vào tháng Mười Một.\", \"Sinh nhật bạn khi nào? Vào tháng 11.\", \"Sinh nhật bạn khi nào? Vào tháng Mười Một.\", \"Sinh nhật bạn là khi nào? Tháng 11.\"]",
+      "problem": "Thiếu cách dịch phổ biến kết hợp 'là khi nào' và 'Vào tháng 11'.",
+      "fix": "Thêm \"Sinh nhật bạn là khi nào? Vào tháng 11.\" vào danh sách."
+    },
+    {
+      "lesson": "july-to-december",
+      "item": "s4",
+      "field": "accepted",
+      "severity": "suggestion",
+      "current": "[\"When do you start? On September 1.\", \"When do you start? September first.\"]",
+      "problem": "Thiếu các cách viết tiếng Anh dùng '1st' rất phổ biến khi viết ngày (tương tự như đã làm ở câu s2).",
+      "fix": "Thêm \"When do you start? On September 1st.\" và \"When do you start? September 1st.\" vào danh sách."
+    },
+    {
+      "lesson": "july-to-december",
+      "item": "s5",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Giáng sinh vào tháng Mười Hai.\", \"Lễ Giáng sinh vào tháng 12.\", \"Giáng sinh là vào tháng 12.\", \"Giáng sinh rơi vào tháng 12.\", \"Noel vào tháng 12.\"]",
+      "problem": "Thiếu cách dịch ngắn gọn rất phổ biến dùng số '12' và không có chữ 'Lễ'.",
+      "fix": "Thêm \"Giáng sinh vào tháng 12.\" vào danh sách."
+    }
+  ]
+}

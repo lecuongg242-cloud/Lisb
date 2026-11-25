@@ -1,0 +1,123 @@
+{
+  "course": "english",
+  "level": "a1",
+  "unit": "days-and-months",
+  "names": ["Christmas"],
+  "assumed_words": [],
+  "lessons": [
+    {
+      "key": "weekdays",
+      "title": { "vi": "Các ngày trong tuần", "en-US": "Days of the week" },
+      "grammar_tip": {
+        "vi": "Thứ trong tuần luôn viết hoa chữ cái đầu: Monday, không viết monday. Trước thứ dùng on: on Monday (vào thứ Hai), không nói in Monday. Thêm -s để nói việc lặp lại hằng tuần: on Mondays là thứ Hai nào cũng vậy. Hỏi thứ: What day is it? (Hôm nay thứ mấy?)",
+        "en-US": "Days of the week always start with a capital letter: Monday. Use on before a day: on Monday. Add -s for something that happens every week: on Mondays. To ask the day, say: What day is it?"
+      },
+      "pronunciation_tip": {
+        "vi": "Các thứ trong tuần đều nhấn vào âm đầu, đuôi -day đọc nhẹ /deɪ/ (nhiều người Mỹ đọc lướt thành /di/): MON-day, FRI-day. Wednesday chỉ có hai âm tiết /ˈwɛnzdeɪ/ (WENZ-day): chữ d đầu và chữ e thứ hai không đọc. Trong Tuesday, Wednesday, Thursday, chữ s đọc /z/. Giọng Mỹ đọc Tuesday là /ˈtuzdeɪ/. Thursday bắt đầu bằng /θ/: đặt đầu lưỡi giữa hai hàm răng rồi thổi hơi, đừng đọc thành /t/ hay /s/.",
+        "en-US": "All weekdays have stress on the first part: MON-day, FRI-day. Wednesday has only two parts: WENZ-day. Do not say the first d. In Tuesday, Wednesday and Thursday, the s sounds like /z/. Thursday starts with /θ/: put your tongue between your teeth and blow."
+      },
+      "words": [
+        { "lemma": "day", "pos": "noun", "forms": ["days"], "meaning": { "vi": "ngày", "en-US": "a time of 24 hours, like Monday or Tuesday" }, "accepted": { "vi": ["ngày", "một ngày", "hôm"] }, "usage_note": { "vi": "What day is it? là hỏi thứ mấy (Monday, Tuesday...), không phải hỏi ngày mấy.", "en-US": "What day is it? asks for Monday, Tuesday and so on." } },
+        { "lemma": "week", "pos": "noun", "forms": ["weeks"], "meaning": { "vi": "tuần, tuần lễ", "en-US": "seven days, from Sunday to Saturday or from Monday to Sunday" }, "accepted": { "vi": ["tuần", "tuần lễ", "một tuần"] }, "usage_note": { "vi": "A week đứng sau số lượng nghĩa là mỗi tuần: five days a week (năm ngày mỗi tuần).", "en-US": "After a number, a week means in every week: five days a week." } },
+        { "lemma": "on", "pos": "preposition", "meaning": { "vi": "vào (trước thứ, ngày); trên", "en-US": "used before days and dates: on Monday; also means touching the top of something" }, "accepted": { "vi": ["vào", "vào ngày", "trên", "ở trên"] }, "usage_note": { "vi": "Trước thứ dùng on: on Monday. Không dùng in hay at.", "en-US": "Use on before a day: on Monday. Do not use in or at." } },
+        { "lemma": "Monday", "pos": "proper noun", "forms": ["Mondays"], "meaning": { "vi": "thứ Hai", "en-US": "the day after Sunday" }, "accepted": { "vi": ["thứ Hai", "thứ 2", "ngày thứ Hai"] } },
+        { "lemma": "Tuesday", "pos": "proper noun", "forms": ["Tuesdays"], "meaning": { "vi": "thứ Ba", "en-US": "the day after Monday" }, "accepted": { "vi": ["thứ Ba", "thứ 3", "ngày thứ Ba"] }, "usage_note": { "vi": "Đừng nhầm Tuesday (thứ Ba) với Thursday (thứ Năm).", "en-US": "Do not mix up Tuesday and Thursday." } },
+        { "lemma": "Wednesday", "pos": "proper noun", "forms": ["Wednesdays"], "meaning": { "vi": "thứ Tư", "en-US": "the day after Tuesday" }, "accepted": { "vi": ["thứ Tư", "thứ 4", "ngày thứ Tư"] }, "usage_note": { "vi": "Viết có chữ d nhưng không đọc: /ˈwɛnzdeɪ/ (WENZ-day).", "en-US": "Do not say the first d: WENZ-day." } },
+        { "lemma": "Thursday", "pos": "proper noun", "forms": ["Thursdays"], "meaning": { "vi": "thứ Năm", "en-US": "the day after Wednesday" }, "accepted": { "vi": ["thứ Năm", "thứ 5", "ngày thứ Năm"] }, "usage_note": { "vi": "Thursday (thứ Năm) bắt đầu bằng th /θ/; Tuesday (thứ Ba) bắt đầu bằng t.", "en-US": "Thursday starts with th /θ/. Tuesday starts with t." } },
+        { "lemma": "Friday", "pos": "proper noun", "forms": ["Fridays"], "meaning": { "vi": "thứ Sáu", "en-US": "the day after Thursday" }, "accepted": { "vi": ["thứ Sáu", "thứ 6", "ngày thứ Sáu"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "What day is it? It's Monday.", "accepted": ["What day is it? It is Monday."], "translation": { "vi": "Hôm nay là thứ mấy? Thứ Hai." }, "accepted_translation": { "vi": ["Hôm nay thứ mấy? Thứ Hai.", "Hôm nay là thứ mấy? Hôm nay là thứ Hai.", "Hôm nay thứ mấy? Hôm nay thứ Hai.", "Hôm nay thứ mấy? Thứ 2.", "Hôm nay là thứ mấy? Thứ 2."] }, "note": { "vi": "What day is it? hỏi thứ trong tuần. Câu trả lời dùng It's: It's Monday.", "en-US": "What day is it? asks for the day of the week. Answer with It's: It's Monday." } },
+        { "key": "s2", "text": "I work five days a week.", "accepted": ["I work 5 days a week."], "translation": { "vi": "Tôi làm việc năm ngày một tuần." }, "accepted_translation": { "vi": ["Tôi làm việc 5 ngày một tuần.", "Tôi làm việc năm ngày mỗi tuần.", "Tôi làm việc 5 ngày mỗi tuần.", "Tôi đi làm 5 ngày một tuần.", "Tôi đi làm năm ngày một tuần.", "Mỗi tuần tôi làm việc năm ngày.", "Mỗi tuần tôi làm việc 5 ngày."] }, "note": { "vi": "A week ở đây nghĩa là mỗi tuần.", "en-US": "Here, a week means in every week." } },
+        { "key": "s3", "text": "I have class on Tuesdays and Thursdays.", "accepted": ["I have a class on Tuesdays and Thursdays."], "translation": { "vi": "Tôi có lớp học vào thứ Ba và thứ Năm hằng tuần." }, "accepted_translation": { "vi": ["Tôi có lớp vào các thứ Ba và thứ Năm.", "Tôi có lớp học vào thứ Ba và thứ Năm hàng tuần.", "Thứ Ba và thứ Năm hằng tuần tôi có lớp.", "Tôi có lớp học vào thứ 3 và thứ 5 hằng tuần.", "Tôi có lớp vào thứ 3 và thứ 5 hàng tuần.", "Tôi có lớp học vào các thứ Ba và thứ Năm."] }, "note": { "vi": "On Tuesdays (có -s) là thứ Ba nào cũng vậy. I have class là cách nói rất tự nhiên của người Mỹ: tôi có buổi học.", "en-US": "On Tuesdays means every Tuesday. Americans often say I have class." } },
+        { "key": "s4", "text": "See you on Wednesday!", "translation": { "vi": "Hẹn gặp lại vào thứ Tư!" }, "accepted_translation": { "vi": ["Hẹn gặp bạn vào thứ Tư!", "Hẹn gặp lại thứ Tư!", "Thứ Tư gặp lại nhé!", "Hẹn gặp lại vào thứ 4!", "Hẹn thứ 4 gặp lại!", "Hẹn gặp lại thứ 4!"] } },
+        { "key": "s5", "text": "Is it Friday? No, it's Thursday.", "accepted": ["Is it Friday? No, it is Thursday."], "translation": { "vi": "Hôm nay thứ Sáu à? Không, thứ Năm." }, "accepted_translation": { "vi": ["Hôm nay là thứ Sáu à? Không, hôm nay là thứ Năm.", "Hôm nay có phải thứ Sáu không? Không, thứ Năm.", "Hôm nay thứ Sáu à? Không, hôm nay thứ Năm.", "Hôm nay thứ 6 à? Không, thứ 5."] } }
+      ]
+    },
+    {
+      "key": "weekend",
+      "title": { "vi": "Cuối tuần", "en-US": "The weekend" },
+      "grammar_tip": {
+        "vi": "Người Mỹ nói on the weekend (người Anh nói at the weekend). Trước today, next, last, this không dùng on hay in: See you next week, không nói See you on next week. Next week là tuần sau, next month là tháng sau. Last có hai nghĩa: trước (last week là tuần trước) và cuối cùng (my last day là ngày cuối cùng của tôi).",
+        "en-US": "Americans say on the weekend. Do not use on or in before today, next, last or this: See you next week. Last can mean the one before this one (last week) or the one at the end (my last day)."
+      },
+      "pronunciation_tip": {
+        "vi": "Saturday nhấn âm đầu: SAT-ur-day /ˈsætɚdeɪ/; giọng Mỹ đọc chữ t ở giữa rất nhanh, nghe gần như /d/. Weekend nhấn âm đầu: WEEK-end. Today thì ngược lại, nhấn âm sau: to-DAY /təˈdeɪ/. Month kết thúc bằng /nθ/: sau âm n, đưa đầu lưỡi ra giữa hai hàm răng và thổi hơi. Next /nɛkst/ và last /læst/: đọc rõ âm cuối /st/, đừng nuốt mất.",
+        "en-US": "Saturday: SAT-ur-day. In American English, the t sounds like a quick d. WEEK-end has stress on the first part, but to-DAY has stress on the second part. Month ends with /nθ/: put your tongue between your teeth after the n. Say the /st/ at the end of next and last."
+      },
+      "words": [
+        { "lemma": "Saturday", "pos": "proper noun", "forms": ["Saturdays"], "meaning": { "vi": "thứ Bảy", "en-US": "the day after Friday" }, "accepted": { "vi": ["thứ Bảy", "thứ 7", "ngày thứ Bảy"] } },
+        { "lemma": "Sunday", "pos": "proper noun", "forms": ["Sundays"], "meaning": { "vi": "Chủ nhật", "en-US": "the day after Saturday" }, "accepted": { "vi": ["Chủ nhật", "ngày Chủ nhật"] }, "usage_note": { "vi": "Lịch của Mỹ thường bắt đầu tuần từ Sunday, không phải Monday.", "en-US": "American calendars usually start the week on Sunday." } },
+        { "lemma": "weekend", "pos": "noun", "forms": ["weekends"], "meaning": { "vi": "cuối tuần", "en-US": "Saturday and Sunday" }, "accepted": { "vi": ["cuối tuần", "ngày cuối tuần", "dịp cuối tuần"] }, "usage_note": { "vi": "Người Mỹ nói on the weekend: I don't work on the weekend.", "en-US": "Americans say on the weekend." } },
+        { "lemma": "today", "pos": "adverb", "meaning": { "vi": "hôm nay", "en-US": "this day" }, "accepted": { "vi": ["hôm nay", "ngày hôm nay"] }, "usage_note": { "vi": "Không dùng on trước today.", "en-US": "Do not use on before today." } },
+        { "lemma": "month", "pos": "noun", "forms": ["months"], "meaning": { "vi": "tháng", "en-US": "one of the twelve parts of a year" }, "accepted": { "vi": ["tháng", "một tháng"] } },
+        { "lemma": "next", "pos": "adjective", "meaning": { "vi": "sau, tới, tiếp theo", "en-US": "coming right after this one" }, "accepted": { "vi": ["sau", "tới", "tiếp theo", "kế tiếp"] }, "usage_note": { "vi": "Next week là tuần sau. Không dùng on hay in trước next: next month, không nói in next month.", "en-US": "Do not use on or in before next: next month." } },
+        { "lemma": "last", "pos": "adjective", "meaning": { "vi": "trước, vừa qua; cuối cùng", "en-US": "the one before this one; or at the end, with no more after it" }, "accepted": { "vi": ["trước", "vừa qua", "cuối cùng", "cuối"] }, "usage_note": { "vi": "Last week là tuần trước (tuần vừa qua). My last day là ngày cuối cùng của tôi. Không dùng on hay in trước last.", "en-US": "Last week is the week before this one. My last day is the day at the end. Do not use on or in before last." } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "Is today Saturday? No, it's Sunday.", "accepted": ["Is today Saturday? No, it is Sunday."], "translation": { "vi": "Hôm nay là thứ Bảy à? Không, hôm nay là Chủ nhật." }, "accepted_translation": { "vi": ["Hôm nay thứ Bảy à? Không, Chủ nhật.", "Hôm nay thứ Bảy à? Không, hôm nay Chủ nhật.", "Hôm nay có phải thứ Bảy không? Không, hôm nay là Chủ nhật.", "Hôm nay là thứ 7 à? Không, hôm nay là Chủ nhật.", "Hôm nay thứ 7 à? Không, Chủ nhật."] } },
+        { "key": "s2", "text": "I don't work on the weekend.", "accepted": ["I do not work on the weekend."], "translation": { "vi": "Tôi không làm việc vào cuối tuần." }, "accepted_translation": { "vi": ["Tôi không đi làm vào cuối tuần.", "Cuối tuần tôi không làm việc.", "Cuối tuần tôi không đi làm.", "Tôi không làm việc cuối tuần.", "Tôi không đi làm cuối tuần."] }, "note": { "vi": "Người Mỹ nói on the weekend; người Anh nói at the weekend.", "en-US": "Americans say on the weekend. In England, people say at the weekend." } },
+        { "key": "s3", "text": "See you next week. Have a good weekend!", "translation": { "vi": "Hẹn gặp lại tuần sau. Chúc cuối tuần vui vẻ!" }, "accepted_translation": { "vi": ["Hẹn gặp bạn tuần sau. Chúc bạn cuối tuần vui vẻ!", "Hẹn gặp lại tuần sau. Cuối tuần vui vẻ nhé!", "Tuần sau gặp lại nhé. Cuối tuần vui vẻ!", "Hẹn tuần sau gặp lại. Chúc cuối tuần vui vẻ!", "Hẹn gặp lại vào tuần sau. Chúc cuối tuần vui vẻ!"] }, "note": { "vi": "Câu chào quen thuộc ở chỗ làm vào chiều thứ Sáu. Không nói on next week.", "en-US": "People often say this at work on Friday afternoon. Do not say on next week." } },
+        { "key": "s4", "text": "I start my new job next month.", "translation": { "vi": "Tháng sau tôi bắt đầu công việc mới." }, "accepted_translation": { "vi": ["Tôi bắt đầu công việc mới vào tháng sau.", "Tháng sau tôi sẽ bắt đầu công việc mới.", "Tháng tới tôi bắt đầu công việc mới.", "Tôi sẽ bắt đầu công việc mới vào tháng tới.", "Tháng sau tôi bắt đầu làm công việc mới."] }, "note": { "vi": "Việc đã lên lịch trong tương lai có thể dùng thì hiện tại: I start. Không nói in next month.", "en-US": "Use the present for a plan with a fixed date: I start. Do not say in next month." } },
+        { "key": "s5", "text": "Today is my last day here.", "translation": { "vi": "Hôm nay là ngày cuối cùng của tôi ở đây." }, "accepted_translation": { "vi": ["Hôm nay là ngày cuối cùng tôi ở đây.", "Hôm nay là ngày cuối của tôi ở đây.", "Hôm nay là ngày cuối tôi ở đây."] } }
+      ]
+    },
+    {
+      "key": "january-to-june",
+      "title": { "vi": "Tháng 1 đến tháng 6", "en-US": "January to June" },
+      "grammar_tip": {
+        "vi": "Tên tháng luôn viết hoa: May, không viết may. Tiếng Anh gọi tháng bằng tên, không đánh số như tiếng Việt: tháng 5 là May, không nói month five. Trước tháng dùng in: in May (vào tháng Năm). Nhớ cặp này: on + thứ (on Monday), in + tháng (in May).",
+        "en-US": "Months always start with a capital letter: May. Use in before a month: in May. Remember: on Monday, in May."
+      },
+      "pronunciation_tip": {
+        "vi": "January /ˈdʒænjuɛri/ và February /ˈfɛbjuɛri/ nhấn âm đầu: JAN-u-ar-y, FEB-u-ar-y. Trong February, nhiều người Mỹ không đọc chữ r đầu tiên; cả hai cách đều đúng. January và June bắt đầu bằng /dʒ/ như chữ j trong job: đầu lưỡi chạm lợi trên rồi bật ra, môi hơi tròn, cổ họng rung; đừng đọc thành d hay gi của tiếng Việt. April nhấn âm đầu: A-pril /ˈeɪprəl/. Birthday có âm /θ/ ở giữa: BIRTH-day, đưa đầu lưỡi ra giữa hai hàm răng.",
+        "en-US": "JAN-u-ar-y and FEB-u-ar-y have stress on the first part. Many Americans do not say the first r in February; both ways are fine. January and June start with /dʒ/, like the j in job. A-pril has stress on the first part. In birthday, put your tongue between your teeth for th."
+      },
+      "words": [
+        { "lemma": "January", "pos": "proper noun", "meaning": { "vi": "tháng Một", "en-US": "the first month of the year" }, "accepted": { "vi": ["tháng Một", "tháng 1"] }, "usage_note": { "vi": "January là tháng 1 dương lịch. Tháng Giêng thường dùng cho tháng 1 âm lịch.", "en-US": "January is in the normal calendar, not the lunar calendar." } },
+        { "lemma": "February", "pos": "proper noun", "meaning": { "vi": "tháng Hai", "en-US": "the second month of the year" }, "accepted": { "vi": ["tháng Hai", "tháng 2"] } },
+        { "lemma": "March", "pos": "proper noun", "meaning": { "vi": "tháng Ba", "en-US": "the third month of the year" }, "accepted": { "vi": ["tháng Ba", "tháng 3"] } },
+        { "lemma": "April", "pos": "proper noun", "meaning": { "vi": "tháng Tư", "en-US": "the fourth month of the year" }, "accepted": { "vi": ["tháng Tư", "tháng 4"] } },
+        { "lemma": "May", "pos": "proper noun", "meaning": { "vi": "tháng Năm", "en-US": "the fifth month of the year" }, "accepted": { "vi": ["tháng Năm", "tháng 5"] }, "usage_note": { "vi": "May viết hoa là tháng Năm. Từ may viết thường là một từ khác, sẽ học sau.", "en-US": "May with a capital letter is the month." } },
+        { "lemma": "June", "pos": "proper noun", "meaning": { "vi": "tháng Sáu", "en-US": "the sixth month of the year" }, "accepted": { "vi": ["tháng Sáu", "tháng 6"] } },
+        { "lemma": "birthday", "pos": "noun", "forms": ["birthdays"], "meaning": { "vi": "sinh nhật", "en-US": "the day of the year when you were born" }, "accepted": { "vi": ["sinh nhật", "ngày sinh nhật"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "My birthday is in January.", "translation": { "vi": "Sinh nhật tôi vào tháng Một." }, "accepted_translation": { "vi": ["Sinh nhật của tôi vào tháng Một.", "Sinh nhật tôi là vào tháng Một.", "Sinh nhật tôi vào tháng 1.", "Sinh nhật của tôi vào tháng 1.", "Sinh nhật tôi là tháng 1."] } },
+        { "key": "s2", "text": "Is your birthday in February? No, it's in March.", "accepted": ["Is your birthday in February? No, it is in March."], "translation": { "vi": "Sinh nhật bạn vào tháng Hai à? Không, vào tháng Ba." }, "accepted_translation": { "vi": ["Sinh nhật của bạn vào tháng Hai à? Không, vào tháng Ba.", "Sinh nhật bạn có phải vào tháng Hai không? Không, vào tháng Ba.", "Sinh nhật bạn vào tháng 2 à? Không, vào tháng 3.", "Sinh nhật bạn là tháng 2 à? Không, tháng 3.", "Sinh nhật bạn vào tháng Hai phải không? Không, tháng Ba."] } },
+        { "key": "s3", "text": "We're very busy in April and May.", "accepted": ["We are very busy in April and May."], "translation": { "vi": "Chúng tôi rất bận vào tháng Tư và tháng Năm." }, "accepted_translation": { "vi": ["Tháng Tư và tháng Năm chúng tôi rất bận.", "Chúng tôi rất bận vào tháng 4 và tháng 5.", "Tháng 4 và tháng 5 chúng tôi rất bận.", "Chúng tôi bận lắm vào tháng Tư và tháng Năm.", "Chúng tôi rất bận trong tháng Tư và tháng Năm."] } },
+        { "key": "s4", "text": "Today is my birthday!", "translation": { "vi": "Hôm nay là sinh nhật tôi!" }, "accepted_translation": { "vi": ["Hôm nay là sinh nhật của tôi!", "Hôm nay sinh nhật tôi!", "Hôm nay là sinh nhật mình!"] } },
+        { "key": "s5", "text": "See you in June!", "translation": { "vi": "Hẹn gặp lại vào tháng Sáu!" }, "accepted_translation": { "vi": ["Hẹn gặp bạn vào tháng Sáu!", "Hẹn gặp lại vào tháng 6!", "Tháng Sáu gặp lại nhé!", "Hẹn tháng 6 gặp lại!"] } }
+      ]
+    },
+    {
+      "key": "july-to-december",
+      "title": { "vi": "Tháng 7 đến tháng 12", "en-US": "July to December" },
+      "grammar_tip": {
+        "vi": "Hỏi khi nào dùng When: When is your birthday? Trả lời bằng in + tháng (It's in July) hoặc on + ngày cụ thể (It's on July first). Người Mỹ nói tháng trước, ngày sau: July first là ngày 1 tháng 7, và viết là 7/1, ngược với cách viết 1/7 của người Việt. Ngày trong tháng đọc bằng số thứ tự: viết October 1 nhưng đọc October first, không đọc October one.",
+        "en-US": "Use when to ask about time: When is your birthday? Answer with in + month (in July) or on + date (on July first). Americans say the month first: July first, written 7/1. For dates, say first, not one, even when you write October 1."
+      },
+      "pronunciation_tip": {
+        "vi": "July nhấn âm sau: ju-LY /dʒuˈlaɪ/, khác với June chỉ có một âm tiết. September, October, November, December đều nhấn âm thứ hai: sep-TEM-ber, oc-TO-ber, no-VEM-ber, de-CEM-ber; đuôi -ber đọc nhẹ và cong lưỡi /bɚ/. August nhấn âm đầu: AU-gust. When đọc /wɛn/, chữ h không đọc. First /fɝst/: cong lưỡi ở âm giữa và đọc rõ đuôi /st/.",
+        "en-US": "July has stress on the second part: ju-LY. September, October, November and December also have stress on the second part: sep-TEM-ber, oc-TO-ber, no-VEM-ber, de-CEM-ber. AU-gust has stress on the first part. Do not say the h in when. Say the /st/ at the end of first."
+      },
+      "words": [
+        { "lemma": "July", "pos": "proper noun", "meaning": { "vi": "tháng Bảy", "en-US": "the seventh month of the year" }, "accepted": { "vi": ["tháng Bảy", "tháng 7"] } },
+        { "lemma": "August", "pos": "proper noun", "meaning": { "vi": "tháng Tám", "en-US": "the eighth month of the year" }, "accepted": { "vi": ["tháng Tám", "tháng 8"] } },
+        { "lemma": "September", "pos": "proper noun", "meaning": { "vi": "tháng Chín", "en-US": "the ninth month of the year" }, "accepted": { "vi": ["tháng Chín", "tháng 9"] } },
+        { "lemma": "October", "pos": "proper noun", "meaning": { "vi": "tháng Mười", "en-US": "the tenth month of the year" }, "accepted": { "vi": ["tháng Mười", "tháng 10"] } },
+        { "lemma": "November", "pos": "proper noun", "meaning": { "vi": "tháng Mười Một", "en-US": "the eleventh month of the year" }, "accepted": { "vi": ["tháng Mười Một", "tháng 11"] } },
+        { "lemma": "December", "pos": "proper noun", "meaning": { "vi": "tháng Mười Hai", "en-US": "the twelfth month of the year" }, "accepted": { "vi": ["tháng Mười Hai", "tháng 12"] }, "usage_note": { "vi": "December là tháng 12 dương lịch. Tháng Chạp thường dùng cho tháng 12 âm lịch.", "en-US": "December is in the normal calendar, not the lunar calendar." } },
+        { "lemma": "when", "pos": "adverb", "meaning": { "vi": "khi nào, lúc nào, bao giờ", "en-US": "at what time; used to ask about a day, month or year" }, "accepted": { "vi": ["khi nào", "lúc nào", "bao giờ", "khi"] }, "usage_note": { "vi": "When hỏi thời điểm nói chung (ngày, tháng). Hỏi mấy giờ thì thường dùng What time.", "en-US": "When asks about a day or month. To ask the hour, people often say What time." } },
+        { "lemma": "first", "pos": "number", "meaning": { "vi": "thứ nhất, đầu tiên; mồng 1 (ngày trong tháng)", "en-US": "number one in order; the date 1, as in July first" }, "accepted": { "vi": ["thứ nhất", "đầu tiên", "ngày 1", "mồng 1", "mồng một", "mùng 1", "mùng một", "ngày mồng 1", "ngày mùng 1"] }, "usage_note": { "vi": "Ngày 1 trong tháng nói là first: October first. Viết October 1 nhưng vẫn đọc là October first.", "en-US": "For the date, say first: October first. You can write October 1, but you say October first." } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "When is your birthday? It's in November.", "accepted": ["When is your birthday? It is in November.", "When's your birthday? It's in November."], "translation": { "vi": "Sinh nhật bạn là khi nào? Vào tháng Mười Một." }, "accepted_translation": { "vi": ["Sinh nhật của bạn là khi nào? Vào tháng Mười Một.", "Sinh nhật bạn là bao giờ? Vào tháng Mười Một.", "Khi nào là sinh nhật bạn? Vào tháng Mười Một.", "Sinh nhật bạn khi nào? Vào tháng 11.", "Sinh nhật bạn khi nào? Vào tháng Mười Một.", "Sinh nhật bạn là khi nào? Tháng 11.", "Sinh nhật bạn là khi nào? Vào tháng 11."] } },
+        { "key": "s2", "text": "My birthday is on October first.", "accepted": ["My birthday is on October 1.", "My birthday is on October 1st."], "translation": { "vi": "Sinh nhật tôi là ngày 1 tháng 10." }, "accepted_translation": { "vi": ["Sinh nhật tôi vào ngày 1 tháng 10.", "Sinh nhật của tôi là ngày 1 tháng 10.", "Sinh nhật tôi là ngày mồng 1 tháng 10.", "Sinh nhật tôi là mồng 1 tháng 10.", "Sinh nhật tôi là ngày mùng 1 tháng 10.", "Sinh nhật tôi vào ngày mồng một tháng Mười.", "Sinh nhật tôi là ngày 1/10."] }, "note": { "vi": "Ngày cụ thể dùng on. Người Mỹ nói tháng trước rồi đến ngày, và viết là 10/1. Người Việt viết là 1/10.", "en-US": "Use on with a date. Americans say the month first and write 10/1." } },
+        { "key": "s3", "text": "My children have no school in July and August.", "translation": { "vi": "Các con tôi được nghỉ học vào tháng Bảy và tháng Tám." }, "accepted_translation": { "vi": ["Các con tôi nghỉ học vào tháng Bảy và tháng Tám.", "Các con tôi được nghỉ học vào tháng 7 và tháng 8.", "Con tôi nghỉ học vào tháng 7 và tháng 8.", "Tháng Bảy và tháng Tám các con tôi được nghỉ học.", "Các con tôi không phải đi học vào tháng 7 và tháng 8.", "Các con tôi không đi học vào tháng Bảy và tháng Tám."] }, "note": { "vi": "Have no school là không có buổi học, được nghỉ học.", "en-US": "Have no school means there are no classes." } },
+        { "key": "s4", "text": "When do you start? On September first.", "accepted": ["When do you start? On September 1.", "When do you start? September first.", "When do you start? On September 1st.", "When do you start? September 1st."], "translation": { "vi": "Khi nào bạn bắt đầu? Vào ngày 1 tháng 9." }, "accepted_translation": { "vi": ["Bao giờ bạn bắt đầu? Vào ngày 1 tháng 9.", "Bạn bắt đầu khi nào? Ngày 1 tháng 9.", "Khi nào bạn bắt đầu? Ngày mồng 1 tháng 9.", "Bạn bắt đầu vào khi nào? Vào ngày 1 tháng 9.", "Khi nào bạn bắt đầu? Mồng 1 tháng Chín.", "Khi nào bạn bắt đầu? Mùng 1 tháng 9."] }, "note": { "vi": "Câu hỏi quen thuộc khi ai đó sắp nhận việc mới hay vào khóa học mới.", "en-US": "People ask this about a new job or a new class." } },
+        { "key": "s5", "text": "Christmas is in December.", "translation": { "vi": "Lễ Giáng sinh vào tháng Mười Hai." }, "accepted_translation": { "vi": ["Giáng sinh vào tháng Mười Hai.", "Lễ Giáng sinh vào tháng 12.", "Giáng sinh là vào tháng 12.", "Giáng sinh rơi vào tháng 12.", "Noel vào tháng 12.", "Giáng sinh vào tháng 12."] } }
+      ]
+    }
+  ]
+}

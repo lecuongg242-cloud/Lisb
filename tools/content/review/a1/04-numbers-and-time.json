@@ -1,0 +1,52 @@
+{
+  "unit": "a1/04-numbers-and-time",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:42:38.540Z",
+  "issues": [
+    {
+      "lesson": "what-time",
+      "item": "minute",
+      "field": "usage_note.vi",
+      "severity": "suggestion",
+      "current": "Đọc /ˈmɪnət/. Cùng cách viết còn có tính từ minute /maɪˈnut/ nghĩa là rất nhỏ, ít gặp.",
+      "problem": "Việc giới thiệu thêm tính từ 'minute' (rất nhỏ) với cách phát âm hoàn toàn khác ở cấp độ A1 là không cần thiết và dễ làm người mới học bối rối.",
+      "fix": "Đọc /ˈmɪnət/: MIN-ut. Chú ý nhấn âm đầu."
+    },
+    {
+      "lesson": "what-time",
+      "item": "minute",
+      "field": "usage_note.en-US",
+      "severity": "suggestion",
+      "current": "Say MIN-ut. Minute with the sound my-NOOT is a different word that means very small.",
+      "problem": "Giải thích về tính từ 'minute' quá phức tạp và không cần thiết cho cấp độ A1.",
+      "fix": "Say MIN-ut. Make sure the first part is strong."
+    },
+    {
+      "lesson": "what-time",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "error",
+      "current": "[\"Chín giờ kém mười lăm.\", \"Chín giờ kém mười lăm phút.\", \"Bây giờ là 9 giờ kém 15.\", \"9 giờ kém 15.\", \"Bây giờ là tám giờ bốn mươi lăm.\", \"8 giờ 45.\"]",
+      "problem": "Câu gốc dùng 'a quarter to nine' (chín giờ kém mười lăm) để dạy cách nói giờ kém. Chấp nhận đáp án 'tám giờ bốn mươi lăm' (eight forty-five) sẽ làm mất đi mục đích kiểm tra cấu trúc này, chấm đúng cho cả trường hợp người học dịch sai cấu trúc.",
+      "fix": "[\"Chín giờ kém mười lăm.\", \"Chín giờ kém mười lăm phút.\", \"Bây giờ là 9 giờ kém 15.\", \"9 giờ kém 15.\"]"
+    },
+    {
+      "lesson": "early-late",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "error",
+      "current": "[\"Tôi đi làm lúc 8 giờ kém 15.\", \"Tôi đi làm lúc tám giờ kém mười lăm phút.\", \"Tôi đi làm lúc bảy giờ bốn mươi lăm.\", \"Tôi đi làm lúc 7 giờ 45.\"]",
+      "problem": "Tương tự bài trước, 'a quarter to eight' là 'tám giờ kém mười lăm'. Chấp nhận 'bảy giờ bốn mươi lăm' sẽ chấm đúng cho người học không hiểu hoặc dịch sai cấu trúc 'a quarter to'.",
+      "fix": "[\"Tôi đi làm lúc 8 giờ kém 15.\", \"Tôi đi làm lúc tám giờ kém mười lăm phút.\"]"
+    },
+    {
+      "lesson": "schedules",
+      "item": "s1",
+      "field": "accepted_translation.vi",
+      "severity": "suggestion",
+      "current": "[\"Ngân hàng mở cửa lúc 9 giờ và đóng cửa lúc 5 giờ.\", \"Ngân hàng mở cửa lúc chín giờ, đóng cửa lúc năm giờ.\", \"Ngân hàng mở lúc chín giờ và đóng lúc năm giờ.\", \"Ngân hàng mở cửa từ chín giờ đến năm giờ.\"]",
+      "problem": "Bản dịch 'Ngân hàng mở cửa từ chín giờ đến năm giờ' tương đương với cấu trúc 'The bank is open from nine to five', làm mất đi hai động từ 'opens' và 'closes' đang được dạy trong câu.",
+      "fix": "[\"Ngân hàng mở cửa lúc 9 giờ và đóng cửa lúc 5 giờ.\", \"Ngân hàng mở cửa lúc chín giờ, đóng cửa lúc năm giờ.\", \"Ngân hàng mở lúc chín giờ và đóng lúc năm giờ.\"]"
+    }
+  ]
+}
