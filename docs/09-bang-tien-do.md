@@ -1,6 +1,6 @@
 # 09. Bảng tiến độ
 
-Cập nhật lần cuối: 2026-11-24.
+Cập nhật lần cuối: 2026-11-25.
 
 Đây là danh sách việc từ bây giờ tới đích IELTS 6.5, theo thứ tự làm. Mỗi lần xong một việc, dòng đó được đánh dấu và ghi ngày. Lý do, tiêu chí hoàn thành và chi tiết từng việc nằm ở tài liệu 04; tài liệu này chỉ để nhìn nhanh đang ở đâu.
 
@@ -56,6 +56,8 @@ Số trong ngoặc là số việc ở tài liệu 04.
 - [ ] Dọn dẹp tài khoản thử và bí mật (12) — phần lớn cần bạn thao tác; tài khoản thử xóa sau cùng vì kiểm thử đang dùng
 
 Điều kiện đóng giai đoạn: mọi dòng trên là `[x]`, và bạn đã học hết cấp Khởi động trên bản thật.
+
+Việc bạn học hết cấp Khởi động không chặn giai đoạn 2: khi phần của Claude ở giai đoạn 1 và 1B xong, Claude bắt đầu giai đoạn 2 trong lúc bạn vẫn học (quyết định 2026-11-25).
 
 ## Giai đoạn 1B: luyện nói và chấm phát âm
 

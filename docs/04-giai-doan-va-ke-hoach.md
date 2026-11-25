@@ -4,7 +4,7 @@ Trạng thái: bản v2, viết lại ngày 2026-11-23 theo định hướng IEL
 
 ## Nguyên tắc làm việc
 
-1. **Hoàn thiện rồi mới mở rộng.** Không bắt đầu giai đoạn sau khi giai đoạn trước còn việc dang dở.
+1. **Hoàn thiện rồi mới mở rộng.** Không bắt đầu giai đoạn sau khi giai đoạn trước còn việc dang dở. Ngoại lệ duy nhất: việc chủ dự án tự học hết một cấp không chặn việc soạn cấp sau (quyết định 2026-11-25).
 2. **Mỗi hạng mục có tiêu chí hoàn thành** (mục bên dưới). Chưa đủ tiêu chí thì ghi là "đang làm", không ghi là "xong".
 3. **Việc bỏ lại phải được ghi vào danh sách việc dang dở** ngay lúc bỏ lại, kèm lý do.
 4. **Nghiên cứu và thiết kế trước, viết mã sau** với mọi thay đổi lớn (cấu trúc lộ trình, kỹ năng mới, dạng bài thi).
@@ -113,6 +113,7 @@ Thời lượng không ghi cứng ở đây. Khối lượng lớn nhất là n�
 | 2026-11-24 | Chấm phát âm | Chọn Azure Pronunciation Assessment, làm thành giai đoạn 1B cho cấp Khởi động. Cùng ngày Azure từ chối cho chủ dự án đăng ký, nên việc chọn dịch vụ mở lại; các phương án ở tài liệu 09 |
 | 2026-11-24 | Theo dõi tiến độ | Tài liệu 09 là bảng tiến độ có ô đánh dấu, cập nhật mỗi khi xong một việc |
 | 2026-11-24 | Phạm vi sử dụng | Chủ dự án cho biết hiện chỉ dùng cho bản thân, không thương mại. Kế hoạch các giai đoạn giữ nguyên, để ngỏ khả năng mở công khai sau này |
+| 2026-11-25 | Bắt đầu cấp A1 | Không đợi chủ dự án học hết cấp Khởi động (khoảng 4-5 tuần). Khi phần việc của Claude ở giai đoạn 1 và 1B đã xong, Claude bắt đầu thiết kế ba nhánh và soạn A1 trong lúc chủ dự án vẫn học. Điều kiện "học hết cấp Khởi động" vẫn giữ để đóng giai đoạn 1; lỗi phát hiện khi học được sửa ở cả hai cấp |
 
 ## Quyết định còn mở
 
