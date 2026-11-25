@@ -59,8 +59,8 @@
         { "key": "s1", "text": "We're new students here.", "accepted": ["We are new students here."], "translation": { "vi": "Chúng tôi là học sinh mới ở đây." }, "accepted_translation": { "vi": ["Chúng tôi là sinh viên mới ở đây.", "Chúng mình là học viên mới ở đây."] } },
         { "key": "s2", "text": "Are you students? Yes, we are.", "translation": { "vi": "Các bạn là sinh viên à? Vâng, đúng vậy." }, "accepted_translation": { "vi": ["Các bạn là học sinh phải không? Vâng, đúng vậy.", "Các bạn có phải là sinh viên không? Vâng, đúng rồi."] }, "note": { "vi": "You dùng cho cả một người và nhiều người.", "en-US": "You is for one person and for more than one person." } },
         { "key": "s3", "text": "They're from America. Their teacher is from England.", "accepted": ["They are from America. Their teacher is from England."], "translation": { "vi": "Họ đến từ Mỹ. Giáo viên của họ đến từ nước Anh." }, "accepted_translation": { "vi": ["Họ là người Mỹ. Giáo viên của họ là người Anh.", "Họ đến từ Mỹ. Thầy giáo của họ đến từ Anh."] } },
-        { "key": "s4", "text": "Are they your friends? Yes, they're our friends.", "accepted": ["Are they your friends? Yes, they are our friends."], "translation": { "vi": "Họ là bạn của bạn à? Vâng, họ là bạn của chúng tôi." }, "accepted_translation": { "vi": ["Họ có phải là bạn của các bạn không? Vâng, họ là bạn của chúng tôi.", "Họ là bạn của các bạn à? Vâng, họ là bạn chúng tôi."] } },
-        { "key": "s5", "text": "Excuse us, please.", "translation": { "vi": "Xin lỗi, cho chúng tôi đi qua." }, "accepted_translation": { "vi": ["Xin lỗi, làm ơn cho chúng tôi qua.", "Xin lỗi chúng tôi."] }, "note": { "vi": "Nói khi muốn đi qua chỗ có người đứng, hoặc khi cần rời đi.", "en-US": "Say it when you want to walk past people, or when you need to leave." } }
+        { "key": "s4", "text": "Are they your friends? Yes, they're our friends.", "accepted": ["Are they your friends? Yes, they are our friends."], "translation": { "vi": "Họ là bạn của các bạn à? Vâng, họ là bạn của chúng tôi." }, "accepted_translation": { "vi": ["Họ có phải là bạn của các bạn không? Vâng, họ là bạn của chúng tôi.", "Họ là bạn của các bạn à? Vâng, họ là bạn chúng tôi."] } },
+        { "key": "s5", "text": "Excuse us, please.", "translation": { "vi": "Xin lỗi, cho chúng tôi đi qua." }, "accepted_translation": { "vi": ["Xin lỗi, làm ơn cho chúng tôi qua.", "Xin lỗi, cho chúng tôi qua."] }, "note": { "vi": "Nói khi muốn đi qua chỗ có người đứng, hoặc khi cần rời đi.", "en-US": "Say it when you want to walk past people, or when you need to leave." } }
       ]
     },
     {
@@ -71,8 +71,8 @@
         "en-US": "Put not after be to make it negative: is not is isn't, are not is aren't. Ask about a person with Who. Use Mr. before a man's family name and Mrs. before a married woman's family name."
       },
       "pronunciation_tip": {
-        "vi": "Isn't, aren't có trọng âm ở âm tiết đầu: IS-n't, AR-en't; đọc rõ âm /t/ cuối. Woman đọc /ˈwʊmən/, số nhiều women đọc /ˈwɪmɪn/: chữ o đầu đọc thành âm i. Mr. đọc là mister, Mrs. đọc là missus.",
-        "en-US": "Say the first part of isn't and aren't strongly, and say the last /t/. Woman and women sound different: WOO-man, WI-min. Say Mr. as mister and Mrs. as missus."
+        "vi": "Isn't có hai âm tiết, nhấn vào âm đầu: IS-n't. Aren't trong tiếng Anh Mỹ chỉ có một âm tiết /ɑrnt/. Đọc rõ âm /t/ cuối của cả hai. Woman đọc /ˈwʊmən/, số nhiều women đọc /ˈwɪmɪn/: chữ o đầu đọc thành âm i. Mr. đọc là mister, Mrs. đọc là missus.",
+        "en-US": "Say the first part of isn't strongly. Aren't is one syllable. Say the last /t/ in both. Woman and women sound different: WOO-man, WI-min. Say Mr. as mister and Mrs. as missus."
       },
       "words": [
         { "lemma": "isn't", "pos": "contraction", "meaning": { "vi": "không phải là (viết gọn của is not)", "en-US": "the short form of is not" }, "accepted": { "vi": ["không phải", "không là"] } },
@@ -99,7 +99,7 @@
         "en-US": "Say live in + a city: I live in Hanoi. With he and she, add -s: She lives in Hanoi. Use the when we both know which one: the street."
       },
       "pronunciation_tip": {
-        "vi": "Hai từ hai âm tiết có trọng âm ở âm tiết đầu: CI-ty, E-mail. Address trong tiếng Anh Mỹ thường đọc AD-dress. Đọc rõ âm cuối /v/ trong live: răng trên chạm môi dưới.",
+        "vi": "City và email có trọng âm ở âm tiết đầu: CI-ty, E-mail. Address trong tiếng Anh Mỹ thường đọc AD-dress. Đọc rõ âm cuối /v/ trong live: răng trên chạm môi dưới.",
         "en-US": "Say the first part strongly: CI-ty, E-mail, AD-dress. Say the last sound /v/ in live: your top teeth touch your bottom lip."
       },
       "words": [

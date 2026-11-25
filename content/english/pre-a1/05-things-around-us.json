@@ -20,34 +20,34 @@
         { "lemma": "this", "pos": "pronoun", "meaning": { "vi": "đây, cái này (ở gần)", "en-US": "the thing or person near me" }, "accepted": { "vi": ["đây", "cái này", "này"] } },
         { "lemma": "a", "pos": "determiner", "pronunciation": "/ə/", "meaning": { "vi": "một (đứng trước danh từ số ít)", "en-US": "one; use it before one thing" }, "accepted": { "vi": ["một"] }, "usage_note": { "vi": "Thường không cần dịch a sang tiếng Việt: a book là \"quyển sách\" hoặc \"một quyển sách\".", "en-US": "Use a before a word that starts with a consonant sound." } },
         { "lemma": "book", "pos": "noun", "meaning": { "vi": "quyển sách", "en-US": "a thing with pages that you read" }, "accepted": { "vi": ["sách", "cuốn sách"] } },
-        { "lemma": "pen", "pos": "noun", "meaning": { "vi": "cái bút", "en-US": "a thing you write with" }, "accepted": { "vi": ["bút", "cây bút", "bút mực"] } },
+        { "lemma": "pen", "pos": "noun", "meaning": { "vi": "cái bút", "en-US": "a thing you write with" }, "accepted": { "vi": ["bút", "cây bút", "bút mực", "chiếc bút"] } },
         { "lemma": "phone", "pos": "noun", "meaning": { "vi": "điện thoại", "en-US": "a thing you use to call people" }, "accepted": { "vi": ["cái điện thoại", "chiếc điện thoại"] } },
-        { "lemma": "bag", "pos": "noun", "meaning": { "vi": "cái túi, cái cặp", "en-US": "a thing you carry your things in" }, "accepted": { "vi": ["túi", "cặp", "cái túi", "cái cặp", "túi xách"] } }
+        { "lemma": "bag", "pos": "noun", "meaning": { "vi": "cái túi, cái cặp", "en-US": "a thing you carry your things in" }, "accepted": { "vi": ["túi", "cặp", "cái túi", "cái cặp", "túi xách", "chiếc túi", "chiếc cặp"] } }
       ],
       "sentences": [
         { "key": "s1", "text": "This is a book.", "translation": { "vi": "Đây là một quyển sách." }, "accepted_translation": { "vi": ["Đây là quyển sách.", "Đây là một cuốn sách.", "Đây là sách."] } },
         { "key": "s2", "text": "This is a pen.", "translation": { "vi": "Đây là một cái bút." }, "accepted_translation": { "vi": ["Đây là cái bút.", "Đây là một cây bút.", "Đây là bút."] } },
         { "key": "s3", "text": "This is my phone.", "translation": { "vi": "Đây là điện thoại của tôi." }, "accepted_translation": { "vi": ["Đây là cái điện thoại của tôi.", "Đây là điện thoại của mình."] } },
         { "key": "s4", "text": "This is a bag.", "translation": { "vi": "Đây là một cái túi." }, "accepted_translation": { "vi": ["Đây là cái túi.", "Đây là một cái cặp.", "Đây là cái cặp."] } },
-        { "key": "s5", "text": "Is this your bag?", "translation": { "vi": "Đây là túi của bạn phải không?" }, "accepted_translation": { "vi": ["Đây có phải túi của bạn không?", "Đây là cặp của bạn phải không?", "Đây là cái túi của bạn à?"] } }
+        { "key": "s5", "text": "Is this your bag?", "translation": { "vi": "Đây là túi của bạn phải không?" }, "accepted_translation": { "vi": ["Đây có phải túi của bạn không?", "Đây là cặp của bạn phải không?", "Đây là cái túi của bạn à?", "Đây có phải là túi của bạn không?"] } }
       ]
     },
     {
       "key": "that-is-an",
       "title": { "vi": "Kia là một...", "en-US": "That is an..." },
       "grammar_tip": {
-        "vi": "That chỉ vật ở xa người nói. Dùng an thay cho a trước từ bắt đầu bằng âm nguyên âm (a, e, i, o, u): an apple, an egg, an umbrella.",
+        "vi": "That chỉ vật ở xa người nói. Dùng an thay cho a trước từ bắt đầu bằng âm nguyên âm (thường là từ viết bắt đầu bằng a, e, i, o, u): an apple, an egg, an umbrella.",
         "en-US": "Use that for a thing far from you. Use an, not a, before a vowel sound (a, e, i, o, u): an apple, an egg, an umbrella."
       },
       "pronunciation_tip": {
-        "vi": "Nối âm: an apple đọc liền thành \"ơ-náp-pồ\", âm /n/ dính sang từ sau. That kết thúc bằng /t/, đừng bỏ.",
+        "vi": "Nối âm: an apple đọc liền thành /əˈnæpəl/, âm /n/ dính sang từ sau. That kết thúc bằng /t/, đừng bỏ.",
         "en-US": "Link the words: an apple sounds like \"a-napple\". That ends with /t/. Do not drop it."
       },
       "words": [
         { "lemma": "that", "pos": "pronoun", "meaning": { "vi": "kia, cái kia (ở xa)", "en-US": "the thing or person far from me" }, "accepted": { "vi": ["kia", "cái kia", "đó", "cái đó"] } },
         { "lemma": "an", "pos": "determiner", "meaning": { "vi": "một (đứng trước từ bắt đầu bằng nguyên âm)", "en-US": "one; use it before a vowel sound" }, "accepted": { "vi": ["một"] } },
         { "lemma": "apple", "pos": "noun", "meaning": { "vi": "quả táo", "en-US": "a round red or green fruit" }, "accepted": { "vi": ["táo", "trái táo"] } },
-        { "lemma": "umbrella", "pos": "noun", "meaning": { "vi": "cái ô, cái dù", "en-US": "a thing you hold over your head in the rain" }, "accepted": { "vi": ["ô", "dù", "cái ô", "cái dù"] } },
+        { "lemma": "umbrella", "pos": "noun", "meaning": { "vi": "cái ô, cái dù", "en-US": "a thing you hold over your head in the rain" }, "accepted": { "vi": ["ô", "dù", "cái ô", "cái dù", "chiếc ô", "chiếc dù"] } },
         { "lemma": "egg", "pos": "noun", "meaning": { "vi": "quả trứng", "en-US": "a round food that comes from a chicken" }, "accepted": { "vi": ["trứng", "trái trứng"] } },
         { "lemma": "what", "pos": "pronoun", "meaning": { "vi": "cái gì, gì", "en-US": "a question word for things" }, "accepted": { "vi": ["cái gì", "gì"] } }
       ],
@@ -56,7 +56,7 @@
         { "key": "s2", "text": "That is an umbrella.", "accepted": ["That's an umbrella."], "translation": { "vi": "Kia là một cái ô." }, "accepted_translation": { "vi": ["Kia là cái ô.", "Kia là một cái dù.", "Đó là một cái ô.", "Đó là cái dù."] } },
         { "key": "s3", "text": "What is that?", "accepted": ["What's that?"], "translation": { "vi": "Kia là cái gì?" }, "accepted_translation": { "vi": ["Cái kia là gì?", "Đó là cái gì?", "Cái đó là gì?"] } },
         { "key": "s4", "text": "That is an egg.", "accepted": ["That's an egg."], "translation": { "vi": "Kia là một quả trứng." }, "accepted_translation": { "vi": ["Kia là quả trứng.", "Đó là một quả trứng.", "Đó là quả trứng."] } },
-        { "key": "s5", "text": "Is that an apple? No.", "translation": { "vi": "Kia là quả táo phải không? Không." }, "accepted_translation": { "vi": ["Kia có phải quả táo không? Không.", "Đó là quả táo phải không? Không."] } }
+        { "key": "s5", "text": "Is that an apple? No.", "translation": { "vi": "Kia là quả táo phải không? Không." }, "accepted_translation": { "vi": ["Kia có phải quả táo không? Không.", "Đó là quả táo phải không? Không.", "Kia là quả táo phải không? Không phải."] } }
       ]
     },
     {
@@ -67,22 +67,22 @@
         "en-US": "To answer What's this? or What's that?, use It for the thing: It's a key. It's is the short form of It is."
       },
       "pronunciation_tip": {
-        "vi": "It's kết thúc bằng /ts/: phải nghe được cả âm \"t\" lẫn âm \"x\". Table và chair: đọc rõ âm cuối /l/ và /r/.",
+        "vi": "It's kết thúc bằng /ts/: phải nghe được cả âm /t/ lẫn âm /s/ (gần giống \"x\" tiếng Việt). Table và chair: đọc rõ âm cuối /l/ và /r/.",
         "en-US": "It's ends with /ts/. Say both sounds. Say the last sounds in table and chair."
       },
       "words": [
         { "lemma": "it", "pos": "pronoun", "meaning": { "vi": "nó (chỉ đồ vật, con vật)", "en-US": "a word for a thing or an animal" }, "accepted": { "vi": ["nó", "cái đó"] } },
         { "lemma": "it's", "pos": "contraction", "meaning": { "vi": "nó là, nó thì (viết gọn của it is)", "en-US": "the short form of it is" }, "accepted": { "vi": ["nó là", "nó thì", "đó là"] } },
-        { "lemma": "table", "pos": "noun", "meaning": { "vi": "cái bàn", "en-US": "a thing with a flat top and legs; you eat or work at it" }, "accepted": { "vi": ["bàn"] } },
-        { "lemma": "chair", "pos": "noun", "meaning": { "vi": "cái ghế", "en-US": "a thing you sit on" }, "accepted": { "vi": ["ghế"] } },
+        { "lemma": "table", "pos": "noun", "meaning": { "vi": "cái bàn", "en-US": "a thing with a flat top and legs; you eat or work at it" }, "accepted": { "vi": ["bàn", "chiếc bàn"] } },
+        { "lemma": "chair", "pos": "noun", "meaning": { "vi": "cái ghế", "en-US": "a thing you sit on" }, "accepted": { "vi": ["ghế", "chiếc ghế"] } },
         { "lemma": "key", "pos": "noun", "meaning": { "vi": "chìa khóa", "en-US": "a small thing you use to open a door" }, "accepted": { "vi": ["cái chìa khóa", "chiếc chìa khóa"] } },
         { "lemma": "door", "pos": "noun", "meaning": { "vi": "cái cửa", "en-US": "the thing you open to go into a room" }, "accepted": { "vi": ["cửa", "cánh cửa"] } }
       ],
       "sentences": [
         { "key": "s1", "text": "It is a table.", "accepted": ["It's a table."], "translation": { "vi": "Nó là một cái bàn." }, "accepted_translation": { "vi": ["Nó là cái bàn.", "Đó là một cái bàn.", "Đó là cái bàn."] } },
         { "key": "s2", "text": "It's a chair.", "accepted": ["It is a chair."], "translation": { "vi": "Nó là một cái ghế." }, "accepted_translation": { "vi": ["Nó là cái ghế.", "Đó là một cái ghế.", "Đó là cái ghế."] } },
-        { "key": "s3", "text": "What's this? It's a key.", "accepted": ["What is this? It is a key.", "What's this? It is a key.", "What is this? It's a key."], "translation": { "vi": "Đây là cái gì? Nó là chìa khóa." }, "accepted_translation": { "vi": ["Cái này là gì? Nó là chìa khóa.", "Đây là cái gì? Đó là chìa khóa.", "Đây là gì? Nó là một cái chìa khóa."] } },
-        { "key": "s4", "text": "Is it a door? Yes.", "translation": { "vi": "Nó là cái cửa phải không? Vâng." }, "accepted_translation": { "vi": ["Nó có phải cái cửa không? Vâng.", "Đó là cái cửa phải không? Vâng."] } },
+        { "key": "s3", "text": "What's this? It's a key.", "accepted": ["What is this? It is a key.", "What's this? It is a key.", "What is this? It's a key."], "translation": { "vi": "Đây là cái gì? Nó là chìa khóa." }, "accepted_translation": { "vi": ["Cái này là gì? Nó là chìa khóa.", "Đây là cái gì? Đó là chìa khóa.", "Đây là gì? Nó là một cái chìa khóa.", "Đây là cái gì? Nó là một cái chìa khóa."] } },
+        { "key": "s4", "text": "Is it a door? Yes.", "translation": { "vi": "Nó là cái cửa phải không? Vâng." }, "accepted_translation": { "vi": ["Nó có phải cái cửa không? Vâng.", "Đó là cái cửa phải không? Vâng.", "Nó là cái cửa phải không? Đúng rồi."] } },
         { "key": "s5", "text": "It's my key.", "accepted": ["It is my key."], "translation": { "vi": "Nó là chìa khóa của tôi." }, "accepted_translation": { "vi": ["Đó là chìa khóa của tôi.", "Nó là chìa khóa của mình."] } }
       ]
     },
@@ -94,14 +94,14 @@
         "en-US": "Use or to ask about two things: Is this a cup or a pen? Answer with one of the two things, not with Yes or No."
       },
       "pronunciation_tip": {
-        "vi": "Cup kết thúc bằng /p/ và watch kết thúc bằng /tʃ/ (\"ch\"): phải bật hơi ở cuối. Trong câu hỏi có or, lên giọng ở vế đầu và xuống giọng ở vế sau.",
+        "vi": "Cup kết thúc bằng /p/: ngậm môi lại, đừng bỏ âm cuối. Watch kết thúc bằng /tʃ/, gần giống \"ch\" nhưng chu môi. Trong câu hỏi có or, lên giọng ở vế đầu và xuống giọng ở vế sau.",
         "en-US": "Cup ends with /p/ and watch ends with /tʃ/. Say the last sound. In a question with or, your voice goes up on the first thing and down on the second."
       },
       "words": [
         { "lemma": "or", "pos": "conjunction", "meaning": { "vi": "hay, hoặc", "en-US": "a word that joins two choices" }, "accepted": { "vi": ["hay", "hoặc", "hay là"] } },
         { "lemma": "cup", "pos": "noun", "meaning": { "vi": "cái cốc, cái tách", "en-US": "a small thing you drink from" }, "accepted": { "vi": ["cốc", "tách", "ly", "cái ly"] } },
-        { "lemma": "computer", "pos": "noun", "meaning": { "vi": "máy tính", "en-US": "a machine you use to work, write, and go online" }, "accepted": { "vi": ["cái máy tính", "máy vi tính"] } },
-        { "lemma": "watch", "pos": "noun", "meaning": { "vi": "đồng hồ đeo tay", "en-US": "a small clock you wear on your arm" }, "accepted": { "vi": ["đồng hồ", "cái đồng hồ"] } },
+        { "lemma": "computer", "pos": "noun", "meaning": { "vi": "máy tính", "en-US": "a machine you use to work, write, and go online" }, "accepted": { "vi": ["cái máy tính", "máy vi tính", "chiếc máy tính"] } },
+        { "lemma": "watch", "pos": "noun", "meaning": { "vi": "đồng hồ đeo tay", "en-US": "a small clock you wear on your arm" }, "accepted": { "vi": ["đồng hồ", "cái đồng hồ", "chiếc đồng hồ"] } },
         { "lemma": "window", "pos": "noun", "meaning": { "vi": "cửa sổ", "en-US": "the glass part of a wall; you can see out of it" }, "accepted": { "vi": ["cái cửa sổ"] } }
       ],
       "sentences": [
@@ -109,7 +109,7 @@
         { "key": "s2", "text": "That is my computer.", "accepted": ["That's my computer."], "translation": { "vi": "Kia là máy tính của tôi." }, "accepted_translation": { "vi": ["Đó là máy tính của tôi.", "Kia là cái máy tính của tôi."] } },
         { "key": "s3", "text": "This is a watch.", "translation": { "vi": "Đây là một cái đồng hồ." }, "accepted_translation": { "vi": ["Đây là cái đồng hồ.", "Đây là đồng hồ đeo tay.", "Đây là một chiếc đồng hồ đeo tay."] } },
         { "key": "s4", "text": "That is a window.", "accepted": ["That's a window."], "translation": { "vi": "Kia là một cái cửa sổ." }, "accepted_translation": { "vi": ["Kia là cửa sổ.", "Đó là một cái cửa sổ.", "Đó là cửa sổ."] } },
-        { "key": "s5", "text": "Is that your cup?", "translation": { "vi": "Kia là cốc của bạn phải không?" }, "accepted_translation": { "vi": ["Kia có phải cốc của bạn không?", "Đó là cốc của bạn phải không?", "Kia là cái ly của bạn phải không?"] } }
+        { "key": "s5", "text": "Is that your cup?", "translation": { "vi": "Kia là cốc của bạn phải không?" }, "accepted_translation": { "vi": ["Kia có phải cốc của bạn không?", "Đó là cốc của bạn phải không?", "Kia là cái ly của bạn phải không?", "Kia có phải là cốc của bạn không?"] } }
       ]
     }
   ]

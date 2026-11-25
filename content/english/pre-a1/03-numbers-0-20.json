@@ -17,7 +17,7 @@
         "en-US": "Three starts with /θ/: put your tongue between your teeth and blow. Five ends with /v/: your top teeth touch your bottom lip."
       },
       "words": [
-        { "lemma": "zero", "pos": "number", "meaning": { "vi": "số không (0)", "en-US": "the number 0" }, "accepted": { "vi": ["không", "0", "số 0"] } },
+        { "lemma": "zero", "pos": "number", "meaning": { "vi": "số không (0)", "en-US": "the number 0" }, "accepted": { "vi": ["không", "0", "số 0", "số không"] } },
         { "lemma": "one", "pos": "number", "meaning": { "vi": "số một (1)", "en-US": "the number 1" }, "accepted": { "vi": ["một", "1", "số 1"] } },
         { "lemma": "two", "pos": "number", "meaning": { "vi": "số hai (2)", "en-US": "the number 2" }, "accepted": { "vi": ["hai", "2", "số 2"] } },
         { "lemma": "three", "pos": "number", "meaning": { "vi": "số ba (3)", "en-US": "the number 3" }, "accepted": { "vi": ["ba", "3", "số 3"] } },
@@ -36,11 +36,11 @@
       "key": "six-to-ten",
       "title": { "vi": "Số 6 đến 10", "en-US": "Numbers 6 to 10" },
       "grammar_tip": {
-        "vi": "Number + số dùng để gọi tên theo số thứ tự: number seven là \"số bảy\" (bàn số 7, phòng số 7).",
+        "vi": "Number + số dùng để đánh số, gọi tên: number seven là \"số bảy\" (bàn số 7, phòng số 7).",
         "en-US": "Use number + a number to name things: number seven (table number 7, room number 7)."
       },
       "pronunciation_tip": {
-        "vi": "Six kết thúc bằng /ks/, phải nghe được âm \"x\" ở cuối. Seven có âm /v/ ở giữa. Eight kết thúc bằng /t/.",
+        "vi": "Six kết thúc bằng /ks/: đọc rõ cả /k/ và /s/ ở cuối. Seven có âm /v/ ở giữa. Eight kết thúc bằng /t/.",
         "en-US": "Six ends with /ks/. Seven has /v/ in the middle. Eight ends with /t/."
       },
       "words": [
@@ -54,9 +54,9 @@
       "sentences": [
         { "key": "s1", "text": "Six, seven, eight.", "accepted": ["6, 7, 8."], "translation": { "vi": "Sáu, bảy, tám." }, "accepted_translation": { "vi": ["6, 7, 8."] } },
         { "key": "s2", "text": "Nine and ten.", "accepted": ["9 and 10."], "translation": { "vi": "Chín và mười." }, "accepted_translation": { "vi": ["9 và 10."] } },
-        { "key": "s3", "text": "Number seven, please.", "accepted": ["Number 7, please."], "translation": { "vi": "Số bảy, làm ơn." }, "accepted_translation": { "vi": ["Làm ơn cho số bảy.", "Số 7, làm ơn."] } },
+        { "key": "s3", "text": "Number seven, please.", "accepted": ["Number 7, please."], "translation": { "vi": "Số bảy, làm ơn." }, "accepted_translation": { "vi": ["Làm ơn cho số bảy.", "Số 7, làm ơn.", "Làm ơn cho số 7."] } },
         { "key": "s4", "text": "Ten, nine, eight.", "accepted": ["10, 9, 8."], "translation": { "vi": "Mười, chín, tám." }, "accepted_translation": { "vi": ["10, 9, 8."] } },
-        { "key": "s5", "text": "Number six? Yes.", "accepted": ["Number 6? Yes."], "translation": { "vi": "Số sáu à? Vâng." }, "accepted_translation": { "vi": ["Số sáu phải không? Vâng.", "Số 6 à? Vâng."] } }
+        { "key": "s5", "text": "Number six? Yes.", "accepted": ["Number 6? Yes."], "translation": { "vi": "Số sáu à? Vâng." }, "accepted_translation": { "vi": ["Số sáu phải không? Vâng.", "Số 6 à? Vâng.", "Số 6 phải không? Vâng."] } }
       ]
     },
     {
@@ -80,8 +80,8 @@
       "sentences": [
         { "key": "s1", "text": "Eleven and twelve.", "accepted": ["11 and 12."], "translation": { "vi": "Mười một và mười hai." }, "accepted_translation": { "vi": ["11 và 12."] } },
         { "key": "s2", "text": "Thirteen, fourteen, fifteen.", "accepted": ["13, 14, 15."], "translation": { "vi": "Mười ba, mười bốn, mười lăm." }, "accepted_translation": { "vi": ["13, 14, 15."] } },
-        { "key": "s3", "text": "Number twelve, please.", "accepted": ["Number 12, please."], "translation": { "vi": "Số mười hai, làm ơn." }, "accepted_translation": { "vi": ["Làm ơn cho số mười hai.", "Số 12, làm ơn."] } },
-        { "key": "s4", "text": "Fifteen? No, fourteen.", "accepted": ["15? No, 14."], "translation": { "vi": "Mười lăm à? Không, mười bốn." }, "accepted_translation": { "vi": ["Mười lăm phải không? Không, mười bốn.", "15 à? Không, 14."] } },
+        { "key": "s3", "text": "Number twelve, please.", "accepted": ["Number 12, please."], "translation": { "vi": "Số mười hai, làm ơn." }, "accepted_translation": { "vi": ["Làm ơn cho số mười hai.", "Số 12, làm ơn.", "Làm ơn cho số 12."] } },
+        { "key": "s4", "text": "Fifteen? No, fourteen.", "accepted": ["15? No, 14."], "translation": { "vi": "Mười lăm à? Không, mười bốn." }, "accepted_translation": { "vi": ["Mười lăm phải không? Không, mười bốn.", "15 à? Không, 14.", "15 phải không? Không, 14."] } },
         { "key": "s5", "text": "Ten, eleven, twelve, thirteen.", "accepted": ["10, 11, 12, 13."], "translation": { "vi": "Mười, mười một, mười hai, mười ba." }, "accepted_translation": { "vi": ["10, 11, 12, 13."] } }
       ]
     },
@@ -93,7 +93,7 @@
         "en-US": "Sixteen, seventeen, and nineteen are six, seven, and nine plus -teen. Eighteen has only one t. Twenty ends in -ty."
       },
       "pronunciation_tip": {
-        "vi": "Đuôi -teen kéo dài và được nhấn; đuôi -ty đọc ngắn và nhẹ. Phân biệt này rất quan trọng về sau (thirteen khác thirty). Twenty bắt đầu bằng cụm /tw/: đọc liền \"tw\", không chen nguyên âm.",
+        "vi": "Đuôi -teen kéo dài và được nhấn; đuôi -ty đọc ngắn và nhẹ. Phân biệt này rất quan trọng về sau (thirteen khác thirty). Twenty bắt đầu bằng cụm /tw/: đọc liền \"tw\", không chen nguyên âm. Người Mỹ nói nhanh thường bỏ âm /t/ ở giữa, nghe như \"twen-ny\".",
         "en-US": "Say -teen long and strong. Say -ty short and weak. This matters later (thirteen and thirty). Twenty starts with /tw/: say the two sounds together."
       },
       "words": [
@@ -101,13 +101,13 @@
         { "lemma": "seventeen", "pos": "number", "meaning": { "vi": "số mười bảy (17)", "en-US": "the number 17" }, "accepted": { "vi": ["mười bảy", "17", "số 17"] } },
         { "lemma": "eighteen", "pos": "number", "meaning": { "vi": "số mười tám (18)", "en-US": "the number 18" }, "accepted": { "vi": ["mười tám", "18", "số 18"] } },
         { "lemma": "nineteen", "pos": "number", "meaning": { "vi": "số mười chín (19)", "en-US": "the number 19" }, "accepted": { "vi": ["mười chín", "19", "số 19"] } },
-        { "lemma": "twenty", "pos": "number", "meaning": { "vi": "số hai mươi (20)", "en-US": "the number 20" }, "accepted": { "vi": ["hai mươi", "20", "số 20"] } }
+        { "lemma": "twenty", "pos": "number", "meaning": { "vi": "số hai mươi (20)", "en-US": "the number 20" }, "accepted": { "vi": ["hai mươi", "20", "số 20", "hai chục"] } }
       ],
       "sentences": [
         { "key": "s1", "text": "Sixteen and seventeen.", "accepted": ["16 and 17."], "translation": { "vi": "Mười sáu và mười bảy." }, "accepted_translation": { "vi": ["16 và 17."] } },
         { "key": "s2", "text": "Eighteen, nineteen, twenty.", "accepted": ["18, 19, 20."], "translation": { "vi": "Mười tám, mười chín, hai mươi." }, "accepted_translation": { "vi": ["18, 19, 20."] } },
-        { "key": "s3", "text": "Number twenty, please.", "accepted": ["Number 20, please."], "translation": { "vi": "Số hai mươi, làm ơn." }, "accepted_translation": { "vi": ["Làm ơn cho số hai mươi.", "Số 20, làm ơn."] } },
-        { "key": "s4", "text": "Nineteen? Yes, nineteen.", "accepted": ["19? Yes, 19."], "translation": { "vi": "Mười chín à? Vâng, mười chín." }, "accepted_translation": { "vi": ["Mười chín phải không? Vâng, mười chín.", "19 à? Vâng, 19."] } },
+        { "key": "s3", "text": "Number twenty, please.", "accepted": ["Number 20, please."], "translation": { "vi": "Số hai mươi, làm ơn." }, "accepted_translation": { "vi": ["Làm ơn cho số hai mươi.", "Số 20, làm ơn.", "Làm ơn cho số 20."] } },
+        { "key": "s4", "text": "Nineteen? Yes, nineteen.", "accepted": ["19? Yes, 19."], "translation": { "vi": "Mười chín à? Vâng, mười chín." }, "accepted_translation": { "vi": ["Mười chín phải không? Vâng, mười chín.", "19 à? Vâng, 19.", "19 phải không? Vâng, 19."] } },
         { "key": "s5", "text": "Sixteen, eighteen, twenty.", "accepted": ["16, 18, 20."], "translation": { "vi": "Mười sáu, mười tám, hai mươi." }, "accepted_translation": { "vi": ["16, 18, 20."] } }
       ]
     }

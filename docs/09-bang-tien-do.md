@@ -1,6 +1,6 @@
 # 09. Bảng tiến độ
 
-Cập nhật lần cuối: 2026-11-24.
+Cập nhật lần cuối: 2026-11-25.
 
 Đây là danh sách việc từ bây giờ tới đích IELTS 6.5, theo thứ tự làm. Mỗi lần xong một việc, dòng đó được đánh dấu và ghi ngày. Lý do, tiêu chí hoàn thành và chi tiết từng việc nằm ở tài liệu 04; tài liệu này chỉ để nhìn nhanh đang ở đâu.
 
@@ -14,7 +14,7 @@ Ký hiệu:
 
 | Giai đoạn | Nội dung | Tình trạng |
 |---|---|---|
-| 1 | Hoàn thiện cấp Khởi động | Đang làm: 7 việc xong, 6 việc chờ chủ dự án, 2 việc chưa làm |
+| 1 | Hoàn thiện cấp Khởi động | Đang làm: 8 việc xong, 6 việc chờ chủ dự án, 1 việc chưa làm |
 | 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Hoãn từ 2026-11-24, làm sau khi có bài học cấp A1 |
 | 2 | Ba nhánh và cấp A1 | Đang làm: khung A1 xong, chủ đề 1/21 đã xuất bản |
 | 3 | Cấp A2, viết và nói | Chưa bắt đầu |
@@ -30,10 +30,9 @@ Gom lại một chỗ để bạn biết mình cần làm gì. Làm xong việc 
 
 1. Thử app trên điện thoại theo tài liệu 08: học 3 bài có bấm giờ, ôn tập, bài ôn chủ đề, kiểm tra cuối cấp, gửi một báo lỗi, mở trang xem nội dung.
 2. Nghe duyệt âm thanh ở Quản trị > Âm thanh: 26 chữ cái, số 0-20, khoảng 10 câu mỗi chủ đề, cả hai giọng.
-3. Cấp khóa API của một hãng khác Anthropic (ví dụ Gemini) để kiểm tra chéo nội dung: tự dán vào `.env.local`, không gửi qua khung chat.
-4. Tạo lại file `.env.local` trên máy đang làm việc theo `.env.example` (kết nối database, tài khoản thử): thiếu file này thì không xuất bản được bài mới và không chạy được kiểm thử luồng.
-5. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
-6. Đọc lại trang chính sách quyền riêng tư.
+3. Tạo lại file `.env.local` trên máy đang làm việc theo `.env.example` (kết nối database, tài khoản thử): thiếu file này thì không xuất bản được bài mới và không chạy được kiểm thử luồng.
+4. Dọn dẹp: đổi mật khẩu database, xóa file client secret trong thư mục Downloads, xử lý project Google Cloud thừa.
+5. Đọc lại trang chính sách quyền riêng tư.
 
 ## Giai đoạn 1: hoàn thiện cấp Khởi động
 
@@ -52,7 +51,7 @@ Số trong ngoặc là số việc ở tài liệu 04.
 - [~] Nút báo lỗi nội dung (7) — chờ bạn gửi thử một báo lỗi
 - [~] Trang xem nội dung bài cho quản trị (8) — chờ bạn mở thử
 - [~] Kiểm chứng mọi màn hình trên điện thoại (11) — chờ bạn làm theo tài liệu 08
-- [ ] Kiểm tra chéo nội dung 24 bài bằng model khác hãng (3) — đã đối chiếu với Cambridge Starters và Tatoeba ngày 2026-11-24, không thấy lỗi; phần chính chờ khóa API
+- [x] Kiểm tra chéo nội dung 24 bài bằng model khác hãng (3) — 2026-11-25, Gemini; 12 lỗi và nhiều gợi ý đã sửa, đã nạp lên database và sinh lại bài tập
 - [ ] Dọn dẹp tài khoản thử và bí mật (12) — phần lớn cần bạn thao tác; tài khoản thử xóa sau cùng vì kiểm thử đang dùng
 
 Điều kiện đóng giai đoạn: mọi dòng trên là `[x]`, và bạn đã học hết cấp Khởi động trên bản thật.
@@ -94,9 +93,9 @@ Thứ tự xếp lại ngày 2026-11-24 để có bài học mới sớm nhất:
 - [x] Lập danh sách từ và thứ tự ngữ pháp cấp A1 theo chương trình chuẩn (Cambridge A1 Movers, CEFR-J); chia thành chủ đề và bài — 2026-11-24, `tools/content/syllabus/english-a1.json`: 21 chủ đề, 84 bài, 544 từ mới, cộng dồn 688; kiểm bằng `node tools/content/syllabus-check.mjs`. Migration 015 đưa 21 chủ đề vào database
 - [x] Đạt kiểm tra cuối cấp thì mở cấp sau; bài mới xuất bản sau bài cuối đã học không còn bị khóa — 2026-11-24 (kéo lên từ đợt 2 vì đã có A1)
 - [ ] Thiết kế ba nhánh (Ngữ pháp, Từ vựng chủ đề, Từ vựng theo cấp CEFR) và viết lại tài liệu 02
-- [ ] Công cụ kiểm tra chéo chạy tự động cho mọi bài mới (cần khóa API hãng khác; cũng đóng việc số 3 của giai đoạn 1)
-- [ ] Soạn, kiểm tra, sinh âm thanh và xuất bản các bài từ vựng chủ đề cấp A1, từng chủ đề một. Đã xuất bản (chưa kiểm tra chéo, chưa nghe duyệt âm thanh):
-  - [~] Chủ đề 1 Giới thiệu bản thân, 4 bài + bài ôn, 30 từ — 2026-11-24, chờ bạn học thử
+- [x] Công cụ kiểm tra chéo cho mọi bài mới — 2026-11-25, `node tools/content/crosscheck-ai.mjs <cấp>/<chủ đề>`
+- [ ] Soạn, kiểm tra, sinh âm thanh và xuất bản các bài từ vựng chủ đề cấp A1, từng chủ đề một. Đã xuất bản (chưa nghe duyệt âm thanh):
+  - [~] Chủ đề 1 Giới thiệu bản thân, 4 bài + bài ôn, 30 từ — 2026-11-24, đã kiểm tra chéo 2026-11-25; chờ bạn học thử
   - [ ] Chủ đề 2-21
 
 Đợt 2, dạng bài mới:

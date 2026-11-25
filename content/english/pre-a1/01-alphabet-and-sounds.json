@@ -95,7 +95,7 @@
           "pos": "letter",
           "pronunciation": "/ɛf/",
           "meaning": {
-            "vi": "chữ F, đọc gần giống \"ép\"",
+            "vi": "chữ F, đọc gần giống \"ép\" nhưng cuối là răng trên chạm môi dưới, thổi hơi",
             "en-US": "the letter F"
           },
           "accepted": {
@@ -109,7 +109,7 @@
           "pos": "letter",
           "pronunciation": "/dʒi/",
           "meaning": {
-            "vi": "chữ G, đọc gần giống \"gi\"",
+            "vi": "chữ G, đọc gần giống \"chi\" nhưng cổ họng rung",
             "en-US": "the letter G"
           },
           "accepted": {
@@ -200,7 +200,7 @@
         "en-US": "To spell your name, say each letter name in order. For example, Minh: M, I, N, H."
       },
       "pronunciation_tip": {
-        "vi": "I đọc là \"ai\", không phải \"i\". H đọc là \"ết-ch\", J đọc là \"giây\", K đọc là \"kây\".",
+        "vi": "I đọc là \"ai\", không phải \"i\". H đọc là \"ết-ch\", J đọc gần giống \"chây\" nhưng cổ họng rung, K đọc là \"kây\".",
         "en-US": "I sounds like \"eye\". H is \"aitch\", J is \"jay\", K is \"kay\"."
       },
       "words": [
@@ -237,7 +237,7 @@
           "pos": "letter",
           "pronunciation": "/dʒeɪ/",
           "meaning": {
-            "vi": "chữ J, đọc gần giống \"giây\"",
+            "vi": "chữ J, đọc gần giống \"chây\" nhưng cổ họng rung",
             "en-US": "the letter J"
           },
           "accepted": {
@@ -536,7 +536,7 @@
             "vi": "S, O, N."
           },
           "note": {
-            "vi": "Đánh vần tên Sơn.",
+            "vi": "Đánh vần tên Sơn. Tiếng Anh không có chữ ơ và dấu thanh, nên tên viết là Son.",
             "en-US": "This spells the name Son."
           }
         },
@@ -568,7 +568,7 @@
         "en-US": "Now you know all 26 letters. English has no tone marks, so Vietnamese names are spelled without them: Viet is V, I, E, T."
       },
       "pronunciation_tip": {
-        "vi": "W đọc là \"đấp-bồ-diu\" (nghĩa là hai chữ U). Y đọc là \"oai\". Z trong tiếng Anh Mỹ đọc là \"di\", môi rung nhẹ.",
+        "vi": "W đọc là \"đấp-bồ-diu\" (nghĩa là hai chữ U). Y đọc là \"oai\". Z trong tiếng Anh Mỹ đọc là \"di\" (giọng Bắc), cổ họng rung nhẹ.",
         "en-US": "W is \"double-you\". Y is \"why\". In American English, Z is \"zee\"."
       },
       "words": [

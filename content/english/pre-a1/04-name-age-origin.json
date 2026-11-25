@@ -102,7 +102,9 @@
             "vi": [
               "vui",
               "dễ chịu",
-              "tốt"
+              "tốt",
+              "đẹp",
+              "tuyệt"
             ]
           }
         },
@@ -250,8 +252,7 @@
           "accepted": {
             "vi": [
               "già",
-              "cũ",
-              "tuổi"
+              "cũ"
             ]
           }
         },
@@ -267,8 +268,7 @@
           },
           "accepted": {
             "vi": [
-              "năm",
-              "tuổi"
+              "năm"
             ]
           }
         },
@@ -415,8 +415,8 @@
         "en-US": "Statement: You are from Vietnam. Question: put are before you: Are you from Vietnam? Names of countries and cities start with a capital letter."
       },
       "pronunciation_tip": {
-        "vi": "Đọc rõ âm cuối /m/ trong from. Nối âm: I'm from đọc liền, hai âm /m/ gần nhau chỉ cần ngậm môi một lần.",
-        "en-US": "Say the last sound /m/ in from. Link the words in I'm from."
+        "vi": "Đọc rõ âm cuối /m/ trong I'm và trong from: ngậm môi lại ở cuối, đừng bỏ.",
+        "en-US": "Say the last sound /m/ in I'm and in from. Close your lips at the end."
       },
       "words": [
         {
@@ -501,8 +501,8 @@
             ]
           },
           "usage_note": {
-            "vi": "Too với nghĩa cũng đứng ở cuối câu, sau dấu phẩy.",
-            "en-US": "Too goes at the end of the sentence, after a comma."
+            "vi": "Too với nghĩa cũng đứng ở cuối câu. Có thể có dấu phẩy trước too hoặc không.",
+            "en-US": "Too goes at the end of the sentence. A comma before it is optional."
           }
         }
       ],
@@ -613,7 +613,8 @@
           "accepted": {
             "vi": [
               "đó là",
-              "điều đó"
+              "điều đó",
+              "kia là"
             ]
           }
         },
@@ -665,6 +666,7 @@
           },
           "accepted": {
             "vi": [
+              "thật",
               "thật à",
               "thật sao",
               "thế à"

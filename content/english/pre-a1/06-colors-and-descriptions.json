@@ -13,7 +13,7 @@
         "en-US": "Ask What color is it? Answer with It's + a color. Do not use a before a color word: It's red."
       },
       "pronunciation_tip": {
-        "vi": "Red và green có âm /r/: cong lưỡi lên, không chạm vòm miệng, không rung. Blue và yellow có âm /l/: đầu lưỡi chạm vào chân răng trên. Đừng nhầm hai âm này.",
+        "vi": "Red và green có âm /r/: cong lưỡi lên, không chạm vòm miệng, không rung lưỡi. Blue và yellow có âm /l/: đầu lưỡi chạm vào chân răng trên. Đừng nhầm hai âm này.",
         "en-US": "Red and green have /r/: curl your tongue and do not touch the top of your mouth. Blue and yellow have /l/: your tongue touches behind your top teeth."
       },
       "words": [
@@ -76,7 +76,7 @@
         { "lemma": "very", "pos": "adverb", "meaning": { "vi": "rất", "en-US": "a word that makes the next word stronger" }, "accepted": { "vi": ["lắm", "quá"] } }
       ],
       "sentences": [
-        { "key": "s1", "text": "It's big.", "accepted": ["It is big."], "translation": { "vi": "Nó to." }, "accepted_translation": { "vi": ["Nó lớn.", "Nó to lắm."] } },
+        { "key": "s1", "text": "It's big.", "accepted": ["It is big."], "translation": { "vi": "Nó to." }, "accepted_translation": { "vi": ["Nó lớn.", "Nó bự."] } },
         { "key": "s2", "text": "This table is very big.", "translation": { "vi": "Cái bàn này rất to." }, "accepted_translation": { "vi": ["Cái bàn này rất lớn.", "Bàn này rất to."] } },
         { "key": "s3", "text": "That key is small.", "translation": { "vi": "Cái chìa khóa kia nhỏ." }, "accepted_translation": { "vi": ["Chìa khóa kia nhỏ.", "Cái chìa khóa đó nhỏ.", "Chìa khóa đó nhỏ."] } },
         { "key": "s4", "text": "My pen is long.", "translation": { "vi": "Cái bút của tôi dài." }, "accepted_translation": { "vi": ["Bút của tôi dài.", "Cây bút của tôi dài."] } },
@@ -91,7 +91,7 @@
         "en-US": "A describing word goes after is (My cup is clean) or before the thing (a beautiful bag). Use but to join two different ideas."
       },
       "pronunciation_tip": {
-        "vi": "Clean bắt đầu bằng cụm /kl/ và kết thúc bằng /n/. Dirty có âm /r/ ở giữa: cong lưỡi. Beautiful có ba âm tiết, nhấn vào âm đầu: BEAU-ti-ful.",
+        "vi": "Clean bắt đầu bằng cụm /kl/ và kết thúc bằng /n/. Dirty có âm /r/ ở giữa: cong lưỡi. Beautiful có ba âm tiết, nhấn vào âm đầu: BEAU-ti-ful. Giọng Mỹ thường đọc âm /t/ ở giữa lướt nhẹ, gần giống /d/.",
         "en-US": "Clean starts with /kl/ and ends with /n/. Dirty has /r/ in the middle. Beautiful has three parts. Say the first part strong: BEAU-ti-ful."
       },
       "words": [

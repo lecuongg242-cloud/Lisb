@@ -48,7 +48,7 @@
         { "lemma": "evening", "pos": "noun", "meaning": { "vi": "buổi tối", "en-US": "the part of the day after about 6 p.m." }, "accepted": { "vi": ["tối"] } },
         { "lemma": "night", "pos": "noun", "meaning": { "vi": "đêm, ban đêm", "en-US": "the time when it is dark and people sleep" }, "accepted": { "vi": ["đêm", "ban đêm"] } },
         { "lemma": "see", "pos": "verb", "meaning": { "vi": "gặp, nhìn thấy", "en-US": "to meet someone; to look at something with your eyes" }, "accepted": { "vi": ["gặp", "thấy", "nhìn thấy"] } },
-        { "lemma": "you", "pos": "pronoun", "meaning": { "vi": "bạn (người đang nghe)", "en-US": "the person I am talking to" }, "accepted": { "vi": ["bạn", "anh", "chị", "em"] }, "usage_note": { "vi": "Tiếng Anh chỉ có một từ you cho mọi người, không phân biệt anh, chị, em, bạn.", "en-US": "English has only one word, you, for everyone." } },
+        { "lemma": "you", "pos": "pronoun", "meaning": { "vi": "bạn (người đang nghe)", "en-US": "the person I am talking to" }, "accepted": { "vi": ["bạn", "anh", "chị", "em", "các bạn"] }, "usage_note": { "vi": "Tiếng Anh chỉ có một từ you cho mọi người, không phân biệt anh, chị, em, bạn.", "en-US": "English has only one word, you, for everyone." } },
         { "lemma": "later", "pos": "adverb", "meaning": { "vi": "sau, lát nữa", "en-US": "at a time after now" }, "accepted": { "vi": ["sau", "lát nữa"] } },
         { "lemma": "tomorrow", "pos": "adverb", "meaning": { "vi": "ngày mai", "en-US": "the day after today" }, "accepted": { "vi": ["mai"] } }
       ],
@@ -84,7 +84,7 @@
       "sentences": [
         { "key": "s1", "text": "How are you?", "translation": { "vi": "Bạn khỏe không?" }, "accepted_translation": { "vi": ["Bạn có khỏe không?", "Bạn thế nào?"] }, "note": { "vi": "Câu hỏi thăm thông dụng nhất, thường đi ngay sau lời chào.", "en-US": "The most common question after hello." } },
         { "key": "s2", "text": "I'm fine, thank you.", "accepted": ["I am fine, thank you."], "translation": { "vi": "Tôi khỏe, cảm ơn bạn." }, "accepted_translation": { "vi": ["Tôi khỏe, cảm ơn.", "Mình khỏe, cảm ơn bạn."] } },
-        { "key": "s3", "text": "And you?", "translation": { "vi": "Còn bạn?" }, "accepted_translation": { "vi": ["Còn bạn thì sao?"] } },
+        { "key": "s3", "text": "And you?", "translation": { "vi": "Còn bạn?" }, "accepted_translation": { "vi": ["Còn bạn thì sao?", "Bạn thì sao?"] } },
         { "key": "s4", "text": "I'm great!", "accepted": ["I am great!"], "translation": { "vi": "Tôi rất khỏe!" }, "accepted_translation": { "vi": ["Tôi rất tốt!", "Tôi rất ổn!", "Mình rất khỏe!"] } },
         { "key": "s5", "text": "Thanks!", "translation": { "vi": "Cảm ơn nhé!" }, "accepted_translation": { "vi": ["Cảm ơn!", "Cám ơn!"] } }
       ]
@@ -101,7 +101,7 @@
         "en-US": "Say the last sound /z/ in please and excuse. Say the last sound /s/ in yes."
       },
       "words": [
-        { "lemma": "you're", "pos": "contraction", "meaning": { "vi": "bạn thì, bạn là (viết gọn của you are)", "en-US": "the short form of you are" }, "accepted": { "vi": ["bạn là", "bạn thì"] } },
+        { "lemma": "you're", "pos": "contraction", "meaning": { "vi": "bạn thì, bạn là (viết gọn của you are)", "en-US": "the short form of you are" }, "accepted": { "vi": ["bạn là", "bạn thì", "bạn"] } },
         { "lemma": "welcome", "pos": "adjective", "meaning": { "vi": "được chào đón; You're welcome nghĩa là không có gì", "en-US": "You're welcome is what you say after someone says thank you" }, "accepted": { "vi": ["được chào đón", "chào mừng"] } },
         { "lemma": "sorry", "pos": "adjective", "meaning": { "vi": "xin lỗi, lấy làm tiếc", "en-US": "a word you say when you do something wrong" }, "accepted": { "vi": ["xin lỗi"] } },
         { "lemma": "excuse", "pos": "verb", "meaning": { "vi": "thứ lỗi, bỏ qua", "en-US": "Excuse me is a polite way to get someone to listen or move" }, "accepted": { "vi": ["thứ lỗi", "xin lỗi"] } },
@@ -114,7 +114,7 @@
         { "key": "s1", "text": "You're welcome.", "accepted": ["You are welcome."], "translation": { "vi": "Không có gì." }, "accepted_translation": { "vi": ["Không có chi.", "Không có gì đâu."] }, "note": { "vi": "Câu đáp lại khi người khác nói Thank you.", "en-US": "The answer when someone says Thank you." } },
         { "key": "s2", "text": "I'm sorry.", "accepted": ["I am sorry."], "translation": { "vi": "Tôi xin lỗi." }, "accepted_translation": { "vi": ["Xin lỗi.", "Mình xin lỗi."] } },
         { "key": "s3", "text": "Excuse me.", "translation": { "vi": "Xin lỗi, cho tôi hỏi." }, "accepted_translation": { "vi": ["Xin lỗi.", "Xin phép.", "Làm phiền bạn."] }, "note": { "vi": "Dùng để gọi sự chú ý một cách lịch sự, không phải để nhận lỗi.", "en-US": "Use it to politely get someone to listen. It does not mean you did something wrong." } },
-        { "key": "s4", "text": "Yes, please.", "translation": { "vi": "Vâng, làm ơn." }, "accepted_translation": { "vi": ["Vâng, cho tôi xin.", "Có, làm ơn."] }, "note": { "vi": "Cách nhận lời lịch sự khi được mời thứ gì đó.", "en-US": "A polite way to say yes when someone offers you something." } },
+        { "key": "s4", "text": "Yes, please.", "translation": { "vi": "Vâng, cho tôi xin." }, "accepted_translation": { "vi": ["Vâng, làm ơn.", "Có, làm ơn."] }, "note": { "vi": "Cách nhận lời lịch sự khi được mời thứ gì đó.", "en-US": "A polite way to say yes when someone offers you something." } },
         { "key": "s5", "text": "No, thank you.", "translation": { "vi": "Không, cảm ơn bạn." }, "accepted_translation": { "vi": ["Không, cảm ơn.", "Dạ không, cảm ơn."] }, "note": { "vi": "Cách từ chối lịch sự.", "en-US": "A polite way to say no." } }
       ]
     }
