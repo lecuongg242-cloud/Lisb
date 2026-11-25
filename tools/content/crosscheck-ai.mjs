@@ -146,11 +146,21 @@ async function review(key, unitPath) {
   };
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
   for (let attempt = 1; ; attempt++) {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-goog-api-key": key },
-      body: JSON.stringify(body),
-    });
+    let res;
+    try {
+      res = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify(body),
+      });
+    } catch (e) {
+      // Lỗi mạng (kết nối bị đóng giữa chừng): thử lại như lỗi 5xx.
+      if (attempt < 3) {
+        await new Promise((r) => setTimeout(r, 5000 * attempt));
+        continue;
+      }
+      throw new Error(`${unitPath}: lỗi mạng ${e.cause?.code ?? e.message}`);
+    }
     if (res.ok) {
       const data = await res.json();
       const text = data.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";

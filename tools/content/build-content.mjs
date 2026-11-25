@@ -156,7 +156,9 @@ function build(units, ipa, cefr) {
       // Phiên âm lấy từ ipa-dict. Trường pronunciation trong JSON chỉ dùng khi từ điển không áp dụng được
       // (ví dụ tên chữ cái: từ điển chỉ có phiên âm của từ "a", không có tên chữ "A").
       if (w.pronunciation) overrides.push(w.lemma);
-      const pron = w.pronunciation ?? ipa.get(w.lemma.toLowerCase()) ?? null;
+      // Phiên âm nhập tay thiếu dấu /.../ thì thêm vào, để hiển thị giống phiên âm lấy từ ipa-dict.
+      const manual = w.pronunciation && (w.pronunciation.startsWith("/") ? w.pronunciation : `/${w.pronunciation}/`);
+      const pron = manual || ipa.get(w.lemma.toLowerCase()) || null;
       const level = cefr.get(w.lemma.toLowerCase()) ?? null;
       if (!pron) warn(`${where}: từ "${w.lemma}" không có phiên âm trong ipa-dict`);
       if (!["proper noun", "contraction", "letter"].includes(w.pos)) {
