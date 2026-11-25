@@ -1,0 +1,123 @@
+{
+  "course": "english",
+  "level": "a1",
+  "unit": "family",
+  "names": ["Anna", "Minh", "Tom", "Hanoi", "Anna's", "Minh's"],
+  "assumed_words": [],
+  "lessons": [
+    {
+      "key": "my-family",
+      "title": { "vi": "Gia đình tôi", "en-US": "My family" },
+      "grammar_tip": {
+        "vi": "Số nhiều thường thêm -s: brother thành brothers, parent thành parents. Parents là bố mẹ (cả hai người). Tiếng Anh không phân biệt anh hay em: brother là anh trai hoặc em trai, sister là chị gái hoặc em gái.",
+        "en-US": "To make most nouns plural, add -s: brothers, parents. Parents means your mother and father. Brother and sister do not show who is older."
+      },
+      "pronunciation_tip": {
+        "vi": "Mother, father, brother có âm /ð/ ở giữa: đặt đầu lưỡi giữa hai hàm răng, cổ họng rung; đừng đọc thành /d/. Đuôi -er đọc nhẹ và cong lưỡi: MO-ther. Trong daughter, chữ gh không đọc: /ˈdɔtɚ/.",
+        "en-US": "Mother, father and brother have /ð/ in the middle: put your tongue between your teeth. Say the -er ending softly. In daughter, do not say the gh."
+      },
+      "words": [
+        { "lemma": "family", "pos": "noun", "meaning": { "vi": "gia đình", "en-US": "a group of people who are related, like parents and children" }, "accepted": { "vi": ["gia đình", "nhà"] } },
+        { "lemma": "mother", "pos": "noun", "meaning": { "vi": "mẹ", "en-US": "your female parent" }, "accepted": { "vi": ["mẹ", "má", "người mẹ"] } },
+        { "lemma": "father", "pos": "noun", "meaning": { "vi": "bố, cha", "en-US": "your male parent" }, "accepted": { "vi": ["bố", "cha", "ba", "người cha"] } },
+        { "lemma": "parent", "pos": "noun", "forms": ["parents"], "meaning": { "vi": "bố hoặc mẹ; parents là bố mẹ", "en-US": "a mother or a father" }, "accepted": { "vi": ["bố mẹ", "cha mẹ", "phụ huynh", "bố hoặc mẹ"] } },
+        { "lemma": "brother", "pos": "noun", "forms": ["brothers"], "meaning": { "vi": "anh trai, em trai", "en-US": "a boy or man with the same parents as you" }, "accepted": { "vi": ["anh trai", "em trai", "anh", "em", "anh em trai"] }, "usage_note": { "vi": "Không phân biệt anh hay em. Muốn nói rõ thì dùng older brother (anh trai), younger brother (em trai).", "en-US": "Brother does not show age. Say older brother or younger brother to be clear." } },
+        { "lemma": "sister", "pos": "noun", "forms": ["sisters"], "meaning": { "vi": "chị gái, em gái", "en-US": "a girl or woman with the same parents as you" }, "accepted": { "vi": ["chị gái", "em gái", "chị", "em", "chị em gái"] }, "usage_note": { "vi": "Không phân biệt chị hay em. Muốn nói rõ thì dùng older sister (chị gái), younger sister (em gái).", "en-US": "Sister does not show age. Say older sister or younger sister to be clear." } },
+        { "lemma": "son", "pos": "noun", "forms": ["sons"], "meaning": { "vi": "con trai", "en-US": "your male child" }, "accepted": { "vi": ["con trai", "đứa con trai"] } },
+        { "lemma": "daughter", "pos": "noun", "forms": ["daughters"], "meaning": { "vi": "con gái", "en-US": "your female child" }, "accepted": { "vi": ["con gái", "đứa con gái"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "This is my family.", "translation": { "vi": "Đây là gia đình tôi." }, "accepted_translation": { "vi": ["Đây là gia đình của tôi.", "Đây là gia đình mình."] } },
+        { "key": "s2", "text": "This is my mother, and this is my father.", "accepted": ["This is my mother and this is my father."], "translation": { "vi": "Đây là mẹ tôi, còn đây là bố tôi." }, "accepted_translation": { "vi": ["Đây là mẹ tôi và đây là bố tôi.", "Đây là mẹ của tôi, còn đây là bố của tôi.", "Đây là mẹ tôi, còn đây là ba tôi.", "Đây là mẹ tôi, còn đây là cha tôi."] } },
+        { "key": "s3", "text": "My parents are from Hanoi.", "accepted": ["My parents are from Ha Noi."], "translation": { "vi": "Bố mẹ tôi đến từ Hà Nội." }, "accepted_translation": { "vi": ["Bố mẹ tôi là người Hà Nội.", "Cha mẹ tôi đến từ Hà Nội.", "Ba mẹ tôi đến từ Hà Nội."] } },
+        { "key": "s4", "text": "Are they your brothers? No, they're my sons.", "accepted": ["Are they your brothers? No, they are my sons."], "translation": { "vi": "Họ là anh em trai của bạn à? Không, họ là con trai tôi." }, "accepted_translation": { "vi": ["Họ có phải là anh em trai của bạn không? Không, họ là con trai của tôi.", "Họ là anh em của bạn à? Không, họ là các con trai tôi.", "Đó là anh em trai của bạn à? Không, đó là các con trai tôi."] } },
+        { "key": "s5", "text": "My sister and my daughter are students.", "translation": { "vi": "Chị gái tôi và con gái tôi là học sinh." }, "accepted_translation": { "vi": ["Em gái tôi và con gái tôi là học sinh.", "Chị gái tôi và con gái tôi là sinh viên.", "Em gái tôi và con gái tôi là sinh viên.", "Chị tôi và con gái tôi đều là học sinh."] } }
+      ]
+    },
+    {
+      "key": "have-has",
+      "title": { "vi": "Tôi có, anh ấy có", "en-US": "I have, he has" },
+      "grammar_tip": {
+        "vi": "I, you, we, they đi với have; he, she đi với has: I have a son. She has a baby. Child có số nhiều đặc biệt là children, không thêm -s. Only child là con một.",
+        "en-US": "Use have with I, you, we and they. Use has with he and she. The plural of child is children. An only child has no brothers or sisters."
+      },
+      "pronunciation_tip": {
+        "vi": "Have đọc /hæv/, has đọc /hæz/: đọc rõ âm cuối /v/ và /z/. Child đọc /tʃaɪld/ nhưng children đọc /ˈtʃɪldrən/: âm ai đổi thành âm i. Husband nhấn vào âm đầu: HUS-band.",
+        "en-US": "Say the last sound in have /v/ and has /z/. Child and children sound different: CHILD, CHIL-dren. In husband, the first part is strong: HUS-band."
+      },
+      "words": [
+        { "lemma": "have", "pos": "verb", "forms": ["has"], "meaning": { "vi": "có", "en-US": "to own something, or to have a person in your family" }, "accepted": { "vi": ["có", "sở hữu"] }, "usage_note": { "vi": "He, she dùng has: She has a baby.", "en-US": "Use has with he and she: She has a baby." } },
+        { "lemma": "husband", "pos": "noun", "meaning": { "vi": "chồng", "en-US": "the man a woman is married to" }, "accepted": { "vi": ["chồng", "người chồng", "ông xã"] } },
+        { "lemma": "wife", "pos": "noun", "meaning": { "vi": "vợ", "en-US": "the woman a man is married to" }, "accepted": { "vi": ["vợ", "người vợ", "bà xã"] } },
+        { "lemma": "child", "pos": "noun", "forms": ["children"], "meaning": { "vi": "đứa trẻ; con (của bố mẹ)", "en-US": "a young person; a son or daughter" }, "accepted": { "vi": ["con", "đứa con", "đứa trẻ", "trẻ em", "trẻ con", "đứa bé"] }, "usage_note": { "vi": "Số nhiều là children, không thêm -s.", "en-US": "The plural is children." } },
+        { "lemma": "baby", "pos": "noun", "meaning": { "vi": "em bé", "en-US": "a very young child" }, "accepted": { "vi": ["em bé", "đứa bé", "trẻ sơ sinh", "con nhỏ"] } },
+        { "lemma": "only", "pos": "adjective", "meaning": { "vi": "duy nhất; only child là con một", "en-US": "one and no more" }, "accepted": { "vi": ["duy nhất", "chỉ", "chỉ có"] } },
+        { "lemma": "mom", "pos": "noun", "meaning": { "vi": "mẹ (cách gọi thân mật)", "en-US": "a friendly word for mother" }, "accepted": { "vi": ["mẹ", "má"] }, "usage_note": { "vi": "Cách nói của người Mỹ; người Anh viết mum.", "en-US": "This is American English." } },
+        { "lemma": "dad", "pos": "noun", "meaning": { "vi": "bố (cách gọi thân mật)", "en-US": "a friendly word for father" }, "accepted": { "vi": ["bố", "ba", "cha"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "I have two children, a son and a daughter.", "accepted": ["I have 2 children, a son and a daughter."], "translation": { "vi": "Tôi có hai con, một con trai và một con gái." }, "accepted_translation": { "vi": ["Tôi có hai đứa con, một trai một gái.", "Tôi có hai người con, một con trai và một con gái.", "Tôi có hai đứa con, một con trai và một con gái."] } },
+        { "key": "s2", "text": "She has a husband and a baby.", "translation": { "vi": "Cô ấy có chồng và một em bé." }, "accepted_translation": { "vi": ["Cô ấy có một người chồng và một em bé.", "Chị ấy có chồng và một em bé.", "Cô ấy có chồng và một đứa con nhỏ."] } },
+        { "key": "s3", "text": "He's my husband, and I'm his wife.", "accepted": ["He is my husband, and I am his wife.", "He's my husband and I'm his wife."], "translation": { "vi": "Anh ấy là chồng tôi, còn tôi là vợ anh ấy." }, "accepted_translation": { "vi": ["Anh ấy là chồng tôi và tôi là vợ anh ấy.", "Anh ấy là chồng của tôi, còn tôi là vợ của anh ấy."] } },
+        { "key": "s4", "text": "Tom is an only child.", "translation": { "vi": "Tom là con một." }, "accepted_translation": { "vi": ["Tom là con một trong nhà.", "Tom là đứa con duy nhất."] }, "note": { "vi": "Dùng an (không dùng a) trước only, vì only bắt đầu bằng âm nguyên âm.", "en-US": "Use an before only because only starts with a vowel sound." } },
+        { "key": "s5", "text": "My mom and dad live in Hanoi.", "accepted": ["My mom and dad live in Ha Noi."], "translation": { "vi": "Bố mẹ tôi sống ở Hà Nội." }, "accepted_translation": { "vi": ["Mẹ và bố tôi sống ở Hà Nội.", "Ba mẹ tôi sống ở Hà Nội.", "Bố mẹ tôi ở Hà Nội."] } }
+      ]
+    },
+    {
+      "key": "relatives",
+      "title": { "vi": "Họ hàng", "en-US": "Relatives" },
+      "grammar_tip": {
+        "vi": "Thêm 's sau tên người để nói của ai: Anna's aunt là cô của Anna, Minh's cousins là anh chị em họ của Minh. With là với, cùng: I live with my grandparents.",
+        "en-US": "Add 's to a name to show who has something: Anna's aunt, Minh's cousins. With means together: I live with my grandparents."
+      },
+      "pronunciation_tip": {
+        "vi": "Aunt trong tiếng Anh Mỹ đọc /ænt/, giống hệt ant (con kiến). Cousin đọc /ˈkʌzən/: chữ ou đọc như uncle, chữ s đọc /z/. Uncle và cousin nhấn vào âm đầu: UN-cle, COU-sin.",
+        "en-US": "In American English, aunt sounds like ant. In cousin, the s sounds like /z/. The first part is strong: UN-cle, COU-sin."
+      },
+      "words": [
+        { "lemma": "grandmother", "pos": "noun", "meaning": { "vi": "bà (nội hoặc ngoại)", "en-US": "the mother of your mother or father" }, "accepted": { "vi": ["bà", "bà nội", "bà ngoại"] } },
+        { "lemma": "grandfather", "pos": "noun", "meaning": { "vi": "ông (nội hoặc ngoại)", "en-US": "the father of your mother or father" }, "accepted": { "vi": ["ông", "ông nội", "ông ngoại"] } },
+        { "lemma": "grandparent", "pos": "noun", "forms": ["grandparents"], "meaning": { "vi": "ông hoặc bà; grandparents là ông bà", "en-US": "a grandmother or a grandfather" }, "accepted": { "vi": ["ông bà", "ông hoặc bà"] } },
+        { "lemma": "uncle", "pos": "noun", "meaning": { "vi": "chú, bác, cậu", "en-US": "the brother of your mother or father" }, "accepted": { "vi": ["chú", "bác", "cậu", "dượng", "bác trai"] }, "usage_note": { "vi": "Tiếng Anh không phân biệt bên nội, bên ngoại hay lớn tuổi hơn: anh hoặc em trai của bố mẹ đều là uncle.", "en-US": "Uncle is the brother of your mother or your father." } },
+        { "lemma": "aunt", "pos": "noun", "meaning": { "vi": "cô, dì, bác gái", "en-US": "the sister of your mother or father" }, "accepted": { "vi": ["cô", "dì", "bác gái", "thím", "mợ", "bác"] }, "usage_note": { "vi": "Chị hoặc em gái của bố mẹ đều là aunt.", "en-US": "Aunt is the sister of your mother or your father." } },
+        { "lemma": "cousin", "pos": "noun", "forms": ["cousins"], "meaning": { "vi": "anh, chị, em họ", "en-US": "the child of your aunt or uncle" }, "accepted": { "vi": ["anh họ", "chị họ", "em họ", "anh em họ", "anh chị em họ"] } },
+        { "lemma": "with", "pos": "preposition", "meaning": { "vi": "với, cùng", "en-US": "together with someone or something" }, "accepted": { "vi": ["với", "cùng", "cùng với"] } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "I live with my grandparents.", "translation": { "vi": "Tôi sống với ông bà." }, "accepted_translation": { "vi": ["Tôi sống cùng ông bà.", "Tôi sống với ông bà tôi.", "Tôi ở với ông bà.", "Tôi sống với ông bà của tôi."] } },
+        { "key": "s2", "text": "My grandmother and grandfather are very nice.", "translation": { "vi": "Bà và ông tôi rất tốt." }, "accepted_translation": { "vi": ["Ông bà tôi rất tốt.", "Bà và ông tôi rất dễ mến.", "Ông bà tôi rất dễ mến.", "Bà và ông của tôi rất tốt."] } },
+        { "key": "s3", "text": "Anna's aunt is my teacher.", "translation": { "vi": "Cô của Anna là giáo viên của tôi." }, "accepted_translation": { "vi": ["Dì của Anna là giáo viên của tôi.", "Cô của Anna là cô giáo của tôi.", "Dì của Anna là cô giáo của tôi.", "Cô của Anna là giáo viên tôi."] } },
+        { "key": "s4", "text": "Is he your uncle? No, he's my cousin.", "accepted": ["Is he your uncle? No, he is my cousin."], "translation": { "vi": "Đó là chú của bạn à? Không, đó là anh họ tôi." }, "accepted_translation": { "vi": ["Đó có phải là chú của bạn không? Không, đó là anh họ của tôi.", "Người đó là chú của bạn à? Không, đó là anh họ tôi.", "Đó là bác của bạn à? Không, đó là anh họ tôi.", "Anh ấy là chú của bạn à? Không, anh ấy là anh họ tôi.", "Anh ấy là cậu của bạn à? Không, anh ấy là anh họ tôi.", "Anh ấy là chú của bạn à? Không, anh ấy là em họ tôi."] } },
+        { "key": "s5", "text": "Minh's cousins are from America.", "translation": { "vi": "Anh chị em họ của Minh đến từ Mỹ." }, "accepted_translation": { "vi": ["Các anh chị em họ của Minh đến từ Mỹ.", "Anh em họ của Minh là người Mỹ.", "Anh chị em họ của Minh là người Mỹ."] } }
+      ]
+    },
+    {
+      "key": "describing-people",
+      "title": { "vi": "Tả người", "en-US": "Describing people" },
+      "grammar_tip": {
+        "vi": "Tả người dùng be + tính từ: My brother is tall. Tả tóc, mắt dùng have hoặc has: He has brown eyes. Tính từ đứng trước danh từ: long hair, không nói hair long. Look + tính từ là trông có vẻ: You look young.",
+        "en-US": "Use be + adjective: My brother is tall. Use have or has for hair and eyes: He has brown eyes. The adjective comes before the noun: long hair. Look + adjective means seem: You look young."
+      },
+      "pronunciation_tip": {
+        "vi": "Hair đọc /hɛr/, cong lưỡi ở cuối; đừng đọc thành hai âm \"he-a\". Eye đọc giống hệt chữ I: /aɪ/. Look đọc /lʊk/ với âm u ngắn, đừng kéo dài. Funny nhấn vào âm đầu: FUN-ny.",
+        "en-US": "In hair, curl your tongue at the end. Eye sounds like the letter I. Look has a short u sound. In funny, the first part is strong: FUN-ny."
+      },
+      "words": [
+        { "lemma": "young", "pos": "adjective", "meaning": { "vi": "trẻ", "en-US": "not old; in the early part of life" }, "accepted": { "vi": ["trẻ", "trẻ trung", "còn trẻ"] } },
+        { "lemma": "tall", "pos": "adjective", "meaning": { "vi": "cao", "en-US": "bigger than most people from head to foot" }, "accepted": { "vi": ["cao", "cao lớn"] }, "usage_note": { "vi": "Người cao dùng tall, không dùng long.", "en-US": "Use tall, not long, for people." } },
+        { "lemma": "hair", "pos": "noun", "meaning": { "vi": "tóc", "en-US": "what grows on your head" }, "accepted": { "vi": ["tóc", "mái tóc"] }, "usage_note": { "vi": "Hair chỉ cả mái tóc: không thêm -s, không dùng a. She has long hair.", "en-US": "Hair has no -s and no a: She has long hair." } },
+        { "lemma": "eye", "pos": "noun", "forms": ["eyes"], "meaning": { "vi": "mắt", "en-US": "what you see with" }, "accepted": { "vi": ["mắt", "con mắt", "đôi mắt"] } },
+        { "lemma": "kind", "pos": "adjective", "meaning": { "vi": "tốt bụng, tử tế", "en-US": "nice and helpful to other people" }, "accepted": { "vi": ["tốt bụng", "tử tế", "hiền", "tốt", "hiền lành"] } },
+        { "lemma": "funny", "pos": "adjective", "meaning": { "vi": "vui tính, buồn cười", "en-US": "making people laugh" }, "accepted": { "vi": ["vui tính", "hài hước", "buồn cười", "vui"] } },
+        { "lemma": "look", "pos": "verb", "forms": ["looks"], "meaning": { "vi": "trông (có vẻ); nhìn", "en-US": "to seem, from what you see; also to turn your eyes to something" }, "accepted": { "vi": ["trông", "nhìn", "trông có vẻ", "trông như"] }, "usage_note": { "vi": "Look + tính từ là trông có vẻ: You look young. Với he, she thêm -s: She looks young.", "en-US": "Look + adjective: You look young. With he and she, add -s: She looks young." } }
+      ],
+      "sentences": [
+        { "key": "s1", "text": "My brother is tall and very funny.", "translation": { "vi": "Anh trai tôi cao và rất vui tính." }, "accepted_translation": { "vi": ["Em trai tôi cao và rất vui tính.", "Anh trai tôi cao và rất hài hước.", "Em trai tôi cao và rất hài hước.", "Anh tôi cao và rất vui tính."] } },
+        { "key": "s2", "text": "She has long black hair.", "translation": { "vi": "Cô ấy có mái tóc đen dài." }, "accepted_translation": { "vi": ["Cô ấy có tóc dài màu đen.", "Cô ấy có mái tóc dài màu đen.", "Chị ấy có mái tóc đen dài.", "Cô ấy có tóc đen dài."] } },
+        { "key": "s3", "text": "He has brown eyes.", "translation": { "vi": "Anh ấy có đôi mắt màu nâu." }, "accepted_translation": { "vi": ["Anh ấy có mắt nâu.", "Anh ấy có đôi mắt nâu.", "Mắt anh ấy màu nâu."] }, "note": { "vi": "Mắt đen của người Việt thường được gọi là brown eyes hoặc dark brown eyes. A black eye nghĩa là mắt bị đánh thâm tím.", "en-US": "Dark eyes are usually called brown eyes. A black eye is an eye hurt in a fight." } },
+        { "key": "s4", "text": "Your mother looks very young.", "translation": { "vi": "Mẹ bạn trông rất trẻ." }, "accepted_translation": { "vi": ["Mẹ của bạn trông rất trẻ.", "Mẹ bạn nhìn rất trẻ.", "Mẹ bạn trông trẻ lắm."] } },
+        { "key": "s5", "text": "My grandmother is old, but she's very kind.", "accepted": ["My grandmother is old, but she is very kind.", "My grandmother is old but she's very kind."], "translation": { "vi": "Bà tôi già rồi, nhưng bà rất tốt bụng." }, "accepted_translation": { "vi": ["Bà tôi già nhưng rất tốt bụng.", "Bà của tôi đã già, nhưng bà rất tốt bụng.", "Bà tôi già rồi nhưng rất hiền."] } }
+      ]
+    }
+  ]
+}

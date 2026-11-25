@@ -1,0 +1,43 @@
+{
+  "unit": "a1/02-family",
+  "model": "gemini-3.1-pro-preview",
+  "checked_at": "2026-11-25T09:22:01.495Z",
+  "issues": [
+    {
+      "lesson": "relatives",
+      "item": "s4",
+      "field": "translation.vi",
+      "severity": "error",
+      "current": "Anh ấy là chú của bạn à? Không, anh ấy là anh họ tôi.",
+      "problem": "Trong tiếng Việt, dùng đại từ 'Anh ấy' để chỉ 'chú' (người lớn tuổi hơn, thuộc thế hệ trước) là sai ngôi xưng hô và mâu thuẫn. Dù người nói đang đoán, việc ghép 'anh ấy' và 'chú' trong cùng một câu nghe rất thiếu tự nhiên. Nên dùng đại từ phiếm chỉ như 'đó' hoặc 'người đó'.",
+      "fix": "Đó là chú của bạn à? Không, đó là anh họ tôi."
+    },
+    {
+      "lesson": "relatives",
+      "item": "s4",
+      "field": "accepted_translation.vi",
+      "severity": "error",
+      "current": "[\"Anh ấy có phải là chú của bạn không? Không, anh ấy là anh họ của tôi.\", \"Đó là chú của bạn à? Không, đó là anh họ tôi.\", \"Anh ấy là cậu của bạn à? Không, anh ấy là anh họ tôi.\", \"Anh ấy là chú của bạn à? Không, anh ấy là em họ tôi.\"]",
+      "problem": "Tương tự như bản dịch chính, các đáp án chấp nhận đang chứa đại từ 'Anh ấy' đi kèm với 'chú/cậu', gây sai lệch về cách xưng hô trong tiếng Việt. Cần thay 'Anh ấy' bằng 'Đó' hoặc 'Người đó'.",
+      "fix": "[\"Đó có phải là chú của bạn không? Không, đó là anh họ của tôi.\", \"Đó là chú của bạn à? Không, đó là anh họ tôi.\", \"Đó là cậu của bạn à? Không, đó là anh họ tôi.\", \"Đó là chú của bạn à? Không, đó là em họ tôi.\"]"
+    },
+    {
+      "lesson": "have-has",
+      "item": "only",
+      "field": "accepted.vi",
+      "severity": "suggestion",
+      "current": "[\"duy nhất\", \"chỉ\", \"chỉ có\"]",
+      "problem": "Từ loại (pos) đang được dạy là tính từ (adjective) với nghĩa 'duy nhất' (như trong 'only child'). Các từ 'chỉ', 'chỉ có' là phó từ (adverb). Việc đưa phó từ vào danh sách chấm đúng cho tính từ có thể làm người học hiểu sai từ loại khi học từ vựng đơn lẻ.",
+      "fix": "[\"duy nhất\", \"một\", \"độc nhất\"]"
+    },
+    {
+      "lesson": "my-family",
+      "item": "s4",
+      "field": "translation.vi",
+      "severity": "suggestion",
+      "current": "Họ là anh em trai của bạn à? Không, họ là con trai tôi.",
+      "problem": "Dùng đại từ 'Họ' (they) để chỉ các thành viên trong gia đình (đặc biệt là con cái) nghe hơi xa cách và mang văn phong dịch thuật. Trong giao tiếp thực tế, người Việt thường dùng 'Đó là...' hoặc 'Kia là...'.",
+      "fix": "Đó là anh em trai của bạn à? Không, đó là các con trai tôi."
+    }
+  ]
+}

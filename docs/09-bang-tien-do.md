@@ -16,7 +16,7 @@ Ký hiệu:
 |---|---|---|
 | 1 | Hoàn thiện cấp Khởi động | Đang làm: 8 việc xong, 6 việc chờ chủ dự án, 1 việc chưa làm |
 | 1B | Luyện nói và chấm phát âm cho cấp Khởi động | Hoãn từ 2026-11-24, làm sau khi có bài học cấp A1 |
-| 2 | Ba nhánh và cấp A1 | Đang làm: khung A1 xong, chủ đề 1/21 đã xuất bản |
+| 2 | Ba nhánh và cấp A1 | Đang làm: khung A1 xong, chủ đề 2/21 đã xuất bản |
 | 3 | Cấp A2, viết và nói | Chưa bắt đầu |
 | 4 | Thử nghiệm kín | Chưa bắt đầu |
 | 5 | Cấp B1 và kỹ năng thi | Chưa bắt đầu |
@@ -96,7 +96,8 @@ Thứ tự xếp lại ngày 2026-11-24 để có bài học mới sớm nhất:
 - [x] Công cụ kiểm tra chéo cho mọi bài mới — 2026-11-25, `node tools/content/crosscheck-ai.mjs <cấp>/<chủ đề>`
 - [ ] Soạn, kiểm tra, sinh âm thanh và xuất bản các bài từ vựng chủ đề cấp A1, từng chủ đề một. Đã xuất bản (chưa nghe duyệt âm thanh):
   - [~] Chủ đề 1 Giới thiệu bản thân, 4 bài + bài ôn, 30 từ — 2026-11-24, đã kiểm tra chéo 2026-11-25; chờ bạn học thử
-  - [ ] Chủ đề 2-21
+  - [~] Chủ đề 2 Gia đình, 4 bài + bài ôn, 30 từ — 2026-11-25, đã kiểm tra chéo; chờ bạn học thử. Nghe duyệt riêng family và husband: giọng máy đọc khác từ điển (husband có thể bị đọc /s/ thay vì /z/)
+  - [ ] Chủ đề 3-21
 
 Đợt 2, dạng bài mới:
 
